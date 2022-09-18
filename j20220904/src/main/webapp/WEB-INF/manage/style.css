@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* 공통옵션 */
+ul li {list-style:none; }
+.fl {float:left; }
+.tc {text-align:center; }
+
+/* 게시판 목록 */
+.board {width: 950px; }
+.w70 {width:70px; }
+.w500 {width:500px; }
+.w120 {width:120px; }
+.w100 {width:100px; }
+
+.contents-inner .aside-wrap ul li {
+	display:flex; /* 수직 */
+}
+
+ol {
+	list-style: none;
+}
+
+li {
+	display: inline;
+	position: relative;
+	display: inline-block;
+	color: #FFFFFF;
+	padding-right: 18px;
+	font-size: 16px;
+	font-family: "Montserrat", "Noto Sans KR", sans-serif;
+	font-weight: 500;
+	line-height: 48px;
+	z-index: 2;
+}
+
+a {
+	text-decoration: none;
+	color		   : black;
+}
