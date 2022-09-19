@@ -856,7 +856,7 @@
 		
 		<div class="big_product_main">
 			<div class="big_product_main_1">
-				<img src="../img/contents/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
+				<img src="../img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
 			</div>
 		</div>
 	</div>
