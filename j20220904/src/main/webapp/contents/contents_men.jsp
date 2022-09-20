@@ -667,29 +667,29 @@
 		</div>
 		<div class="contents-inner product-detail-wrap">
 			<div class="image_big_left">
-				<img src="../img/contexts/nike_waffle01.jpg" id="big">
+				<img src="/j20220904/img/contexts/nike_waffle01.jpg" id="big">
 				<div class="image_big_left_small">
 					<div class="small_image_div">
-						<img src="../img/contexts/nike_waffle01.jpg" class="small">
+						<img src="/j20220904/img/contexts/nike_waffle01.jpg" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="../img/contexts/nike_waffle02.jpg" class="small">
+						<img src="/j20220904/img/contexts/nike_waffle02.jpg" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="../img/contexts/nike_waffle03.jpg" class="small">
+						<img src="/j20220904/img/contexts/nike_waffle03.jpg" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="../img/contexts/nike_waffle04.jpg" class="small">
+						<img src="/j20220904/img/contexts/nike_waffle04.jpg" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="../img/contexts/nike_waffle05.jpg" class="small">
+						<img src="/j20220904/img/contexts/nike_waffle05.jpg" class="small">
 					</div>
 					
 					<div class="image_big_left_Product_satisfaction">
 						<div class="image_big_left_Product_satisfaction_left">
 							<div class="image_big_left_Product_satisfaction_left_1">상품만족도</div><p>
 							<div class="image_big_left_Product_satisfaction_left_2">97%</div><p>
-							<div class="image_big_left_Product_satisfaction_left_3"><img src="../img/contexts/star_0.png"><img src="../img/contexts/star_0.png"><img src="../img/contexts/star_0.png"><img src="../img/contexts/star_0.png"><img src="../img/contexts/star_0.png"> 5</div><p>
+							<div class="image_big_left_Product_satisfaction_left_3"><img src="/j20220904/img/contexts/star_0.png"><img src="/j20220904/img/contexts/star_0.png"><img src="/j20220904/img/contexts/star_0.png"><img src="/j20220904/img/contexts/star_0.png"><img src="/j20220904/img/contexts/star_0.png"> 5</div><p>
 						</div>
 						<div class="image_big_left_Product_satisfaction_right">
 							<div class="image_big_left_Product_satisfaction_right_1">
@@ -718,7 +718,7 @@
 				<div class="detail_brandbox">
 					<span class="ABC_MRRT">ABC-MART</span>
 						<div class="detail_brandbox_like">
-							<img src="../img/contexts/heart1.png" id="heart">
+							<img src="/j20220904/img/contexts/heart1.png" id="heart">
 						</div>
 				</div>
 				<div class="brand_name"> <p>
@@ -734,7 +734,7 @@
 				<ul>
 					<s>89,000원</s><li>59,000원</li>
 				</ul>
-				<button class="button--open"><img src="../img/contexts/product_button.png" id="product_button"></button>
+				<button class="button--open"><img src="/j20220904/img/contexts/product_button.png" id="product_button"></button>
 			        <div class="modal--bg hidden">
 			            <div class="modal">
 			                	<table class="modal__text">
@@ -758,11 +758,11 @@
 								스타일컬러
 							</div>
 							<div class="style_color_right">
-								<img src="../img/contexts/similar_01.jpg" alt="비슷한스타일1">
-								<img src="../img/contexts/similar_02.jpg" alt="비슷한스타일2">
-								<img src="../img/contexts/similar_03.jpg" alt="비슷한스타일3">
-								<img src="../img/contexts/similar_04.jpg" alt="비슷한스타일4">
-								<img src="../img/contexts/similar_05.jpg" alt="비슷한스타일5">
+								<img src="/j20220904/img/contexts/similar_01.jpg" alt="비슷한스타일1">
+								<img src="/j20220904/img/contexts/similar_02.jpg" alt="비슷한스타일2">
+								<img src="/j20220904/img/contexts/similar_03.jpg" alt="비슷한스타일3">
+								<img src="/j20220904/img/contexts/similar_04.jpg" alt="비슷한스타일4">
+								<img src="/j20220904/img/contexts/similar_05.jpg" alt="비슷한스타일5">
 							</div>
 						</div>
 						<div class="style_color_code_1">	
@@ -856,7 +856,7 @@
 		
 		<div class="big_product_main">
 			<div class="big_product_main_1">
-				<img src="../img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
+				<img src="/j20220904/j20220904/img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
 			</div>
 		</div>
 	</div>
@@ -870,7 +870,7 @@
 		$("#heart").click(function() {
 			if(num == 1) num=0;
 			else 	     num++;	
-			$(this).attr("src","../img/contexts/"+ imageName[num]+".png");
+			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
 		});
 	});	
 	
@@ -938,7 +938,7 @@
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="append_list div250"> 250 </div> <input type="number" value="1" name="number"  min="1" max="99" id="number1"><img src="../img/contexts/x.png" class="X" alt="X" id="X1"> ');
+				$('.append_product_child_left').append('<div class="e"><div class="append_list div250"> 250 </div> <input type="number" value="1" name="number"  min="1" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
@@ -959,7 +959,7 @@
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="append_list div260"> 260 </div> <input type="number" value="1" name="number" min="1" max="99" id="number2"><img src="../img/contexts/x.png" class="X" alt="X" id="X2">');
+				$('.append_product_child_left').append('<div class="e"><div class="append_list div260"> 260 </div> <input type="number" value="1" name="number" min="1" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
@@ -980,7 +980,7 @@
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="append_list div270"> 270 </div> <input type="number" value="1" min="1" max="99" id="number3"><img src="../img/contexts/x.png" alt="X" class="X" id="X3">');
+				$('.append_product_child_left').append('<div class="e"><div class="append_list div270"> 270 </div> <input type="number" value="1" min="1" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
@@ -997,11 +997,11 @@
 			
 			
 			if($('.append_product').children().text() != $('.div280').text()) {
-				$('.append_product').children().toggle();
+				$('.append_product').children().add();
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').append('<div class="append_list div280"> 280 </div> <input type="number" value="1" min="1" max="99" id="number4"><img src="../img/contexts/x.png" alt="X" class="X" id="X4">');
+				$('.append_product_child_left').toggle('<div class="e"><div class="append_list div280"> 280 </div> <input type="number" value="1" min="1" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
@@ -1020,11 +1020,11 @@
 				$('.append_product').children().toggle();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="append_list div290"> 290 </div> <input type="number" value="1" min="1" max="99" id="number5"><img src="../img/contexts/x.png" alt="X" class="X" id="X5">');
+				$('.append_product_child_left').append('<div class="e"><div class="append_list div290"> 290 </div> <input type="number" value="1" min="1" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
-				$('.append_product_child_left').children().not(this).remove();
+				$('.append_product_child_left').children().remove();
 				
 				
 				});
