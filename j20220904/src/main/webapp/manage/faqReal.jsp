@@ -32,9 +32,18 @@
 		})
 	})
 	
-	$('a').click(function() {
-		toggleClass(".active-color");
+	$(function() {
+		$('#order').click(function() {
+			$.ajax({
+					url : 'refund.jsp',
+					dataType: 'html',
+					success : function(data) {
+								$('#contents').html(data)
+							}
+			})
+		})
 	})
+	
 </script>
 </head>
 <body>
@@ -74,11 +83,11 @@
 			<div>
 				<table>
 					<tr>
-						<td id="delivery">배송현황</td>
-						<td id='refund'>교환 / 반품 / 환불</td>
-						<td onclick="location.href='order.jsp'">주문 / 결제 / 취소</td>
-						<td onclick="location.href='as.jsp'">A/S</td>
-						<td onclick="location.href='customerInfo.jsp'">회원정보</td>
+						<td class="div2" id='delivery'>배송현황</td>
+						<td class="div2" id='refund'>교환 / 반품 / 환불</td>
+						<td class="div2" id='order'>주문 / 결제 / 취소</td>
+						<td class="div2" id='afterSer'>A/S</td>
+						<td class="div2" id='customerInfo'>회원정보</td>
 					</tr>
 				</table>
 				

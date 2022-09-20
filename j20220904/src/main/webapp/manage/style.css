@@ -39,7 +39,7 @@ a {
 }
 
 table {
-	width: 60%;
+	width: 55%;
 	border: 1px solid grey;
 	border-collapse: collapse;
 	margin-bottom: 30px;
@@ -50,13 +50,18 @@ table {
 td {
 	border: 1px solid grey;
 	border-collapse: collapse;
-	width: 18%;
+	width: 180px;
+	height:40px;
 	padding : 10px;
 }
 
 table td:hover{
 	background-color: black;
 	color: white;
+}
+
+.clicked{
+	color: gold;
 }
 
 /* FAQ */
@@ -90,4 +95,3 @@ table td:hover{
    margin-right: 15px;
  }
  
- a.active-color { color : green;}
