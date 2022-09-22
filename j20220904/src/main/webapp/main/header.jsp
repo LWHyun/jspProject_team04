@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Header</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -103,8 +98,7 @@
       color: #fff;
    }
 </style>
-</head>
-<body>
+
    <header>
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
@@ -156,10 +150,3 @@
       </div>
       
    </header>
-   
-   
-   <footer>
-   
-   </footer>
-</body>
-</html>

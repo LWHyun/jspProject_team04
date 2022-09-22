@@ -1,0 +1,477 @@
+.contents-wrap {height : 1200px; padding-bottom: 150px;}
+.myPage-inner-contents {width: 1200px; margin:0 auto;}
+
+/* reset */
+ul, ol {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+html, body, select, input, button, textarea {
+    font-family: "Noto Sans KR",sans-serif;
+}
+a {
+    text-decoration: none;
+    color : #000;
+}
+h2,h3 {
+    margin: 0;
+}
+
+/* top bar */
+.breadcrumb-wrap {
+    height: 60px;
+    line-height: 60px;
+}
+.breadcrumb-list li {
+    display: inline-block;
+}
+.breadcrumb-list .crumb.home {
+    padding-left: 17px;
+    font-weight: 600;
+}
+.breadcrumb-list .crumb {
+    position: relative;
+    color: #999;
+    padding-left: 14px;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    line-height: 15px;
+    font-size: 13px;
+    letter-spacing: -.65px;
+}
+.breadcrumb-list .crumb+.crumb {
+    margin-left: 9px;
+}
+
+/* top bar before : > 표시 */
+.breadcrumb-list .crumb.home:before {
+    width: 12px;
+    background-position: 0 0;
+}
+.breadcrumb-list .crumb:before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 5px;
+    height: 11px;
+    background: url(https://abcmart.a-rt.com/static/images/common/comm_breadcrumb_icon_ots.png) no-repeat -12px 0;
+    left: 0;
+    top: 2px;
+}
+
+/* 마이페이지 타이틀 */
+.breadcrumb-wrap+.page-title-wrap {
+    margin-top: 18px;
+    position: relative;
+}
+.text-head1 {
+    text-align: center;
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+.text-left {
+    text-align: left;
+}
+
+/* mypage-wrap 부분 */
+.contents-wrap .page-title-wrap+.contents-inner.contents-aside {
+    margin-top: 50px;
+    display: flex;
+}
+
+/* LNB */
+.contents-aside .aside-wrap {
+    width: 220px;
+    padding-right: 60px;
+}
+/* 마이페이지 바깥쪽 ol */
+.mypage-lnb .mypage-lnb-title {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -1px;
+}
+/* 마이페이지 바깥쪽 li */
+.mypage-wrap .mypage-lnb>li ~ li {
+    margin-top: 40px;
+}
+.mypage-lnb .mypage-lnb-title+ol {
+    margin-top: 15px;
+}
+.mypage-lnb .mypage-lnb-item a {
+    display: inline-block;
+    color: #999;
+    line-height: 27px;
+    font-size: 14px;
+    letter-spacing: -.7px;
+}
+
+/* 회원기본정보영역 */
+.contents-aside .aside-contents {
+    width: calc(100% - 220px);
+}
+
+/* grade box */
+.member-grade-box {
+    box-sizing: border-box;
+    height: 200px;
+    margin-bottom: 55px;
+    padding: 0 36px 0 46px;
+    border: 4px solid #d5d5d5;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* grade info 회원 */
+.grade-info-box .grade-info {
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 22px;
+    letter-spacing: -1.1px;
+}
+.bold {
+    font-weight: 700 !important;
+}
+/* shopping info (장바구니 / 찜하기) */
+.shopping-info {
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 173px;
+    min-height: 90px;
+    padding: 10px 60px 3px 60px;
+    border-top: 1px solid #d5d5d5;
+    vertical-align: top;
+}
+.info-item {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+.info-item .info-title {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    letter-spacing: -.7px;
+    vertical-align: top;
+}
+/* 장바구니 / 좋아요 아이콘 */
+.shopping-info .icon-cart, .shopping-info .icon-favorite {
+    display: inline-block;
+    width: 25px;
+    height: 28px;
+    margin-right: 4px;
+    background: url(https://abcmart.a-rt.com/static/images/mypage/mypage_icon_shopping_info.png) no-repeat 0 0;
+    vertical-align: -7px;
+}
+/* 장바구니 아이콘 */
+.shopping-info .icon-cart {
+    background-position: -53px 0;
+}
+/* 찜한상품 아이콘 */
+.shopping-info .icon-favorite {
+    background-position: -80px 0;
+}
+/* 장바구니 / 찜한상품 글씨 */
+.shopping-info .info-item .info-data a{
+    color : #ee1c25;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.shopping-info .info-item .info-data .unit {
+    color: #000;
+    font-size: 12px;
+    font-weight: 400;
+    vertical-align: 1px;
+    text-align: right;
+}
+
+/* 최근 주문내역 div */
+.text-head2 {
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -1.1px;
+}
+
+/* 더보기 버튼 */
+.border-line-box-header {
+    position: relative;
+    display: block;
+}
+.border-line-box-header .btn-wrap {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.btn-txt-arr {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    color: #666;
+    vertical-align: top;
+}
+button {
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    color: #000;
+}
+.btn-txt-arr:after {
+    content: '';
+    display: inline-block;
+    margin-left: 3px;
+    width: 7px;
+    height: 10px;
+    background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_txt_arr.png) 0 0 no-repeat;
+}
+
+/* border-line-box */
+.border-line-box-header+.border-line-box {
+    margin-top: 16px;
+}
+.border-line-box {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #b5b5b5;
+}
+/* order-status-wrap 최근 주문내역 */
+.order-status-wrap {
+    margin-bottom: 67px;
+}
+.order-status-wrap .order-list-box {
+    padding: 41px 0 40px;
+}
+.order-status-wrap .order-list-box .order-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.order-status-wrap .order-list-box .order-list li {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: center;
+}
+.order-status-wrap .order-list-box .order-list li .val {
+    display: inline-block;
+    font-family: "Montserrat",sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+}
+.order-status-wrap .order-list-box .order-list li .order-type {
+    display: block;
+    margin-top: 18px;
+    font-size: 15px;
+    color: #666;
+}
+/* 최근 주문내역 화살표 before */
+.order-status-wrap .order-list-box .order-list li+li:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -6px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    display: block;
+    width: 13px;
+    height: 23px;
+    background: url(https://abcmart.a-rt.com/static/images/mypage/mypage_icon_order_list_arrow.png) 0 0 no-repeat;
+}
+
+/* 최근 본 상품 / 찜한 상품 */
+.mypage-wrap .tab-wrap.header-tab {
+    margin-bottom: 80px;
+}
+body .tab-wrap {
+    padding: 0;
+    position: relative;
+}
+body .tab-wrap:not(.multi-line).header-tab .tabs {
+    margin-bottom: 20px;
+    height: 50px;
+    border-bottom: 2px solid #000;
+}
+/* 최근 본 상품 / 찜한 상품 li */
+.tabs li ~ li {
+    padding-left: 19px;
+    margin-left: 18px;
+}
+.tabs li {
+    position: relative;
+    height: 45px;
+    border: none;
+}
+.tabs li {
+    display: inline-block;
+    margin-left: -1px;
+    border-bottom: none;
+    background-color: #fff;
+    vertical-align: top;
+    text-align: center;
+}
+
+
+/* a 태그 */
+.tabs-li2 #wishProductCount {
+    border-color: #000;
+    font-weight: 500;
+    height: 45px;
+    color: #000;
+}
+.tabs li .ui-tabs-anchor {
+    display: block;
+    padding: 0;
+    height: 45px;
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -1.1px;
+    font-weight: 400;
+    color: #666;
+    border: 0;
+    line-height: 43px;
+}
+
+
+/* | 표시 */
+.tabs li ~ li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 1px;
+    height: 15px;
+    background-color: #d5d5d5;
+}
+
+/* 최근 본 상품 / 찜한 상품 더보기 */
+.tab-wrap .btn-wrap {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.tab-wrap .btn-wrap .btn-txt-arr {
+    margin-top: 16px;
+}
+
+/* tab-content 찜한 상품 contents */
+.tab-content {
+    width: 100%;
+    padding: 0;
+}
+
+/* has-line-bottom 찜한 상품 없습니다 */
+.mypage-no-data.has-line-bottom {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.mypage-no-data .flex-box{
+    height: 500px;
+}
+.flex-box {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.mypage-no-data .flex-box .no-data-text {
+    padding-top: 107px;
+    background: url(https://abcmart.a-rt.com/static/images/common/common_icon_error.png) no-repeat center top;
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: 800;
+}
+
+/* 찜한 상품 이미지 ul li 부분 */
+.col-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start
+}
+.col-list.col-4 .col-list-item:nth-child(4n+1) {
+    margin-left: 0;
+}
+.col-list.col-4 .col-list-item {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: calc((100% - (20px * (4 - 1))) / 4);
+    -webkit-flex: 0 1 calc((100% - (20px * (4 - 1))) / 4);
+    max-width: calc((100% - (20px * (4 - 1))) / 4);
+    margin-left: 20px;
+}
+.prod-item {
+    position: relative;
+    font-size: 0;
+}
+/* 이미지 div */
+.prod-item .img-wrap {
+    position: relative;
+    padding-top: 100%;
+}
+/* 이미지 */
+.prod-item .img-wrap img {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+/* product 정보 부분 */
+.prod-item .prod-info-wrap {
+    padding: 15px 10px 0;
+    font-family: "Spoqa Han Sans Neo",sans-serif;
+}
+.prod-item .prod-info-wrap .prod-brand {
+    margin-top: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    height: auto;
+    max-height: none;
+    -webkit-box-orient: inherit;
+    -webkit-line-clamp: inherit;
+    line-height: 1.2;
+}
+.prod-item .prod-info-wrap .prod-name {
+    color: #666;
+    margin-top: 8px;
+    font-size: 14px;
+    font-family: "Spoqa Han Sans Neo","Noto Sans KR",sans-serif;
+    overflow: hidden;
+    height: 38px;
+    max-height: 38px;
+    line-height: 19px;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: -o-ellipsis-lastline;
+    white-space: normal;
+}
+.prod-item .prod-info-wrap .prod-price {
+    color : black;
+    font-size: 19px;
+    font-weight: 800;
+}

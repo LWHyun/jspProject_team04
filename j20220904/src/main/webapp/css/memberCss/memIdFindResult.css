@@ -1,0 +1,139 @@
+#memIdFindResult-wrap {height:600px; padding-bottom: 0px;}
+#memIdFindResult-inner-contents {height:100%;}
+.memIdFindResult-container {width: 600px; height: inherit; margin:0 auto;}
+/* reset */
+ul, ol {
+list-style: none; 
+margin: 0;
+padding: 0;
+}
+html, body, select, input, button, textarea {
+    font-family: "Noto Sans KR",sans-serif;
+}
+a {
+    text-decoration: none;
+    color : #000;
+}
+
+/* 아이디 찾기 결과 타이틀 */
+.page-title-wrap {
+    position: relative;
+    margin-top: 118px;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+.text-head1 {
+    text-align: center;
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 26.5px 0;
+}
+
+/* 아이디 찾기 결과 */
+.FindResult-contents {
+    padding :40px 20px 30px;
+    border-bottom: 2px solid black;
+}
+
+/* 아이디 찾기 표시창 */
+.contents-flex {
+
+}
+
+.dialog-contents-inner {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* 아이디 찾기 아이콘 */
+.icon-pictogram.success {
+    width: 86px;
+    height: 80px;
+    background-position: -158px 0;
+}
+.icon-pictogram {
+    display: block;
+    width: 79px;
+    height: 79px;
+    margin: 0 auto;
+    background: url(https://abcmart.a-rt.com/static/images/ui/dialog/dialog_icon_pictogram.png) no-repeat 0 0;
+}
+
+.pictogram-text.size-2 {
+    line-height: 28px;
+    font-size: 18px;
+    letter-spacing: -.9px;
+}
+.pictogram-text {
+    margin-top: 25px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+}
+
+/* 아이디 찾기 결과 박스 */
+.find-id-result-box {
+    width: 440px;
+    margin: 25px auto 0;
+    padding: 28px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #b5b5b5;
+    text-align: left;
+}
+
+.find-id-result-box-inner {
+    max-height: 92px;
+    padding: 0 20px 0 10px;
+}
+/* 아이디 , 가입일자 감싸는 div */
+.rdo-list-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 아이디 label */
+.ui-rdo input+label {
+    font-family: "Montserrat",sans-serif;
+}
+
+/* 가입 일자 span */
+.rdo-option .join-info {
+    color: #999;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* 로그인 / 비밀번호 찾기 버튼 */
+/* 로그인 버튼 / 비밀번호 찾기 */
+.btn-login-pwdFind {
+    background-color: #111;
+    border: #111;
+    min-width: 140px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+    color:white;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+/* 비밀번호 찾기 버튼 */
+.btn-line {
+    color: #000;
+    background-color: #fff;
+    border : 1px solid #000;
+}
+
+.btn-line:hover {
+    background-color: #f5f5f5;
+}
