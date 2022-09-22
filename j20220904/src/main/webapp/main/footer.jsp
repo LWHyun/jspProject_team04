@@ -35,7 +35,7 @@
 }
 
 .footer-text {
-	color: #F6F6F6;
+	color: ##FAF4C0;
 	font-size: 13px; 
 	opacity: 0.56;
 	font-weight: 500;

@@ -112,8 +112,39 @@ text-decoration: none;
   text-align: center;
 }
 .c1_bannerimg	{
-	width: 100%;
-	height: 700px;
+	width:1200px;
+	height: 600px;
+	margin-left: 250px;
+	
+}
+
+/* #c1_bannerimg1{
+	width:1200px;
+	height: 600px;
+	
+}
+
+#c1_bannerimg2{
+	width:1200px;
+	height: 600px;
+}
+
+#c1_bannerimg3{
+	width:1200px;
+	height: 600px;
+	margin-left: 250px;
+} 
+
+
+#c1_bannerimg4{
+	width:1200px;
+	height: 600px;
+	margin-left: 250px;
+}
+*/
+#c1_bannerimg5	{
+	width:1200px;
+	margin-left: 250px;
 }
 </style>
 
@@ -143,7 +174,7 @@ jQuery(function(){
     	<a href="#">
     	<video class="c1_bannerimg" id="c1_bannerimg1" data-video-id="6311232130112" data-account="72451143001" autoplay="autoplay" muted="muted" -webkit-playsinline="-webkit-playsinline" playsinline="playsinline" loop="loop">
     	<source src="https://nikevideo.nike.com/media/v1/pmp4/static/clear/72451143001/82c5ef26-9370-4d2d-82ae-9014e4f64293/81cb83ab-9f95-42b2-8159-2bd1c00f79d2/main.mp4">
-     	</video>
+     	</video>	
      	</a>
    	</div>
     <div class="c1_banner">
@@ -153,14 +184,20 @@ jQuery(function(){
      	</video>
      	</a>
     </div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg3" src="/j20220904/img/banners/banner03(birkenstock).jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg4" src="/j20220904/img/banners/banner04.jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg5" src="/j20220904/img/banners/banner05.jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg6" src="/j20220904/img/banners/banner06.jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg7" src="/j20220904/img/banners/banner07.jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg8" src="/j20220904/img/banners/banner08.jpg" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg9" src="/j20220904/img/banners/banner09.jpg" alt=""></a></div>
+    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg3" src="/j20220904/img/banners/banner03(birkenstock).png" alt=""></a></div>
+    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg4" src="/j20220904/img/banners/banner04(converse).png" alt=""></a></div>
+    <div class="c1_banner">
+    	<a href="#">
+    	<video class="c1_banner"  id="c1_bannerimg5" playsinline="true" muted="true" autoplay="true" loop="true" class="js-static-video l-block js-modular--starter-cover img-cover" width="100%" height="auto">
+    	<source src="https://static1.lacoste.com/videos/marketing/Starter-Cover-Desk-Arena.mp4" type="video/mp4">
+    	</video>
+    	</a>
+   	</div>
+    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg6" src="/j20220904/img/banners/banner06(fila).png" alt=""></a></div>
+    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg7" src="/j20220904/img/banners/banner07(dr.martin).jfif" alt=""></a></div>
 </div>
 </body>
 </html>
+
+
 
