@@ -1,0 +1,154 @@
+#memIdFind-wrap {height:700px; padding-bottom: 0px;}
+#memIdFind-inner-contents {height:100%;}
+.memIdFind-container {width: 1200px; height: inherit; margin:0 auto;}
+
+/* reset */
+ul, ol {
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+html, body, select, input, button, textarea {
+    font-family: "Noto Sans KR",sans-serif;
+}
+a {
+    text-decoration: none;
+    color : #000;
+}
+
+/* 아이디 찾기 타이틀 */
+.page-title-wrap {
+    position: relative;
+    margin-top: 118px;
+    text-align: center;
+}
+.text-head1 {
+    text-align: center;
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* 아이디 찾기 컨텐츠 이너 */
+.idFind-contents-inner-wrap {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 38px;
+}
+
+/* 아이디 찾기 탭 */
+.tab-ul {
+    text-align: center;
+    border : 3px solid black;
+    border-bottom: 3px solid white;
+    
+}
+.tab-ul li {
+    font-weight: 550;
+    color: #000;
+    padding: 0 20px;
+    line-height: 48px;
+}
+
+/* 아이디 찾기 Form */
+.tab-IdFind-form {
+    margin-top: 57px;
+}
+
+/* 아이디 찾기 input */
+.login-input{
+    position: relative;
+}
+
+.login-input input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 44px;
+    padding: 0 10px;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 15px;
+    line-height: 43px;
+}
+
+/* 이메일 div */
+.login-input-email {
+    margin-top: 20px;
+    display: flex;
+}
+
+/* 이메일 인증번호 버튼 */
+.login-input-email .btn {
+    position :relative;
+    width: 140px;
+    padding: 0 5px;
+    margin-left: 10px;
+    height:44px;
+}
+
+/* 이메일 인증 div */
+.login-input-authEmail {
+    margin-top: 20px;
+    display: flex;
+}
+/* 이메일 인증번호 확인 버튼 */
+.login-input-authEmail .btn {
+    position :relative;
+    width: 140px;
+    padding: 0 5px;
+    margin-left: 10px;
+    height:44px;
+    background-color: #000;
+    color:white;
+}
+
+/* 아이디 찾기 footer */
+.IdFind-form-footer {
+    margin: 50px -10px 0;
+    padding: 0 10px;
+    border-top: 1px solid #d5d5d5;
+}
+
+.footer-item {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-item span {
+    color :black;
+    line-height: 38px;
+    font-size: 14px;
+    letter-spacing: -.7px;
+}
+
+/* footer 버튼 */
+.btn.btn-sm {
+    box-sizing: border-box;
+    min-width: 110px;
+    height: 38px;
+    padding: 0 12px;
+    line-height: 36px;
+    font-size: 13px;
+    letter-spacing: -.65px;
+}
+.btn.btn-sm.white:hover {
+    background-color: #f5f5f5;
+}
+
+
+.btn.btn-sm.gray {
+    background-color: #666;
+    border-color: #666;
+    color: white;
+}
+.btn.btn-sm.gray:hover {
+    background-color: #000;
+    border-color: #000;
+}

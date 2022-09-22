@@ -1,0 +1,274 @@
+#memWrite-wrap {height:1400px; padding-bottom: 0px;}
+#memWrite-inner-contents {height:100%;}
+.memWrite-container {width: 1200px; height: inherit; margin:0 auto;}
+/* reset */
+ul, ol {
+	list-style: none; 
+	margin: 0;
+	padding: 0;
+}
+html, body, select, input, button, textarea {
+	font-family: "Noto Sans KR",sans-serif;
+}
+
+/* 온라인 회원 가입 타이틀 */
+.page-title-wrap {
+	position: relative;
+	margin-top: 118px;
+	text-align: center;
+}
+.text-head1 {
+	text-align: center;
+	color: #000;
+	font-family: "Montserrat","Noto Sans KR",sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+}
+/* 약관동의 및 회원가입 틀 */
+.contents-inner.join-wrap {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.contents-inner.join-wrap {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-title-wrap+.contents-inner {
+	margin-top: 38px;
+}
+.border-line-box-header {
+	/* position: relative; */
+	display: block;
+}
+/* 약관동의 head */
+.text-head2 {
+	color: #000;
+	font-family: "Montserrat","Noto Sans KR",sans-serif;
+	font-weight: 500;
+	font-size: 22px;
+	letter-spacing: -1.1px;
+}
+/* 약관동의 */
+.border-line-box-header+.border-line-box, .border-line-box-header+.mypage-detail-info-box, .border-line-box-header+.mypage-complete-wrap {
+	margin-top: 16px;
+}
+.border-line-box {
+	border-top: 2px solid #000;
+	border-bottom: 1px solid #b5b5b5;
+}
+.fold-box-list-wrap .term-check-all-wrap {
+	padding: 0 20px;
+	line-height: 70px;
+}
+.ui-rdo.text-medium, .ui-chk.text-medium {
+	font-weight: 500;
+}
+.ui-rdo, .ui-chk {
+	position: relative;
+	display: inline-block;
+	min-height: 20px;
+	font-size: 0;
+	vertical-align: top;
+}
+/* 약관동의 - fold 박스 */
+.fold-box {
+	border-bottom: 1px solid #d5d5d5;
+}
+.fold-box:first-child {
+	border-top: 1px solid #b5b5b5;
+}
+
+/* 약관동의 - fold 박스 header */
+.fold-box-header {
+	position: relative;
+	padding-right: 33px;
+	cursor: pointer;
+	font-size: 15px;
+	line-height: 70px;
+}
+.fold-box-header, .fold-box-contents {
+	padding: 0 20px;
+}
+
+/* 필수 spot */
+.fold-box-header .spot, .fold-box-contents .spot {
+	color : #ee1c25;
+}
+/* fold 화살표 접혔을 때 */
+.fold-box .arrow-bottom img{
+	position: absolute;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	top:25px;
+	left: 750px;
+}
+/* .fold-box .fold-box-header:after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 13px;
+	height: 7px;
+	background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
+	right: 10px;
+	top: 32px;
+} */
+/* fold 화살표 펼쳤을 때 */
+/* .fold-box.expanded .fold-box-header:after {
+	background-position: 0 -7px;
+}
+.fold-box .fold-box-header:after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 13px;
+	height: 7px;
+	background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
+	right: 10px;
+	top: 32px;
+} */
+
+/* 약관동의 - fold 박스 expanded 상태 */
+.fold-box.expanded {
+	border-bottom-color: #b5b5b5;
+}
+
+/* 약관동의 - fold 박스 contents */
+.fold-box-list-wrap .fold-box-list .fold-box .fold-box-contents {
+	max-height: 200px;
+	overflow-y: scroll;
+}
+.fold-box-contents {
+	height: 0;
+	overflow: hidden;
+}
+.fold-box.expanded .fold-box-contents {
+	padding-top: 0;
+	padding-bottom: 39px;
+}
+.fold-box-list .fold-box.expanded>.fold-box-contents {
+	height: auto;
+	padding-top: 23px;
+	padding-bottom: 23px;
+}
+.fold-box .fold-box-header, .fold-box .fold-box-contents {
+	padding: 0 20px;
+}
+.fold-box-contents .text-term, .fold-box-contents .text-term pre {
+	line-height: 18px;
+	font-size: 13px;
+	letter-spacing: -.325px;
+}
+.fold-box-contents .text-term {
+	color: #666;
+}
+/* term head */
+.term-list .term-head, .term-list .term-sub-list .term-head {
+	display: block;
+	color: #000;
+	line-height: 28px;
+	font-size: 14px;
+	letter-spacing: -.7px;
+}
+/* term list */
+.term-list .term-sub-list {
+	margin-top: 3px;
+}
+/* 개인정보 수집 동의 list */
+.tbl-wrap.tbl-col {
+	text-align: center;
+	font-family: "Montserrat","Noto Sans KR",sans-serif;
+}
+.tbl-wrap.tbl-col table tbody {
+	border-bottom: 1px solid #b5b5b5;
+}
+/* 만 14세 경고 문구 */
+.border-line-box-desc {
+	margin-top: 16px;
+}
+.text-error.has-icon {
+	position: relative;
+	padding-left: 24px;
+	line-height: 18px;
+}
+.text-error {
+	display: inline-block;
+	color: #ee1c25;
+	font-size: 13px;
+	letter-spacing: -.325px;
+}
+.text-error.has-icon:before {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(https://abcmart.a-rt.com/static/images/ui/text/text_icon_error.png) no-repeat 0 0;
+	left: 0;
+	top: 0;
+}
+/* 회원 정보 */
+.border-line-box-desc+.border-line-box-header {
+	margin-top: 59px;
+}
+.border-line-box-header {
+	position: relative;
+	display: block;
+}
+.tbl-form-wrap {
+	padding: 50px 20px 63px;
+}
+.tbl-form  {
+	border-collapse: separate;
+	border-spacing : 15px;
+}
+.tbl-form th, .tbl-form td {
+	font-size : 15px;
+}
+.tbl-form th {
+	width : 130px;
+}
+/* 테이블 input */
+.tbl-form input {
+	width : 100%;
+	height: 30px;
+	font-size : 13px;
+	border : 0px;
+	border-bottom: 1px solid gray;
+	margin-bottom: 3px;
+}
+.tbl-form input[name='mem_zipcode'] {
+	width : 266px;
+}
+/* 이메일 */
+.tbl-form .formEmailDiv input{
+	width : 80%;
+}
+#authEmail, #authEmailCheck {
+	width : 30%;
+}
+/* 휴대폰 */
+.tbl-form .formTelDiv input {
+	width: 80%;
+}
+/* required */
+th.required:after {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin-left: 3px;
+    border-radius: 50%;
+    background: #ee1c25;
+    vertical-align: super;
+}
+
+/* valid div */
+#Val_nameDiv, #Val_idDiv, #Val_pwdDiv, #Val_pwdReDiv, #Val_emailDiv, #Val_telDiv, #Val_addrDiv {
+	font-size: 10pt;
+	color : red;
+	font-weight: bold;
+	margin-top : 5px;
+}

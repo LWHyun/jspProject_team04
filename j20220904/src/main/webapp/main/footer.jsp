@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>footer</title>
 <style type="text/css">
  	footer {
 	bottom: 0;
@@ -52,10 +47,7 @@
 	font-size: 13px;
 }
 </style>
-</head>
-<body>
-</head>
-<body>
+
 	<footer class="footer-black">
 	
 	<div class="frame">
@@ -80,5 +72,3 @@
 	</div>
 
 </footer>
-</body>
-</html>
