@@ -23,7 +23,7 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
         </div><!-- banner -->
 
         <div id="content">
-
+			<jsp:include page="./main/content.jsp"></jsp:include>
         </div><!-- content -->
     </div><!-- container -->
 
