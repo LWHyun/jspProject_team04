@@ -1,4 +1,4 @@
-package product.bean;
+package DTO;
 
 public class Product_ImageDTO {
 	private int pro_image; //제품 이미지 번호

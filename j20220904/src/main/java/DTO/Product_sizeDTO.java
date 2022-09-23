@@ -1,4 +1,4 @@
-package product.bean;
+package DTO;
 
 public class Product_sizeDTO {
 	
