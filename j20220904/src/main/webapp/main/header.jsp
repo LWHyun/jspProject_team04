@@ -17,7 +17,7 @@
    .gnb-top-wrap .inner {
       position: relative;
       display: flex;
-         height: 100%;
+      height: 100%;
       width: 1200px;
       text-align: center;
       margin: 0 auto;
@@ -71,8 +71,10 @@
       color: black;
    }
    .gnb-bottom-wrap {
+   	  position: relative;
       background-color: #ee1c25;
-      height: 48px;   
+      height: 48px;  
+      min-width: 1200px; 
    }
    .gnb-bottom-wrap .inner {
       position: relative;
