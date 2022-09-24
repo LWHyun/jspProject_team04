@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -100,12 +101,14 @@
       color: #fff;
    }
 </style>
-
+<c:set var="loginId" value="${empty sessionScope.mem_id ? '' : sessionScope.mem_id}"/>
+<c:set var="loginOut" value="${loginId == '' ? 'Login' : 'Logout'}"/>
+<c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
    <header>
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
             <div class="inner">
-               <a href="index.jsp">
+               <a href="${pageContext.request.contextPath }/">
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
                <div class="gnb-search-wrap">
@@ -117,8 +120,8 @@
                <div class="util-list-wrap">
                   <ul class="util-list">
                      <li>
-                        <a href="#" class="material-symbols-outlined">login</a>
-                        <a href="#" style="font-size: 10px;">LOGIN</a>
+                        <a href="${pageContext.request.contextPath }${loginOutLink}" class="material-symbols-outlined">${loginOut }</a>
+                        <a href="#" style="font-size: 10px;">${loginOut }</a>
                      </li>
                      <li>
                         <a href="#" class="material-symbols-outlined">person</a>
