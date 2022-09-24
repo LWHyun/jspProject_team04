@@ -34,23 +34,23 @@
     
                         <!-- 로그인 FORM -->
                         <div class="tab-login-form">
-                            <form action="" id="loginForm" name="loginForm" method="post">
+                            <form action="${pageContext.request.contextPath }/member/login.do" id="loginForm" name="loginForm" method="post">
                                 <div class="login-input login-input-id">
-                                    <input type="text" id="" name="" placeholder="아이디를 입력해주세요.">
+                                    <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }">
                                 </div>
                                 <div class="login-input login-input-pwd">
-                                    <input type="password" id="" name="" placeholder="비밀번호를 입력해주세요.">
+                                    <input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호를 입력해주세요.">
                                 </div>
 
                                 <div class="loginCheck">
                                     <span class="ui-chk">
-                                        <input id="chkSaveID" type="checkbox" checked="checked">
+                                        <input id="chkSaveID" name="rememberId" type="checkbox" ${empty cookie.id.value ? "" : "checked"}>
                                         <label for="chkSaveID">아이디 저장</label>
                                     </span>
                                 </div>
 
                                 <div class="btn-wrap">
-                                    <button class="btn-accept-black btn-login">
+                                    <button class="btn-accept-black btn-login" id="loginFormBtn" type="button">
                                         로그인
                                     </button>
                                 </div>
@@ -81,5 +81,23 @@
     <div>
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
+	
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+$(function() {
+	$('#loginFormBtn').on('click', function() {
+		var mem_id = $('#mem_id').val();
+		var mem_pwd = $('#mem_pwd').val();
+		
+		if(mem_id == '') {
+			alert("아이디를 입력해주세요.");
+		} else if(mem_pwd == '') {
+			alert("비밀번호를 입력해주세요.");
+		} else {
+			$('#loginForm').submit();
+		}
+	});
+})
+</script>
 </body>
 </html>
