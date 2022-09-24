@@ -210,7 +210,7 @@
                                         <th class="required">이름</th>
                                         <td>
                                             <div>
-                                                <input type="text" id="mem_name" name="" placeholder="이름을 입력해주세요.">
+                                                <input type="text" id="mem_name" name="mem_name" placeholder="이름을 입력해주세요.">
                                                 <div id="Val_nameDiv" class="valid"></div>
                                             </div>
                                         </td>
@@ -220,7 +220,8 @@
                                         <th class="required">아이디</th>
                                         <td>
                                             <div>
-                                                <input type="text" id="mem_id" name="" placeholder="아이디를 입력해주세요.(영문자로 시작, 숫자 사용 6~20자)">
+                                                <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요.(영문자로 시작, 숫자 사용 6~20자)">
+                                                <input type="hidden" id="mem_idCheck">
                                                 <div id="Val_idDiv" class="valid"></div>
                                             </div>
                                         </td>
@@ -230,7 +231,7 @@
                                         <th class="required">비밀번호</th>
                                         <td>
                                             <div>
-                                                <input type="password" id="mem_pwd" name="" placeholder="비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)">
+                                                <input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)">
                                                 <div id="Val_pwdDiv" class="valid"></div>
                                             </div>
                                         </td>
@@ -240,7 +241,7 @@
                                         <th class="required">비밀번호확인</th>
                                         <td>
                                             <div>
-                                                <input type="password" id="mem_rePwd" name="" placeholder="비밀번호를 재입력해 주세요.">
+                                                <input type="password" id="mem_rePwd" name="mem_rePwd" placeholder="비밀번호를 재입력해 주세요.">
                                                 <div id="Val_pwdReDiv" class="valid"></div>
                                             </div>
                                         </td>
@@ -273,7 +274,7 @@
                                                 <button type="button" id="emailBtn" class='btn'>인증번호 요청</button>
                                                 <div id="emailAuth" style="display:none">
                                                     <input type="text" name="authEmail" id="authEmail" placeholder="이메일 인증 번호 클릭" disabled="disabled"> <!-- 사용자가 이메일에 인증번호를 받고 입력하는 부분 -->
-					                                <input type="text" name="authEmailCheck" id="authEmailCheck" value="1234" readonly> <!-- 서버에서 만들어진 인증번호를 받는 부분 -->
+					                                <input type="hidden" name="authEmailCheck" id="authEmailCheck" readonly> <!-- 서버에서 만들어진 인증번호를 받는 부분 -->
                                                 </div>
                                                 <div id="Val_emailDiv" class="valid"></div>
                                             </div>
@@ -285,7 +286,7 @@
                                         <th class="required">휴대폰 번호</th>
                                         <td>
                                             <div class="formTelDiv">
-                                                <input type="text" id="mem_tel" name="" placeholder="휴대폰 번호를 '-'없이 입력해주세요.">
+                                                <input type="text" id="mem_tel" name="mem_tel" placeholder="휴대폰 번호를 '-'없이 입력해주세요.">
                                                 <button type="button" class='btn'>인증번호 요청</button>
                                                 <div id="Val_telDiv" class="valid"></div>
                                             </div>
