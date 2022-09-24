@@ -1,4 +1,4 @@
-package product.bean;
+package dto;
 
 import java.util.Date;
 
