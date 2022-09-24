@@ -1,0 +1,273 @@
+/* 체크박스 */
+/* 약관동의 전체 체크버튼 - 기본 체크박스 없애기 */
+.ui-rdo input, .ui-chk input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+} 
+select, input, textarea {
+    font-size: 13px;
+}
+.ui-rdo.text-medium input+label, .ui-chk.text-medium input+label {
+    font-size: 16px;
+    letter-spacing: -.8px;
+}
+/* 웹의 경우 커서에 pointer 설정 */
+.ui-rdo input+label, .ui-chk input+label {
+    display: inline-block;
+    position: relative;
+    color: #000;
+    padding: 0 0 0 28px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    line-height: 20px;
+    vertical-align: middle;
+    font-size: 15px;
+    letter-spacing: -.75px;
+}
+
+/* 새로운 디자인의 체크박스 만들기 */
+.ui-rdo input+label:before, .ui-chk input+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: border-color .23s ease-out,border-width .23s ease-out;
+    transition: border-color .23s ease-out,border-width .23s ease-out;
+}
+.ui-chk input[type=checkbox]+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 1;
+    -webkit-transition: opacity .23s ease-out;
+    transition: opacity .23s ease-out;
+    -webkit-transition-delay: calc(.23s / 2);
+    transition-delay: calc(.23s / 2);
+}
+.ui-chk input[type=checkbox]:checked+label:before {
+    border-width: 10px;
+}
+    .ui-chk input:checked+label:before {
+    border-color: #000;
+}
+.ui-chk input[type=checkbox]:checked+label:after {
+    background: url(https://abcmart.a-rt.com/static/images/ui/form/chk_icon_checked.png) center no-repeat;
+    opacity: 1;
+}
+.ui-chk input[type=checkbox]+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 1;
+    -webkit-transition: opacity .23s ease-out;
+    transition: opacity .23s ease-out;
+    -webkit-transition-delay: calc(.23s / 2);
+    transition-delay: calc(.23s / 2);
+}
+
+/* radio 버튼 */
+.ui-rdo input[type=radio]:checked+label:before {
+    border-width: 6px;
+}
+.ui-rdo input[type=radio]+label:before {
+    border-radius: 50%;
+}
+.ui-rdo input:checked+label:before, .ui-chk input:checked+label:before {
+    border-color: #000;
+}
+.ui-rdo input+label:before, .ui-chk input+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: border-color .23s ease-out,border-width .23s ease-out;
+    transition: border-color .23s ease-out,border-width .23s ease-out;
+}
+
+/* select 버튼 */
+select {
+    width: 200px; 
+    padding: .8em .5em; 
+    border: 1px solid #999;
+    font-family: inherit;  
+    background: url('./img/arrow_down.svg') no-repeat 95% 50%; 
+    background-size: 20px;
+    border-radius: 0px; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;appearance: none;
+}
+
+select::-ms-expand {    
+    display: none;
+}
+
+/* 기본 / 인증 번호 버튼 */
+.btn {
+    position: relative;
+    display: inline-block;
+    min-width: 100px;
+    height: 30px;
+    border: 1px solid #111;
+    text-align: center;
+    font-weight: 550;
+    line-height: 30px;
+    font-size: 14px;
+    letter-spacing: -.7px;
+    background-color: white;
+}
+/* 가입 취소 버튼 */
+button {
+    cursor :pointer;
+}
+.btn-wrap {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.btn-cancel-gray {
+    background-color: #a5a5a5;
+    border: #a5a5a5;
+    min-width: 200px;
+    height: 60px;
+    line-height: 58px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+    color:white;
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.btn-accept-black {
+    background-color: #111;
+    border: #111;
+    min-width: 200px;
+    height: 60px;
+    line-height: 58px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+    color:white;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+/* 로그인 버튼 wrap */
+#loginForm .btn-wrap {
+    margin-top: 35px;
+    text-align: center;
+}
+
+/* 로그인 버튼 */
+.btn-accept-black.btn-login {
+    background-color: #111;
+    border: #111;
+    width: 100%;
+    height: 60px;
+    line-height: 58px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+    color:white;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+/* 확인 버튼 */
+.page-bottom {
+    margin-top: 50px;
+    padding-top: 0;
+    border-top: none;
+}
+.btn.btn-lg {
+    background-color: #000;
+    color: white;
+    min-width: 200px;
+    height: 60px;
+    line-height: 58px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+}
+
+/* 재확인 박스  */
+.btn-wrap.page-bottom+.gray-box, .btn-wrap.page-bottom+.fold-box-list-wrap, .btn-wrap.page-bottom+.giftcard-type-guide {
+    margin-top: 80px;
+}
+.gray-box.notice-box {
+    margin-top: 80px;
+    padding: 38px 39px 36px;
+}
+.gray-box.has-border, .gray-box.notice-box {
+    border: 1px solid #d5d5d5;
+}
+.gray-box {
+    background: #f8f8f8;
+}
+.text-notice {
+    display: inline-block;
+    padding-left: 25px;
+    background: url(https://abcmart.a-rt.com/static/images/ui/text/text_icon_notice.png) no-repeat 0 0;
+    font-weight: 800;
+    line-height: 18px;
+    font-size: 15px;
+    letter-spacing: -.75px;
+}
+.gray-box.notice-box .bullet-text-list:last-child {
+    margin-bottom: 0;
+}
+.gray-box.notice-box .text-notice+.bullet-text-list {
+    margin-top: 10px;
+}
+.bullet-text-list li:not(.text-only), .line-text-list li:not(.text-only) {
+    padding-left: 10px;
+}
+.bullet-text-list .bullet-text {
+    text-align: left;
+}
+.bullet-text-list li {
+    line-height: 22px;
+}
+.bullet-text-list li, .line-text-list li {
+    color: #666;
+}
+.bullet-text {
+    font-size: 13px;
+    letter-spacing: -.325px;
+}

@@ -1,0 +1,119 @@
+#memPwdFindResult-wrap {height:600px; padding-bottom: 100px;}
+#memPwdFindResult-inner-contents {height:100%;}
+.memPwdFindResult-container {width: 600px; height: inherit; margin:0 auto;}
+/* reset */
+ul, ol {
+list-style: none; 
+margin: 0;
+padding: 0;
+}
+html, body, select, input, button, textarea {
+    font-family: "Noto Sans KR",sans-serif;
+}
+a {
+    text-decoration: none;
+    color : #000;
+}
+
+/* 비밀번호 찾기 결과 타이틀 */
+.page-title-wrap {
+    position: relative;
+    margin-top: 118px;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+.text-head1 {
+    text-align: center;
+    color: #000;
+    font-family: "Montserrat","Noto Sans KR",sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin : 26.5px 0px;
+}
+
+/* 비밀번호 찾기 결과 */
+.FindResult-contents {
+    padding :40px 20px 10px;
+    border-bottom: 2px solid black;
+}
+
+/* 비밀번호 찾기 결과 표시 창 */
+.contents-flex {
+
+}
+
+.dialog-contents-inner {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* 비밀번호 찾기 아이콘 */
+.icon-pictogram.password-confirm {
+    width: 78px;
+    height: 80px;
+    background-position: -411px 0;
+}
+.icon-pictogram {
+    display: block;
+    width: 79px;
+    height: 79px;
+    margin: 0 auto;
+    background: url(https://abcmart.a-rt.com/static/images/ui/dialog/dialog_icon_pictogram.png) no-repeat 0 0;
+}
+
+.pictogram-text.text-medium {
+    font-weight: 500;
+} 
+.pictogram-text.size-3 {
+    margin-top: 30px;
+    line-height: 32px;
+    font-size: 22px;
+    letter-spacing: -1.1px;
+}
+.pictogram-text {
+    margin-top: 25px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+}
+.pictogram-text .spot {
+    color: #ee1c25;
+}
+
+/* 비밀번호 찾기 결과 박스 */
+.find-pwd-result-box {
+    width: 440px;
+    margin: 25px auto 0;
+    padding: 28px 0;
+    text-align: left;
+}
+
+/* 비밀번호 찾기 input */
+.find-pwd-result-Pwd input, .find-pwd-result-rePwd input{
+    width : 100%;
+    height: 30px;
+    font-size : 13px;
+    border : 0px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.find-pwd-result-rePwd {
+    margin-top: 30px;
+}
+
+/* 확인 버튼  */
+.btn-login-pwdFind {
+    background-color: #111;
+    border: #111;
+    min-width: 140px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    letter-spacing: -.8px;
+    color:white;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 5px;
+}
