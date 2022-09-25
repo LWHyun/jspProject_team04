@@ -134,7 +134,7 @@
                         <a href="#" style="font-size: 10px;">${joinMy }</a>
                      </li>
                      <li>
-                        <a href="#" class="material-symbols-outlined">shopping_cart</a>
+                        <a href="${pageContext.request.contextPath }/basket/goToBasket.do" class="material-symbols-outlined">shopping_cart</a>
                         <a href="#" style="font-size: 10px;">CART</a>
                      </li>
                   </ul>
