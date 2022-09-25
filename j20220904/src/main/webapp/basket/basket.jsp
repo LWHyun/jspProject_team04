@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +8,30 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	.basket-wrap {	
+	.basket-wrap {		margin-top : 79px;
 						padding-left: 150px;
 						padding-right: 150px;
 		
 					}
+	
+	.basket-body {
+		min-height : 300px;
+	}
+	
+	.basket-body .item-name {
+		font-size : 18px;
+		margin-bottom : 10px;
+	}
+	
+	.basket-body .item-color {
+		font-size : 13px;
+		color : gray;
+	}
+	
+	
+	.basket-body td {
+		vertical-align: middle;
+	}
 	
 	.basket-body, .cal-tbl {	
 					width : 100%;
@@ -20,15 +40,20 @@
 					border-top: 2px solid black;
 					border-bottom: 1px solid black;	
 				}
+	
+	.basket-wrap h2 {
+		font-size : 32px;
+		font-weight : bold;
+	}
 				
-			td {
+	.basket-wrap td {
 					padding : 20px;
 					text-align : center;
-			}
+					}
 			
-			.buy-btn {
-						text-align : center;
-						margin-bottom : 30px;
+	.buy-btn {
+				text-align : center;
+				margin-bottom : 30px;
 			}
 			
 	.buy-notice {
@@ -133,55 +158,68 @@
 					
 			
 </style>
+
+
 </head>
 <body>
+	<div>
+		<jsp:include page="../main/header.jsp"></jsp:include>
+	</div>
+
 	<div class="basket-wrap">
 		<div class="basket-content">
 			<h2>장바구니</h2>
 				<div class="order-count">
 					
 				</div>
-				<div class="order-null" text-align="center">
-					<h3>장바구니에 담긴 상품이 없습니다.</h3>
-				</div>
+			
 				<div class="order-basket">
-					
-					<div class="tbl-header gray">
-						<div class="header-title">
-							<span class="eng"> 일반 </span> 
-							배송상품
-							<span class="prod-cnt"></span>
-						</div>
-					</div>
-					
 					<table class="basket-body">
-						<caption>일반 배송 상품</caption>
+						
 						<tbody>
+							<c:if test="${basketList eq null }">
 							<tr>
-								<td><input type="checkbox" checked></td>
-								<td class="pd_img"><img src="images/shoe.jpg" width="100px" float="center"></td>
-								<td>DAYSOF DUAL THONG<br> MELON </td>
-								<td><input type="button" value="-">
-									<input type="text" value="1" min="0" style="width:15px;">
-									<input type="button" value="+"></td>
-								<td>27,000원</td>
-								<td><input type="button" value="바로구매"><br><br>
-									<input type="button" value="삭제"></td>
+								<td>
+									   <div class="order-null" text-align="center">
+							               <h3>장바구니에 담긴 상품이 없습니다.</h3>
+							           </div>
+								</td>
 							</tr>
+							</c:if>
+							<c:forEach var="item" items="${basketList }">
+								<tr id="tr${item.product_id }">
+									<td><input type="checkbox" checked></td>
+									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
+									
+									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span></td>
+									
+									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
+										<input type="hidden" value="${item.price }" id="price${item.product_id}">
+										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
+										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
+									
+									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									
+									<td><input type="button" value="바로구매"><br><br>
+										<input type="button" value="삭제"></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-					
-					<div class="order-delete-btn">
-						<input type="button" value="선택 삭제">
-					
-					</div>
+					<c:if test="${basketList ne null }">
+						<div class="order-delete-btn">
+							<input type="button" value="선택 삭제">
+						</div>
+					</c:if>
 				</div> 
-				<div class="price-cal">
-					<table class="cal-tbl">
-						<tr><td>결제 예정 금액</td></tr>
-						<tr><td>27,000원</td></tr>
-					</table>
-				</div>
+				<c:if test="${basketList ne null }">
+					<div class="price-cal">
+						<table class="cal-tbl">
+							<tr><td>결제 예정 금액</td></tr>
+							<tr><td id="total">원</td></tr>
+						</table>
+					</div>
+				</c:if>
 				<div class="buy-btn">
 					<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
 					<input type="button" value="선택 상품 주문하기" onclick="location='orderInfo.jsp'">
@@ -217,5 +255,97 @@
 		
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
+<script type="text/javascript">
+	
+	$(function(){
+		calcTotal()
+	})
+	
+	function plusCnt(prod_id) {
+		
+		//상품 수량을 가져와야함
+		let target = document.getElementById("cnt"+prod_id)
+		let count = parseInt(target.value)
+		
+		//상품 최대 수량 설정
+		if (count >= 99) {
+			alert("최대 수량을 초과했습니다.");
+			return false;
+		}
+		
+		//상품 수량을 수정 (+1)
+		count++;
+		//변경된 수량을 반영
+		target.value = count
+		
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		
+		//소계 계산
+		//calcSum(prod_id)
+	
+	}
+	
+	
+function minusCnt(prod_id) {
+		
+		//상품 수량을 가져와야함
+		let target = document.getElementById("cnt"+prod_id)
+		let count = parseInt(target.value)
+		
+		//상품 최소 수량 설정
+		if (count <= 1) {
+			alert("최소 1개이상 담아주세요");
+			return false;
+		}
+		
+		//상품 수량을 수정 (-1)
+		count--;
+		//변경된 수량을 반영
+		target.value = count
+		
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		
+		//소계 계산
+		//calcSum(prod_id)
+	}
+	
+	
+	function calcSum(prod_id) {
+		
+		//상품 수량 가져오기
+		let targetCnt = document.getElementById("cnt"+prod_id).value
+		//상품 단가 가져오기
+		let targetPrice = document.getElementById("price"+prod_id).value
+		// 수량*단가를 반영하기
+		let targetSumTd = document.getElementById("sum"+prod_id)
+		targetSumTd.innerHTML = targetCnt*targetPrice + "원"
+		// 합계에 반영
+		calcTotal()
+	}
+
+	function calcTotal() {
+		//장바구니에 값이 없으면 계산안함
+		<c:if test="${basketList eq null }">
+			return false	
+		</c:if>
+		
+		// 모든 소계를 가져와야함
+		let targetSumArr = document.getElementsByClassName("sumProduct")
+		
+		// 모든 소계 합산
+		let result = 0;
+		for ( let i = 0 ; i < targetSumArr.length ; i++){
+			let str = targetSumArr[i].innerHTML
+			result += parseInt(str.substring(0,str.length-1))
+		}
+		// 합산 가격 반영
+		
+		let targetTotal = document.getElementById("total")
+		targetTotal.innerHTML = result + "원"
+	}
+	
+</script>
 </body>
 </html>

@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Review Board</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="../css/reviewCss/reviewBoard.css">
+<link rel="stylesheet" href="../css/boardCss/boardCommon.css">
+<link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 </head>
 <body>
 	<div id="header">
@@ -33,7 +34,7 @@
 					<li class="tab-item">
 						<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
 					</li>
-			</ul>
+				</ul>
 				<div class="tab-content">
 					<ul class="bullet-text-list">
 						<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
@@ -138,7 +139,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tap-review">
+				<div class="tab-review">
 					<!-- 리뷰 개수 -->
 					<div class="border-line-box-header">
 						<span class="search-result-text">

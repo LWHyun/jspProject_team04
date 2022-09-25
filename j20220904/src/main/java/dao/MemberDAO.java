@@ -78,6 +78,38 @@ public class MemberDAO {
 		return memberDTO;
 	}
 	
+	// 회원가입 메서드
+	public int insertMember(MemberDTO memberDTO) {
+		Connection conn = getConnection();
+		
+		String sql = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getMem_id());		// 아이디
+			pstmt.setString(2, memberDTO.getMem_name());	// 이름
+			pstmt.setString(3, memberDTO.getMem_pwd());		// 비밀번호
+			pstmt.setString(4, memberDTO.getMem_email1());	// 이메일1
+			pstmt.setString(5, memberDTO.getMem_email2());	// 이메일2
+			pstmt.setString(6, memberDTO.getMem_tel());		// 휴대폰 번호
+			pstmt.setString(7, memberDTO.getMem_zipcode());	// 우편번호
+			pstmt.setString(8, memberDTO.getMem_addr1());	// 주소
+			pstmt.setString(9, memberDTO.getMem_addr2());	// 상세주소
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt, conn);
+		}
+		
+		return result;
+	}
+	
 	//close하는 메서드
 	private void close(AutoCloseable... ac) {
 		try {

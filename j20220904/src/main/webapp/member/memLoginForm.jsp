@@ -12,6 +12,7 @@
 </head>
 <body>
 <input type="hidden" id="incorrect" value="${msg }">
+<input type="hidden" id="writeResult" value="${writeResult }">
 	<div>
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
@@ -100,6 +101,9 @@ $(function() {
 	});
 	if($('#incorrect').val() != '') {
 		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+	}
+	if($('#writeResult').val() == 'success') {
+		alert("회원가입을 축하합니다.");
 	}
 	
 })
