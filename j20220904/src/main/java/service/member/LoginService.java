@@ -47,7 +47,7 @@ public class LoginService implements CommandProcess {
 			return "/";
 		// ID / PWD 가 일치하지 않을 경우
 		}else {
-			String msg = URLEncoder.encode("아이디 또는 비밀번호가 일치하지 않습니다.", "utf-8");
+			String msg = "incorrect";
 			
 			request.setAttribute("msg", msg);
 		}

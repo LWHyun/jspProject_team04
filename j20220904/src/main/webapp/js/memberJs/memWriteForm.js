@@ -97,7 +97,28 @@ $(function() {
         } else {
             $('#Val_idDiv').css('display', 'none');
 
-            // 중복 검사 ajax 들어가야함
+            // 중복 검사 ajax
+			$.ajax({
+				url : '/j20220904/member/memCheckId.do',
+				type : 'post',
+				data : 'mem_id='+$('#mem_id').val(),
+				dataType : 'text',
+				success : function(data) {
+					console.log(data);
+					$('#mem_idCheck').val(data);
+					
+					if($('#mem_idCheck').val() == 'exist') {
+						$('#Val_idDiv').css('display', '');
+			            $('#Val_idDiv').text('이미 존재하는 아이디 입니다.');
+			            $('#mem_id').val('');
+					} else {
+					 	$('#Val_idDiv').css('display', 'none');
+					}
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			});
         }
     });
     // 비밀번호
@@ -179,7 +200,22 @@ $(function() {
 // 인증번호를 클릭 했을 때 visiable 처리 & 서버 인증번호 처리
 $('#emailBtn').on('click', function() {
     $('#authEmail').prop('disabled', false);
-    alert("인증번호가 전송되었습니다.");
+	
+	// 인증번호 생성 ajax
+	$.ajax({
+		url : '/j20220904/member/emailAuth.do',
+		type : 'post',
+		data : "mem_email="+$('#mem_email1').val(),
+		dataType : 'text',
+		success : function(data) {
+			$('#authEmailCheck').val(data);
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+	
+    alert("인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
 });
 
 // 확인 버튼 클릭 시 체크

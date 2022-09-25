@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -72,7 +71,7 @@
       color: black;
    }
    .gnb-bottom-wrap {
-   	  position: relative;
+        position: relative;
       background-color: #ee1c25;
       height: 48px;  
       min-width: 1200px; 
@@ -101,14 +100,17 @@
       color: #fff;
    }
 </style>
+
 <c:set var="loginId" value="${empty sessionScope.mem_id ? '' : sessionScope.mem_id}"/>
 <c:set var="loginOut" value="${loginId == '' ? 'Login' : 'Logout'}"/>
 <c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
+<c:set var="joinMy" value="${loginId == '' ? 'JOIN' : 'MY' }"/>
+<c:set var="joinMyLink" value="${loginId == '' ? '/member/writeForm.do' : '#' }"/>
    <header>
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
             <div class="inner">
-               <a href="${pageContext.request.contextPath }/">
+               <a href="index.jsp">
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
                <div class="gnb-search-wrap">
@@ -120,12 +122,16 @@
                <div class="util-list-wrap">
                   <ul class="util-list">
                      <li>
-                        <a href="${pageContext.request.contextPath }${loginOutLink}" class="material-symbols-outlined">${loginOut }</a>
-                        <a href="#" style="font-size: 10px;">${loginOut }</a>
+                        <a href="../manage/noticeReal.jsp" class="material-symbols-outlined"><img src="https://cdn-icons-png.flaticon.com/512/584/584648.png" width="24" height="24"></a>
+                        <a href="#" style="font-size: 10px;">NOTICE</a>
                      </li>
                      <li>
-                        <a href="#" class="material-symbols-outlined">person</a>
-                        <a href="#" style="font-size: 10px;">JOIN</a>
+                        <a href="#" class="material-symbols-outlined">login</a>
+                        <a href="#" style="font-size: 10px;">LOGIN</a>
+                     </li>
+                     <li>
+                        <a href="${pageContext.request.contextPath }${joinMyLink}" class="material-symbols-outlined">person</a>
+                        <a href="#" style="font-size: 10px;">${joinMy }</a>
                      </li>
                      <li>
                         <a href="${pageContext.request.contextPath }/basket/goToBasket.do" class="material-symbols-outlined">shopping_cart</a>

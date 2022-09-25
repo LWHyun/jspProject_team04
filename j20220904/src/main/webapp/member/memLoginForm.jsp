@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/memberCss/userUI.css">
 </head>
 <body>
+<input type="hidden" id="incorrect" value="${msg }">
 	<div>
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
@@ -97,6 +98,10 @@ $(function() {
 			$('#loginForm').submit();
 		}
 	});
+	if($('#incorrect').val() != '') {
+		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+	}
+	
 })
 </script>
 </body>
