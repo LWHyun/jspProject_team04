@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -157,17 +158,19 @@
 					<table class="basket-body">
 						<caption>일반 배송 상품</caption>
 						<tbody>
-							<tr>
-								<td><input type="checkbox" checked></td>
-								<td class="pd_img"><img src="images/shoe.jpg" width="100px" float="center"></td>
-								<td>DAYSOF DUAL THONG<br> MELON </td>
-								<td><input type="button" value="-">
-									<input type="text" value="1" min="0" style="width:15px;">
-									<input type="button" value="+"></td>
-								<td>27,000원</td>
-								<td><input type="button" value="바로구매"><br><br>
-									<input type="button" value="삭제"></td>
-							</tr>
+							<c:forEach var="item" items="${basketList }">
+								<tr>
+									<td><input type="checkbox" checked></td>
+									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
+									<td>DAYSOF DUAL THONG<br> MELON </td>
+									<td><input type="button" value="-">
+										<input type="text" value="${item.cnt }" min="0" style="width:15px;">
+										<input type="button" value="+"></td>
+									<td>27,000원</td>
+									<td><input type="button" value="바로구매"><br><br>
+										<input type="button" value="삭제"></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					
