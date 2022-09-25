@@ -134,6 +134,8 @@
 					
 			
 </style>
+
+
 </head>
 <body>
 	<div class="basket-wrap">
@@ -159,14 +161,19 @@
 						<caption>일반 배송 상품</caption>
 						<tbody>
 							<c:forEach var="item" items="${basketList }">
-								<tr>
+								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
 									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
-									<td>DAYSOF DUAL THONG<br> MELON </td>
-									<td><input type="button" value="-">
-										<input type="text" value="${item.cnt }" min="0" style="width:15px;">
-										<input type="button" value="+"></td>
-									<td>27,000원</td>
+									
+									<td>${item.kor_name}<br> ${item.color } </td>
+									
+									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
+										<input type="hidden" value="${item.price }" id="price${item.product_id}">
+										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
+										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
+									
+									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									
 									<td><input type="button" value="바로구매"><br><br>
 										<input type="button" value="삭제"></td>
 								</tr>
@@ -182,7 +189,7 @@
 				<div class="price-cal">
 					<table class="cal-tbl">
 						<tr><td>결제 예정 금액</td></tr>
-						<tr><td>27,000원</td></tr>
+						<tr><td id="total">원</td></tr>
 					</table>
 				</div>
 				<div class="buy-btn">
@@ -220,5 +227,87 @@
 		
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
+<script type="text/javascript">
+	
+	$(function(){
+		calcTotal()
+	})
+	
+	function plusCnt(prod_id) {
+		
+		//상품 수량을 가져와야함
+		let target = document.getElementById("cnt"+prod_id)
+		let count = parseInt(target.value)
+		
+		//상품 최대 수량 설정
+		if (count >= 99) {
+			alert("최대 수량을 초과했습니다.");
+			return false;
+		}
+		
+		//상품 수량을 수정 (+1)
+		count++;
+		//변경된 수량을 반영
+		target.value = count
+		
+		//소계 계산
+		calcSum(prod_id)
+	}
+	
+	
+function minusCnt(prod_id) {
+		
+		//상품 수량을 가져와야함
+		let target = document.getElementById("cnt"+prod_id)
+		let count = parseInt(target.value)
+		
+		//상품 최소 수량 설정
+		if (count <= 1) {
+			alert("최소 1개이상 담아주세요");
+			return false;
+		}
+		
+		//상품 수량을 수정 (-1)
+		count--;
+		//변경된 수량을 반영
+		target.value = count
+		
+		//소계 계산
+		calcSum(prod_id)
+	}
+	
+	
+	function calcSum(prod_id) {
+		
+		//상품 수량 가져오기
+		let targetCnt = document.getElementById("cnt"+prod_id).value
+		//상품 단가 가져오기
+		let targetPrice = document.getElementById("price"+prod_id).value
+		// 수량*단가를 반영하기
+		let targetSumTd = document.getElementById("sum"+prod_id)
+		targetSumTd.innerHTML = targetCnt*targetPrice + "원"
+		// 합계에 반영
+		calcTotal()
+	}
+
+	function calcTotal() {
+		// 모든 소계를 가져와야함
+		let targetSumArr = document.getElementsByClassName("sumProduct")
+		
+		// 모든 소계 합산
+		let result = 0;
+		for ( let i = 0 ; i < targetSumArr.length ; i++){
+			let str = targetSumArr[i].innerHTML
+			result += parseInt(str.substring(0,str.length-1))
+		}
+		// 합산 가격 반영
+		
+		let targetTotal = document.getElementById("total")
+		targetTotal.innerHTML = result + "원"
+	}
+	
+</script>
 </body>
 </html>
