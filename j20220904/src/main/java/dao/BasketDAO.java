@@ -51,9 +51,10 @@ public class BasketDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from basket where mem_id=?";
-		
-		
+		String sql = "SELECT b.mem_id , p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, b.cnt\r\n"
+					+ "FROM basket b \r\n"
+					+ "JOIN product p\r\n"
+					+ "ON b.product_id = p.product_id where mem_id=?";
 		
 		try {
 			
@@ -68,6 +69,13 @@ public class BasketDAO {
 				basketDTO.setMem_id(rs.getString("mem_id"));
 				basketDTO.setProduct_id(rs.getInt("product_id"));
 				basketDTO.setCnt(rs.getInt("cnt"));
+				basketDTO.setBrand(rs.getString("brand"));
+				basketDTO.setEng_name(rs.getString("eng_name"));
+				basketDTO.setKor_name(rs.getString("kor_name"));
+				basketDTO.setGender(rs.getInt("gender"));
+				basketDTO.setPrice(rs.getInt("price"));
+				basketDTO.setColor(rs.getString("color"));
+				
 				list.add(basketDTO);
 			}
 		} catch (Exception e) {
