@@ -29,7 +29,7 @@ public class LoginService implements CommandProcess {
 		MemberDTO memberDTO = memberDAO.selectMember(mem_id);
 		System.out.println(memberDTO);
 		
-		// ID / PWD 확인
+		// ID / PWD 확인 / 존재하는 회원 확인
 		if(checkPwd(memberDTO, mem_pwd)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem_id", mem_id);
@@ -56,8 +56,13 @@ public class LoginService implements CommandProcess {
 		return "/member/memLoginForm.jsp";
 	}
 	
+	// 비밀번호 확인 및 존재하는 회원 확인
 	public boolean checkPwd(MemberDTO memberDTO, String mem_pwd) {
-		return memberDTO != null && memberDTO.getMem_pwd().equals(mem_pwd);
+		if(memberDTO.getMem_pwd() != null ) {
+			return memberDTO.getMem_pwd().equals(mem_pwd);
+		} else {
+			return false;
+		}
 	}
 
 }
