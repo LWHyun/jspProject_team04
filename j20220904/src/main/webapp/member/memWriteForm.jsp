@@ -19,7 +19,7 @@
     <div id="memWrite-wrap">
         <div id="memWrite-inner-contents">
             <div class="memWrite-container">
-                <form id="memJoinForm" class="memJoinForm" method="post">
+                <form action="${pageContext.request.contextPath }/member/write.do" id="memJoinForm" class="memJoinForm" method="post">
                     <!-- 온라인 회원 가입 -->
                     <div class="page-title-wrap">
                         <h2 class="text-head1">온라인회원 가입</h2>
@@ -220,7 +220,7 @@
                                         <th class="required">아이디</th>
                                         <td>
                                             <div>
-                                                <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요.(영문자로 시작, 숫자 사용 6~20자)">
+                                                <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요.(영문자로 시작, 숫자 가능 6~20자)">
                                                 <input type="hidden" id="mem_idCheck">
                                                 <div id="Val_idDiv" class="valid"></div>
                                             </div>
@@ -297,9 +297,9 @@
                                         <th class="required">주소</th>
                                         <td>
                                             <div>
-                                                <input type="text" name="mem_zipcode"  id="mem_zipcode" placeholder="우편번호" readonly disabled>
+                                                <input type="text" name="mem_zipcode"  id="mem_zipcode" placeholder="우편번호" readonly>
                                                 <button type="button" id="zipcodeBtn" onclick="checkPost()">우편번호 검색</button>
-                                                <input type="text" name="mem_addr1" id="mem_addr1" placeholder="주소" size="50" readonly disabled>
+                                                <input type="text" name="mem_addr1" id="mem_addr1" placeholder="주소" size="50" readonly>
                                                 <input type="text" name="mem_addr2" id="mem_addr2" placeholder="상세주소" size="50">
                                                 <div id="Val_addrDiv" class="valid"></div>
                                             </div>

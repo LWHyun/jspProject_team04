@@ -64,6 +64,7 @@ $(function() {
 });
 
 let pass = false;
+let emailChk = false;
 
 // blur 됐을 때 유효성 검사
 $(function() {
@@ -154,14 +155,17 @@ $(function() {
             $('#Val_emailDiv').css('display','');
             $('#Val_emailDiv').text('이메일을 입력해주세요');
             $('#mem_email1').val('');
+			emailChk = false;
         } else {
             if(!isEmail($('#mem_email1').val())) {
                 $('#Val_emailDiv').css('display','');
                 $('#Val_emailDiv').text('이메일을 형식에 맞게 입력해주세요');
                 $('#mem_email1').val('');
+				emailChk = false;
             } else {
                 $('#Val_emailDiv').css('display','none');
                 $('#emailAuth').css('display', '');
+				emailChk = true;
             }
         }
     });
@@ -199,23 +203,27 @@ $(function() {
 
 // 인증번호를 클릭 했을 때 visiable 처리 & 서버 인증번호 처리
 $('#emailBtn').on('click', function() {
-    $('#authEmail').prop('disabled', false);
-	
-	// 인증번호 생성 ajax
-	$.ajax({
-		url : '/j20220904/member/emailAuth.do',
-		type : 'post',
-		data : "mem_email="+$('#mem_email1').val(),
-		dataType : 'text',
-		success : function(data) {
-			$('#authEmailCheck').val(data);
-		},
-		error : function(err) {
-			console.log(err);
-		}
-	});
-	
-    alert("인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
+	if($('#mem_email1').val() == '' || !emailChk) {
+		alert('이메일을 알맞게 입력해주세요.');
+	} else {
+	    $('#authEmail').prop('disabled', false);
+		
+		// 인증번호 생성 ajax
+		$.ajax({
+			url : '/j20220904/member/emailAuth.do',
+			type : 'post',
+			data : "mem_email="+$('#mem_email1').val(),
+			dataType : 'text',
+			success : function(data) {
+				$('#authEmailCheck').val(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+		
+	    alert("인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
+	}
 });
 
 // 확인 버튼 클릭 시 체크
@@ -264,7 +272,6 @@ $(function() {
             $('#zipcodeBtn').focus();
             return pass;
         } else {
-            alert('다옴');
             $('#memJoinForm').submit();
         }
     });

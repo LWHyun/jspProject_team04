@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -126,8 +127,8 @@
                         <a href="#" style="font-size: 10px;">NOTICE</a>
                      </li>
                      <li>
-                        <a href="#" class="material-symbols-outlined">login</a>
-                        <a href="#" style="font-size: 10px;">LOGIN</a>
+                        <a href="${pageContext.request.contextPath }${loginOutLink }" class="material-symbols-outlined">${loginOut }</a>
+                        <a href="#" style="font-size: 10px;">${loginOut }</a>
                      </li>
                      <li>
                         <a href="${pageContext.request.contextPath }${joinMyLink}" class="material-symbols-outlined">person</a>
