@@ -1,62 +1,5 @@
 @charset "UTF-8";
 
-.top-wrap {
-	text-align: center;
-	display: block;
-	font-family: "Montserrat","Noto Sans KR",sans-serif;
-}
-.top-wrap .inner {
-	position: relative;
-    justify-content: center;
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-    display: inline-block;
-}
-.top-wrap .inner .tabs {
-	display: flex;
-	justify-content: center;
-	margin: 20px 0 20px 0;
-	width: 1200px;
-	
-}
-.top-wrap .inner .tabs .tab-item {
-	display: inline-block;
-	margin-left: -1px;
-	border: 1px solid #d5d5d5;
-	background-color: #fff;
-	text-align: center;
-	width: 300px;
-	padding: 18px 0;
-	border-bottom: 3px solid #000;
-}
-.top-wrap .inner .tabs .tab-item.ui-tabs-active {
-	border-color: #000;
-	border-width: 3px;
-	border-bottom: none;
-}
-.top-wrap .inner .tabs .tab-item a {
-	text-decoration: none;
-	color: #000;
-	font-weight: 600;
-	font-size: 12px;
-}
-.top-wrap .inner .tab-content {
-	width: 100%;
-}
-.top-wrap .inner .tab-content .bullet-text-list {
-	margin-top: 40px;
-	padding-left: 5px;
-}
-.bullet-text-list .bullet-text {
-	text-align: left;
-	font-size: 13px;
-	letter-spacing:-.325px;
-	display: list-item;
-	color: #666;
-	line-height: 22px;
-	font-family: "Montserrat","Noto Sans KR",sans-serif;
-}
 .top-wrap .inner .review-gray-box {
 	display: flex;
 	align-items: center;
@@ -145,10 +88,10 @@
 	font-weight: 500;
 	justify-content: center;
 }
-.tap-review {
+.tab-review {
 	text-align: left;
 }
-.tap-review .border-line-box-header {
+.tab-review .border-line-box-header {
 	position: relative;
 	display: block;
 	margin-top: 40px;
@@ -160,7 +103,7 @@
 	letter-spacing: -.75px;
 	padding-bottom: 20px;
 }
-.tap-review .border-line-box-header .border-line-box {
+.tab-review .border-line-box-header .border-line-box {
  	border-width: 1px;
 }
 .border-line-box .fold-box-list .fold-box {
@@ -180,51 +123,16 @@
 	padding-top: 6px;
 	font-size: 0;
 }
+
 /* 나중에 다시 */
 /* 나중에 다시 */
 /* 나중에 다시 */
 /* 나중에 다시 */
 /* 나중에 다시 */
 /* 나중에 다시 */
-.pagination-wrap {
-	position: relative;
-	margin-top: 40px;
-	text-align: center;
+
+
+.review-box .rating-wrap .review-text {
+	
 }
-.pagination-wrap .pagination-list {
-	display: inline-block;
-}
-.pagination-wrap .pagination-list .pagination-item {
-	float: left;
-}
-.pagination-wrap .pagination-list .pagination-item .btn-page {
-	color: #999;
-	width: 26px;
-	height: 26px;
-	text-align: center;
-	font-size: 13px;
-	border: 0;
-	padding: 0;
-	background-color: transparent;
-}
-.pagination-wrap .pagination-list .pagination-item .btn-page.selected {
-	color: #fff;
-	background: #111;
-}
-.pagination-wrap .btn-wrap.text-right {
-	margin-top: -35px;	
-}
-.pagination-wrap .btn-wrap.text-right .btn {
-	position: relative;
-	color: #fff;
-	min-width: 140px;
-	height: 44px;
-	padding: 0 25px;
-	background-color: #111;
-	border: 1px solid #111;
-	text-align: center;
-	font-weight: 500;
-	line-height: 42px;
-	font-size: 14px;
-	float: right;
-}
+
