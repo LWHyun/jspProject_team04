@@ -8,11 +8,30 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	.basket-wrap {	
+	.basket-wrap {		margin-top : 79px;
 						padding-left: 150px;
 						padding-right: 150px;
 		
 					}
+	
+	.basket-body {
+		min-height : 300px;
+	}
+	
+	.basket-body .item-name {
+		font-size : 18px;
+		margin-bottom : 10px;
+	}
+	
+	.basket-body .item-color {
+		font-size : 13px;
+		color : gray;
+	}
+	
+	
+	.basket-body td {
+		vertical-align: middle;
+	}
 	
 	.basket-body, .cal-tbl {	
 					width : 100%;
@@ -21,15 +40,20 @@
 					border-top: 2px solid black;
 					border-bottom: 1px solid black;	
 				}
+	
+	.basket-wrap h2 {
+		font-size : 32px;
+		font-weight : bold;
+	}
 				
-			td {
+	.basket-wrap td {
 					padding : 20px;
 					text-align : center;
-			}
+					}
 			
-			.buy-btn {
-						text-align : center;
-						margin-bottom : 30px;
+	.buy-btn {
+				text-align : center;
+				margin-bottom : 30px;
 			}
 			
 	.buy-notice {
@@ -148,28 +172,26 @@
 				<div class="order-count">
 					
 				</div>
-				<div class="order-null" text-align="center">
-					<h3>장바구니에 담긴 상품이 없습니다.</h3>
-				</div>
+			
 				<div class="order-basket">
-					
-					<div class="tbl-header gray">
-						<div class="header-title">
-							<span class="eng"> 일반 </span> 
-							배송상품
-							<span class="prod-cnt"></span>
-						</div>
-					</div>
-					
 					<table class="basket-body">
-						<caption>일반 배송 상품</caption>
+						
 						<tbody>
+							<c:if test="${basketList eq null }">
+							<tr>
+								<td>
+									   <div class="order-null" text-align="center">
+							               <h3>장바구니에 담긴 상품이 없습니다.</h3>
+							           </div>
+								</td>
+							</tr>
+							</c:if>
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
 									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
 									
-									<td>${item.kor_name}<br> ${item.color } </td>
+									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span></td>
 									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
 										<input type="hidden" value="${item.price }" id="price${item.product_id}">
@@ -184,18 +206,20 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					
-					<div class="order-delete-btn">
-						<input type="button" value="선택 삭제">
-					
-					</div>
+					<c:if test="${basketList ne null }">
+						<div class="order-delete-btn">
+							<input type="button" value="선택 삭제">
+						</div>
+					</c:if>
 				</div> 
-				<div class="price-cal">
-					<table class="cal-tbl">
-						<tr><td>결제 예정 금액</td></tr>
-						<tr><td id="total">원</td></tr>
-					</table>
-				</div>
+				<c:if test="${basketList ne null }">
+					<div class="price-cal">
+						<table class="cal-tbl">
+							<tr><td>결제 예정 금액</td></tr>
+							<tr><td id="total">원</td></tr>
+						</table>
+					</div>
+				</c:if>
 				<div class="buy-btn">
 					<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
 					<input type="button" value="선택 상품 주문하기" onclick="location='orderInfo.jsp'">
@@ -302,6 +326,11 @@ function minusCnt(prod_id) {
 	}
 
 	function calcTotal() {
+		//장바구니에 값이 없으면 계산안함
+		<c:if test="${basketList eq null }">
+			return false	
+		</c:if>
+		
 		// 모든 소계를 가져와야함
 		let targetSumArr = document.getElementsByClassName("sumProduct")
 		
