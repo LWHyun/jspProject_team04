@@ -138,6 +138,10 @@
 
 </head>
 <body>
+	<div>
+		<jsp:include page="../main/header.jsp"></jsp:include>
+	</div>
+
 	<div class="basket-wrap">
 		<div class="basket-content">
 			<h2>장바구니</h2>
@@ -252,8 +256,11 @@
 		//변경된 수량을 반영
 		target.value = count
 		
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		
 		//소계 계산
-		calcSum(prod_id)
+		//calcSum(prod_id)
+	
 	}
 	
 	
@@ -274,8 +281,10 @@ function minusCnt(prod_id) {
 		//변경된 수량을 반영
 		target.value = count
 		
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		
 		//소계 계산
-		calcSum(prod_id)
+		//calcSum(prod_id)
 	}
 	
 	

@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class BasketDAO {
 		return conn;
 	}
 	
-	
+	// 장바구니 리스트 가져오기
 	public List<BasketDTO> selectBasketList(String mem_id) {
 		
 		List<BasketDTO> list = new ArrayList<BasketDTO>();
@@ -84,6 +85,37 @@ public class BasketDAO {
 			close(rs, pstmt, conn);
 		}
 		return list;
+		
+	}
+	
+	// 장바구니 수량 수정
+	public int updateCnt (BasketDTO basketDTO) {
+		
+			
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE basket SET cnt = ? \r\n"
+				+ "WHERE mem_id= ?\r\n"
+				+ "AND product_id= ?";
+	
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, basketDTO.getCnt());
+			pstmt.setString(2, basketDTO.getMem_id());
+			pstmt.setInt(3, basketDTO.getProduct_id());
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(conn, pstmt);
+		}
+			
+		return result;
 		
 	}
 	
