@@ -122,6 +122,12 @@
                </div>
                <div class="util-list-wrap">
                   <ul class="util-list">
+                  <c:if test="${sessionScope.mem_id == 'admin' }">
+                	<li>
+                        <a href="#" class="material-symbols-outlined">person</a>
+                        <a href="#" style="font-size: 10px;">관리자</a>
+                     </li>
+                  </c:if>
                      <li>
                         <a href="../manage/noticeReal.jsp" class="material-symbols-outlined"><img src="https://cdn-icons-png.flaticon.com/512/584/584648.png" width="24" height="24"></a>
                         <a href="#" style="font-size: 10px;">NOTICE</a>
