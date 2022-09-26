@@ -1,6 +1,6 @@
 package dto;
 
-public class Product_sizeDTO {
+public class Product_SizeDTO {
 	
 	private int product_id; //제품코드
 	private int size_num; //사이즈별 일련번호
@@ -34,3 +34,4 @@ public class Product_sizeDTO {
 	
 	
 }
+

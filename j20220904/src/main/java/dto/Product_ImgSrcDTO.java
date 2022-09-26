@@ -2,7 +2,7 @@ package dto;
 
 import java.util.Date;
 
-public class ProductDTO {
+public class Product_ImgSrcDTO {
 	private int product_id; //제품코드
 	private String brand;  //브랜드
 	private String eng_name; //영어이름
@@ -13,7 +13,10 @@ public class ProductDTO {
 	private Date regdate; //등록일
 	private long ca_code; // 카테고리 코드
 	
-	//getter, setter 생성
+	private String s_file_path; //제품 이미지 작은사진 경로
+	private String l_file_path; //제품 이미지 큰사진 경로
+	
+	
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -68,10 +71,19 @@ public class ProductDTO {
 	public void setCa_code(long ca_code) {
 		this.ca_code = ca_code;
 	}
-	
-	
-	
+	public String getS_file_path() {
+		return s_file_path;
+	}
+	public void setS_file_path(String s_file_path) {
+		this.s_file_path = s_file_path;
+	}
+	public String getL_file_path() {
+		return l_file_path;
+	}
+	public void setL_file_path(String l_file_path) {
+		this.l_file_path = l_file_path;
+	}
 
-	
-	
+
+
 }
