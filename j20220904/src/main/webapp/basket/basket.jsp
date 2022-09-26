@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
 <style type="text/css">
 
 	.basket-wrap {		margin-top : 79px;
@@ -175,17 +175,18 @@
 			
 				<div class="order-basket">
 					<table class="basket-body">
-						
 						<tbody>
+							<!-- 장바구니에 담긴 상품이 없을 때 -->
 							<c:if test="${basketList eq null }">
 							<tr>
 								<td>
-									   <div class="order-null" text-align="center">
-							               <h3>장바구니에 담긴 상품이 없습니다.</h3>
-							           </div>
+								   <div class="order-null" text-align="center">
+					             	  <h3>장바구니에 담긴 상품이 없습니다.</h3>
+						           </div>
 								</td>
 							</tr>
 							</c:if>
+							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
@@ -198,7 +199,7 @@
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
 										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
 									
-									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									<td> id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
 										<input type="button" value="삭제"></td>
@@ -206,12 +207,17 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					
+					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
 							<input type="button" value="선택 삭제">
 						</div>
 					</c:if>
+					
 				</div> 
+				
+				<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
 				<c:if test="${basketList ne null }">
 					<div class="price-cal">
 						<table class="cal-tbl">
@@ -220,11 +226,13 @@
 						</table>
 					</div>
 				</c:if>
+				
 				<div class="buy-btn">
 					<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
 					<input type="button" value="선택 상품 주문하기" onclick="location='orderInfo.jsp'">
 					<input type="button" value="전체 상품 주문하기" onclick="location='orderInfo.jsp'">
 				</div>
+				
 				<div class="buy-notice">
 					<div class="notice-contents">
 					<h3>상품 주문 전 꼭 확인해 주세요!</h3><br>
@@ -255,10 +263,12 @@
 		
 		</div>
 	</div>
+	
+	
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-
 <script type="text/javascript">
 	
+	// 화면 로딩될때 가격 계산도 해줘
 	$(function(){
 		calcTotal()
 	})
@@ -288,7 +298,7 @@
 	}
 	
 	
-function minusCnt(prod_id) {
+	function minusCnt(prod_id) {
 		
 		//상품 수량을 가져와야함
 		let target = document.getElementById("cnt"+prod_id)
@@ -325,6 +335,7 @@ function minusCnt(prod_id) {
 		calcTotal()
 	}
 
+	
 	function calcTotal() {
 		//장바구니에 값이 없으면 계산안함
 		<c:if test="${basketList eq null }">
