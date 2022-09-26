@@ -1,4 +1,4 @@
-package product.service;
+package service.product;
 
 import java.io.IOException;
 import java.util.List;

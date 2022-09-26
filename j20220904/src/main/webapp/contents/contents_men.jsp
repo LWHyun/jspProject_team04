@@ -939,6 +939,9 @@
 	});
 	
 	$(function(){
+		
+		
+		
 		$('#250').click(function(){
 			
 			if($('.append_product').children().text() != $('.div250').text()) {
