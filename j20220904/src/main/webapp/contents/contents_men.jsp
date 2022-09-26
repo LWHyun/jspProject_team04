@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +149,7 @@
 		color: #666666;
 	}
 	
-	.produck_code	{
+	.product_code	{
 		font-size:13px;
 		list-style: none;
 		margin: 16px 0 0 0;
@@ -227,7 +228,7 @@
 		display: inline-block;
 		width: 200px;
 		height: 50px;
-		font-size: 15px;
+		font-size: 13px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -513,6 +514,7 @@
 		text-align: center;
 		
 		
+		
 	}
 	#290 {
 		border:1px white solid;
@@ -667,22 +669,22 @@
 		</div>
 		<div class="contents-inner product-detail-wrap">
 			<div class="image_big_left">
-				<img src="/j20220904/img/contexts/nike_waffle01.jpg" id="big">
+				<img src="${list[0].l_file_path }" id="big" name="product_id">
 				<div class="image_big_left_small">
 					<div class="small_image_div">
-						<img src="/j20220904/img/contexts/nike_waffle01.jpg" class="small">
+						<img src="" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="/j20220904/img/contexts/nike_waffle02.jpg" class="small">
+						<img src="" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="/j20220904/img/contexts/nike_waffle03.jpg" class="small">
+						<img src="" class="small">
 					</div>
 					<div class="small_image_div">
-						<img src="/j20220904/img/contexts/nike_waffle04.jpg" class="small">
+						<img src="" class="small"> 
 					</div>
 					<div class="small_image_div">
-						<img src="/j20220904/img/contexts/nike_waffle05.jpg" class="small">
+						<img src="" class="small"> 
 					</div>
 					
 					<div class="image_big_left_Product_satisfaction">
@@ -722,17 +724,22 @@
 						</div>
 				</div>
 				<div class="brand_name"> <p>
-					나이키 와플 데뷰
+						${list[0].eng_name}
 				</div>
 				<div class="product_name">
-					Nike WAFFLE DEBUT
+						${list[0].kor_name}
 				</div>
-				<ul class="produck_code">
-					<li>상품코드: ~~~~</li>
+				<ul class="product_code">
+					<li>
+						${list[0].product_id}
+					</li>
 				</ul>
 				<div class="detail_price">
 				<ul>
-					<s>89,000원</s><li>59,000원</li>
+					<!-- <s>89,000원</s> -->
+					<li>
+						${list[0].price}
+					</li>
 				</ul>
 				<button class="button--open"><img src="/j20220904/img/contexts/product_button.png" id="product_button"></button>
 			        <div class="modal--bg hidden">
@@ -742,10 +749,12 @@
 			                			<td>정상가</td><td>89,000원</td>
 			                		</tr>
 			                		<tr>	
-			                			<td>할인가</td><td>30,000원</td>
+			                			<td>할인가</td><td>0원</td>
 			                		</tr>
 			                		<tr>
-			                			<td>회원최대혜택가</td><td class="product_real_price">59,000원</td>
+			                			<td>회원최대혜택가</td><td class="product_real_price">
+													${list[0].price}
+										</td>
 			                		</tr>
 			           					
 			                	</table>
@@ -767,10 +776,10 @@
 						</div>
 						<div class="style_color_code_1">	
 							<div class="style_color_code_left">
-								색상코드
+								색상
 							</div>
 							<div class="style_color_code_right">
-								003
+									${list[0].color}
 							</div>
 						</div>
 						<div class="style_delivery_left_1">
@@ -807,7 +816,7 @@
 								총 결제금액
 							</div>
 							<div class="style_total_right">
-								59,000(임시)
+									${list[0].price}
 							</div><span>원</span>
 						</div>
 						<div class="style_myshopping">
@@ -856,7 +865,7 @@
 		
 		<div class="big_product_main">
 			<div class="big_product_main_1">
-				<img src="/j20220904/j20220904/img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
+				<img src="/j20220904/img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
 			</div>
 		</div>
 	</div>
@@ -933,17 +942,17 @@
 		$('#250').click(function(){
 			
 			if($('.append_product').children().text() != $('.div250').text()) {
-				$('.append_product').children().toggle();
+				$('.append_product').children().addClass();
 				
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="e"><div class="append_list div250"> 250 </div> <input type="number" value="1" name="number"  min="1" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
+				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div> <input type="number" value="1" name="number"  min="1" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
 			$('#X1').click(function(){
-				$('.append_product_child_left').children().remove();
+				$('.e1').remove();
 				
 				
 				});
@@ -954,16 +963,17 @@
 			
 			
 			
+			
 			if($('.append_product').children().text() != $('.div260').text()) {
-				$('.append_product').children().toggle();
+				$('.append_product').children().addClass();
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="e"><div class="append_list div260"> 260 </div> <input type="number" value="1" name="number" min="1" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
+				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="1" name="number" min="1" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
-				$('.append_product_child_left').children().remove();
+				$('.e2').remove();
 				
 				
 				});
@@ -976,15 +986,15 @@
 			
 			
 			if($('.append_product').children().text() != $('.div270').text()) {
-				$('.append_product').children().toggle();
+				$('.append_product').children().addClass();
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="e"><div class="append_list div270"> 270 </div> <input type="number" value="1" min="1" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
+				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" value="1" min="1" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
-				$('.append_product_child_left').children().remove();
+				$('.e3').remove();
 				
 				
 				});
@@ -997,15 +1007,15 @@
 			
 			
 			if($('.append_product').children().text() != $('.div280').text()) {
-				$('.append_product').children().add();
+				$('.append_product').children().addClass();
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').toggle('<div class="e"><div class="append_list div280"> 280 </div> <input type="number" value="1" min="1" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
+				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div> <input type="number" value="1" min="1" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
-				$('.append_product_child_left').children().remove();
+				$('.e4').remove();
 				
 				
 				});
@@ -1017,14 +1027,14 @@
 			
 			
 			if($('.append_product').children().text() != $('.div290').text()) {
-				$('.append_product').children().toggle();
+				$('.append_product').children().addClass();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="e"><div class="append_list div290"> 290 </div> <input type="number" value="1" min="1" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
+				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" value="1" min="1" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
-				$('.append_product_child_left').children().remove();
+				$('.e5').remove();
 				
 				
 				});
