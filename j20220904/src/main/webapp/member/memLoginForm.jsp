@@ -37,7 +37,7 @@
                         <div class="tab-login-form">
                             <form action="${pageContext.request.contextPath }/member/login.do" id="loginForm" name="loginForm" method="post">
                                 <div class="login-input login-input-id">
-                                    <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }">
+                                    <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }${mem_id }">
                                 </div>
                                 <div class="login-input login-input-pwd">
                                     <input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호를 입력해주세요.">
@@ -59,8 +59,8 @@
                         </div><!-- 로그인 FORM -->
 
                         <div class="login-util-wrap">
-                            <a href="#" id="idSearch" class="btn-login-util">아이디 찾기 </a>
-                            <a href="#" id="pwSearch" class="btn-login-util">비밀번호 찾기 </a>
+                            <a href="${pageContext.request.contextPath }/member/memIdFindForm.do" id="idSearch" class="btn-login-util">아이디 찾기 </a>
+                            <a href="${pageContext.request.contextPath }/member/memPwdFindForm.do" id="pwSearch" class="btn-login-util">비밀번호 찾기 </a>
                             <a href="${pageContext.request.contextPath }/member/writeForm.do" id="joinBtn" class="btn-login-util">회원가입</a>
                         </div>
 
