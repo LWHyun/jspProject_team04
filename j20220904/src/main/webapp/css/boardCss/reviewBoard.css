@@ -121,7 +121,24 @@
 	min-height: 28px;
 	margin-bottom: 12px;
 	padding-top: 6px;
-	font-size: 0;
+}
+.fold-box .fold-box-header .review-box .rating-wrap .rating-list {
+	display: flex;
+	vertical-align: top;
+	margin: 1px 0 0 15px;
+}
+.fold-box .fold-box-header .review-box .rating-wrap .rating-list li {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 13px;
+    letter-spacing: -.65px;
+    margin: 0 7px;
+}
+.fold-box .fold-box-header .review-box .rating-wrap .rating-list li .rating-type {
+    color: #666;
+}
+.fold-box .fold-box-header .review-box .rating-wrap .rating-list li .desc {
+    color: #ee1c25;
 }
 
 /* 나중에 다시 */
@@ -132,7 +149,28 @@
 /* 나중에 다시 */
 
 
-.review-box .rating-wrap .review-text {
-	
+.fold-box-list .fold-box .fold-box-header .review-text {
+	margin-top: 14px;
+    min-height: 48px;
+    line-height: 24px;
+    word-break: break-all;
+    font-size: 15px;
+    letter-spacing: -.75px;
 }
 
+.fold-box-list .fold-box .fold-box-header .review-box .id-date-text {
+	margin: 10px 0;
+    color: #666;
+    font-family: "Montserrat",sans-serif;	
+}
+.id-date-text .id-text {
+	display: inline-block;
+    font-size: 13px;
+}
+.id-date-text .date-text {
+	position: relative;
+    display: inline-block;
+    padding-left: 11px;
+    margin-left: 10px;
+    font-size: 13px;
+}
