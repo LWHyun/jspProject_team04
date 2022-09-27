@@ -12,7 +12,7 @@ import control.CommandProcess;
 import dto.ProductDTO;
 import dto.Product_ImgDTO;
 import dto.Product_ImgSrcDTO;
-import dao.ProductDao;
+import dao.ProductDAO;
 
 public class ImageListService implements CommandProcess {
 
@@ -23,7 +23,7 @@ public class ImageListService implements CommandProcess {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
 		try {
-			ProductDao productDao = ProductDao.getInstance();
+			ProductDAO productDao = ProductDAO.getInstance();
 			
 			List<Product_ImgSrcDTO> list =  productDao.selectImg(product_id);
 			

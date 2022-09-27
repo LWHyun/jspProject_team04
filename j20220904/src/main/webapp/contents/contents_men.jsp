@@ -877,11 +877,53 @@
 		var num = 0;
 		var imageName = ["heart1", "heart0"];
 		$("#heart").click(function() {
-			if(num == 1) num=0;
-			else 	     num++;	
+			if(num == 1) {
+				num=0;
+				
+				$.ajax({
+					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
+					type: 'post',
+					data: {
+							'product_id' : ${product_id},
+							'mem_id' :  '${sessionScope.mem_id}'
+					      },
+						
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 삭제되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			}else 	     {
+				num++;
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/contents/insertLike.do',
+					type: 'post',
+					data: {
+							'product_id' : ${product_id},
+							'mem_id' :  '${sessionScope.mem_id}'
+						  },
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 등록되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			
+			}
 			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
 		});
 	});	
+	
+	
+	 
 	
 	
 	var bigPic = document.querySelector("#big"); //큰 사진
@@ -961,6 +1003,8 @@
 				});
 		});
 	});
+	
+	
 	$(function(){
 		$('#260').click(function(){
 			
