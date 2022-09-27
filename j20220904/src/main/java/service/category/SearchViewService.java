@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dao.ProductDao;
+import dao.ProductDAO;
 import dto.ProductDTO;
 
 public class SearchViewService implements CommandProcess {
@@ -21,7 +21,7 @@ public class SearchViewService implements CommandProcess {
 		String searchBar = request.getParameter("searchBar");
 		HttpSession session = request.getSession();
 		session.removeAttribute("word");
-		ProductDao pd = ProductDao.getInstance();
+		ProductDAO pd = ProductDAO.getInstance();
 		
 		try {
 			List<ProductDTO> list = pd.selectSearch(searchBar);
