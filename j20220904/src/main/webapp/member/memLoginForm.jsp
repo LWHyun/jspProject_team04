@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/memberCss/userUI.css">
 </head>
 <body>
-<input type="hidden" id="incorrect" value="${msg }">
-<input type="hidden" id="writeResult" value="${writeResult }">
+<input type="hidden" id="writeResult" value="${writeResult }"> <!-- 회원가입 후 로그인 창으로 이동했을 경우 -->
 	<div>
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
@@ -62,7 +61,7 @@
                         <div class="login-util-wrap">
                             <a href="#" id="idSearch" class="btn-login-util">아이디 찾기 </a>
                             <a href="#" id="pwSearch" class="btn-login-util">비밀번호 찾기 </a>
-                            <a href="#" id="joinBtn" class="btn-login-util">회원가입</a>
+                            <a href="${pageContext.request.contextPath }/member/writeForm.do" id="joinBtn" class="btn-login-util">회원가입</a>
                         </div>
 
                         <div class="sns-login-btn-wrap">
@@ -99,9 +98,6 @@ $(function() {
 			$('#loginForm').submit();
 		}
 	});
-	if($('#incorrect').val() != '') {
-		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-	}
 	if($('#writeResult').val() == 'success') {
 		alert("회원가입을 축하합니다.");
 	}

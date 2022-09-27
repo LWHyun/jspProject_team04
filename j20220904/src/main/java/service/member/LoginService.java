@@ -29,6 +29,8 @@ public class LoginService implements CommandProcess {
 		MemberDTO memberDTO = memberDAO.selectMember(mem_id);
 		System.out.println(memberDTO);
 		
+		int result = 0;
+		
 		// ID / PWD 확인 / 존재하는 회원 확인
 		if(checkPwd(memberDTO, mem_pwd)) {
 			HttpSession session = request.getSession();
@@ -44,16 +46,12 @@ public class LoginService implements CommandProcess {
 				response.addCookie(cookie);
 			}
 			
-			return "/";
-		// ID / PWD 가 일치하지 않을 경우
-		}else {
-			String msg = "incorrect";
-			
-			request.setAttribute("msg", msg);
+			result = 1;
 		}
 		
+		request.setAttribute("result", result);
 		
-		return "/member/memLoginForm.jsp";
+		return "/member/memLoginResult.jsp";
 	}
 	
 	// 비밀번호 확인 및 존재하는 회원 확인
