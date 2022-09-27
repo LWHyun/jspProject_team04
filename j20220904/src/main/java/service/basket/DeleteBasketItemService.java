@@ -38,7 +38,10 @@ public class DeleteBasketItemService implements CommandProcess {
 		
 		basketDTO.setMem_id(mem_id);
 		basketDTO.setProduct_id(product_id);
-	
+		
+		/*
+		 * for( int i = 0; i < chklist.length; i++) basketDAO.deleteItem(basketDTO);
+		 */
 		
 		return "basket.jsp";
 	}

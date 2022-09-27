@@ -127,20 +127,22 @@ public class BasketDAO {
 		PreparedStatement pstmt = null;
 		
 		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=?";
+		int result = 0;
+		
 		
 		try {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, basketDTO.getMem_id());
 				pstmt.setInt(2, basketDTO.getProduct_id());
-				
+				result = pstmt.executeUpdate();
 				
 				
 				
 		} catch( Exception e ) {
 			
 		}
-		int result = 0;
+		
 		return result;
 		
 		

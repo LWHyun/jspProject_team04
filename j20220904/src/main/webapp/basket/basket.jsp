@@ -202,7 +202,7 @@
 									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
-										<input type="button" value="삭제" onclick="location.href=/basket/deleteBasketItem.do"></td>
+										<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do'"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
