@@ -3,36 +3,36 @@ $(function() {
     $('.arrowImg1').click(function() {
         let foldbox = $('.fold-box-list').children().eq(0); // li.fold-box
         
-        if($('.arrowImg1').attr('src') == './img/arrow_up.svg') {
+        if($('.arrowImg1').attr('src') == '/j20220904/img/memberImg/arrow_up.svg') {
             foldbox.attr('class', 'fold-box expanded');
-            $('.arrowImg1').attr('src', './img/arrow_down.svg');
+            $('.arrowImg1').attr('src', '/j20220904/img/memberImg/arrow_down.svg');
         } else {
             foldbox.attr('class', 'fold-box');
-            $('.arrowImg1').attr('src', './img/arrow_up.svg');
+            $('.arrowImg1').attr('src', '/j20220904/img/memberImg/arrow_up.svg');
         }
     });
 
     $('.arrowImg2').click(function() {
         let foldbox = $('.fold-box-list').children().eq(1); // li.fold-box
         
-        if($('.arrowImg2').attr('src') == './img/arrow_up.svg') {
+        if($('.arrowImg2').attr('src') == '/j20220904/img/memberImg/arrow_up.svg') {
             foldbox.attr('class', 'fold-box expanded');
-            $('.arrowImg2').attr('src', './img/arrow_down.svg');
+            $('.arrowImg2').attr('src', '/j20220904/img/memberImg/arrow_down.svg');
         } else {
             foldbox.attr('class', 'fold-box');
-            $('.arrowImg2').attr('src', './img/arrow_up.svg');
+            $('.arrowImg2').attr('src', '/j20220904/img/memberImg/arrow_up.svg');
         }
     });
 
     $('.arrowImg3').click(function() {
         let foldbox = $('.fold-box-list').children().eq(2); // li.fold-box
         
-        if($('.arrowImg3').attr('src') == './img/arrow_up.svg') {
+        if($('.arrowImg3').attr('src') == '/j20220904/img/memberImg/arrow_up.svg') {
             foldbox.attr('class', 'fold-box expanded');
-            $('.arrowImg3').attr('src', './img/arrow_down.svg');
+            $('.arrowImg3').attr('src', '/j20220904/img/memberImg/arrow_down.svg');
         } else {
             foldbox.attr('class', 'fold-box');
-            $('.arrowImg3').attr('src', './img/arrow_up.svg');
+            $('.arrowImg3').attr('src', '/j20220904/img/memberImg/arrow_up.svg');
         }
     });
 });
@@ -246,10 +246,6 @@ $(function() {
         } else if(!$('#mem_pwd').val()){
             alert("비밀번호를 입력해주세요");
             $('#mem_pwd').focus();
-            return pass;
-        } else if(!$('#mem_rePwd').val()){
-            alert("비밀번호를 확인해주세요");
-            $('#mem_rePwd').focus();
             return pass;
         } else if(!$('#mem_rePwd').val()){
             alert("비밀번호를 확인해주세요");

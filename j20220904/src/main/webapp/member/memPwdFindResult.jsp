@@ -37,17 +37,20 @@
                             <!-- 비밀번호 입력 박스 -->
                             <div class="find-pwd-result-box">
                                 <form>
+                                	<input type="hidden" name="mem_id" id="mem_id" value="${requestScope.mem_id }">
                                     <div class="find-pwd-result-Pwd">
-                                        <input type="password" placeholder="새 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 10~20자)">
+                                        <input type="password" id="mem_pwd" name="mem_pwd" placeholder="새 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)">
+                                       	<div id="Val_pwdDiv" class="valid"></div>
                                     </div>
 
                                     <div class="find-pwd-result-rePwd">
-                                        <input type="password" placeholder="새 비밀번호를 재입력해주세요.">
+                                        <input type="password" id="mem_rePwd" name="mem_rePwd" placeholder="새 비밀번호를 재입력해 주세요.">
+                                        <div id="Val_pwdReDiv" class="valid"></div>
                                     </div>
                                 </form>
 
                                 <div class="btn-wrap">
-                                    <a href="#" id="popLoginBtn" class="btn-login-pwdFind">확인</a>
+                                    <button id="popLoginBtn" class="btn-login-pwdFind">확인</button>
                                 </div>
                             </div><!-- find-id-result-box -->
                         </div><!-- dialog-contents-inner -->
@@ -60,5 +63,54 @@
     <div>
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
+	
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>	
+<script src="${pageContext.request.contextPath }/js/memberJs/regExp.js"></script>
+<script>
+$(function() {
+	// 비밀번호
+    $('#mem_pwd').on('blur',function() {
+        let mem_pwd = $('#mem_pwd').val();
+
+        if(mem_pwd == '' || !isPassword(mem_pwd)) {
+            $('#Val_pwdDiv').css('display', '');
+            $('#Val_pwdDiv').text('비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)');
+            $('#mem_pwd').val('');
+            //$('#mem_pwd').focus();
+        } else {
+            $('#Val_pwdDiv').css('display', 'none');
+        }
+    });
+    // 비밀번호 확인
+    $('#mem_rePwd').on('blur',function() {
+        let mem_pwd = $('#mem_pwd').val();
+        let mem_rePwd = $('#mem_rePwd').val();
+
+        if((mem_rePwd == '') || (mem_pwd !== mem_rePwd)) {
+            $('#Val_pwdReDiv').css('display', '');
+            $('#Val_pwdReDiv').text('비밀번호가 일치하지 않습니다.');
+            $('#mem_rePwd').val('');
+            //$('#mem_pwd').focus();
+        } else {
+            $('#Val_pwdReDiv').css('display', 'none');
+        }
+    });
+    
+    $('#popLoginBtn').click(function() {
+    	if(!$('#mem_pwd').val()) {
+    		alert("새 비밀번호를 입력해주세요.");
+            $('#mem_name').focus();
+            return false;
+    	} else if(!$('#mem_rePwd').val()) {
+    		alert("새 비밀번호를 확인해주세요.");
+            $('#mem_name').focus();
+            return false;
+    	} else {
+    		alert("다 통과");
+    	}
+    	
+    });
+});
+</script>
 </body>
 </html>

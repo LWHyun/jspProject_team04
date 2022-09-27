@@ -27,12 +27,29 @@ public class MemFindEmailCheckService implements CommandProcess {
 		
 		// DB 
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		List<MemberDTO> list = memberDAO.findIdMember(mem_name, email1, email2);
 		
-		// 비교
+		
 		int result = 0;
-		if(list.size() != 0) {
-			result = 1;
+		
+		// 비밀번호 찾기 일 경우
+		if(request.getParameter("mem_id") != null) {
+			System.out.println(request.getParameter("mem_id"));
+			MemberDTO memberDTO = memberDAO.selectMember(request.getParameter("mem_id"));
+			
+			if(email.equals(memberDTO.getMem_email1()+"@"+memberDTO.getMem_email2())) {
+				System.out.println("비밀번호 찾기 일치!");
+				result = 1;
+			}
+		} 
+		// 아이디 찾기 일 경우
+		else {
+			List<MemberDTO> list = memberDAO.findIdMember(mem_name, email1, email2);
+			// 비교
+			
+			if(list.size() != 0) {
+				System.out.println("아이디 찾기 일치!");
+				result = 1;
+			}
 		}
 				
 		// 응답
