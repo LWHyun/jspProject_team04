@@ -119,6 +119,34 @@ public class BasketDAO {
 		
 	}
 	
+	
+	//장바구니 상품 삭제
+	public int deleteItem (BasketDTO basketDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=?";
+		
+		try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, basketDTO.getMem_id());
+				pstmt.setInt(2, basketDTO.getProduct_id());
+				
+				
+				
+				
+		} catch( Exception e ) {
+			
+		}
+		int result = 0;
+		return result;
+		
+		
+	}
+	
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
