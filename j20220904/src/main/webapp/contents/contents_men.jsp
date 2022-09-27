@@ -417,7 +417,7 @@
 	.append_product{
 		border:1px white solid;
 		width : 580px;
-		display: flex;
+		display: hidden;
 	    flex-direction: row;
 	    flex-wrap: nowrap;
 	    align-content: center;

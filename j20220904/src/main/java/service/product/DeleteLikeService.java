@@ -19,11 +19,14 @@ public class DeleteLikeService implements CommandProcess {
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String mem_id = request.getParameter("mem_id");
 		
-		ProductDAO prodcutDAO = ProductDAO.getInstance();
+		System.out.println("product_id="+product_id);
+		System.out.println("mem_id="+mem_id);
+		
+		ProductDAO productDAO = ProductDAO.getInstance();
 		
 		try {
 			
-			int result = prodcutDAO.deleteLike(product_id, mem_id);
+			int result = productDAO.deleteLike(product_id, mem_id);
 			
 			request.setAttribute("mem_id", mem_id);
 			request.setAttribute("product_id", product_id);
@@ -35,7 +38,7 @@ public class DeleteLikeService implements CommandProcess {
 		}
 		
 		
-		return "contents_men.jsp";
+		return "/contents/contents_men.jsp";
 		
 		
 		

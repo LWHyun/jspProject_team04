@@ -35,7 +35,7 @@ public class InsertLikeService implements CommandProcess {
 		}
 		
 		
-		return "contents_men.jsp";
+		return "/contents/contents_men.jsp";
 	}
 
 }

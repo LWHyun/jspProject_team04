@@ -116,7 +116,7 @@ public class ProductDAO {
 	public int insertLike(int product_id,String mem_id) throws SQLException {
 		PreparedStatement pstmt = null;
 		Connection conn = this.getConnection();
-		String sql = "insert into like_pro values(?,?,sysdate)";
+		String sql = "insert into like_pro(product_id,mem_id,like_pro_date) values(?,?,sysdate)";
 		
 		int result = 0;
 		
@@ -138,6 +138,35 @@ public class ProductDAO {
 			close(pstmt,conn);
 		}
 		return result;
+	}
+		
+	
+		//찜한제품 delete 하는 메서드
+	public int deleteLike(int product_id, String mem_id) throws SQLException {
+		PreparedStatement pstmt = null;
+		Connection conn = this.getConnection();
+		String sql = "delete from like_pro where product_id=? and mem_id=?";
+		
+		int result = 0;
+		
+		try {
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,product_id);
+			pstmt.setString(2,mem_id);
+		
+			
+			result =pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();	
+		}finally {
+			close(pstmt,conn);
+		}
+		return result;
+	
 	}
 	
 	//찜한제품에 대한 상품select 하는 메서드
@@ -303,5 +332,7 @@ public class ProductDAO {
 			
 		return list;
 	}
+
+	
 	
 }
