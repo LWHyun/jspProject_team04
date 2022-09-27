@@ -49,19 +49,9 @@ public class MemWriteService implements CommandProcess {
 		
 		
 		// 응답
+		request.setAttribute("result", result);
 		
-		// 회원가입 성공 시 로그인 화면 이동
-		if(result == 1) {
-			request.setAttribute("writeResult", "success");
-			
-			return "/member/memLoginForm.jsp";
-		} 
-		// 회원가입 실패 시 회원가입 폼으로 이동
-		else {
-			request.setAttribute("writeResult", "fail");
-			
-			return "/member/memWriteForm.jsp";
-		}
+		return "/member/memWriteResult.jsp";
 	}
 
 }

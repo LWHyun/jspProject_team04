@@ -111,7 +111,7 @@
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
             <div class="inner">
-               <a href="index.jsp">
+               <a href="${pageContext.request.contextPath }">
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
                <div class="gnb-search-wrap">
