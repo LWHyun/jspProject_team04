@@ -4,21 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
+import dto.ProductDTO;
 
 import dto.ProductDTO;
 import dto.Product_ImgDTO;
 import dto.Product_ImgSrcDTO;
 import dto.Product_Like_ProDTO;
+
 
 public class ProductDao {
 	private static ProductDao instance;
@@ -222,6 +223,85 @@ public class ProductDao {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<ProductDTO> selectSearch(String searchBar) throws SQLException {
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = "select * from product where brand like '%"+searchBar+"%' or ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%'";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		
+			try {
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setProduct_id(rs.getInt("product_id"));
+					productDTO.setBrand(rs.getString("brand"));
+					productDTO.setEng_name(rs.getString("eng_name"));
+					productDTO.setKor_name(rs.getString("kor_name"));
+					productDTO.setGender(rs.getInt("gender"));
+					productDTO.setPrice(rs.getInt("price"));
+					productDTO.setColor(rs.getString("color"));
+					productDTO.setRegdate(rs.getDate("regdate"));
+					productDTO.setCa_code(rs.getInt("ca_code"));
+					list.add(productDTO);
+			} 
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(stmt != null)stmt.close();
+			if(conn != null)conn.close();
+		}
+			
+		
+		
+		return list;
+	}
+
+	public List<ProductDTO> selectSearch(int gender) throws SQLException {
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		String sql = "select * from product where gender=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, gender);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setProduct_id(rs.getInt("product_id"));
+					productDTO.setBrand(rs.getString("brand"));
+					productDTO.setEng_name(rs.getString("eng_name"));
+					productDTO.setKor_name(rs.getString("kor_name"));
+					productDTO.setGender(rs.getInt("gender"));
+					productDTO.setPrice(rs.getInt("price"));
+					productDTO.setColor(rs.getString("color"));
+					productDTO.setRegdate(rs.getDate("regdate"));
+					productDTO.setCa_code(rs.getInt("ca_code"));
+					list.add(productDTO);
+			} 
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+			
+		return list;
 	}
 	
 }
