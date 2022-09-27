@@ -226,7 +226,7 @@ $('#emailBtn').on('click', function() {
 	}
 });
 
-// 확인 버튼 클릭 시 체크
+// 확인 버튼 클릭 시 체크 
 $(function() {
     $('#btn-accept').on('click', function() {
         let checked = $('#foldCheckAll').is(":checked");
@@ -275,6 +275,8 @@ $(function() {
             $('#memJoinForm').submit();
         }
     });
+
+	
 })
 
 

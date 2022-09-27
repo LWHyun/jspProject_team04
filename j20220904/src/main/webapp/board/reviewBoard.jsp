@@ -17,6 +17,7 @@
 	<div id="content">
 		<div id="productReview" class="top-wrap">
 			<div class="inner">
+				<!-- 메뉴 탭 list -->
 				<ul class="tabs">
 					<li class="tab-item">
 						<a href="#" class="tab-link">상품정보</a>
@@ -35,6 +36,7 @@
 						<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
 					</li>
 				</ul>
+				<!-- 상품 후기 안내사항 -->
 				<div class="tab-content">
 					<ul class="bullet-text-list">
 						<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
@@ -69,6 +71,7 @@
 						</li>
 					</ul>
 				</div>
+				<!-- 평균 별점 및 리뷰 -->
 				<div class="review-gray-box">
 					<div class="rating-box">
 						<div class="tit_type1">상품만족도</div>
@@ -139,6 +142,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 리뷰 모아보기 -->
 				<div class="tab-review">
 					<!-- 리뷰 개수 -->
 					<div class="border-line-box-header">
@@ -193,88 +197,26 @@
 								<div class="fold-box-header">
 									<div class="review-box">
 										<div class="rating-wrap">
+											<ul class="rating-list">
+												<li>
+													<span class="rating-type">사이즈</span>
+													<span class="desc">정 사이즈</span>
+												</li>
+												<li>
+													<span class="rating-type">색상</span>
+													<span class="desc">화면과 같음</span>
+												</li>
+												<li>
+													<span class="rating-type">발볼</span>
+													<span class="desc">적당함</span>
+												</li>
+												<li>
+													<span class="rating-type">발등</span>
+													<span class="desc">적당함</span>
+												</li>
+											</ul>
 										</div>
-										<ul class="rating-list">
-											<li>
-												<span class="rating-type">사이즈</span>
-												<span class="desc">정 사이즈</span>
-											</li>
-											<li>
-												<span class="rating-type">색상</span>
-												<span class="desc">화면과 같음</span>
-											</li>
-											<li>
-												<span class="rating-type">발볼</span>
-												<span class="desc">적당함</span>
-											</li>
-											<li>
-												<span class="rating-type">발등</span>
-												<span class="desc">적당함</span>
-											</li>
-										</ul>
 										<p class="review-text">2 신발이 너무 예뻐요.</p>
-										<div class="id-date-text">
-											<span class="id-text">0*******a</span>
-											<span class="date-text">2022.09.02 13:53:47</span>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="fold-box">
-								<div class="fold-box-header">
-									<div class="review-box">
-										<div class="rating-wrap">
-										</div>
-										<ul class="rating-list">
-											<li>
-												<span class="rating-type">사이즈</span>
-												<span class="desc">정 사이즈</span>
-											</li>
-											<li>
-												<span class="rating-type">색상</span>
-												<span class="desc">화면과 같음</span>
-											</li>
-											<li>
-												<span class="rating-type">발볼</span>
-												<span class="desc">적당함</span>
-											</li>
-											<li>
-												<span class="rating-type">발등</span>
-												<span class="desc">적당함</span>
-											</li>
-										</ul>
-										<p class="review-text">3 신발이 너무 예뻐요.</p>
-										<div class="id-date-text">
-											<span class="id-text">0*******a</span>
-											<span class="date-text">2022.09.02 13:53:47</span>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="fold-box">
-								<div class="fold-box-header">
-									<div class="review-box">
-										<div class="rating-wrap">
-										</div>
-										<ul class="rating-list">
-											<li>
-												<span class="rating-type">사이즈</span>
-												<span class="desc">정 사이즈</span>
-											</li>
-											<li>
-												<span class="rating-type">색상</span>
-												<span class="desc">화면과 같음</span>
-											</li>
-											<li>
-												<span class="rating-type">발볼</span>
-												<span class="desc">적당함</span>
-											</li>
-											<li>
-												<span class="rating-type">발등</span>
-												<span class="desc">적당함</span>
-											</li>
-										</ul>
-										<p class="review-text">4 신발이 너무 예뻐요.</p>
 										<div class="id-date-text">
 											<span class="id-text">0*******a</span>
 											<span class="date-text">2022.09.02 13:53:47</span>
@@ -290,7 +232,7 @@
 									<li class="pagination-item">
 										<button type="button" class="btn-page btn-page-num selected">1</button>
 									</li>
-									<li class="pagination-item">
+										<li class="pagination-item">
 										<button type="button" class="btn-page btn-page-num">2</button>
 									</li>
 									<li class="pagination-item">

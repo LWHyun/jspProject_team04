@@ -417,7 +417,7 @@
 	.append_product{
 		border:1px white solid;
 		width : 580px;
-		display: flex;
+		display: hidden;
 	    flex-direction: row;
 	    flex-wrap: nowrap;
 	    align-content: center;
@@ -816,7 +816,7 @@
 								총 결제금액
 							</div>
 							<div class="style_total_right">
-									${list[0].price}
+									
 							</div><span>원</span>
 						</div>
 						<div class="style_myshopping">
@@ -877,11 +877,53 @@
 		var num = 0;
 		var imageName = ["heart1", "heart0"];
 		$("#heart").click(function() {
-			if(num == 1) num=0;
-			else 	     num++;	
+			if(num == 1) {
+				num=0;
+				
+				$.ajax({
+					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
+					type: 'post',
+					data: {
+							'product_id' : ${product_id},
+							'mem_id' :  '${sessionScope.mem_id}'
+					      },
+						
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 삭제되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			}else 	     {
+				num++;
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/contents/insertLike.do',
+					type: 'post',
+					data: {
+							'product_id' : ${product_id},
+							'mem_id' :  '${sessionScope.mem_id}'
+						  },
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 등록되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			
+			}
 			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
 		});
 	});	
+	
+	
+	 
 	
 	
 	var bigPic = document.querySelector("#big"); //큰 사진
@@ -929,7 +971,7 @@
 	
 	
 	
-	
+
 	
 	$(function() {
 		$("#myshopping2").click(function() {
@@ -950,7 +992,7 @@
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div> <input type="number" value="1" name="number"  min="1" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
+				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="0" class="input1" name="number"  min="0" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
@@ -961,6 +1003,8 @@
 				});
 		});
 	});
+	
+	
 	$(function(){
 		$('#260').click(function(){
 			
@@ -972,7 +1016,7 @@
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="1" name="number" min="1" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
+				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="0" class="input2" name="number" min="0" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
@@ -993,7 +1037,7 @@
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" value="1" min="1" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
+				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number"  class="input3" value="0" min="0" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
@@ -1014,7 +1058,7 @@
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div> <input type="number" value="1" min="1" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
+				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" class="input4" value="0" min="0" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
@@ -1033,7 +1077,7 @@
 				$('.append_product').children().addClass();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" value="1" min="1" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
+				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" value="0" min="0" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
@@ -1044,7 +1088,89 @@
 		});
 	});
 	
+	
+	
+		var amount1 = 0;
+	   $(document).on('change', '#number1', function() {
+		  
+			   
+			   amount1 = Number(${list[0].price})*Number($("#number1").val()); // 89000;
+			      
+			      
+		      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+			      
+	   });
+	   
+	   $(document).on('click','#X1', function(){
+		   amount1 = 0;
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
+	   
+	   var amount2 = 0;
+	   $(document).on('change', '#number2', function() {
+	      amount2 = Number(${list[0].price})*Number($("#number2").val()); // 89000;
+	      
+	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
+	   $(document).on('click','#X2', function(){
+		   amount2 = 0;
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
+	   var amount3 = 0;
+	   $(document).on('change', '#number3', function() {
+	      amount3 = Number(${list[0].price})*Number($("#number3").val()); // 89000;
+	      
+	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   }); 
+	   
+	   $(document).on('click','#X3', function(){
+		   amount3 = 0;
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
+	   var amount4 = 0;
+	   $(document).on('change', '#number4', function() {
+	      amount2 = Number(${list[0].price})*Number($("#number4").val()); // 89000;
+	      
+	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   }); 
+	   
+	   $(document).on('click','#X4', function(){
+		   amount4 = 0;
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
+	   var amount5 = 0;
+	   $(document).on('change', '#number5', function() {
+	      amount2 = Number(${list[0].price})*Number($("#number5").val()); // 89000;
+	      
+	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   }); 
+	   
+	   $(document).on('click','#X5', function(){
+		   amount5 = 0;
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	
+	
+	
+	   
+		
+	
+		
+	
+	
+	
+
+
+
+
+		
+	   
+	   
 </script>
 </body>
 </html>
-					

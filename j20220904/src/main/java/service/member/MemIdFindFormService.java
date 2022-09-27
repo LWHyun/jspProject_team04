@@ -5,23 +5,19 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
-public class LoginFormService implements CommandProcess {
+public class MemIdFindFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String mem_id = request.getParameter("mem_id");
-		
-		// 아이디 찾기 후 입력한 아이디 전달
-		if(mem_id != null) {
-			request.setAttribute("mem_id", mem_id);
-		}
-		
-		return "/member/memLoginForm.jsp";
+		return "/member/memIdFind.jsp";
 	}
 
 }

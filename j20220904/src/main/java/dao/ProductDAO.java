@@ -21,18 +21,18 @@ import dto.Product_ImgSrcDTO;
 import dto.Product_Like_ProDTO;
 
 
-public class ProductDao {
-	private static ProductDao instance;
+public class ProductDAO {
+	private static ProductDAO instance;
 	
 	 
 	//외부에서 접근 못하게 private로 기본생성자 생성
-	private ProductDao() {
+	private ProductDAO() {
 		
 	}
 	
-	public static ProductDao getInstance()	{
+	public static ProductDAO getInstance()	{
 		if(instance == null) {
-			instance = new ProductDao();
+			instance = new ProductDAO();
 		}
 		return instance;
 	}
@@ -116,7 +116,7 @@ public class ProductDao {
 	public int insertLike(int product_id,String mem_id) throws SQLException {
 		PreparedStatement pstmt = null;
 		Connection conn = this.getConnection();
-		String sql = "insert into like_pro values(?,?,sysdate)";
+		String sql = "insert into like_pro(product_id,mem_id,like_pro_date) values(?,?,sysdate)";
 		
 		int result = 0;
 		
@@ -138,6 +138,35 @@ public class ProductDao {
 			close(pstmt,conn);
 		}
 		return result;
+	}
+		
+	
+		//찜한제품 delete 하는 메서드
+	public int deleteLike(int product_id, String mem_id) throws SQLException {
+		PreparedStatement pstmt = null;
+		Connection conn = this.getConnection();
+		String sql = "delete from like_pro where product_id=? and mem_id=?";
+		
+		int result = 0;
+		
+		try {
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,product_id);
+			pstmt.setString(2,mem_id);
+		
+			
+			result =pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();	
+		}finally {
+			close(pstmt,conn);
+		}
+		return result;
+	
 	}
 	
 	//찜한제품에 대한 상품select 하는 메서드
@@ -303,5 +332,7 @@ public class ProductDao {
 			
 		return list;
 	}
+
+	
 	
 }
