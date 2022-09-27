@@ -8,20 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 
-public class LoginFormService implements CommandProcess {
+public class MemPwdFindFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String mem_id = request.getParameter("mem_id");
-		
-		// 아이디 찾기 후 입력한 아이디 전달
-		if(mem_id != null) {
-			request.setAttribute("mem_id", mem_id);
-		}
-		
-		return "/member/memLoginForm.jsp";
+		return "/member/memPwdFind.jsp";
 	}
 
 }

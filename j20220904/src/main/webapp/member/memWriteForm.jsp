@@ -313,11 +313,11 @@
 
                     <!-- 가입 / 취소 버튼 -->
                     <div class="btn-wrap">
-                        <button class="btn-cancel-gray" id="btn-not-accept">
+                        <button type="button" class="btn-cancel-gray" id="btn-not-accept">
                             취소
                         </button>
 
-                        <button class="btn-accept-black" id="btn-accept">
+                        <button type="button" class="btn-accept-black" id="btn-accept">
                             회원가입
                         </button>
                     </div>
@@ -335,5 +335,14 @@
 <script src="${pageContext.request.contextPath }/js/memberJs/regExp.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/memWriteForm.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
+<script>
+$(function() {
+	// 취소 버튼 클릭 시 홈 화면 이동
+	$('#btn-not-accept').on('click', function() {
+		location.href="${pageContext.request.contextPath}";
+	});
+});
+
+</script>
 </body>
 </html>

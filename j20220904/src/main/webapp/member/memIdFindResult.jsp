@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,23 +34,30 @@
                             <p class="pictogram-text size-2">회원님의 정보와 일치하는 아이디입니다.</p>
                             <div class="find-id-result-box">
                                 <div class="find-id-result-box-inner">
-                                    
-                                    <div class="rdo-list-item">
-                                        <span class="ui-rdo">
-                                            <input id="rdoList0" name="rdoList" type="radio" value="candy900">
-                                            <label for="rdoList0">
-                                                candy900
-                                            </label>
-                                        </span>
-                                        
-                                        <span class="rdo-option"><span class="join-info">2022년09월11일 17:42:26 가입</span></span>
-                                    </div><!-- rdo-list-item -->
+                                    <form id="findForm" name="findForm">
+                                    <c:forEach var="memberDTO" items="${list }">
+	                                    <div class="rdo-list-item">
+	                                        <span class="ui-rdo">
+	                                            <input id="rdoList0" name="mem_id" type="radio" value="${memberDTO.mem_id }">
+	                                            <label for="rdoList0">
+	                                                ${memberDTO.mem_id }
+	                                            </label>
+	                                        </span>
+	                                        
+	                                        <span class="rdo-option">
+	                                        	<span class="join-info">
+	                                       		<fmt:formatDate value="${memberDTO.mem_rogDate }" pattern="yyyy년MM월dd일 가입"/>
+	                                       		 </span>
+                                       		 </span>
+	                                    </div><!-- rdo-list-item -->
+                                    </c:forEach>
+                                    </form>
                                 </div><!-- find-id-result-box-inner -->
                             </div><!-- find-id-result-box -->
 
                             <div class="btn-wrap">
-                                <a href="#" id="popLoginBtn" class="btn-login-pwdFind">로그인</a>
-                                <a href="#" id="popPwSearchBtn" class="btn-login-pwdFind btn-line">비밀번호 찾기</a>
+                                <button id="popLoginBtn" class="btn-login-pwdFind">로그인</button>
+                                <button id="popPwSearchBtn" class="btn-login-pwdFind btn-line">비밀번호 찾기</button>
                             </div>
 
                         </div><!-- dialog-contents-inner -->
@@ -66,5 +75,20 @@
     <div>
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+$(function() {
+	$('#popLoginBtn').click(function() {
+		$('#findForm').attr('action', '${pageContext.request.contextPath}/member/loginForm.do');
+		$('#findForm').submit();
+	});
+	
+	$('#popPwSearchBtn').click(function() {
+		$('#findForm').attr('action', '${pageContext.request.contextPath}/member/memPwdFindForm.do');
+		$('#findForm').submit();
+	});
+});
+</script>
 </body>
 </html>
