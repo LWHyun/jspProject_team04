@@ -101,7 +101,7 @@
       color: #fff;
    }
 </style>
-
+<script type="text/javascript" src="../js/jquery.js"></script>
 <c:set var="loginId" value="${empty sessionScope.mem_id ? '' : sessionScope.mem_id}"/>
 <c:set var="loginOut" value="${loginId == '' ? 'Login' : 'Logout'}"/>
 <c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
@@ -114,10 +114,10 @@
                <a href="${pageContext.request.contextPath }">
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
-               <div class="gnb-search-wrap">
-                  <form action="">
-                     <input type="search" id="searchBar" >
-                     <button class="material-icons" >search</button>
+              	<div class="gnb-search-wrap">
+                  <form action="${pageContext.request.contextPath }/category/searchView.do">
+                     <input type="search" name="searchBar" id="searchBar" value="${word }" onclick="goSearch()">
+                     <button class="material-icons">search</button><!-- 버튼 클릭되면 진짜 찾는걸로 -->
                   </form>
                </div>
                <div class="util-list-wrap">
@@ -156,15 +156,19 @@
                         <a href="#" style="color: #ffe100;">BRAND</a>
                      </li>
                      <li>
-                        <a href="${pageContext.request.contextPath }/category/men3.do">MEN</a>
+                       <a href="${pageContext.request.contextPath }/category/men3.do?gender=0">MEN</a>
                      </li>
                      <li>
-                        <a href="${pageContext.request.contextPath }/category/women.do">WOMEN</a>
+                        <a href="${pageContext.request.contextPath }/category/women.do?gender=1">WOMEN</a>
                      </li>
                   </ul>
                </div>
             </div>
          </div>
       </div>
-      
+<script type="text/javascript">
+	function goSearch() {
+		window.open('goSearch.do','_blank','width=1000px','height=1000px');
+	}
+</script>
    </header>
