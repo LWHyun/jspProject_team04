@@ -3,6 +3,7 @@ package control;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Properties;
 import java.util.HashMap;
@@ -135,8 +136,18 @@ public class Controller extends HttpServlet {
 			throw new ServletException();
 		}
 		
+		// Ajax String을 포함하고 있으면
+		if (command.contains("SelectSize")) {
+			System.out.println("SelectSize -> " + command);
+			int sizeStock = Integer.parseInt((String) request.getAttribute("sizeStock"));
+			PrintWriter pw = response.getWriter();
+			pw.write(sizeStock);
+			pw.flush();
+		} else {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
+		}
+		
 	}
 	
 	
