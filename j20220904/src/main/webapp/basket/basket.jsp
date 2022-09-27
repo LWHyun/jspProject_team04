@@ -199,7 +199,7 @@
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
 										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
 									
-									<td> id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
 										<input type="button" value="삭제"></td>

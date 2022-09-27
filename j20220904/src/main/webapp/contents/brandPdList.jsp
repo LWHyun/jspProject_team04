@@ -88,8 +88,9 @@ a {
 h2 {
 	line-height: 1;
 	text-align: center;
-	font-size: 35px;
+	font-size: 40px;
 	margin-right: 100px;
+	font-weight: 1000;
 }
 
 .brand-slide-wrap {
@@ -150,6 +151,7 @@ strong+p {
 .filter-list-wrap {
   margin-top: 86px;
   display: flex;
+  margin-left: 160px;
 }
 
 /* 필터----------------------------------------------------------------------------------- */
@@ -237,10 +239,11 @@ strong+p {
   min-height: 20px;
   font-size: 0;
   vertical-align: top;
+  margin-bottom: 7px;
 }
-.ui-chk input+label {
-  font-weight: 500;
-  font-size: 15px;
+label {
+	font-size: 17px;
+	font-weight: 500;
 }
 .ip-filter-list li {
   flex-shrink: 0;
@@ -256,8 +259,11 @@ strong+p {
 		list-style: none;
 	}
 	.product-list {
-		width: 895px;
+		width: 950px;
 		height: 1700px;
+		border-top: 2px solid black;
+		margin-bottom: 100px;
+		margin-left: 80px;
 	}
 	.cell {
 		float: left;
@@ -347,11 +353,7 @@ strong+p {
 	}
 	.btn-prod-cart {
 		background-position: -48px 0;
-    margin-left: 10px;
-	}
-	.btn-prod-cart {
-		background-position: -48px 0;
-		margin-left: 10px;
+		margin-left: 17px;
 	}
 	.btn-buy-now {
 		width: 150px;
@@ -372,10 +374,10 @@ strong+p {
 /* 페이지 이동----------------------------------------------------------------------------------- */
 	.pagination-wrap {
 		text-align: center;
-		padding-right: 100px;
 	}
 	.pagination-wrap .pagination-list {
 		display: inline-block;
+		margin-bottom: 100px;
 	}
   	.pagination-wrap .pagination-list .pagination-item {
   		float: left;
