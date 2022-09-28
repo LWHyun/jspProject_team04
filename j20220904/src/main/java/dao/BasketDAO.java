@@ -51,13 +51,13 @@ public class BasketDAO {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+	
 		String sql = "SELECT b.mem_id , p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, b.cnt, i.s_file_path, s.pd_size\r\n"
 				+ "FROM basket b \r\n"
 				+ "JOIN product p ON b.product_id = p.product_id \r\n"
 				+ "Join product_size s on  b.size_num = s.size_num and b.product_id = s.product_id \r\n"
 				+ "Join product_image i on i.product_id = p.product_id\r\n"
-				+ "where mem_id=  ?";
+				+ "where mem_id=?";
 		
 		try {
 			
@@ -71,17 +71,15 @@ public class BasketDAO {
 				BasketDTO basketDTO = new BasketDTO();
 				basketDTO.setMem_id(rs.getString("mem_id"));
 				basketDTO.setProduct_id(rs.getInt("product_id"));
+				basketDTO.setCnt(rs.getInt("cnt"));
 				basketDTO.setBrand(rs.getString("brand"));
 				basketDTO.setEng_name(rs.getString("eng_name"));
 				basketDTO.setKor_name(rs.getString("kor_name"));
 				basketDTO.setGender(rs.getInt("gender"));
 				basketDTO.setPrice(rs.getInt("price"));
 				basketDTO.setColor(rs.getString("color"));
-				basketDTO.setCnt(rs.getInt("cnt"));
-				basketDTO.setSize_num(rs.getInt("size_num"));
 				basketDTO.setS_file_path(rs.getString("s_file_path"));
-				basketDTO.setPd_size(rs.getInt("pd_size"));
-				
+				basketDTO.setPd_size(Integer.parseInt(rs.getString("pd_size")));
 				
 				list.add(basketDTO);
 			}

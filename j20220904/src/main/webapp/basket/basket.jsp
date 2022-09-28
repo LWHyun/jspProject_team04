@@ -28,10 +28,6 @@
 		color : gray;
 	}
 	
-	.basket-body .item-size {
-		font-size : 10px;
-		color : gray;
-	}
 	
 	.basket-body td {
 		vertical-align: middle;
@@ -182,7 +178,7 @@
 						<tbody>
 							<!-- 장바구니에 담긴 상품이 없을 때 -->
 							<c:if test="${basketList eq null }">
-							<tr>	
+							<tr>
 								<td>
 								   <div class="order-null" text-align="center">
 					             	  <h3>장바구니에 담긴 상품이 없습니다.</h3>
@@ -190,18 +186,16 @@
 								</td>
 							</tr>
 							</c:if>
-							
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-						
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
-									<td class="pd_img">${item.s_file_path }</td>
+									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
-									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span><br><br><span class="item-size">${item.pd_size }</span></td>
+									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
-										<input type="hidden" value="<fmt:formatNumber value="${item.price }" pattern="#,###"/>" id="price${item.product_id}">
+										<input type="hidden" value="${item.price }" id="price${item.product_id}">
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
 										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
 									
@@ -211,7 +205,6 @@
 										<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do'"></td>
 								</tr>
 							</c:forEach>
-							
 						</tbody>
 					</table>
 					

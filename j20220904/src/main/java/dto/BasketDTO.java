@@ -4,8 +4,10 @@ public class BasketDTO {
 	private String mem_id;
 	private int product_id;
 	private int cnt;
+	private int size_num;
 	
 	//
+	
 	
 	private String brand;
 	private String eng_name;
@@ -14,20 +16,14 @@ public class BasketDTO {
 	private int price;
 	
 	//
-	
-	private int size_num;
+	private String s_file_path; //제품 이미지 작은사진 경로
 	private int pd_size;
 	
-	//
-	
-	private int pro_image_id;
-	
-	
-	public int getPro_image_id() {
-		return pro_image_id;
+	public int getPd_size() {
+		return pd_size;
 	}
-	public void setPro_image_id(int pro_image_id) {
-		this.pro_image_id = pro_image_id;
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
 	}
 	public String getS_file_path() {
 		return s_file_path;
@@ -35,28 +31,6 @@ public class BasketDTO {
 	public void setS_file_path(String s_file_path) {
 		this.s_file_path = s_file_path;
 	}
-	private String s_file_path;
-	
-	public int getSize_num() {
-		return size_num;
-	}
-	public void setSize_num(int size_num) {
-		this.size_num = size_num;
-	}
-	public int getPd_size() {
-		return pd_size;
-	}
-	public void setPd_size(int pd_size) {
-		this.pd_size = pd_size;
-	}
-	public int getStock() {
-		return stock;
-	}
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-	private int stock;
-	
 	public String getBrand() {
 		return brand;
 	}
@@ -114,6 +88,22 @@ public class BasketDTO {
 		this.cnt = cnt;
 	}
 	
+	public int getSize_num() {
+		return size_num;
+	}
+	public void setSize_num(int size_num) {
+		this.size_num = size_num;
+	}
 	
 
+	@Override
+	public String toString() {
+		return "BasketDTO [mem_id=" + mem_id + ", product_id=" + product_id + ", cnt=" + cnt + ", size_num=" + size_num
+				+ ", brand=" + brand + ", eng_name=" + eng_name + ", kor_name=" + kor_name + ", gender=" + gender
+				+ ", price=" + price + ", color=" + color + ", getBrand()=" + getBrand() + ", getEng_name()="
+				+ getEng_name() + ", getKor_name()=" + getKor_name() + ", getGender()=" + getGender() + ", getPrice()="
+				+ getPrice() + ", getColor()=" + getColor() + ", getMem_id()=" + getMem_id() + ", getProduct_id()="
+				+ getProduct_id() + ", getCnt()=" + getCnt() + ", getSize_num()=" + getSize_num() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }
