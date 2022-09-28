@@ -190,9 +190,9 @@
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
-									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
+									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
-									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span></td>
+									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
 										<input type="hidden" value="${item.price }" id="price${item.product_id}">

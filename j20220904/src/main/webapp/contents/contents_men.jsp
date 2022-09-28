@@ -866,7 +866,14 @@
 								<button type="button" id="290" value="290">290</button>
 							</div>
 						</div>
-						<form id="sizeForm">
+						<form id="sizeForm"> 
+							<input type="hidden" name="product_id" value="${product_id }">
+							<input type="hidden" name="mem_id" value="${mem_id }">
+							<input type="hidden" name="brand" value="${list[0].brand }">
+							<input type="hidden" name="eng_name" value="${list[0].eng_name }">
+							<input type="hidden" name="kor_name" value="${list[0].kor_name }">
+							<input type="hidden" name="gender" value="${list[0].gender }">
+							<input type="hidden" name="price" value="${list[0].price }">
 						<div class="append_product">
 							<div class="append_product_child_left">
 								
@@ -946,7 +953,7 @@
 				
 				$.ajax({
 					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
-					type: 'post',
+					type: 'get',
 					data: {
 							'product_id' : ${product_id},
 							'mem_id' :  '${sessionScope.mem_id}'
@@ -966,7 +973,7 @@
 				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/contents/insertLike.do',
-					type: 'post',
+					type: 'get',
 					data: {
 							'product_id' : ${product_id},
 							'mem_id' :  '${sessionScope.mem_id}'
@@ -1023,42 +1030,10 @@
 	    modal.classList.remove('visible');
 	}
 	
-	/* 장바구니 alert */
-	$(function() {
-		$("#myshopping1").click(function() {
-		
-			
-			$.ajax({
-				url: '${pageContext.request.contextPath}/basket/goToBasket.do', //장바구니쪽
-				type: 'post',
-				data: ($('#sizeForm').serialize()), //form안에 있는 data 다 전송
-				dataType: 'text',
-				success : function(data){
-					alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
-					location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
-				},
-				error: function(err){
-					console.log(err);
-				}
-			});	
-		
-		
-		
-		});
-	});
 	
-	/* 바로구매 alert */
-	
-	$(function() {
-		$("#myshopping2").click(function() {
-			confirm('바로 구매하시겠습니까?');
-			location.href="https://www.daum.net"; /* 바로구매창 이동 */
-		});
-	});
 	
 	$(function(){
-		
-		
+
 		
 		$('#250').click(function(){
 			
@@ -1068,7 +1043,7 @@
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="0" class="input1" name="number"  min="0" max="99" id="number1"><input type="hidden" id="size_num" name="size_num" value="200"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
+				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="1" class="input1" name="number"  min="1" max="99" id="number1"><input type="hidden" id="size_num" name="size_num" value="200"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
@@ -1092,7 +1067,7 @@
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="0" class="input2" name="number" min="0" max="99" id="number2"><input type="hidden" id="size_num" name="size_num" value="210"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
+				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="1" class="input2" name="number" min="1" max="99" id="number2"><input type="hidden" id="size_num" name="size_num" value="210"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
@@ -1113,7 +1088,7 @@
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" name="number" class="input3" value="0" min="0" max="99" id="number3"><input type="hidden" id="size_num" name="size_num" value="220"><input type="hidden" id="size_num" name="size_num" value="220"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
+				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" name="number" class="input3" value="1" min="1" max="99" id="number3"><input type="hidden" id="size_num" name="size_num" value="220"><input type="hidden" id="size_num" name="size_num" value="220"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
@@ -1134,7 +1109,7 @@
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" name="number" class="input4" value="0" min="0" max="99" id="number4"><input type="hidden" id="size_num" name="size_num" value="230"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
+				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" name="number" class="input4" value="1" min="1" max="99" id="number4"><input type="hidden" id="size_num" name="size_num" value="230"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
@@ -1153,7 +1128,7 @@
 				$('.append_product').children().addClass();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" name="number" value="0" min="0" max="99" id="number5"><input type="hidden" id="size_num" name="size_num" value="240"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
+				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" name="number" value="1" min="1" max="99" id="number5"><input type="hidden" id="size_num" name="size_num" value="240"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
@@ -1231,7 +1206,47 @@
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
 	
-	    
+	   /* 장바구니 alert */
+		$(function() {
+			$(document).on('click','#myshopping1' ,function() {
+				
+				//만약에 사이즈가 0이거나 선택을 안했을시에
+				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
+					alert('사이즈를 선택해주세요');
+				}else{
+				
+				
+					$.ajax({
+						url: '${pageContext.request.contextPath}/contents/insertBasket.do', //장바구니쪽
+						type: 'get',
+						data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
+						dataType: 'text',
+						success : function(data){
+							if(data == '1'){
+								alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
+								location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
+							}else{
+								alert('장바구니에 담기에 실패했습니다\n다시 시도해주세요');
+							}
+						},
+						error: function(err){
+							console.log(err);
+						}
+					});	
+				
+				}
+			
+			});
+		});
+		
+		/* 바로구매 alert */
+		
+		$(function() {
+			$("#myshopping2").click(function() {
+				confirm('바로 구매하시겠습니까?');
+				location.href="https://www.daum.net"; /* 바로구매창 이동 */
+			});
+		});
 	   
 </script>
 </body>

@@ -15,6 +15,21 @@ public class BasketDTO {
 	private int gender;
 	private int price;
 	
+	private String s_file_path; //제품 이미지 작은사진 경로
+	private int pd_size;
+	
+	public int getPd_size() {
+		return pd_size;
+	}
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
+	}
+	public String getS_file_path() {
+		return s_file_path;
+	}
+	public void setS_file_path(String s_file_path) {
+		this.s_file_path = s_file_path;
+	}
 	public String getBrand() {
 		return brand;
 	}
@@ -80,4 +95,14 @@ public class BasketDTO {
 	}
 	
 
+	@Override
+	public String toString() {
+		return "BasketDTO [mem_id=" + mem_id + ", product_id=" + product_id + ", cnt=" + cnt + ", size_num=" + size_num
+				+ ", brand=" + brand + ", eng_name=" + eng_name + ", kor_name=" + kor_name + ", gender=" + gender
+				+ ", price=" + price + ", color=" + color + ", getBrand()=" + getBrand() + ", getEng_name()="
+				+ getEng_name() + ", getKor_name()=" + getKor_name() + ", getGender()=" + getGender() + ", getPrice()="
+				+ getPrice() + ", getColor()=" + getColor() + ", getMem_id()=" + getMem_id() + ", getProduct_id()="
+				+ getProduct_id() + ", getCnt()=" + getCnt() + ", getSize_num()=" + getSize_num() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }
