@@ -1,9 +1,9 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -34,26 +34,27 @@ public class SizeDAO {
 		return conn;
 	}
 	
-	public int showSize(int product_id, int size, int stock) throws SQLException {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT s.product_id, s.stock, s.\"size\" \r\n"
-				+ "FROM product_size s, product p\r\n"
-				+ "WHERE s.product_id = p.product_id";
+	public int showSize(int product_id, int pd_size) throws SQLException {
 		int sizeStock  = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println(product_id);
+		System.out.println(pd_size);
+		String sql = "SELECT stock FROM product_size WHERE product_id = ? AND pd_size = ?";
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				sizeStock = rs.getInt(2); // 재고 수량
-			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+			pstmt.setInt(2, pd_size);
+			rs = pstmt.executeQuery();
+			if (rs.next()) sizeStock = rs.getInt(1);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
 			if (rs != null) rs.close();
-			if (stmt != null) stmt.close();
+			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		}
 		return sizeStock;

@@ -8,27 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 import dao.SizeDAO;
-import dto.Product_SizeDTO;
 
-public class SelectSizeService implements CommandProcess {
+public class NoStockService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("SelectSizeService Start...");
-
+		System.out.println("NoStockService Start...");
+		int sizeStock = 0;
 		try {
 			SizeDAO sizeDAO = SizeDAO.getInstance();
 			int product_id = Integer.parseInt(request.getParameter("product_id"));
-			int size = Integer.parseInt(request.getParameter("size"));
-			int stock = Integer.parseInt(request.getParameter("stock"));
-			int sizeStock = sizeDAO.showSize(product_id, size, stock);
+			System.out.println("product_id" + product_id);
+			int pd_size = Integer.parseInt(request.getParameter("pd_size"));
+			System.out.println("pd_size" + pd_size);
+			sizeStock = sizeDAO.showSize(product_id, pd_size);
+			System.out.println("sizeStock의 값 = " + sizeStock);
 			request.setAttribute("sizeStock", sizeStock);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
-		
-		return "sizeStock";
+		System.out.println(sizeStock);
+		return String.valueOf(sizeStock);
 	}
 
 }
