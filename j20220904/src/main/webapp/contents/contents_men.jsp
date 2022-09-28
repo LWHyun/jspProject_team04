@@ -798,11 +798,11 @@
 						<div class="style_size">
 							<div class="style_size_left">사이즈</div>
 							<div class="style_size_right">
-								<button type="button" id="250" value="250">250</button>
-								<button type="button" id="260" value="260">260</button>
-								<button type="button" id="270" value="270">270</button>
-								<button type="button" id="280" value="280">280</button>
-								<button type="button" id="290" value="290">290</button>
+								<button type="button" id="250" value="250" onclick="sizeCheck(1010092974, 250)">250</button>
+								<button type="button" id="260" value="260" onclick="sizeCheck(1010092974, 260)">260</button>
+								<button type="button" id="270" value="270" onclick="sizeCheck(1010092974, 270)">270</button>
+								<button type="button" id="280" value="280" onclick="sizeCheck(1010092974, 280)">280</button>
+								<button type="button" id="290" value="290" onclick="sizeCheck(1010092974, 290)">290</button>
 							</div>
 						</div>
 						<div class="append_product">
@@ -873,6 +873,7 @@
 	
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script type="text/javascript">
+	
 	$(function () {
 		var num = 0;
 		var imageName = ["heart1", "heart0"];
@@ -1171,6 +1172,22 @@
 		
 	   
 	   
+</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	function sizeCheck(product_id, pd_size) {
+		var sendData = "product_id=" + product_id + "&pd_size=" + pd_size;
+			$.ajax({
+					url: "contents/noStock.do",
+					data: sendData,
+					dataType: 'text',
+					success: function (data) {
+						if (data == 0) alert("재고 없음");
+						alert("현재 재고 " + data)
+					}
+			})
+	}
+
 </script>
 </body>
 </html>
