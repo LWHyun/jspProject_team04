@@ -58,10 +58,10 @@
                             <span class="mypage-lnb-title">개인정보</span>
                             <ol>
                                 <li class="mypage-lnb-item">
-                                    <a href="${pageContext.request.contextPath }/mypage/updateForm.do" id="updateTag">개인정보 수정</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/checkPwdForm.do" id="updatePwdTag">비밀번호 변경</a>
                                 </li>
                                 <li class="mypage-lnb-item">
-                                    <a href="${pageContext.request.contextPath }/mypage/updatePwdForm.do" id="updatePwdTag">비밀번호 변경</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/updateForm.do" id="updateTag">개인정보 수정</a>
                                 </li>
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/deleteForm.do" id="deleteTag">회원 탈퇴</a>

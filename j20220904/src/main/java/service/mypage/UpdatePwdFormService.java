@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 
-public class MypageUpdatePwdFormService implements CommandProcess {
+public class UpdatePwdFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		request.setAttribute("active", "updatePwd");
-		request.setAttribute("display", "myPagePrivateInfo.jsp");
+		request.setAttribute("display", "myPageCngInfoUp.jsp");
 		
 		return "/mypage/myPage.jsp";
 	}
