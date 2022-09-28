@@ -129,7 +129,7 @@
                      </li>
                   </c:if>
                      <li>
-                        <a href="../manage/noticeReal.jsp" class="material-symbols-outlined"><img src="https://cdn-icons-png.flaticon.com/512/584/584648.png" width="24" height="24"></a>
+                        <a href="../manage/memberNoticeList.jsp" class="material-symbols-outlined"><img src="https://cdn-icons-png.flaticon.com/512/584/584648.png" width="24" height="24"></a>
                         <a href="#" style="font-size: 10px;">NOTICE</a>
                      </li>
                      <li>

@@ -77,6 +77,9 @@ public class NoticeDAO {
 		return list;
 	}
 	
+	/* [관리자] 게시글 작성 메소드 */
+	
+	
 	/* [회원] 게시글 Read 메소드 */
 	public NoticeDTO select(int notice_code) throws SQLException {
 		Connection conn = null;	
