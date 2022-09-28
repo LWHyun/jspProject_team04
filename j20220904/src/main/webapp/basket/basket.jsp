@@ -28,6 +28,10 @@
 		color : gray;
 	}
 	
+	.basket-body .item-size {
+		font-size : 10px;
+		color : gray;
+	}
 	
 	.basket-body td {
 		vertical-align: middle;
@@ -186,13 +190,15 @@
 								</td>
 							</tr>
 							</c:if>
+							
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
+						
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
 									<td><input type="checkbox" checked></td>
-									<td class="pd_img"><img src="images/shoe.jpg" width="100px"></td>
+									<td class="pd_img">${item.s_file_path }</td>
 									
-									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span></td>
+									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span><br><br><span class="item-size">${item.pd_size }</span></td>
 									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
 										<input type="hidden" value="${item.price }" id="price${item.product_id}">
@@ -205,6 +211,7 @@
 										<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do'"></td>
 								</tr>
 							</c:forEach>
+							
 						</tbody>
 					</table>
 					

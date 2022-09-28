@@ -13,6 +13,50 @@ public class BasketDTO {
 	private int gender;
 	private int price;
 	
+	//
+	
+	private int size_num;
+	private int pd_size;
+	
+	//
+	
+	private int pro_image_id;
+	
+	
+	public int getPro_image_id() {
+		return pro_image_id;
+	}
+	public void setPro_image_id(int pro_image_id) {
+		this.pro_image_id = pro_image_id;
+	}
+	public String getS_file_path() {
+		return s_file_path;
+	}
+	public void setS_file_path(String s_file_path) {
+		this.s_file_path = s_file_path;
+	}
+	private String s_file_path;
+	
+	public int getSize_num() {
+		return size_num;
+	}
+	public void setSize_num(int size_num) {
+		this.size_num = size_num;
+	}
+	public int getPd_size() {
+		return pd_size;
+	}
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	private int stock;
+	
 	public String getBrand() {
 		return brand;
 	}
