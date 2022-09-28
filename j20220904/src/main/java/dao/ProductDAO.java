@@ -13,6 +13,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import dto.BasketDTO;
 import dto.ProductDTO;
 
 import dto.ProductDTO;
@@ -239,6 +241,48 @@ public class ProductDAO {
 		return result;
 		
 	}
+	
+	//상세페이지에서 장바구니에 상품 insert 메서드
+	public int insertBasket(BasketDTO[] basketDTOArray) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		Connection conn = this.getConnection();
+		String sql = "insert into basket values(?,?,?,?)";
+		
+		int result = 0;
+		int i= 0;
+		try {
+			
+			
+		
+			
+			for(i=0; i<basketDTOArray.length; i++)	{
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1,basketDTOArray[i].getSize_num());
+				pstmt.setInt(2,basketDTOArray[i].getProduct_id());
+				pstmt.setString(3,basketDTOArray[i].getMem_id());
+				pstmt.setInt(4,basketDTOArray[i].getCnt());
+				
+				result =pstmt.executeUpdate();
+			
+				System.out.println("result"+result);
+			}
+			
+		
+		
+			
+		}catch(Exception e) {
+			e.printStackTrace();	
+		}finally {
+			close(pstmt,conn);
+		}
+		return result;
+	}
+		
+	
+
+	
+	
 		
 	
 	//close하는 메서드

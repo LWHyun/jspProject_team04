@@ -99,7 +99,7 @@ $(function() {
    	
 	let emailChk = false;
     
- // 이메일 형식 확인 및 정보확인
+ 	// 이메일 형식 확인 및 정보확인
     $('#mem_email1').on('blur', function() {
     	$('#emailAuth').css('display', 'none');
     	
@@ -115,34 +115,8 @@ $(function() {
                 $('#mem_email1').val('');
 				emailChk = false;
             } else {
-            	// 입력한 이메일과 맞는지에 대한 ajax
-            	$.ajax({
-            		url : '${pageContext.request.contextPath}/member/memFindEmailCheck.do',
-            		type : 'get',
-            		data : {
-            			'mem_name' : $('#mem_name').val(),
-            			'mem_email' : $('#mem_email1').val()
-            		},
-            		dataType : 'text',
-            		success : function(data) {
-            			//alert(data);
-            			if(data == '1') {
-            				$('#Val_emailDiv').css('display','none');
-                            $('#emailAuth').css('display', '');
-            				emailChk = true;
-            			} else {
-            				$('#Val_emailDiv').css('display','');
-                            $('#Val_emailDiv').text('입력하신 이메일 정보가 일치하지 않습니다.');
-                            $('#mem_email1').val('');
-            				emailChk = false;
-            			}
-            		},
-            		error : function(err) {
-            			console.log(err);
-            		}
-            	});
-            	
-                
+            	$('#Val_emailDiv').css('display', 'none');
+
             }
         }
     });
@@ -167,26 +141,59 @@ $(function() {
 	
 	// 인증번호를 클릭 했을 때 visiable 처리 & 서버 인증번호 처리
 	$('#emailBtn').on('click', function() {
-		if($('#mem_email1').val() == '' || !emailChk) {
+		if($('#mem_email1').val() == '') {
 			alert('이메일을 알맞게 입력해주세요.');
 		} else {
-		    $('#authEmail').prop('disabled', false);
-			
-			// 인증번호 생성 ajax
-			$.ajax({
-				url : '/j20220904/member/emailAuth.do',
-				type : 'post',
-				data : "mem_email="+$('#mem_email1').val(),
-				dataType : 'text',
-				success : function(data) {
-					$('#authEmailCheck').val(data);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-			
-		    alert("인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
+			// 입력한 이메일과 맞는지에 대한 ajax
+        	$.ajax({
+        		url : '${pageContext.request.contextPath}/member/memFindEmailCheck.do',
+        		type : 'get',
+        		data : {
+        			'mem_name' : $('#mem_name').val(),
+        			'mem_email' : $('#mem_email1').val()
+        		},
+        		dataType : 'text',
+        		success : function(data) {
+        			//alert(data);
+        			if(data == '1') {
+        				/* $('#Val_emailDiv').css('display','none');
+                        $('#emailAuth').css('display', ''); */
+        				emailChk = true;
+                        
+                        if(emailChk) {
+	        				$('#authEmail').prop('disabled', false);
+	        				
+	        				// 인증번호 생성 ajax
+	        				$.ajax({
+	        					url : '/j20220904/member/emailAuth.do',
+	        					type : 'post',
+	        					data : "mem_email="+$('#mem_email1').val(),
+	        					dataType : 'text',
+	        					success : function(data) {
+	        						$('#authEmailCheck').val(data);
+	        					},
+	        					error : function(err) {
+	        						console.log(err);
+	        					}
+	        				});
+	        				
+	        			    alert("입력하신 정보가 일치합니다.\n인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
+	        			    
+	        			    // 인증번호 칸 보이기
+	            		    $('#emailAuth').css('display', '');
+                        }
+        			} else {
+        				$('#Val_emailDiv').css('display','');
+                        $('#Val_emailDiv').text('입력하신 이메일 정보가 일치하지 않습니다.');
+                        $('#mem_email1').val('');
+        				emailChk = false;
+        			}
+        		},
+        		error : function(err) {
+        			console.log(err);
+        		}
+        	});
+
 		}
 	});
 	
@@ -204,7 +211,7 @@ $(function() {
             alert("이메일 인증을 해주세요.");
             $('#emailBtn').focus();
             return false;
-        } else if($('#Val_emailDiv').css('color') != 'rgb(0, 128, 0)') {
+        } else if($('#Val_emailDiv').css('color') == 'rgb(255, 0, 0)') {
         	alert("인증번호 요청을 다시 부탁드립니다.");
 		} else {
 			$('#search-IdFindForm').submit();

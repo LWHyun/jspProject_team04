@@ -1,4 +1,4 @@
-.contents-wrap {height : 1200px; padding-bottom: 150px;}
+.contents-wrap {height : 100%; padding-bottom: 150px;}
 .myPage-inner-contents {width: 1200px; margin:0 auto;}
 
 /* reset */
@@ -99,6 +99,13 @@ h2,h3 {
 .mypage-lnb .mypage-lnb-title+ol {
     margin-top: 15px;
 }
+
+/* 현재페이지 표시 */
+.mypage-lnb .mypage-lnb-item a.active {
+	text-decoration: underline;
+	color : red;
+}
+
 .mypage-lnb .mypage-lnb-item a {
     display: inline-block;
     color: #999;
@@ -475,3 +482,4 @@ body .tab-wrap:not(.multi-line).header-tab .tabs {
     font-size: 19px;
     font-weight: 800;
 }
+

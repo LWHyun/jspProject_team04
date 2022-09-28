@@ -5,6 +5,8 @@ public class Product_ImgDTO {
 	private int product_id;	//제품 코드	
 	private String s_file_path; //제품 이미지 작은사진 경로
 	private String l_file_path; //제품 이미지 큰사진 경로
+	
+	
 	public int getPro_image() {
 		return pro_image;
 	}

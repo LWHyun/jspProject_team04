@@ -106,7 +106,7 @@
 <c:set var="loginOut" value="${loginId == '' ? 'LOGIN' : 'LOGOUT'}"/>
 <c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
 <c:set var="joinMy" value="${loginId == '' ? 'JOIN' : 'MY' }"/>
-<c:set var="joinMyLink" value="${loginId == '' ? '/member/writeForm.do' : '#' }"/>
+<c:set var="joinMyLink" value="${loginId == '' ? '/member/writeForm.do' : '/mypage/mypage.do' }"/>
    <header>
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
