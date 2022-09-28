@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.BasketDAO;
+import dto.BasketDTO;
 
 public class DeleteBasketItemService implements CommandProcess {
 
@@ -31,12 +32,18 @@ public class DeleteBasketItemService implements CommandProcess {
 		//로그인이 되어있으면
 		
 		// DB에서 장바구니 확인
+		
 		BasketDAO basketDAO = BasketDAO.getInstance();
+		BasketDTO basketDTO = new BasketDTO();
 		
+		basketDTO.setMem_id(mem_id);
+		basketDTO.setProduct_id(product_id);
 		
-	
+		/*
+		 * for( int i = 0; i < chklist.length; i++) basketDAO.deleteItem(basketDTO);
+		 */
 		
-		return null;
+		return "basket.jsp";
 	}
 
 }

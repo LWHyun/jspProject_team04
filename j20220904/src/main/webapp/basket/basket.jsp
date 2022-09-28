@@ -202,7 +202,7 @@
 									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
-										<input type="button" value="삭제"></td>
+										<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do'"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -247,8 +247,13 @@
 			  <div class="tab-2">
 			    <label for="tab2-1">최근 본 상품</label> <!-- 첫번째 탭 이름 -->
 			    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-			    <div>
+			    <div class="image-box">
 			      <h4>최근 본 상품 이미지</h4>
+			      <c:if test="">
+			      	<div class="image-null">
+			      		<h3>최근 본 상품이 없습니다</h3>
+			      	</div>
+			      </c:if>
 			    </div>
 			  </div>
 			  <div class="tab-2">

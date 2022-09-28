@@ -152,3 +152,11 @@ a {
     background-color: #000;
     border-color: #000;
 }
+
+/* valid div */
+#Val_nameDiv, #Val_idDiv, #Val_pwdDiv, #Val_pwdReDiv, #Val_emailDiv, #Val_telDiv, #Val_addrDiv {
+	font-size: 10pt;
+	color : red;
+	font-weight: bold;
+	margin-top : 5px;
+}
