@@ -130,7 +130,7 @@ public class BasketDAO {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=?";
+		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=? AND size_num=?";
 		int result = 0;
 		
 		
@@ -139,14 +139,18 @@ public class BasketDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, basketDTO.getMem_id());
 				pstmt.setInt(2, basketDTO.getProduct_id());
+				pstmt.setInt(3, basketDTO.getSize_num());
 				result = pstmt.executeUpdate();
 				
 				
 				
 		} catch( Exception e ) {
-			
+			System.out.println(e.getMessage());
 		}
-		
+		finally {
+			close(conn, pstmt);
+		}
+			
 		return result;
 		
 		

@@ -193,7 +193,6 @@
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
 										<input type="hidden" value="${item.price }" id="price${item.product_id}">
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
@@ -278,6 +277,7 @@
 		calcTotal()
 	})
 	
+	
 	function plusCnt(prod_id) {
 		
 		//상품 수량을 가져와야함
@@ -361,6 +361,8 @@
 		let targetTotal = document.getElementById("total")
 		targetTotal.innerHTML = result + "원"
 	}
+	
+	
 	
 </script>
 </body>
