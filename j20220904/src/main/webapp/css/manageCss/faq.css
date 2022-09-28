@@ -15,7 +15,7 @@ span {
     margin-top: 50px;
 }
 
-/* 왼쪽 선택창 (FAQ, 공지사항, 상품관리) */
+/* 왼쪽 선택창 (공지사항, 공지사항) */
 .wrap .contents-wrap .contents-aside .aside-wrap {
     width: 220px;
     padding-right: 60px;
@@ -27,9 +27,11 @@ span {
 }
 
 .customer-wrap .customer-lnb .customer-lnb-item.eng a {
-    font-family: "Montserrat",sans-serif;
-    font-weight: 600;
-    letter-spacing: 0;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	color:red;
+	text-decoration:underline !important;	
+	letter-spacing: 0;
 }
 
 .customer-wrap .customer-lnb .customer-lnb-item+.customer-lnb-item {
@@ -57,7 +59,6 @@ body .tab-wrap {
 	margin: 0 auto;
     padding: 46px;
 }
-
 
 body .tab-wrap.multi-line .tabs {
     padding: 0;
@@ -140,7 +141,6 @@ ol, ul {
     padding: 0 20px;
 }
 
-
 .text-head1 {
 	color: #000;
     font-family: "Montserrat","Noto Sans KR",sans-serif;
@@ -155,19 +155,10 @@ ol, ul {
     margin: 0 auto;
 }
 
-
 .aside-wrap {
 	width: 220px;
 	padding-right: 60px;
 }
-
-
- .customer-wrap .customer-lnb .customer-lnb-item a:hover, .customer-wrap .customer-lnb .customer-lnb-item a:focus, .customer-wrap .customer-lnb .customer-lnb-item a.active {
-    color: #ee1c25;
-}
-
-
-
 
  .answer {
    font-size: 20px;
