@@ -3,6 +3,7 @@ package control;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Properties;
 import java.util.HashMap;
@@ -121,23 +122,32 @@ public class Controller extends HttpServlet {
 		String view = null;
 		CommandProcess com = null;
 		String command = request.getServletPath(); // ~~~~~~/.do에서 /list.do만 뽑아오는 함수
+		command = command.substring(request.getContextPath().length());
 		System.out.println("2. command substring=>"+command);
 		
+		
 		try{
+			command = "/" + command;
 			com = (CommandProcess)commandMap.get(command);
 			System.out.println("3. command=> "+command);
+
+			
 			System.out.println("commandMap=> "+commandMap);
 			System.out.println("4. com "+com);
-			
 			view = com.requestPro(request, response);
 			System.out.println("5. requestServletPro view=>"+view);
 		}catch(Exception e) {
 			throw new ServletException();
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		dispatcher.forward(request, response);
+		if (view.contains(".jsp") || view.contains(".html")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+			dispatcher.forward(request, response);
+		} else {
+			PrintWriter pw = response.getWriter();
+			pw.write(view);
+		}
+		
 	}
-	
 	
 }
