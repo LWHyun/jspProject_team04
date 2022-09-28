@@ -423,113 +423,167 @@
 	    align-content: center;
 	    justify-content: space-between;
 	    align-items: center;
-	    margin-top: 30px;
+	    font-weight: bold;
       
 	   
+	}
+	.e1{
+		border:1px white solid;
+		width : 580px;
+		display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 10px;
 	}
 	
 	.append_list.div250	{
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
+		width: 202px;
+		height: 20px;
 		text-align: center;
+		margin-top: 10px;
+		margin-left: 40; 
+		margin-right: auto;
 		
 	}
-	#250 {
+	#X1 {
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
 		text-align: center;
-		line-height: 50px;
-		margin-left: 15px;
+		margin-right: 250px;
 		
+	}
+	
+	.e2{
+		border:1px white solid;
+		width : 580px;
+		display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 30px;
 	}
 	
 	.append_list.div260	{
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
+		width: 202px;
+		height: 20px;
 		text-align: center;
-		
+		margin-top: 10px;
+		margin-left: 40; 
+		margin-right: auto;
 		
 	}
-	#260 {
+	#X2 {
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		line-height: 50px;
 		text-align: center;
-		margin-left: 15px;
+		margin-right: 250px;
+		
+	}
+	.e3{
+		border:1px white solid;
+		width : 580px;
+		display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 30px;
 	}
 	
 	.append_list.div270	{
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		
+		width: 202px;
+		height: 20px;
 		text-align: center;
+		margin-top: 10px;
+		margin-left: 40; 
+		margin-right: auto;
 		
 	}
-	#270 {
+	#X3 {
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		line-height: 50px;
 		text-align: center;
-		margin-left: 15px;
+		margin-right: 250px;
 		
+	}
+	.e4{
+		border:1px white solid;
+		width : 580px;
+		display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 30px;
 	}
 	
 	.append_list.div280	{
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
+		width: 202px;
+		height: 20px;
 		text-align: center;
+		margin-top: 10px;
+		margin-left: 40; 
+		margin-right: auto;
 		
 	}
-	#280 {
+	#X4 {
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		line-height: 50px;
 		text-align: center;
-		margin-left: 15px;
+		margin-right: 250px;
 		
+	}
+	.e5{
+		border:1px white solid;
+		width : 580px;
+		display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    align-content: center;
+	    justify-content: space-between;
+	    align-items: center;
+	    margin-top: 30px;
 	}
 	
 	.append_list.div290	{
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		line-height: 50px;
+		width: 202px;
+		height: 20px;
 		text-align: center;
-		
-		
+		margin-top: 10px;
+		margin-left: 40; 
+		margin-right: auto;
 		
 	}
-	#290 {
+	#X5 {
 		border:1px white solid;
 		display: inline-block;
-		width: 260px;
-		height: 50px;
-		line-height: 50px;
 		text-align: center;
-		margin-left: 15px;
+		margin-right: 250px;
+		
 	}
+	
 	
 	.X	{
 		width: 10px;
 		height: 10px;
-		margin-left: 10px;
+		margin-left: 50px;
 		
 	}
 	
@@ -643,6 +697,9 @@
 	}
 	
 </style>
+<%
+	String context = request.getContextPath();
+%>
 </head>
 <body>
 	<div class="contents-width">
@@ -669,8 +726,11 @@
 		</div>
 		<div class="contents-inner product-detail-wrap">
 			<div class="image_big_left">
-				<img src="${list[0].l_file_path }" id="big" name="product_id">
-				<div class="image_big_left_small">
+				<img src="${list[0].s_file_path }" id="big" name="product_id">
+				  
+					<div class="image_big_left_small">
+					 
+					<!--시간남으면 사진파일 가져올예정 
 					<div class="small_image_div">
 						<img src="" class="small">
 					</div>
@@ -685,7 +745,7 @@
 					</div>
 					<div class="small_image_div">
 						<img src="" class="small"> 
-					</div>
+					</div>  -->
 					
 					<div class="image_big_left_Product_satisfaction">
 						<div class="image_big_left_Product_satisfaction_left">
@@ -762,8 +822,9 @@
 			        </div><!-- 모달끝 -->
 					<hr> <!-- 스타일컬러 전에 밑줄쫙 -->
 					<div class="style_color">
-						<div class="style_color_1">
-							<div class="style_color_left">
+						<!--<div class="style_color_1">
+							  시간남으면 사진 가져올 예정
+								<div class="style_color_left">
 								스타일컬러
 							</div>
 							<div class="style_color_right">
@@ -772,8 +833,8 @@
 								<img src="/j20220904/img/contexts/similar_03.jpg" alt="비슷한스타일3">
 								<img src="/j20220904/img/contexts/similar_04.jpg" alt="비슷한스타일4">
 								<img src="/j20220904/img/contexts/similar_05.jpg" alt="비슷한스타일5">
-							</div>
-						</div>
+							</div> 
+						</div> -->
 						<div class="style_color_code_1">	
 							<div class="style_color_code_left">
 								색상
@@ -787,7 +848,7 @@
 								배송방법
 							</div>
 								<div class="style_delivery_right">
-									<input type="checkbox" required="required">일반배송(무료배송)
+									일반배송(무료배송)
 								</div>
 						</div>	
 						<!-- <div class="style_delivery_down">
@@ -805,12 +866,15 @@
 								<button type="button" id="290" value="290">290</button>
 							</div>
 						</div>
+						<form id="sizeForm">
 						<div class="append_product">
 							<div class="append_product_child_left">
-							
+								
+								
+								
 							</div>
 						</div>
-						
+						</form>
 						<div class="style_total">
 							<div class="style_total_left">
 								총 결제금액
@@ -865,7 +929,7 @@
 		
 		<div class="big_product_main">
 			<div class="big_product_main_1">
-				<img src="/j20220904/img/contexts/big_product_main_1_1.jpg" class="big_product_main_1_1" id="big_product_main_1_1">
+				<img src="${list[0].l_file_path}" class="big_product_main_1_1" id="big_product_main_1_1">
 			</div>
 		</div>
 	</div>
@@ -962,16 +1026,28 @@
 	/* 장바구니 alert */
 	$(function() {
 		$("#myshopping1").click(function() {
-			confirm('상품이 장바구니에 담겼습니다\n장바구니로 이동하시겠습니까?');
-			location.href="https://www.naver.com"; /* 장바구니로 이동 */
+		
+			
+			$.ajax({
+				url: '${pageContext.request.contextPath}/basket/goToBasket.do', //장바구니쪽
+				type: 'post',
+				data: ($('#sizeForm').serialize()), //form안에 있는 data 다 전송
+				dataType: 'text',
+				success : function(data){
+					alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
+					location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
+				},
+				error: function(err){
+					console.log(err);
+				}
+			});	
+		
+		
+		
 		});
 	});
 	
 	/* 바로구매 alert */
-	
-	
-	
-
 	
 	$(function() {
 		$("#myshopping2").click(function() {
@@ -992,7 +1068,7 @@
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="0" class="input1" name="number"  min="0" max="99" id="number1"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
+				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="0" class="input1" name="number"  min="0" max="99" id="number1"><input type="hidden" id="size_num" name="size_num" value="200"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
@@ -1016,7 +1092,7 @@
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="0" class="input2" name="number" min="0" max="99" id="number2"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
+				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="0" class="input2" name="number" min="0" max="99" id="number2"><input type="hidden" id="size_num" name="size_num" value="210"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
@@ -1037,7 +1113,7 @@
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number"  class="input3" value="0" min="0" max="99" id="number3"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
+				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" name="number" class="input3" value="0" min="0" max="99" id="number3"><input type="hidden" id="size_num" name="size_num" value="220"><input type="hidden" id="size_num" name="size_num" value="220"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
@@ -1058,7 +1134,7 @@
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" class="input4" value="0" min="0" max="99" id="number4"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
+				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" name="number" class="input4" value="0" min="0" max="99" id="number4"><input type="hidden" id="size_num" name="size_num" value="230"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
@@ -1077,7 +1153,7 @@
 				$('.append_product').children().addClass();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" value="0" min="0" max="99" id="number5"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
+				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" name="number" value="0" min="0" max="99" id="number5"><input type="hidden" id="size_num" name="size_num" value="240"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
@@ -1155,21 +1231,7 @@
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
 	
-	
-	
-	   
-		
-	
-		
-	
-	
-	
-
-
-
-
-		
-	   
+	    
 	   
 </script>
 </body>

@@ -4,8 +4,10 @@ public class BasketDTO {
 	private String mem_id;
 	private int product_id;
 	private int cnt;
+	private int size_num;
 	
 	//
+	
 	
 	private String brand;
 	private String eng_name;
@@ -70,6 +72,12 @@ public class BasketDTO {
 		this.cnt = cnt;
 	}
 	
+	public int getSize_num() {
+		return size_num;
+	}
+	public void setSize_num(int size_num) {
+		this.size_num = size_num;
+	}
 	
 
 }

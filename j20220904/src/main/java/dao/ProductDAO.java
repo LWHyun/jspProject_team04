@@ -239,6 +239,14 @@ public class ProductDAO {
 		return result;
 		
 	}
+	
+	//상세페이지에서 장바구니에 상품 insert 메서드
+	public int insertBasket(int product_id,String mem_id,int size_num,int cnt) {
+		return cnt;
+		
+	}
+	
+	
 		
 	
 	//close하는 메서드
