@@ -123,7 +123,7 @@
 								</ol>
 							</div>
 							<div class="btn-wrap text-right">
-								<button type="button" class="btn btn-dialog" data-target="#">Q&A 작성</button>
+								<a href="qnaWriteForm.jsp" class="btn btn-dialog">Q&A 작성</a>
 							</div>
 						</div>
 					</div>

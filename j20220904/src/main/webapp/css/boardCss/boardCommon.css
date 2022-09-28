@@ -89,7 +89,7 @@
 .pagination-wrap .btn-wrap.text-right {
 	margin-top: -35px;	
 }
-.pagination-wrap .btn-wrap.text-right .btn {
+.pagination-wrap .btn-wrap.text-right a {
 	position: relative;
 	color: #fff;
 	min-width: 140px;
@@ -102,4 +102,5 @@
 	line-height: 42px;
 	font-size: 14px;
 	float: right;
+	text-decoration: none;
 }
