@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../css/manageCss/faq.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
    $(function() {
@@ -87,33 +87,47 @@
        <jsp:include page="../main/header.jsp"></jsp:include>
     </div><!-- header -->
 
-   <div class="contents-inner">
-      <h2 class="text-head1 text-left">고객센터</h2>
-      
-      <div class="aside-wrap">
-         <ol class="customer-lnb">
-            <li><a href="faq.jsp">FAQ</a></li>
-            <li><a href="#">공지사항</a></li>
-         </ol>
-      </div>
-      
-      <div class="aside-contents" align="center">
-         <div>
-            <table border="1">
-               <tr>
-                  <td class="div2" id='delivery'>배송현황</td>
-                  <td class="div2" id='refund'>교환 / 반품 / 환불</td>
-                  <td class="div2" id='order'>주문 / 결제 / 취소</td>
-                  <td class="div2" id='afterService'>A/S</td>
-                  <td class="div2" id='customerInfo'>회원정보</td>
-               </tr>
-            </table>
-            
-            <span id="contents"></span>
-         </div>      
-      </div>
-   </div>
-   
+   <div id="contentsWrap" class="contents-wrap">
+     <div class="contents-width">
+	   <div class="contents-inner">
+	   
+	     <!--고객센터 -->
+	   	  <div class="page-title-wrap mypage">
+	      	<h2 class="text-head1 text-left">고객센터</h2>
+	      </div>
+	      
+	      <!-- 고객센터 밑 화면 -->
+	      <div class="contents-inner contents-aside customer-wrap">
+	      	<!-- 왼쪽 선택창 -->
+	      	<div class="aside-wrap">
+	         <ol class="customer-lnb">
+	            <li class="customer-lnb-item eng"><a href="notice.jsp" class="active">공지사항</a></li>
+	            <li class="customer-lnb-item"><a href="faq.jsp">FAQ</a></li>
+	         </ol>
+	        </div>
+	     	
+	      <!-- 중앙 화면 -->
+	      <div class="aside-contents" align="center">
+	      		<h3 class="text-head2 eng">공지사항</h3>
+	      
+	      		<!-- 공지사항 -->
+	      		<div class="tab-wrap anchor-tab multi-line" id="tabDiv">
+
+
+
+				</div>
+
+	            <!-- <span id="contents"></span> -->
+	            
+	            <!-- 질문 목록 띄워주기 -->
+	            <div class="border-line-box fold-box-list-wrap">
+	            	<div id="contents" class="fold-box-list faq-list"></div>
+	            </div>
+	      </div>      
+	   </div>
+	</div>
+	   </div>
+	</div>
    <div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
     </div><!-- footer -->

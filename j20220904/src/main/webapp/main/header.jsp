@@ -103,7 +103,7 @@
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <c:set var="loginId" value="${empty sessionScope.mem_id ? '' : sessionScope.mem_id}"/>
-<c:set var="loginOut" value="${loginId == '' ? 'Login' : 'Logout'}"/>
+<c:set var="loginOut" value="${loginId == '' ? 'LOGIN' : 'LOGOUT'}"/>
 <c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
 <c:set var="joinMy" value="${loginId == '' ? 'JOIN' : 'MY' }"/>
 <c:set var="joinMyLink" value="${loginId == '' ? '/member/writeForm.do' : '#' }"/>

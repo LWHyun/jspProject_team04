@@ -3,7 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -110,6 +112,75 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 이메일 확인을 위해 일치하는 멤버들 가져오는 메서드
+	public List<MemberDTO> findIdMember(String mem_name, String email1, String email2) {
+		Connection conn = getConnection();
+		
+		String sql = "select * from member where mem_name = ? and mem_email1=? and mem_email2=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MemberDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_name);
+			pstmt.setString(2, email1);
+			pstmt.setString(3, email2);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				do {
+					MemberDTO memberDTO = new MemberDTO();
+					
+					memberDTO.setMem_id(rs.getString("mem_id"));
+					memberDTO.setMem_name(rs.getString("mem_name"));
+					memberDTO.setMem_pwd(rs.getString("mem_pwd"));
+					memberDTO.setMem_email1(rs.getString("mem_email1"));
+					memberDTO.setMem_email2(rs.getString("mem_email2"));
+					memberDTO.setMem_tel(rs.getString("mem_tel"));
+					memberDTO.setMem_zipcode(rs.getString("mem_zipcode"));
+					memberDTO.setMem_addr1(rs.getString("mem_addr1"));
+					memberDTO.setMem_addr2(rs.getString("mem_addr2"));
+					memberDTO.setMem_rogDate(new Date(rs.getDate(10).getTime()));
+					
+					list.add(memberDTO);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	// 비밀번호 재설정 메서드
+	public int updatePwd(String mem_id, String mem_pwd) {
+		Connection conn = getConnection();
+		
+		String sql = "update member set mem_pwd = ? where mem_id = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_pwd);
+			pstmt.setString(2, mem_id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt, conn);
+		}
+		
+		return result;
+	}
+	
 	//close하는 메서드
 	private void close(AutoCloseable... ac) {
 		try {
@@ -122,4 +193,8 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
+
+	
 }
