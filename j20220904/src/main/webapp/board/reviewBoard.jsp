@@ -262,7 +262,7 @@
 								</ol>
 							</div>
 							<div class="btn-wrap text-right">
-								<button type="button" class="btn btn-dialog" data-target="#">상품 후기 작성</button>
+								<a href="reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
 							</div>
 						</div>
 						
