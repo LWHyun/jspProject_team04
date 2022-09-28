@@ -193,7 +193,6 @@
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
 										<input type="hidden" value="${item.price }" id="price${item.product_id}">
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
@@ -202,7 +201,7 @@
 									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
-										<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do'"></td>
+										<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -277,6 +276,7 @@
 	$(function(){
 		calcTotal()
 	})
+	
 	
 	function plusCnt(prod_id) {
 		
@@ -360,6 +360,13 @@
 		
 		let targetTotal = document.getElementById("total")
 		targetTotal.innerHTML = result + "원"
+	}
+	
+	
+	function delItem(prod_id, size_num) {
+		
+		
+		location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do?product_id='+prod_id+'&size_num='+size_num
 	}
 	
 </script>

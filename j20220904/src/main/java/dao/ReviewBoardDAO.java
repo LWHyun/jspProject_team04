@@ -7,11 +7,13 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class ReviewBoardDAO {
-	
+	// 싱글톤
 	private static ReviewBoardDAO instance;
 	
+	// 생성자
 	private ReviewBoardDAO() {}
 	
+	// getInstance 수행 시 생성자 만들어줌
 	public static ReviewBoardDAO getInstance() {
 		if(instance == null) {
 			instance = new ReviewBoardDAO();
@@ -33,4 +35,17 @@ public class ReviewBoardDAO {
 		return conn;
 	}
 	
+	
+	
+	private void close(AutoCloseable... ac) {
+		try {
+			for(AutoCloseable a : ac) {
+				if(a != null) {
+					a.close();
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
