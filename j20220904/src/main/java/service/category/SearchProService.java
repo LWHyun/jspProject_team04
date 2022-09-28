@@ -3,6 +3,7 @@ package service.category;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,13 +16,10 @@ public class SearchProService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String word = (String)session.getAttribute("word");
-		if(word == null){
-			word = "";
-		}
 		String searchWord = request.getParameter("searchWord");
-		session.setAttribute("word", searchWord);
+		session.setAttribute("searchWord", searchWord);
 		
+		System.out.println("searchProService "+searchWord);
 		
 		return "goSearchPro.jsp";
 	}

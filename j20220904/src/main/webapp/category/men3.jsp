@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Header</title>
+<title>MEN</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -13,6 +13,7 @@
 
 <%@include file="indexEx2.jsp" %>
 <style type="text/css">
+	
 	
 	.cate_name{
 		height: 100px;
@@ -125,9 +126,13 @@
 		
 	}
 	
+	$('#cate_men').mouse
+	
+	
 </script>
 </head>
 <body>
+	
 
 	<div class="cate_name">
 		<h1>${result }</h1><br>
@@ -142,8 +147,8 @@
 	   		<span>브랜드</span>
 		   	<div class="dropdown_content">
 		   		<ul>
-		   			<li><label for="chkbox_brand">나이키</label><input type="checkbox" name="chkbox_brand" value="nike"></li>
-		   			<li><label for="chkbox_brand">아디다스</label><input type="checkbox" name="chkbox_brand" value="adidas"></li>
+		   			<li><label for="chkbox_brand">나이키</label><input type="checkbox" name="chkbox_brand" value="NIKE"></li>
+		   			<li><label for="chkbox_brand">아디다스</label><input type="checkbox" name="chkbox_brand" value="ADIDAS"></li>
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -153,7 +158,8 @@
 		   	<div class="dropdown_content">
 		   		<ul>
 		   			<li><label for="chkbox_size">260</label><input type="checkbox" name="chkbox_size" value="260"></li>
-		   			<li><label for="chkbox_size">260</label><input type="checkbox" name="chkbox_size" value="270"></li>		   			
+		   			<li><label for="chkbox_size">270</label><input type="checkbox" name="chkbox_size" value="270"></li>		   			
+		   			<li><label for="chkbox_size">280</label><input type="checkbox" name="chkbox_size" value="270"></li>		   			
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -167,13 +173,16 @@
 				</ul>
 			</div>
 		</div>
-		<input type="submit" value="검색">
+		<button type="button" onclick="searchFilter()">검색하기</button>
 		</form>
 	</div>
    
 	<div class="pro_wrap">
-		<ul> 
-		<c:forEach var="list" items="${list }">
+		<ul>
+		<c:if test="${filterList !=null }">
+			
+		</c:if>
+		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>
 				<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img"><br>

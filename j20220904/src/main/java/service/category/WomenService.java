@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
-import dao.ProductDAO;
+import dao.CategoryDAO;
 import dto.ProductDTO;
 
 public class WomenService implements CommandProcess {
@@ -25,10 +25,10 @@ public class WomenService implements CommandProcess {
 			result ="여성용";
 		}
 		
-		ProductDAO pd = ProductDAO.getInstance();
+		CategoryDAO cd = CategoryDAO.getInstance();
 		
 		try {
-			List<ProductDTO> list = pd.selectSearch(gender);
+			List<ProductDTO> list = cd.selectSearch(gender);
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			
