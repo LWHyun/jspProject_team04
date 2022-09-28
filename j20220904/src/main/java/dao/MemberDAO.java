@@ -156,6 +156,31 @@ public class MemberDAO {
 		return list;
 	}
 	
+	// 비밀번호 재설정 메서드
+	public int updatePwd(String mem_id, String mem_pwd) {
+		Connection conn = getConnection();
+		
+		String sql = "update member set mem_pwd = ? where mem_id = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_pwd);
+			pstmt.setString(2, mem_id);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt, conn);
+		}
+		
+		return result;
+	}
+	
 	//close하는 메서드
 	private void close(AutoCloseable... ac) {
 		try {
@@ -168,6 +193,8 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 }

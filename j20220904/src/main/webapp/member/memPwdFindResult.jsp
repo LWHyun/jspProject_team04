@@ -36,7 +36,7 @@
 
                             <!-- 비밀번호 입력 박스 -->
                             <div class="find-pwd-result-box">
-                                <form>
+                                <form action="${pageContext.request.contextPath }/member/memRePwd.do" method="post" id="rePwdForm" name="rePwdForm">
                                 	<input type="hidden" name="mem_id" id="mem_id" value="${requestScope.mem_id }">
                                     <div class="find-pwd-result-Pwd">
                                         <input type="password" id="mem_pwd" name="mem_pwd" placeholder="새 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)">
@@ -74,7 +74,7 @@ $(function() {
 
         if(mem_pwd == '' || !isPassword(mem_pwd)) {
             $('#Val_pwdDiv').css('display', '');
-            $('#Val_pwdDiv').text('비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)');
+            $('#Val_pwdDiv').text('새 비밀번호를 입력해주세요.(영문, 숫자, 특수문자 포함 8~16자)');
             $('#mem_pwd').val('');
             //$('#mem_pwd').focus();
         } else {
@@ -96,6 +96,7 @@ $(function() {
         }
     });
     
+    // 확인 버튼 클릭 시 
     $('#popLoginBtn').click(function() {
     	if(!$('#mem_pwd').val()) {
     		alert("새 비밀번호를 입력해주세요.");
@@ -106,7 +107,7 @@ $(function() {
             $('#mem_name').focus();
             return false;
     	} else {
-    		alert("다 통과");
+    		$('#rePwdForm').submit();
     	}
     	
     });
