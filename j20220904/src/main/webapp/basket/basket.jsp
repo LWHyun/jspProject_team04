@@ -182,7 +182,7 @@
 						<tbody>
 							<!-- 장바구니에 담긴 상품이 없을 때 -->
 							<c:if test="${basketList eq null }">
-							<tr>
+							<tr>	
 								<td>
 								   <div class="order-null" text-align="center">
 					             	  <h3>장바구니에 담긴 상품이 없습니다.</h3>
@@ -201,7 +201,7 @@
 									<td><span class="item-name">${item.kor_name}</span><br><br><span class="item-color">${item.color }</span><br><br><span class="item-size">${item.pd_size }</span></td>
 									
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
-										<input type="hidden" value="${item.price }" id="price${item.product_id}">
+										<input type="hidden" value="<fmt:formatNumber value="${item.price }" pattern="#,###"/>" id="price${item.product_id}">
 										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
 										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
 									
