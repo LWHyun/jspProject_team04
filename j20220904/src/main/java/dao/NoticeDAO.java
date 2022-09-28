@@ -24,7 +24,7 @@ public class NoticeDAO {
 		return instance;
 	}
 	
-	// DBCP
+	/* DBCP */
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
@@ -39,16 +39,16 @@ public class NoticeDAO {
 	}
 	
 	
-	// 페이징 메소드
+	/* [ALL] 페이징 메소드 */
 	public List<NoticeDTO> noticeList(int startRow, int endRow) throws SQLException {
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		Connection conn = null;	
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
-		// String sql = "select * from notice order by num desc";
-		 String sql = "SELECT *  "
-		 	    	+ "FROM (Select rownum rn ,a.*  "
-		 		    + "      From 	 (select * from notice order by ref desc,re_step) a ) "
+
+		String sql = "SELECT *  "
+		 	    	+ "FROM (Select rownotice_code rn ,a.*  "
+		 		    + "      From 	 (select notice_code,notice_title,notice_date,notice_content from notice order by notice_date desc) a ) "
 		 		    + "WHERE rn BETWEEN ? AND ? " ;
 		try {
 			conn = getConnection();
@@ -56,14 +56,14 @@ public class NoticeDAO {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				NoticeDTO notice = new NoticeDTO();
-				notice.setNum(rs.getInt("num"));
-				notice.setReadcount(rs.getInt("readcount"));
-				notice.setRef(rs.getInt("ref"));
-				notice.setRe_level(rs.getInt("re_level"));
-				notice.setRe_step(rs.getInt("re_step"));
-				notice.setReg_date(rs.getDate("reg_date"));
+				
+				notice.setNotice_code(rs.getInt("notice_code"));
+				notice.setNotice_title(rs.getString("notice_title"));
+				notice.setNotice_date(rs.getDate("notice_date"));
+				notice.setNotice_content(rs.getString("notice_content"));
 				
 				list.add(notice);
 			}
@@ -77,24 +77,27 @@ public class NoticeDAO {
 		return list;
 	}
 	
-	public NoticeDTO select(int num) throws SQLException {
+	/* [회원] 게시글 Read 메소드 */
+	public NoticeDTO select(int notice_code) throws SQLException {
 		Connection conn = null;	
 		Statement stmt= null; 
 		ResultSet rs = null;
-		String sql = "select * from notice where num="+num;
+		
+		// SQL문 틀릴 수도 있어서 수정해야 할 수도.
+		String sql = "SELECT notice_code, content, readcount, reg_date, ref, re_level, re_step"
+					+ "FROM notice where notice_code=" + notice_code;
+		
 		NoticeDTO notice = new NoticeDTO();
+		
 		try {
-			conn = getConnection();
+			conn = getConnection(); 
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {				
-				notice.setNum(rs.getInt("num"));
-				notice.setContent(rs.getString("content"));
-				notice.setReadcount(rs.getInt("readcount"));
-				notice.setReg_date(rs.getDate("reg_date"));
-				notice.setRef(rs.getInt("ref"));
-				notice.setRe_level(rs.getInt("re_level"));
-				notice.setRe_step(rs.getInt("re_step"));
+				notice.setNotice_code(rs.getInt("notice_code"));
+				notice.setNotice_title(rs.getString("notice_title"));
+				notice.setNotice_date(rs.getDate("notice_date"));
+				notice.setNotice_content(rs.getString("notice_content"));
 			}
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
@@ -104,5 +107,53 @@ public class NoticeDAO {
 			if (conn !=null) conn.close();
 		}
 		return notice;
+	}
+	
+	// [관리자] 게시글 수정 메소드
+	public int update(NoticeDTO notice) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		int result = 0;			
+		String sql="UPDATE notice SET notice_title=?, notice_content=? WHERE notice_code=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_title());
+			pstmt.setString(2, notice.getNotice_content());
+			pstmt.setInt(3, notice.getNotice_code());
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
+	}
+	
+	/* [관리자] 게시글 삭제 메소드 */
+	public int delete(int num) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		
+		String sql  = "DELETE FROM notice WHERE notice_code=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
 	}
 }
