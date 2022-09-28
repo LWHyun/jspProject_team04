@@ -119,7 +119,7 @@ $(function() {
    	
 	let emailChk = false;
     
- // 이메일 형식 확인 및 정보확인
+ 	// 이메일 형식 확인 및 정보확인
     $('#mem_email1').on('blur', function() {
     	$('#emailAuth').css('display', 'none');
     	
@@ -177,14 +177,36 @@ $(function() {
         		success : function(data) {
         			//alert(data);
         			if(data == '1') {
-        				$('#Val_emailDiv').css({
+        				/* $('#Val_emailDiv').css({
         					'display' : '',
         					'color' : 'green'
        					});
         				$('#Val_emailDiv').text('입력하신 정보가 일치합니다. 인증번호 요청을 다시 눌러주세요.');
-                        $('#emailAuth').css('display', '');
+                         */
 
         				emailChk = true;
+                        
+                        if(emailChk) {
+                			$('#authEmail').prop('disabled', false);
+                			// 인증번호 생성 ajax
+                			$.ajax({
+                				url : '/j20220904/member/emailAuth.do',
+                				type : 'post',
+                				data : "mem_email="+$('#mem_email1').val(),
+                				dataType : 'text',
+                				success : function(data) {
+                					$('#authEmailCheck').val(data);
+                				},
+                				error : function(err) {
+                					console.log(err);
+                				}
+                			});
+                			
+                		    alert("입력하신 정보가 일치합니다.\n인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
+                		    
+                		    // 인증번호 칸 보이기
+                		    $('#emailAuth').css('display', '');
+                		}
         			} else {
         				$('#Val_emailDiv').css('display','');
                         $('#Val_emailDiv').text('입력하신 이메일 정보가 일치하지 않습니다.');
@@ -198,24 +220,7 @@ $(function() {
         	});
 		}
 		
-		if(emailChk) {
-			$('#authEmail').prop('disabled', false);
-			// 인증번호 생성 ajax
-			$.ajax({
-				url : '/j20220904/member/emailAuth.do',
-				type : 'post',
-				data : "mem_email="+$('#mem_email1').val(),
-				dataType : 'text',
-				success : function(data) {
-					$('#authEmailCheck').val(data);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-			
-		    alert("인증번호가 전송되었습니다.(1~2분 소요될 수 있습니다.)");
-		}
+		
 	});
 	
 	// 확인 버튼 클릭 시
