@@ -200,6 +200,33 @@ public class BasketDAO {
 		
 	}
 	
+	// 회원의 바스켓 갯수 가져오는 메서드
+	public int memBasketCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select count(*) from basket where mem_id=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int basketCnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) basketCnt = rs.getInt(1);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return basketCnt;
+	}
+	
 	
 	private void close(AutoCloseable... ac) {
 		try {
