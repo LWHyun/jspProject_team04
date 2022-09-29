@@ -146,7 +146,7 @@
                   <ul class="util-list">
                   <c:if test="${sessionScope.mem_id == 'admin' }">
                 	<li>
-                        <a href="./manage/manNoticeList.jsp" class="material-symbols-outlined">person</a>
+                        <a href="${pageContext.request.contextPath }/manage/manNoticeList.jsp" class="material-symbols-outlined">person</a>
                         <a href="#" style="font-size: 10px;">관리자</a>
                      </li>
                   </c:if>
