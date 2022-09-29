@@ -105,9 +105,10 @@ public class BasketDAO {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE basket SET cnt = ? \r\n"
-				+ "WHERE mem_id= ?\r\n"
-				+ "AND product_id= ?";
+		String sql = "UPDATE basket SET cnt = ? "
+				+ "WHERE mem_id= ?"
+				+ "AND product_id= ?"
+				+ "AND size_num= ?";
 	
 		int result = 0;
 		
@@ -117,6 +118,7 @@ public class BasketDAO {
 			pstmt.setInt(1, basketDTO.getCnt());
 			pstmt.setString(2, basketDTO.getMem_id());
 			pstmt.setInt(3, basketDTO.getProduct_id());
+			pstmt.setInt(4, basketDTO.getSize_num());
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -198,6 +200,33 @@ public class BasketDAO {
 		return list;
 		
 		
+	}
+	
+	// 회원의 바스켓 갯수 가져오는 메서드
+	public int memBasketCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select count(*) from basket where mem_id=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int basketCnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) basketCnt = rs.getInt(1);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return basketCnt;
 	}
 	
 	

@@ -16,6 +16,11 @@ public class Product_ImgSrcDTO {
 	private String s_file_path; //제품 이미지 작은사진 경로
 	private String l_file_path; //제품 이미지 큰사진 경로
 	
+	private int stock ; //제품 재고
+	private int size_num ; //제품 사이즈 넘버
+	private int pd_size;
+	
+	
 	
 	public int getProduct_id() {
 		return product_id;
@@ -84,6 +89,24 @@ public class Product_ImgSrcDTO {
 		this.l_file_path = l_file_path;
 	}
 
-
-
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	public int getSize_num() {
+		return size_num;
+	}
+	public void setSize_num(int size_num) {
+		this.size_num = size_num;
+	}
+	
+	public int getPd_size() {
+		return pd_size;
+	}
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
+	}
 }

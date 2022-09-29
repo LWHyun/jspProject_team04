@@ -1,6 +1,7 @@
-package service.member;
+package service.basket;
 
 import java.io.IOException;
+import java.sql.Array;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,18 +10,26 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 
-public class LogoutService implements CommandProcess {
+public class DeleteChkBasketItemService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// 로그아웃
+	
+		//로그인 확인
 		HttpSession session = request.getSession();
-		session.removeAttribute("mem_id");
-		session.removeAttribute("mem_name");
+		String mem_id = (String)session.getAttribute("mem_id");
 		
-		return "/";
+		if ( mem_id == null ) {
+			return "/member/memLoginForm.jsp";
+			
+		}
+		
+		
+		
+		
+		
+		return null;
 	}
 
 }

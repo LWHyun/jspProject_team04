@@ -81,11 +81,11 @@
                             <div class="shopping-info">
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-cart"></i> 장바구니</span>
-                                    <span class="info-data"><a href="#">0<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="${pageContext.request.contextPath }/basket/goToBasket.do">${requestScope.basketCnt }<span class="unit">개</span></a></span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-favorite"></i> 찜한상품</span>
-                                    <span class="info-data"><a href="#">0<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="#">${requestScope.likeProCnt }<span class="unit">개</span></a></span>
                                 </div>
                             </div>
                         </div><!-- grade-box-contents shopinfo -->
@@ -118,7 +118,7 @@
 	                            </li > -->
 	
 	                            <li class="tabs-li2">
-	                                <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(0) </a>
+	                                <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.likeProCnt > 4 ? 4 : requestScope.likeProCnt}) </a>
 	                            </li>
 	                        </ul>
 	
@@ -129,61 +129,22 @@
 	                            
 	                            <div class="col-list-wrap" >
 	                                <ul class="col-list prod-list col-4">
-	                                    <li class="col-list-item prod-item no-util">
-	                                        <a href="#" class="prod-link">
-	                                 
-	                                            <div class="img-wrap">
-	                                                <img src="https://image.a-rt.com/art/product/2022/07/54297_1657186828422.jpg" alt="" class="recent-product-image">
-	                                            </div>
-	                                            
-	                                            <div class="prod-info-wrap">
-	                                                <span class="prod-brand">NIKE</span>
-	                                                <span class="prod-name">나이키 와플 데뷰</span>
-	                                                <span class="prod-price">89000</span>
-	                                            </div>
-	                                        </a>
-	                                    </li>
-	
-	                                    <li class="col-list-item prod-item no-util">
-	                                        <a href="#" class="prod-link">
-	                                            <div class="img-wrap">
-	                                                <img src="https://image.a-rt.com/art/product/2022/07/54297_1657186828422.jpg" alt="" class="recent-product-image">
-	                                            </div>
-	                                            <div class="prod-info-wrap">
-	                                                <span class="prod-brand">NIKE</span>
-	                                                <span class="prod-name">나이키 와플 데뷰</span>
-	                                                <span class="prod-price">89000</span>
-	                                            </div>
-	                                        </a>
-	                                    </li>
-	
-	                                    <li class="col-list-item prod-item no-util">
-	                                        <a href="#" class="prod-link">
-	                                            <div class="img-wrap">
-	                                                <img src="https://image.a-rt.com/art/product/2022/07/54297_1657186828422.jpg" alt="" class="recent-product-image">
-	                                            </div>
-	                                            <div class="prod-info-wrap">
-	                                                <span class="prod-brand">NIKE</span>
-	                                                <span class="prod-name">나이키 와플 데뷰</span>
-	                                                <span class="prod-price">89000</span>
-	                                            </div>
-	                                        </a>
-	                                    </li>
-	
-	                                    <li class="col-list-item prod-item no-util">
-	                                        <a href="#" class="prod-link">
-	                                            <div class="img-wrap">
-	                                                <img src="https://image.a-rt.com/art/product/2022/07/54297_1657186828422.jpg" alt="" class="recent-product-image">
-	                                            </div>
-	                                            <div class="prod-info-wrap">
-	                                                <span class="prod-brand">NIKE</span>
-	                                                <span class="prod-name">나이키 와플 데뷰</span>
-	                                                <span class="prod-price">89000</span>
-	                                            </div>
-	                                        </a>
-	                                    </li>
-	
-	            
+	                                	<c:forEach var="likeProDTO" items="${likeProList }" begin="0" end="${requestScope.likeProCnt > 4 ? 3 : requestScope.likeProCnt == 0 ? 0 : requestScope.likeProCnt-1}">
+		                                	<li class="col-list-item prod-item no-util">
+		                                        <a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${likeProDTO.product_id}&gender=${likeProDTO.gender}" class="prod-link">
+		                                 
+		                                            <div class="img-wrap">
+		                                                <img src="${likeProDTO.s_file_path }" alt="${likeProDTO.kor_name }" class="recent-product-image">
+		                                            </div>
+		                                            
+		                                            <div class="prod-info-wrap">
+		                                                <span class="prod-brand">${likeProDTO.brand }</span>
+		                                                <span class="prod-name">${likeProDTO.kor_name }</span>
+		                                                <span class="prod-price">${likeProDTO.price }</span>
+		                                            </div>
+		                                        </a>
+		                                    </li>
+	                                	</c:forEach>
 	                                </ul>
 	                            </div><!-- col-list-wrap -->
 	
@@ -225,6 +186,23 @@ $(function() {
 		$('#deleteTag').addClass('active');
 	}
 	
+	// 찜한 상품이 있을 때 없을 때 display:none 처리
+	var listCnt = Number(${requestScope.likeProCnt});
+	if(listCnt == 0) {
+		$('.mypage-no-data').css('display', '');
+		$('.col-list-wrap').css('display', 'none');
+	} else {
+		$('.mypage-no-data').css('display', 'none');
+		$('.col-list-wrap').css('display', '');
+	}
+	
+	// 찜한 상품 mouseover 처리
+	$('li.prod-item').mouseover(function() {
+		$(this).css('border', '1px solid black');
+	});
+	$('li.prod-item').mouseout(function() {
+		$(this).css('border', '');
+	});
 });
 </script>
 </body>

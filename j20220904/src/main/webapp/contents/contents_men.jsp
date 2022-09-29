@@ -879,12 +879,11 @@
 						<div class="style_size">
 							<div class="style_size_left">사이즈</div>
 							<div class="style_size_right">
-								<button type="button" id="250" value="250">250</button>
-								<button type="button" id="260" value="260">260</button>
-								<button type="button" id="270" value="270">270</button>
-								<button type="button" id="280" value="280">280</button>
-								<button type="button" id="290" value="290">290</button>
-								<!-- onclick="sizeCheck(1010092974, 290)"  -->						
+								<button type="button" id="${list[0].pd_size }" value="${list[0].pd_size }">${list[0].pd_size }</button>
+								<button type="button" id="${list[1].pd_size }" value="${list[1].pd_size }">${list[1].pd_size }</button>
+								<button type="button" id="${list[2].pd_size }" value="${list[2].pd_size }">${list[2].pd_size }</button>
+								<button type="button" id="${list[3].pd_size }" value="${list[3].pd_size }">${list[3].pd_size }</button>
+								<button type="button" id="${list[4].pd_size }" value="${list[4].pd_size }">${list[4].pd_size }</button>				
 							</div>
 						</div>
 						<form id="sizeForm"> 
@@ -895,6 +894,10 @@
 							<input type="hidden" name="kor_name" value="${list[0].kor_name }">
 							<input type="hidden" name="gender" value="${list[0].gender }">
 							<input type="hidden" name="price" value="${list[0].price }">
+							<%-- 
+							<input type="hidden" name="size_num" value="${list[0].size_num }">
+							<input type="hidden" name="stock" value="${list[0].stock }"> 
+							--%>
 						<div class="append_product">
 							<div class="append_product_child_left">
 							
@@ -1059,11 +1062,100 @@
 	}
 	
 	
+////////////////// 사이즈 없으면 안눌려서 장바구니로 가지못하게 하는 로직//////////////////////
+//여자버튼
+ $(function(){
+		
+		if(Number(${list[0].size_num}) == '100' && Number(${list[0].stock}) == '0' ) {
+			 
+			$('#${list[0].pd_size }').prop('disabled',true); 
+		}
+	}); 
+ 
+	 $(function(){
+			
+			if(Number(${list[1].size_num}) == '110' && Number(${list[1].stock}) == '0' ) {
+				 
+				$('#${list[1].pd_size }').prop('disabled',true); 
+			}
+		});
+	 
 	
+	 $(function(){
+			
+			if(Number(${list[2].size_num}) == '120' && Number(${list[2].stock}) == '0' ) {
+				 
+				$('#${list[2].pd_size }').prop('disabled',true); 
+			}
+		}); 
+	 $(function(){
+			
+			if(Number(${list[3].size_num}) == '130' && Number(${list[3].stock}) == '0' ) {
+				 
+				$('#${list[3].pd_size }').prop('disabled',true); 
+			}
+		}); 
+	 $(function(){
+			
+			if(Number(${list[4].size_num}) == '140' && Number(${list[4].stock}) == '0' ) {
+				 
+				$('#${list[4].pd_size }').prop('disabled',true); 
+			}
+		}); 
+
+
+
+
+
+
+
+ //남자 버튼
+	 $(function(){
+		
+		if(Number(${list[0].size_num}) == '200' && Number(${list[0].stock}) == '0' ) {
+			 
+			$('#${list[0].pd_size }').prop('disabled',true); 
+		}
+	}); 
+ 
+	 $(function(){
+			
+			if(Number(${list[1].size_num}) == '210' && Number(${list[1].stock}) == '0' ) {
+				 
+				$('#${list[1].pd_size }').prop('disabled',true); 
+			}
+		});
+	 
+	
+	 $(function(){
+			
+			if(Number(${list[2].size_num}) == '220' && Number(${list[2].stock}) == '0' ) {
+				 
+				$('#${list[2].pd_size }').prop('disabled',true); 
+			}
+		}); 
+	 $(function(){
+			
+			if(Number(${list[3].size_num}) == '230' && Number(${list[3].stock}) == '0' ) {
+				 
+				$('#${list[3].pd_size }').prop('disabled',true); 
+			}
+		}); 
+	 $(function(){
+			
+			if(Number(${list[4].size_num}) == '240' && Number(${list[4].stock}) == '0' ) {
+				 
+				$('#${list[4].pd_size }').prop('disabled',true); 
+			}
+		}); 
+
+	
+
+//사이즈 누를때 append되는 로직	
 	$(function(){
 
 		
-		$('#250').click(function(){
+		$('#${list[0].pd_size }').click(function(){
 			  
 			
 			if($('.append_product').children().text() != $('.div250').text()) {
@@ -1072,7 +1164,7 @@
 				
 			}
 			if($('.div250').text() == '') {
-				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> 250 </div><input type="number" value="1" class="input1" name="number"  min="1" max="99" id="number1"><input type="hidden" id="size_num" name="size_num" value="200"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
+				$('.append_product_child_left').append('<div class="e1"><div class="append_list div250"> ${list[0].pd_size } </div><input type="number" value="1" class="input1" name="number"  min="1" max="99" id="number1"><input type="hidden" id="size_num" name="size_num" value="${list[0].size_num }"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X1"></div> ');
 			}
 			
 			
@@ -1086,7 +1178,7 @@
 	
 	
 	$(function(){
-		$('#260').click(function(){
+		$('#${list[1].pd_size }').click(function(){
 			
 			
 			
@@ -1096,7 +1188,7 @@
 				
 			}
 			if($('.div260').text() == '') {
-				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> 260 </div> <input type="number" value="1" class="input2" name="number" min="1" max="99" id="number2"><input type="hidden" id="size_num" name="size_num" value="210"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
+				$('.append_product_child_left').append('<div class="e2"><div class="append_list div260"> ${list[1].pd_size } </div> <input type="number" value="1" class="input2" name="number" min="1" max="99" id="number2"><input type="hidden" id="size_num" name="size_num" value="${list[1].size_num }"><img src="/j20220904/img/contexts/x.png" class="X" alt="X" id="X2"></div>');
 
 			}
 			$('#X2').click(function(){
@@ -1108,7 +1200,7 @@
 		});
 	});
 	$(function(){
-		$('#270').click(function(){
+		$('#${list[2].pd_size }').click(function(){
 			
 			
 			
@@ -1117,7 +1209,7 @@
 				
 			}
 			if($('.div270').text() == '') {
-				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> 270 </div> <input type="number" name="number" class="input3" value="1" min="1" max="99" id="number3"><input type="hidden" id="size_num" name="size_num" value="220"><input type="hidden" id="size_num" name="size_num" value="220"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
+				$('.append_product_child_left').append('<div class="e3"><div class="append_list div270"> ${list[2].pd_size } </div> <input type="number" name="number" class="input3" value="1" min="1" max="99" id="number3"><input type="hidden" id="size_num" name="size_num" value="${list[2].size_num }"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X3"></div>');
 			
 			}
 			$('#X3').click(function(){
@@ -1129,7 +1221,7 @@
 		});
 	});
 	$(function(){
-		$('#280').click(function(){
+		$('#${list[3].pd_size }').click(function(){
 			
 			
 			
@@ -1138,7 +1230,7 @@
 				
 			}
 			if($('.div280').text() == '') {
-				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> 280 </div><input type="number" name="number" class="input4" value="1" min="1" max="99" id="number4"><input type="hidden" id="size_num" name="size_num" value="230"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
+				$('.append_product_child_left').append('<div class="e4"><div class="append_list div280"> ${list[3].pd_size } </div><input type="number" name="number" class="input4" value="1" min="1" max="99" id="number4"><input type="hidden" id="size_num" name="size_num" value="${list[3].size_num }"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X4"></div>');
 			}
 			
 			$('#X4').click(function(){
@@ -1150,14 +1242,14 @@
 		});
 	});
 	$(function(){
-		$('#290').click(function(){
+		$('#${list[4].pd_size }').click(function(){
 			
 			
 			if($('.append_product').children().text() != $('.div290').text()) {
 				$('.append_product').children().addClass();
 			}
 			if($('.div290').text() == '') {
-				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> 290 </div> <input type="number" class="input5" name="number" value="1" min="1" max="99" id="number5"><input type="hidden" id="size_num" name="size_num" value="240"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
+				$('.append_product_child_left').append('<div class="e5"><div class="append_list div290"> ${list[4].pd_size } </div> <input type="number" class="input5" name="number" value="1" min="1" max="99" id="number5"><input type="hidden" id="size_num" name="size_num" value="${list[4].size_num }"><img src="/j20220904/img/contexts/x.png" alt="X" class="X" id="X5"></div>');
 			}
 			
 			$('#X5').click(function(){
@@ -1168,10 +1260,12 @@
 		});
 	});
 	
-	
-	
+//	
+
+
+//총 결제금액 구하는 로직	
 		var amount1 =0;
-		$(document).on('click','#250', function(){
+		$(document).on('click','#${list[0].pd_size }', function(){
 			   amount1 = Number(${list[0].price});
 			   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 		   });
@@ -1189,7 +1283,7 @@
 	   
 	   
 	   var amount2 = 0;
-	   $(document).on('click','#260', function(){
+	   $(document).on('click','#${list[1].pd_size }', function(){
 		   amount2 = Number(${list[0].price});
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
@@ -1206,7 +1300,7 @@
 	   });
 	   
 	   var amount3 = 0;
-	   $(document).on('click','#270', function(){
+	   $(document).on('click','#${list[2].pd_size }', function(){
 		   amount3 = Number(${list[0].price});
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
@@ -1223,7 +1317,7 @@
 	   });
 	   
 	   var amount4 = 0;
-	   $(document).on('click','#280', function(){
+	   $(document).on('click','#${list[3].pd_size }', function(){
 		   amount4 = Number(${list[0].price});
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
@@ -1240,7 +1334,7 @@
 	   });
 	   
 	   var amount5 = 0;
-	   $(document).on('click','#290', function(){
+	   $(document).on('click','#${list[4].pd_size }', function(){
 		   amount5 = Number(${list[0].price});
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
@@ -1255,7 +1349,7 @@
 		   amount5 = 0;
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
-	
+//	
 	   
 	   
 	   /* 장바구니 alert */
@@ -1304,21 +1398,6 @@
 	   
 </script>
 
-<!-- <script type="text/javascript">
-	function sizeCheck(product_id, pd_size) {
-		var sendData = "product_id=" + product_id + "&pd_size=" + pd_size;
-			$.ajax({
-					url: "${pageContext.request.contextPath}/contents/noStock.do",
-					data: sendData,
-					dataType: 'text',
-					success: function (data) {
-						if (data == 0) alert("재고 없음");
-						alert("현재 재고 " + data)
-					}
-			})
-	}
-
-</script> -->
 </body>
 
 </html>
