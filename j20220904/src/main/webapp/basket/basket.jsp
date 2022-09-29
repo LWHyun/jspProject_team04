@@ -188,17 +188,17 @@
 							</c:if>
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
 							<c:forEach var="item" items="${basketList }">
-								<tr id="tr${item.product_id }">
+								<tr id="tr${item.product_id }_${item.size_num }">
 									<td><input type="checkbox" name="RowCheck" id="chk${item.product_id }" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
-										<input type="hidden" value="${item.price }" id="price${item.product_id}">
-										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
-										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
+									<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
+										<input type="hidden" value="${item.price }" id="price${item.product_id}_${item.size_num}">
+										<input type="text" value="${item.cnt }" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+										<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 									
-									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
 										<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
@@ -278,10 +278,10 @@
 	})
 	
 	
-	function plusCnt(prod_id) {
+	function plusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
-		let target = document.getElementById("cnt"+prod_id)
+		let target = document.getElementById("cnt"+prod_id+"_"+size_num)
 		let count = parseInt(target.value)
 		
 		//상품 최대 수량 설정
@@ -295,7 +295,7 @@
 		//변경된 수량을 반영
 		target.value = count
 		
-		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count+"&size_num="+size_num
 		
 		//소계 계산
 		//calcSum(prod_id)
@@ -303,10 +303,10 @@
 	}
 	
 	
-	function minusCnt(prod_id) {
+	function minusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
-		let target = document.getElementById("cnt"+prod_id)
+		let target = document.getElementById("cnt"+prod_id+"_"+size_num)
 		let count = parseInt(target.value)
 		
 		//상품 최소 수량 설정
@@ -320,21 +320,21 @@
 		//변경된 수량을 반영
 		target.value = count
 		
-		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count"&size_num="+size_num
 		
 		//소계 계산
 		//calcSum(prod_id)
 	}
 	
 	
-	function calcSum(prod_id) {
+	function calcSum(prod_id, size_num) {
 		
 		//상품 수량 가져오기
-		let targetCnt = document.getElementById("cnt"+prod_id).value
+		let targetCnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
 		//상품 단가 가져오기
-		let targetPrice = document.getElementById("price"+prod_id).value
+		let targetPrice = document.getElementById("price"+prod_id+"_"+size_num).value
 		// 수량*단가를 반영하기
-		let targetSumTd = document.getElementById("sum"+prod_id)
+		let targetSumTd = document.getElementById("sum"+prod_id+"_"+size_num)
 		targetSumTd.innerHTML = targetCnt*targetPrice + "원"
 		// 합계에 반영
 		calcTotal()
