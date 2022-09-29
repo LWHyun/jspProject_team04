@@ -189,7 +189,7 @@
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
-									<td><input type="checkbox" checked></td>
+									<td><input type="checkbox" name="RowCheck[]" id="chk${item.product_id }" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
@@ -210,7 +210,7 @@
 					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
-							<input type="button" value="선택 삭제">
+							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 						</div>
 					</c:if>
 					
@@ -228,8 +228,8 @@
 				
 				<div class="buy-btn">
 					<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
-					<input type="button" value="선택 상품 주문하기" onclick="location='orderInfo.jsp'">
-					<input type="button" value="전체 상품 주문하기" onclick="location='orderInfo.jsp'">
+					<input type="button" value="선택 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
+					<input type="button" value="전체 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
 				</div>
 				
 				<div class="buy-notice">
@@ -365,10 +365,63 @@
 	
 	function delItem(prod_id, size_num) {
 		
-		
-		location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do?product_id='+prod_id+'&size_num='+size_num
+		if(!confirm("상품을 삭제하시겠습니까?")){
+			alert("상품 삭제가 취소되었습니다.");
+		} else {
+			alert("상품이 삭제되었습니다.")
+			location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do?product_id='+prod_id+'&size_num='+size_num
+			}
 	}
 	
+	
+	function delChkItem() {
+	
+		let chk = false;
+		
+		if(document.getElementsByName("RowCheck[]").length>0){
+			for(let i = 0 ; i<document.getElementsByName("RowCheck[]").length;i++){
+				if(document.getElementsByName("RowCheck[]")[i].checked==true){
+					chk = true;
+					break;
+				}
+			}
+		}
+		
+		if(chk) {
+			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?product_id='+prod_id+'&size_num='+size_num
+		}
+	}
+	
+	
+	
+	
+	/* 
+	let deleteConfirm = confirm('선택한 상품을 삭제하시겠습니까?');
+	
+	if(deleteConfirm == true) {
+		
+		let chkPdcId = [];
+		let chkLength;
+		let count = 0;
+		
+		$('#delChk:checked').each(function() {
+			
+			chkPdcId += $(this).val()+', ';
+			chkLength = $(this).length;
+			
+		})
+		
+		return chkPdcId;
+		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkPdcID='+chkPdcId
+	} 
+	
+	else {
+		alert("상품 삭제가 취소되었습니다.");
+	} */
+	
+	
+	
+
 </script>
 </body>
 </html>
