@@ -189,7 +189,7 @@
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
 							<c:forEach var="item" items="${basketList }">
 								<tr id="tr${item.product_id }">
-									<td><input type="checkbox" name="RowCheck[]" id="chk${item.product_id }" checked></td>
+									<td><input type="checkbox" name="RowCheck" id="chk${item.product_id }" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
@@ -210,7 +210,7 @@
 					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
-							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
+							<input type="button" value="선택 삭제" id="delChk" onclick="return delChkItem()">
 						</div>
 					</c:if>
 					
@@ -358,7 +358,7 @@
 		}
 		// 합산 가격 반영
 		
-		let targetTotal = document.getElementById("total")
+		let targetTotal = document.getElementById("total");
 		targetTotal.innerHTML = result + "원"
 	}
 	
@@ -374,22 +374,29 @@
 	}
 	
 	
+	/* $("#delCheck").click(function(){
+		
+		let rowData = new Array();
+		let tdArr = new Array();
+		let checkbox = $("input[name=RowCheck]:checked");
+		
+		checkbox.each(function(i){
+			
+			//checkbox.parent() : checkbox의 부모는 <td>이다
+			//checkbox.parent().parent() : <td>의 부모이므로 <tr>이다
+			
+			let tr = checkbox.parent().parent()eq.(i)
+			let td = tr.childern();
+			
+			rowData.push(tr.next());
+		
+		});
+		
+	} */
+	
+	
 	function delChkItem() {
 	
-		let chk = false;
-		
-		if(document.getElementsByName("RowCheck[]").length>0){
-			for(let i = 0 ; i<document.getElementsByName("RowCheck[]").length;i++){
-				if(document.getElementsByName("RowCheck[]")[i].checked==true){
-					chk = true;
-					break;
-				}
-			}
-		}
-		
-		if(chk) {
-			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?product_id='+prod_id+'&size_num='+size_num
-		}
 	}
 	
 	

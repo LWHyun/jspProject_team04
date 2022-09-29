@@ -105,9 +105,10 @@ public class BasketDAO {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql = "UPDATE basket SET cnt = ? \r\n"
-				+ "WHERE mem_id= ?\r\n"
-				+ "AND product_id= ?";
+		String sql = "UPDATE basket SET cnt = ? "
+				+ "WHERE mem_id= ?"
+				+ "AND product_id= ?"
+				+ "AND size_num= ?";
 	
 		int result = 0;
 		
@@ -117,6 +118,7 @@ public class BasketDAO {
 			pstmt.setInt(1, basketDTO.getCnt());
 			pstmt.setString(2, basketDTO.getMem_id());
 			pstmt.setInt(3, basketDTO.getProduct_id());
+			pstmt.setInt(4, basketDTO.getSize_num());
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
