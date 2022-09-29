@@ -1,10 +1,19 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import dto.QABoardDTO;
+import dto.ReviewBoardDTO;
 
 public class QABoardDAO { 
 	// 싱글톤
@@ -35,8 +44,66 @@ public class QABoardDAO {
 		return conn;
 	}
 	
+	// 총 개수
+	public int getTotalCnt() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from qa_board";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
 	
-	
+	public List<QABoardDTO> qABoardList(int startRow, int endRow) {
+		List<QABoardDTO> qAList = new ArrayList<QABoardDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// sql문 변경하기
+		String sql = "SELECT *  "
+	 	    	+ "FROM (Select rownum rn ,a.*  "
+	 		    + "      From 	 (select * from board order by ref desc,re_step) a ) "
+	 		    + "WHERE rn BETWEEN ? AND ? " ;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			while(rs.next()) {
+				QABoardDTO qABoard = new QABoardDTO();
+				
+				qABoard.setQ_id(rs.getInt("q_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setProduct_id(rs.getInt("product_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setQ_title(rs.getString("q_title"));
+				qABoard.setQ_content(rs.getString("q_content"));
+				qABoard.setQ_date(rs.getDate("q_date"));
+				qABoard.setQ_views(rs.getInt("q_views"));
+				qABoard.setQ_answer(rs.getString("q_answer"));
+			}
+			rs = pstmt.executeQuery();
+		} catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return qAList;
+	}
+
 	
 	private void close(AutoCloseable... ac) {
 		try {

@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.BasketDTO;
+import dto.BasketProDTO;
 
 public class BasketDAO {
 
@@ -157,6 +158,44 @@ public class BasketDAO {
 		}
 			
 		return result;
+		
+		
+	}
+	
+	//상세페이지에서 장바구니수량 있나 없나 비교하는 메서드
+	public List<BasketProDTO> compareBasketList(String mem_id) {
+		
+		List<BasketProDTO> list = new ArrayList<>();
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		String sql = "select * from basket where mem_id=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				BasketProDTO basketProDTO = new BasketProDTO();
+				basketProDTO.setMem_id(rs.getString("mem_id"));
+				basketProDTO.setProduct_id(rs.getInt("product_id"));
+				basketProDTO.setSize_num(rs.getInt("size_num"));
+				
+				
+				list.add(basketProDTO);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());	
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return list;
 		
 		
 	}

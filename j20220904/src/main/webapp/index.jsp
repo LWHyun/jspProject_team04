@@ -14,7 +14,7 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
 </head>
 <body>
    <div id="header">
-       <jsp:include page="./main//header.jsp"></jsp:include>
+       <jsp:include page="./main/header.jsp"></jsp:include>
     </div><!-- header -->
 
     <div id="container">
