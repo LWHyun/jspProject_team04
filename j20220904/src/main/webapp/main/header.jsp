@@ -167,8 +167,8 @@
          </div>
       </div>
 <script type="text/javascript">
-	function goSearch() {
-		window.open('goSearch.do','_blank','width=1000px','height=1000px');
+function goSearch() {
+	window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 	}
 </script>
    </header>

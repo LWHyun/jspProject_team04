@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
-import dao.ProductDAO;
+import dao.CategoryDAO;
 import dto.ProductDTO;
 
 public class MenService implements CommandProcess {
@@ -25,10 +25,10 @@ public class MenService implements CommandProcess {
 			result ="여성용";
 		}
 		
-		ProductDAO pd = ProductDAO.getInstance();
+		CategoryDAO cd = CategoryDAO.getInstance();
 		
 		try {
-			List<ProductDTO> list = pd.selectSearch(gender);
+			List<ProductDTO> list = cd.selectSearch(gender);
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			
@@ -37,7 +37,6 @@ public class MenService implements CommandProcess {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return "men3.jsp";
 	}
 
