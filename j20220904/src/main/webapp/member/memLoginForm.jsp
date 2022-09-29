@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/memberCss/userUI.css">
 </head>
 <body>
-<input type="hidden" id="writeResult" value="${writeResult }"> <!-- 회원가입 후 로그인 창으로 이동했을 경우 -->
+<input type="hidden" id="writeResult" value="${writeResult }"> <!-- 회원가입 후 로그인 창으로 이동했을 경우 alert 메세지 -->
 	<div>
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
@@ -37,7 +37,7 @@
                         <div class="tab-login-form">
                             <form action="${pageContext.request.contextPath }/member/login.do" id="loginForm" name="loginForm" method="post">
                                 <div class="login-input login-input-id">
-                                    <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }${mem_id }">
+                                    <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }">
                                 </div>
                                 <div class="login-input login-input-pwd">
                                     <input type="password" id="mem_pwd" name="mem_pwd" placeholder="비밀번호를 입력해주세요.">
