@@ -72,7 +72,7 @@ public class QABoardDAO {
 		// sql문 변경하기
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from board order by ref desc,re_step) a ) "
+	 		    + "      From 	 (select * from qa_board order by q_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		try {
