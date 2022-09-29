@@ -1,6 +1,7 @@
 package service.category;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,13 @@ public class AjaxFilterService implements CommandProcess {
 		String[] sizeArray = request.getParameterValues("sizeArray");
 		
 			CategoryDAO cd = CategoryDAO.getInstance();
-			List<ProductDTO> filterList = cd.selectSearch(brandArray,sizeArray);
+			List<ProductDTO> filterList = null;
+			try {
+				filterList = cd.selectSearch(brandArray,sizeArray);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			request.setAttribute("filterList", filterList);
 			
 			
