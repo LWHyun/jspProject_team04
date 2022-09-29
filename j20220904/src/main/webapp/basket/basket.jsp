@@ -210,7 +210,7 @@
 					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
-							<input type="button" value="선택 삭제" id="delChk" onclick="return delChkItem()">
+							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem(${basketList})">
 						</div>
 					</c:if>
 					
@@ -395,8 +395,24 @@
 	} */
 	
 	
-	function delChkItem() {
+	function delChkItem(basketlist) {
 	
+	
+			var list = new Array();
+		 	<c:forEach items="${basketList }" var="list" >	
+		    	list.push("${list.check1}");
+			</c:forEach>
+
+			for (var i=0; i<list.length;){
+				alert("list->"+ i + " :  "+ list[i++]);
+		
+			return list;
+			
+			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?basketList='+basketlist
+		}	
+		
+		
+		
 	}
 	
 	
