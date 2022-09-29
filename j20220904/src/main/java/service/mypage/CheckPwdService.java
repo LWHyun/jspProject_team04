@@ -16,7 +16,12 @@ public class CheckPwdService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 로그인 여부
 		HttpSession session = request.getSession();
+		if(session.getAttribute("mem_id") == null) {
+			return "/member/loginCheck.jsp";
+		}
+
 		// 데이터 받기
 		String mem_pwd = request.getParameter("mem_pwd");
 		String mem_id = (String)session.getAttribute("mem_id");
