@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.QABoardDAO;
 import dto.QABoardDTO;
-import dto.ReviewBoardDTO;
 
 public class QAListService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("QAListService Start...");
 		// Dao랑 Service 연결
 		QABoardDAO qbd = QABoardDAO.getInstance();
 		

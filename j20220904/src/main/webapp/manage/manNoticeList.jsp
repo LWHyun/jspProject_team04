@@ -9,6 +9,9 @@
 <title>공지사항</title>
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="stylesheet" href="../css/manageCss/faq.css">
+<style type="text/css">
+
+</style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css"> 
 	table {

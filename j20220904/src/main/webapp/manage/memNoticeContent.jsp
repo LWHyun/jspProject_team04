@@ -13,6 +13,7 @@
 .border-line-box {
     border-top: 2px solid #000;
     border-bottom: 1px solid #b5b5b5;
+    margin-top : 54px;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
     line-height: 1;
 }
 .board-view-wrap .board-view-head {
-    height: 90px;
+    height: 73px;
     padding: 0 21px 0 19px;
     border-bottom: 1px solid #e5e5e5;
     -webkit-box-align: center;
@@ -42,7 +43,7 @@ body {
 
 .board-view-wrap .board-view-head .text-date {
     color: #666;
-    margin-left: 10px;
+    margin-left: 300px;
     font-family: "Montserrat",sans-serif;
     font-size: 15px;
     line-height: 19px;
@@ -116,6 +117,13 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
     font-size: 15px;
     color: #666;
 }
+
+<!---->
+.aside-contents {
+    margin-top: -140px;
+    width: calc(81% - 174px);
+	transform: translateY(-1px);
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
@@ -139,7 +147,7 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 	      	<div class="aside-wrap">
 	         <ol class="customer-lnb">
 	            <li class="customer-lnb-item eng"><a href="#" class="active">공지사항</a></li>
-	            <li class="customer-lnb-item"><a href="memberFaqView.jsp">FAQ</a></li>
+	            <li class="customer-lnb-item"><a href="memFaqView.jsp">FAQ</a></li>
 	         </ol>
 	        </div>
 	     	
@@ -171,7 +179,7 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      							<span class="ico-next"></span>
 			      						</td>
 			      						<td class="text-left">
-			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code-1}&pageNum=${pageNum}'" id="btnPrevNotice" class="notice-link">${notice.notice_title}</a>
+			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}" id="btnPrevNotice" class="notice-link">${notice.notice_title}</a>
 			      						</td>
 			      						<td class="date-txt">${notice.notice_date }</td>
 			      					</tr>
@@ -181,7 +189,7 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      							<span class="ico-prev"></span>
 			      						</td>
 			      						<td class="text-left">
-			      							<a href="#" id="btnPrevNotice" class="notice-link" value="${notice.notice_code-1}">${notice.notice_title}</a>
+			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}" id="btnPrevNotice" class="notice-link" value="${notice.notice_code-1}">${notice.notice_title}</a>
 			      						</td>
 			      						<td class="date-txt">${notice.notice_date }</td>
 			      					</tr>
@@ -189,41 +197,19 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      			</table>
 			      		
 			      		</div>
-			      	
-			      	
-			      	
 			      	</div>	
-	      		
-	      		
 	      		</div>
 	      		
-	      		
-    		<div class="tab-wrap anchor-tab multi-line" id="tabDiv">
-				<table border="1">
-					<tr>
-						<td width="50">번호</td>
-						<td>${notice.notice_code}</td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="button" value="수정"
-							onclick="location.href='updateForm.do?num=${board.num}&pageNum=${pageNum}'">
-							<input type="button" value="답변작성"
-							onclick="location.href='writeForm.do?num=${board.num}&pageNum=${pageNum}'">
-							<input type="button" value="삭제"
-							onclick="location.href='deleteForm.do?num=${board.num}&pageNum=${pageNum}'">
-							<input type="button" value="목록"
-							onclick="location.href='list.do?pageNum=${pageNum}'"></td>
-					</tr>
-				</table>
-			</div>
 	      </div>      
 	   </div>
 	</div>
 	   </div>
 	</div>
+	
+   <!-- footer -->
    <div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
-    </div><!-- footer -->
+    </div>
 
 </body>
 </html>

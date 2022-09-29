@@ -55,21 +55,30 @@ public class ProductDAO {
 		return conn;
 	}
 	
-	//상품테이블,상품이미지테이블 상세 정보 다 가져오는 메서드 
-	public List<Product_ImgSrcDTO> selectImg(int product_id) throws SQLException {
-		String sql = "select * from product p , product_image i where p.product_id = i.product_id";
+	//상품테이블,상품이미지테이블 상세 정보,상품 재고 다 가져오는 메서드 
+	public List<Product_ImgSrcDTO> selectImg(int product_id,int gender) throws SQLException {
+		String sql = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,\r\n"
+				+ "i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p\r\n"
+				+ "join product_image i on p.product_id = i.product_id\r\n"
+				+ "join product_size ps on ps.product_id = i.product_id\r\n"
+				+ "where p.product_id=? and p.gender=?";
+		
+		
+		
+		
 		PreparedStatement pstmt = null;
 		Connection conn = this.getConnection();
 		ResultSet rs = null;
 		
 		
-		List<Product_ImgSrcDTO> list = new ArrayList<>();
-		//Product_ImgSrcDTO pro = new Product_ImgSrcDTO();
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+				
 		
-		try {	
+			try {	
 				
 				pstmt = conn.prepareStatement(sql);
-				
+				pstmt.setInt(1,product_id);
+				pstmt.setInt(2,gender);
 				
 				rs = pstmt.executeQuery();
 				System.out.println("오냐?");
@@ -79,14 +88,19 @@ public class ProductDAO {
 					 * Product_ImgDTO p = new Product_ImgDTO(); ProductDTO productDTO = new
 					 * ProductDTO();
 					 */
-					
-					Product_ImgSrcDTO pro = new Product_ImgSrcDTO();
-				
-					
 					/*
 					 * p.setPro_image(rs.getInt("pro_image_id"));
 					 * p.setProduct_id(rs.getInt("product_id"));
 					 */
+					
+					
+					
+					Product_ImgSrcDTO pro = new Product_ImgSrcDTO();
+				
+					
+					
+					
+					
 					pro.setS_file_path(rs.getString("s_file_path"));
 					pro.setL_file_path(rs.getString("l_file_path"));
 					
@@ -100,18 +114,24 @@ public class ProductDAO {
 					pro.setRegdate(rs.getDate("regdate"));
 					pro.setCa_code(rs.getLong("ca_code"));
 					
+					pro.setSize_num(rs.getInt("size_num"));
+					pro.setPd_size(rs.getInt("pd_size"));
+					pro.setStock(rs.getInt("stock"));
+					
 				
 					
 					list.add(pro); 
 					
-					System.out.println("list=>"+ list);
-					
+					//System.out.println("list=>"+ list);
+				 
 				}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return list;
+		
+			return list;
+		
 	}
 	
 	
