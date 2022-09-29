@@ -7,14 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.all_contents	{
-	   
-	}
 	
 	
 	.contents-width	{
 		width: 1200px;
-		height: 1000px;
+		height: 800px;
 		margin: 0 auto;
 		
 		
@@ -24,6 +21,7 @@
 		border:1px solid white;
 		width: 1200px;
 		height: 60px;
+		margin-top: 20px;
 		
 	}
 
@@ -176,6 +174,8 @@
 		color: red;
 		display: inline-block;
 	}
+	
+	
 		/* 모달 */
 	.modal--bg {
 	    position: absolute;
@@ -638,13 +638,14 @@
 	.big_product_a a	{
 		text-decoration: none;
 		color:black;
+
 	}
 	
 	.big_product_1	{
 	
 		width: 260px;
 		height: 50px;
-		margin-top: 30px;
+		margin-top: 70px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -653,6 +654,8 @@
 	}
 	.big_product_1:hover	{
 		cursor: pointer;
+		border-bottom: 3px solid black;
+		color:red;
 	}
 	
 	
@@ -660,7 +663,7 @@
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 30px;
+		margin-top: 70px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -669,12 +672,14 @@
 	}
 	.big_product_2:hover	{
 		cursor: pointer;
+		border-bottom: 3px solid black;
+		color:red;
 	}
 	.big_product_3	{
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 30px;
+		margin-top: 70px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -684,13 +689,15 @@
 	
 	.big_product_3:hover	{
 		cursor: pointer;
+		border-bottom: 3px solid black;
+		color:red;
 	}
 	
 	.big_product_4	{
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 30px;
+		margin-top: 70px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -698,6 +705,8 @@
 	}
 	.big_product_4:hover	{
 		cursor: pointer;
+		border-bottom: 3px solid black;
+		color:red;
 	}
 	
 	.big_product_main_1	{
@@ -710,6 +719,67 @@
 		
 	}
 	
+	
+	/*용규님 CSS  */
+	.head-product-wrap {
+		width: 1200px;
+		margin: 0 auto;
+	}
+	.text-head {
+		margin: 53px 0 0;
+		color: #000;
+		font-size: 18px;
+		line-height: 30px;
+		font-weight: 500;
+		font-weight: bold;
+		letter-spacing: -.9px;
+	}
+	.border-line-box {
+		
+		margin-top: 0;
+		border-top: 2px solid #000;
+		border-bottom: 1px solid #666;
+	}
+	.border-line-box table tr th {
+		text-align: left;
+	}
+	tbody tr th {
+		color: #666;
+		vertical-align: middle;
+		padding: 17px 0 17px 20px;
+		display: table-cell;
+		font-weight: bold;
+		height: auto;
+		font-size: 13px;
+		letter-spacing: -.65px;
+	}
+	tbody tr td {
+		padding: 19px 0 18px;
+		line-height: 23px;
+		height: auto;
+		font-size: 13px;
+		letter-spacing: -.65px;
+		color: black;
+		text-align: left;
+		margin: 0;
+		border: 0;
+		font-style: normal;
+		display: table-cell;
+		vertical-align: inherit;
+	}
+	tbody tr+tr, tbody tr+tr td {
+		border-top: 1px solid #d5d5d5;
+	}
+	table {
+		width: 1200px;
+		border-collapse: collapse;
+		border-spacing: 0;
+		table-layout: fixed;
+		text-indent: initial;
+	}
+
+	
+	
 </style>
 <%
 	String context = request.getContextPath();
@@ -718,7 +788,7 @@
 <body>
 	 
 	
-<div class="all_contents">
+
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
     </div>  <!-- header -->	
@@ -726,17 +796,17 @@
 		<div class="breadcrumb-wrap" id="prdtCtgrCrumb">
 			<ul>
 				<li>HOME ></li>
-				<li>MEN ></li>
+				<li id="genderChk"></li>
 				<li>신발 ></li>
-				<li>
-				<select name="category">
+				<li> 
+				<select name="category"> 
 				<option selected="selected"><a herf="#">운동화</a></option>
 				<option><a herf="#">스포츠</option>
 				<option><a herf="#">샌들</option>
 				</select>
 				</li>
-				<li>
-				<select name="category">
+				<li>  >
+				<select name="category"> 
 				<option selected="selected"><a herf="#">스니커즈</a></option>
 				<option><a herf="#">캔버스화</option>
 				<option><a herf="#">슬립온</option>
@@ -819,21 +889,21 @@
 					<!-- <s>89,000원</s> -->
 					<li>
 						${list[0].price}
-					</li>
+					</li><span>원</span>
 				</ul>
 				<button class="button--open"><img src="/j20220904/img/contexts/product_button.png" id="product_button"></button>
 			        <div class="modal--bg hidden">
 			            <div class="modal">
 			                	<table class="modal__text">
 			                		<tr>
-			                			<td>정상가</td><td>89,000원</td>
+			                			<td>정상가</td><td>${list[0].price }원</td>
 			                		</tr>
 			                		<tr>	
 			                			<td>할인가</td><td>0원</td>
 			                		</tr>
 			                		<tr>
 			                			<td>회원최대혜택가</td><td class="product_real_price">
-													${list[0].price}
+													${list[0].price}원
 										</td>
 			                		</tr>
 			           					
@@ -926,12 +996,56 @@
 					
 				</div>
 			</div>
-		</div>
-		
-			
+		</div>	
+	</div>
+	<!-- 용규님이 작성 -->
+	<div class="head-product-wrap">
+	<div class="text-head">상품정보제공 고시</div>
+		<div class="border-line-box" id="product-detail-notice-wrapper">
+		<table>
+			<colgroup>
+				<col style="width: 153px;">
+				<col>
+				<col style="width: 153px;">
+				<col>
+			</colgroup>
+			<tbody id="product-detail-notice">
+				<tr>
+					<th>소재</th>
+					<td>폴리에스터</td>
+					<th>색상</th>
+					<td>${list[0].color }</td>
+				</tr>
+				<tr>
+					<th>치수</th>
+					<td><span>${list[0].pd_size } / ${list[1].pd_size } / ${list[2].pd_size } /  ${list[3].pd_size } / ${list[4].pd_size } </span></td>
+					<th>굽높이</th>
+					<td><span>(굽높이)</span></td>
+				</tr>
+				<tr>
+					<th>브랜드</th>
+					<td><span>${list[0].brand }</span></td>
+					<th>제조국</th>
+					<td><span>베트남</span></td>
+				</tr>
+				<tr>
+					<th>A/S 책임자와 전화번호</th>
+					<td><span>ABC마트 A/S 담당자 : 080-701-7770</span></td>
+					<th>제조년월</th>
+					<td><span>상품별 입고시기에 따라 상이하여, 배송 받으신 제품의 라벨 참고 바랍니다.</span></td>
+				</tr>
+				<tr>
+					<th>품질보증기준</th>
+					<td><span>관련 법 및 소비자 분쟁 해결 기준에 따름 (품질보증기간 : 구입일로부터 6개월 이내)</span></td>
+					<th>소재별 관리방법	</th>
+					<td><span>상품 착용 및 세탁 시에는 제품에 부착된 라벨 및 취급 주의사항을 꼭 먼저 확인해 주시길 바랍니다. 가벼운 오염물이 묻었을 때에는 부드러운 솔로 털어내주시기 바랍니다. 물에 젖었을 때에는 바람이 잘 통하는 응달에 건조해 주시기 바랍니다.</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	</div>
 	
-	<jsp:include page="pd_detail_info.jsp"></jsp:include>
+	
 	
 	
 	
@@ -939,42 +1053,90 @@
 	<div class="big_product">
 		<div class="big_product_a">
 			<div class="big_product_1">
-				<a href="">
 				상품정보
-				</a>
 			</div>
 			<div class="big_product_2">
-				<a href="">
 				상품후기
-				</a>
 			</div>
 			<div class="big_product_3">
-				<a href="">
 				상품Q&A
-				</a>
 			</div>
 			<div class="big_product_4">
-				<a href="">
 				배송/교환/반품/AS안내
-				</a>
 			</div>
-		</div>
+		</div> 
+		
+		
+		
 		
 		<div class="big_product_main">
 			<div class="big_product_main_1">
-				<img src="${list[0].l_file_path}" class="big_product_main_1_1" id="big_product_main_1_1">
+				 <img src="${list[0].l_file_path}" class="big_product_main_1_1" id="big_product_main_1_1"> 
+			</div>
+			<div class="big_product_main_2">
+			
+			    			<!--예림님이 상품후기 여기다가 작성  -->
+			    			
+			</div>
+			<div class="big_product_main_3">
+			   	
+			   				<!--예림님이 상품Q&A 여기다가 작성  -->	
+			   				
+			</div>
+			<div class="big_product_main_4">
+			
+			 	 			<!--예림님이 배송/교환/반품/AS 여기다가 작성  -->
+			 	 				
 			</div>
 		</div>
 	</div>
 	<div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
     </div>
-</div>	
+
 	 
 	
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script type="text/javascript">
+
+// 상품정보,상품후기,상품Q&A,AS안내 show/hide하는 로직
+$(document).ready(function(){
+	  $('.big_product_main_1').show();
+	  $('.big_product_main_1').siblings('div').hide();
+	  
+	  $(".big_product_1").click(function(){
+	    $('.big_product_main_1').show();
+	    $('.big_product_main_1').siblings('div').hide();
+	  });
+	  $(".big_product_2").click(function(){
+	    $('.big_product_main_2').show();
+	    $('.big_product_main_2').siblings('div').hide();
+	  });
+	  $(".big_product_3").click(function(){
+	    $('.big_product_main_3').show();
+	    $('.big_product_main_3').siblings('div').hide();
+	  });
+	  $(".big_product_4").click(function(){
+		    $('.big_product_main_4').show();
+		    $('.big_product_main_4').siblings('div').hide();
+	  });
+	});
+
+
+
+
+//성별 체크해서 나타나게하는 로직
+	$(function(){
+		if(Number(${list[0].gender})==0)	{
+			$('#genderChk').text('MEN >');
+		}else{
+			$('#genderChk').text('WOMEN >');
+		}
+	});
+
+
 	
+//찜하면 빨간하트로 바뀌고 찜한상품 insert하는 로직	
 	$(function () {
 		var num = 0;
 		var imageName = ["heart1", "heart0"];
@@ -1027,7 +1189,8 @@
 	
 	 
 	
-	
+//작은 이미지 hover하면 큰 이미지로 바뀌는 로직	(시간남으면 이미지 더 추가)
+
 	var bigPic = document.querySelector("#big"); //큰 사진
 	var smallPics = document.querySelectorAll(".small"); //작은사진 여러개
 	
@@ -1060,6 +1223,8 @@
 	    modal.classList.add('hidden');
 	    modal.classList.remove('visible');
 	}
+	
+	
 	
 	
 ////////////////// 사이즈 없으면 안눌려서 장바구니로 가지못하게 하는 로직//////////////////////

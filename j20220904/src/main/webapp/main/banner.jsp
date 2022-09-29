@@ -87,6 +87,11 @@
 }
 </style>
 <style type="text/css">
+c1_banner{
+	width:100%;
+	
+}
+
 .c1_bannerimg1{
 	border-radius: 8px;
 	width:100%;
@@ -114,37 +119,51 @@ text-decoration: none;
 .c1_bannerimg	{
 	width:1200px;
 	height: 600px;
-	margin-left: 250px;
+	
 	
 }
 
-/* #c1_bannerimg1{
+ #c1_bannerimg1{
 	width:1200px;
 	height: 600px;
-	
+	margin-left: 170px;
 }
 
 #c1_bannerimg2{
 	width:1200px;
 	height: 600px;
+	margin-left: 170px;
 }
 
 #c1_bannerimg3{
 	width:1200px;
 	height: 600px;
-	margin-left: 250px;
+	margin-left: 170px;
 } 
 
 
 #c1_bannerimg4{
 	width:1200px;
 	height: 600px;
-	margin-left: 250px;
+	margin-left: 170px;
 }
-*/
+
 #c1_bannerimg5	{
 	width:1200px;
-	margin-left: 250px;
+	height: 600px;
+	margin-left: 170px;
+}
+
+#c1_bannerimg6 { 
+	width:1200px;
+	height: 600px;
+	margin-left: 170px;
+}
+
+#c1_bannerimg7 {
+	width:1200px;
+	height: 600px;
+	margin-left: 170px;
 }
 </style>
 
