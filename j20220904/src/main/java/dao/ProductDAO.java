@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import dto.BasketDTO;
+import dto.BasketProDTO;
 import dto.ProductDTO;
 
 import dto.ProductDTO;
@@ -243,10 +244,11 @@ public class ProductDAO {
 	}
 	
 	//상세페이지에서 장바구니에 상품 insert 메서드
-	public int insertBasket(BasketDTO[] basketDTOArray) throws SQLException {
+	public int insertBasket(List<BasketProDTO> basketDTOArray) throws SQLException {
 		
 		PreparedStatement pstmt = null;
 		Connection conn = this.getConnection();
+		
 		String sql = "insert into basket values(?,?,?,?)";
 		
 		int result = 0;
@@ -256,12 +258,12 @@ public class ProductDAO {
 			
 		
 			
-			for(i=0; i<basketDTOArray.length; i++)	{
+			for(i=0; i<basketDTOArray.size(); i++)	{
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1,basketDTOArray[i].getSize_num());
-				pstmt.setInt(2,basketDTOArray[i].getProduct_id());
-				pstmt.setString(3,basketDTOArray[i].getMem_id());
-				pstmt.setInt(4,basketDTOArray[i].getCnt());
+				pstmt.setInt(1,basketDTOArray.get(i).getSize_num());
+				pstmt.setInt(2,basketDTOArray.get(i).getProduct_id());
+				pstmt.setString(3,basketDTOArray.get(i).getMem_id());
+				pstmt.setInt(4,basketDTOArray.get(i).getCnt());
 				
 				result =pstmt.executeUpdate();
 			
