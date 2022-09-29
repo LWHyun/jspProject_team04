@@ -101,13 +101,13 @@
 	      	<!-- 왼쪽 선택창 -->
 	      	<div class="aside-wrap">
 	         <ol class="customer-lnb">
-	            <li class="customer-lnb-item"><a href="notice.jsp">공지사항</a></li>
-	            <li class="customer-lnb-item eng"><a href="faq.jsp" class="active">FAQ</a></li>
+	            <li class="customer-lnb-item"><a href="manNoticeList.jsp">공지사항</a></li>
+	            <li class="customer-lnb-item eng"><a href="#" class="active">Q&A 관리</a></li>
 	            <li class="customer-lnb-item">
 	            	<a href="#">상품관리</a>
 	            	<ul>
-		            	<li class="product-manage"><a href="productRegister.jsp">상품 등록</a></li>
-		            	<li class="product-manage"><a href="productManage.jsp">상품 관리</a></li>
+		            	<li class="product-manage"><a href="manProductRegister.jsp">상품 등록</a></li>
+		            	<li class="product-manage"><a href="manProductManage.jsp">상품 관리</a></li>
 	            	</ul>
 	            </li>
 	         </ol>

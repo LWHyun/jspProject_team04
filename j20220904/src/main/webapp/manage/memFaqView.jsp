@@ -9,6 +9,9 @@
 	span {
 		font: bold;
 	}
+	.wrap .contents-wrap .contents-aside .aside-contents {
+	    width: calc(100% - 220px);
+	}
 	
 	/* ============= FAQ  =============  */
 	/* 고객센터 */
@@ -48,7 +51,8 @@
 	/* 중앙화면 */
 	.aside-contents {
 	    margin-top: -140px;
-	    width: calc(95% - 162px);
+	    width: calc(95% - 206px);
+	    transform: translateX(80px);
 	}
 	.text-head2.eng, .text-head2 .eng {
 	    font-family: "Montserrat",sans-serif;
@@ -338,7 +342,7 @@
 	      	<!-- 왼쪽 선택창 -->
 	      	<div class="aside-wrap">
 	         <ol class="customer-lnb">
-	            <li class="customer-lnb-item"><a href="memNoticeList.jsp">공지사항</a></li>
+	            <li class="customer-lnb-item"><a href="${pageContext.request.contextPath }/manage/memNoticeList.do">공지사항</a></li>
 	            <li class="customer-lnb-item eng"><a href="#" class="active">FAQ</a></li>
 	         </ol>
 	       </div>

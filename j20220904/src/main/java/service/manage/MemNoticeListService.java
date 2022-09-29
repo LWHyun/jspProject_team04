@@ -17,6 +17,8 @@ public class MemNoticeListService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("MemNoticeListService 시작!");
+		
 		NoticeDAO nd = NoticeDAO.getInstance();
 		
 		try {
@@ -41,12 +43,12 @@ public class MemNoticeListService implements CommandProcess {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("startNum", startNum);
-			request.setAttribute("blockSize", blockSize);
+			request.setAttribute("blockSize", blockSize);		// 페이징 블록
 			request.setAttribute("pageCnt", pageCnt);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 		} catch (Exception e) {
-			System.out.println("ListAction e.getMessage()->"+e.getMessage());
+			System.out.println("[MemNoticeListService] e.getMessage()->"+e.getMessage());
 		}
 
 		return "memNoticeList.jsp";
