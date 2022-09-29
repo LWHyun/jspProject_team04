@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 public class UpdateFormService implements CommandProcess {
 
@@ -20,6 +22,11 @@ public class UpdateFormService implements CommandProcess {
 			return "/member/loginCheck.jsp";
 		}
 		
+		// DB
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		MemberDTO memberDTO = memberDAO.selectMember((String)session.getAttribute("mem_id"));
+		
+		request.setAttribute("memberDTO", memberDTO);
 		request.setAttribute("active", "update");
 		request.setAttribute("display", "myPagePrivateInfoUp.jsp");
 		
