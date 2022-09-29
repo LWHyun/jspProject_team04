@@ -8,7 +8,8 @@ public class NoticeDTO {
 	private String notice_title;
 	private Date   notice_date;
 	private String notice_content;
-	
+	private int    notice_type;
+
 	
 	public int getNotice_code() {
 		return notice_code;
@@ -33,5 +34,11 @@ public class NoticeDTO {
 	}
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
+	}
+	public int getNotice_type() {
+		return notice_type;
+	}
+	public void setNotice_type(int notice_type) {
+		this.notice_type = notice_type;
 	}
 }

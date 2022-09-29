@@ -25,6 +25,7 @@ public class DeleteBasketItemService implements CommandProcess {
 		HttpSession session = request.getSession();
 		String mem_id = (String)session.getAttribute("mem_id");
 		
+		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int size_num   = Integer.parseInt(request.getParameter("size_num"));
 		
@@ -38,11 +39,13 @@ public class DeleteBasketItemService implements CommandProcess {
 		
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		BasketDTO basketDTO = new BasketDTO();
-		basketDAO.deleteItem(basketDTO);
 		
 		basketDTO.setMem_id(mem_id);
 		basketDTO.setProduct_id(product_id);
 		basketDTO.setSize_num(size_num);
+		
+		basketDAO.deleteItem(basketDTO);
+		
 		
 		session.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
 		/*
