@@ -211,6 +211,29 @@ public class MemberDAO {
 		return result;
 	}
 	
+	// 회원 탈퇴 메서드
+	public int delete(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "delete from member where mem_id=?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt, conn);
+		}
+		
+		return result;
+	}
+	
 	//close하는 메서드
 	private void close(AutoCloseable... ac) {
 		try {
