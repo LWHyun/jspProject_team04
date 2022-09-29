@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.BasketDAO;
+import dao.LikeProDAO;
 import dao.MemberDAO;
 import dto.MemberDTO;
 
@@ -24,8 +26,17 @@ public class UpdateFormService implements CommandProcess {
 		
 		// DB
 		MemberDAO memberDAO = MemberDAO.getInstance();
+		BasketDAO basketDAO = BasketDAO.getInstance();
+		LikeProDAO likeProDAO = LikeProDAO.getInstance();
+		
 		MemberDTO memberDTO = memberDAO.selectMember((String)session.getAttribute("mem_id"));
 		
+		// 장바구니 , 찜 갯수
+		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
+		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
+		
+		request.setAttribute("basketCnt", basketCnt);
+		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("memberDTO", memberDTO);
 		request.setAttribute("active", "update");
 		request.setAttribute("display", "myPagePrivateInfoUp.jsp");
