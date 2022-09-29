@@ -69,12 +69,15 @@ public class QABoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// sql문 변경하기
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
 	 		    + "      From 	 (select * from qa_board order by q_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
+		
+		System.out.println("DAO qABoardList sql->"+sql);
+		System.out.println("DAO qABoardList startRow->"+startRow);
+		System.out.println("DAO qABoardList endRow->"+endRow);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -94,6 +97,7 @@ public class QABoardDAO {
 				qABoard.setQ_date(rs.getDate("q_date"));
 				qABoard.setQ_views(rs.getInt("q_views"));
 				qABoard.setQ_answer(rs.getString("q_answer"));
+				qAList.add(qABoard); 
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
