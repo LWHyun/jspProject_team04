@@ -18,6 +18,7 @@ public class LogoutService implements CommandProcess {
 		// 로그아웃
 		HttpSession session = request.getSession();
 		session.removeAttribute("mem_id");
+		session.removeAttribute("mem_name");
 		
 		return "/";
 	}
