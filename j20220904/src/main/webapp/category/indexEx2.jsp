@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Header</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,6 +8,41 @@
    header {
       display: block;
    }
+   
+   
+   .cate_select{
+		width : 100%;
+		height: 500px;
+		display: flex;
+		justify-content: center;
+		
+	}
+   
+   
+  /*   #cate_men:hover .cate_select{
+		display: flex;
+		justify-content: center;
+	}  */
+	
+	
+	
+   
+   .cate_div{
+   		margin: 10px;
+   }
+   
+   #cate_high{
+   		font-weight: bold;
+   		font-size: 40px;
+   }
+   
+   .cate_low{
+   		font-weight: bold;
+   		font-size: 20px;
+   		line-height: 40px;
+   }
+   
+   
    .gnb-wrap {
       height: 145px;
       font-family: "Montserrat","Noto Sans KR",sans-serif;
@@ -22,7 +53,7 @@
    .gnb-top-wrap .inner {
       position: relative;
       display: flex;
-         height: 100%;
+      height: 100%;
       width: 1200px;
       text-align: center;
       margin: 0 auto;
@@ -76,8 +107,10 @@
       color: black;
    }
    .gnb-bottom-wrap {
+        position: relative;
       background-color: #ee1c25;
-      height: 48px;   
+      height: 48px;  
+      min-width: 1200px; 
    }
    .gnb-bottom-wrap .inner {
       position: relative;
@@ -102,53 +135,49 @@
       text-decoration: none;
       color: #fff;
    }
+   
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
-
-
-</head>
+<c:set var="loginId" value="${empty sessionScope.mem_id ? '' : sessionScope.mem_id}"/>
+<c:set var="loginOut" value="${loginId == '' ? 'LOGIN' : 'LOGOUT'}"/>
+<c:set var="loginOutLink" value="${loginId == '' ? '/member/loginForm.do' : '/member/logout.do' }"/>
+<c:set var="joinMy" value="${loginId == '' ? 'JOIN' : 'MY' }"/>
+<c:set var="joinMyLink" value="${loginId == '' ? '/member/writeForm.do' : '#' }"/>
    <header>
       <div class="gnb-wrap">
          <div class="gnb-top-wrap">
             <div class="inner">
-               <a href="index.jsp">
+               <a href="${pageContext.request.contextPath }">
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
-               
-               
-               
-               
-               
-               <div class="gnb-search-wrap">
+              	<div class="gnb-search-wrap">
                   <form action="${pageContext.request.contextPath }/category/searchView.do">
-                     <input type="search" name="searchBar" id="searchBar" value="${word }" onclick="goSearch()">
+                     <input type="search" name="searchBar" id="searchBar" value="${searchWord }" onclick="goSearch()">
                      <button class="material-icons">search</button><!-- 버튼 클릭되면 진짜 찾는걸로 -->
                   </form>
                </div>
-               
-                  
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
                <div class="util-list-wrap">
                   <ul class="util-list">
-                     <li>
-                        <a href="#" class="material-symbols-outlined">login</a>
-                        <a href="#" style="font-size: 10px;">LOGIN</a>
-                     </li>
-                     <li>
+                  <c:if test="${sessionScope.mem_id == 'admin' }">
+                	<li>
                         <a href="#" class="material-symbols-outlined">person</a>
-                        <a href="#" style="font-size: 10px;">JOIN</a>
+                        <a href="#" style="font-size: 10px;">관리자</a>
+                     </li>
+                  </c:if>
+                     <li>
+                        <a href="../manage/noticeReal.jsp" class="material-symbols-outlined"><img src="https://cdn-icons-png.flaticon.com/512/584/584648.png" width="24" height="24"></a>
+                        <a href="#" style="font-size: 10px;">NOTICE</a>
                      </li>
                      <li>
-                        <a href="#" class="material-symbols-outlined">shopping_cart</a>
+                        <a href="${pageContext.request.contextPath }${loginOutLink }" class="material-symbols-outlined">${loginOut }</a>
+                        <a href="#" style="font-size: 10px;">${loginOut }</a>
+                     </li>
+                     <li>
+                        <a href="${pageContext.request.contextPath }${joinMyLink}" class="material-symbols-outlined">person</a>
+                        <a href="#" style="font-size: 10px;">${joinMy }</a>
+                     </li>
+                     <li>
+                        <a href="${pageContext.request.contextPath }/basket/goToBasket.do" class="material-symbols-outlined">shopping_cart</a>
                         <a href="#" style="font-size: 10px;">CART</a>
                      </li>
                   </ul>
@@ -162,8 +191,8 @@
                      <li>
                         <a href="#" style="color: #ffe100;">BRAND</a>
                      </li>
-                     <li>
-                        <a href="${pageContext.request.contextPath }/category/men3.do?gender=0">MEN</a>
+                     <li id="cate_men">
+                       <a href="${pageContext.request.contextPath }/category/men3.do?gender=0" >MEN</a>
                      </li>
                      <li>
                         <a href="${pageContext.request.contextPath }/category/women.do?gender=1">WOMEN</a>
@@ -173,17 +202,29 @@
             </div>
          </div>
       </div>
-      
-   </header>
-   
-   
-   <footer>
-   
-   </footer>
 <script type="text/javascript">
 	function goSearch() {
-		window.open('goSearch.do','_blank','width=1000px','height=1000px');
+		window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 	}
+	
+	
 </script>
 
-</html>
+	<div class="cate_select">
+		<div class="cate_div">
+			<h1 id="cate_high">상위카테고리</h1>
+			<hr>
+			<ul class="cate_low">
+				<li>스니커즈</li>
+				<li>sjfklejlkfjz;lsef</li>
+				<li>sjfklejlkfjz;lsef</li>
+				<li>sjfklejlkfjz;lsef</li>
+				<li>sjfklejlkfjz;lsef</li>
+				<li>sjfklejlkfjz;lsef</li>
+			</ul>
+		</div>
+		
+		
+	</div>
+
+   </header>

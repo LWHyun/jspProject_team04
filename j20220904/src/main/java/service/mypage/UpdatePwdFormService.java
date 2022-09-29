@@ -9,19 +9,21 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 
-public class MypageService implements CommandProcess {
+public class UpdatePwdFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		// 로그인 여부
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
 		
-		request.setAttribute("active", "my");
+		request.setAttribute("active", "updatePwd");
+		request.setAttribute("display", "myPageCngInfoUp.jsp");
+		
 		return "/mypage/myPage.jsp";
 	}
-
+	
 }

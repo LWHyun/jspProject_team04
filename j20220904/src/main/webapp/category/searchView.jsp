@@ -174,7 +174,7 @@
 					<span class="pro_price">${list.price }</span><br>
 					<hr>
 					<div class="pro_buycontent">
-						<img class="like_img" alt="돋보기이미지" src="../img/contexts/heart1.png" onclick="like()">
+						<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
 						<button onclick="buynow()" class="pro_buynow">바로구매</button>
 					</div>
 				</div>

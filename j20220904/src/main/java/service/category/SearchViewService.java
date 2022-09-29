@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dao.ProductDAO;
+import dao.CategoryDAO;
 import dto.ProductDTO;
 
 public class SearchViewService implements CommandProcess {
@@ -20,19 +20,22 @@ public class SearchViewService implements CommandProcess {
 			throws ServletException, IOException {
 		String searchBar = request.getParameter("searchBar");
 		HttpSession session = request.getSession();
-		session.removeAttribute("word");
-		ProductDAO pd = ProductDAO.getInstance();
+		String searchWord = (String) session.getAttribute("searchWord");
+		
+		
+		CategoryDAO cd = CategoryDAO.getInstance();
+		System.out.println("searchViewService "+searchWord);
 		
 		try {
-			List<ProductDTO> list = pd.selectSearch(searchBar);
+			List<ProductDTO> list = cd.selectSearch(searchBar);
 			request.setAttribute("searchBar", searchBar);
 			request.setAttribute("list", list);
-			
+			request.setAttribute("searchWord", searchWord);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		session.removeAttribute("searchWord");
 		return "searchView.jsp";
 	}
 

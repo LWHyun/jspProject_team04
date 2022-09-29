@@ -8,28 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 
-public class NoticeWriteFormService implements CommandProcess {
+public class ManNoticeWriteFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		System.out.println("~~WriteFormAction 시작~~");
-		
 		try {
 			// 신규글 
-			int num = 0;
+			int notice_code = 0;
 			String pageNum = request.getParameter("pageNum");
 			
 			if (pageNum == null) pageNum = "1";
 			
-			request.setAttribute("num", num);
+			request.setAttribute("notice_code", notice_code);
 			request.setAttribute("pageNum", pageNum);		
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		return "noticeWriteForm.jsp";
+		return "manNoticeWriteForm.jsp";
 	}
 }
