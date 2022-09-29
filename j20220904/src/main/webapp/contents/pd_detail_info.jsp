@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	.head-product-wrap {
+		width: 1200px;
+		margin: 0 auto;
+	}
 	.text-head {
 		margin: 53px 0 0;
 		color: #000;
@@ -16,12 +20,13 @@
 		letter-spacing: -.9px;
 	}
 	.border-line-box {
+		
 		margin-top: 0;
 		border-top: 2px solid #000;
 		border-bottom: 1px solid #666;
 	}
 	.border-line-box table tr th {
-	text-align: left;
+		text-align: left;
 	}
 	th {
 		color: #666;
@@ -50,18 +55,6 @@
 	tbody tr+tr, tbody tr+tr td {
 		border-top: 1px solid #d5d5d5;
 	}
-	div {
-		display: black;
-	}
-	/* body {
-		min-width: 1200px;
-		width: 1200px;
-		color: #000;
-		background-color: #fff;
-		line-height: 1;
-		font-size: 13px;
-		overflow-y: scroll;
-	} */
 	table {
 		width: 1200px;
 		border-collapse: collapse;
@@ -72,6 +65,7 @@
 </style>
 </head>
 <body>
+	<div class="head-product-wrap">
 	<div class="text-head">상품정보제공 고시</div>
 		<div class="border-line-box" id="product-detail-notice-wrapper">
 		<table>
@@ -114,6 +108,7 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
 	</div>
 </body>
 </html>
