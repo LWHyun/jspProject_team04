@@ -13,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.QABoardDTO;
-import dto.ReviewBoardDTO;
 
 public class QABoardDAO { 
 	// 싱글톤
@@ -81,6 +80,7 @@ public class QABoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				QABoardDTO qABoard = new QABoardDTO();
@@ -95,7 +95,6 @@ public class QABoardDAO {
 				qABoard.setQ_views(rs.getInt("q_views"));
 				qABoard.setQ_answer(rs.getString("q_answer"));
 			}
-			rs = pstmt.executeQuery();
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
 		} finally {
