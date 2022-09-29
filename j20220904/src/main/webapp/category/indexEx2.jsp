@@ -28,10 +28,10 @@
       display: flex;
    } */
 	
-	.gnb-bottom-wrap > .inner > .gnbMenuWrap > ul > li:hover .cate_select{
+	/* .gnb-bottom-wrap > .inner > .gnbMenuWrap > ul > li:hover .cate_select{
 		background-color: blue;
-		/* display: ''; */
-	} 
+		/* display: ''; 
+	}  */
    
    .cate_div{
    		margin: 10px;

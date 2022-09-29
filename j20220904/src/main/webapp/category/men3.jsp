@@ -183,16 +183,19 @@
 		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>
-				<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img"><br>
+			<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
+				<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
 				<span class="pro_price">${list.price }</span><br>
+				</a>
 				<hr>
 				<div class="pro_buycontent">
 					<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
 					<button onclick="buynow()" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>
+			
 			</div>
 			</li>
 		</c:forEach>
