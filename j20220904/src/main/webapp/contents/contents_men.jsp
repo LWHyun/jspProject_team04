@@ -7,10 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	.all_contents	{
+	   
+	}
+	
+	
 	.contents-width	{
-		border:1px solid white;
 		width: 1200px;
 		height: 1000px;
+		margin: 0 auto;
+		
+		
 	}
 	
 	.breadcrumb-wrap {
@@ -21,7 +28,7 @@
 	}
 
 	.breadcrumb-wrap li {
-	 float:left;
+	 float:left; 
 	 list-style: none;
 	}
 	
@@ -30,7 +37,7 @@
 	}
 	
 	.image_big_left	{
-		border:1px solid white;
+		
 		width: 580px;
 		float: left;
 	}
@@ -360,7 +367,7 @@
 		border:1px solid white;
 		display: inline-block;
 		text-align: center;
-		width: 200px;
+		width: 350px;
 		height: 50px;
 		margin-top: 30px;
 	}
@@ -608,12 +615,13 @@
 	/* 상품정보 큰 이미지 시작 */
 	
 	.big_product	{
-		border:1px solid white;
 		width: 1200px;
 		margin-top: 30px;
+		margin: 0 auto;
 	}
 	
 	.big_product_a	{
+		margin: 0 auto;
 		height: 50px;
 	    display: flex;
 	    flex-direction: row;
@@ -623,6 +631,7 @@
 	    align-items: center;
 	    clear: both;
 	    font-weight: bold;
+	    
 		
 	}
 	
@@ -632,9 +641,10 @@
 	}
 	
 	.big_product_1	{
-		border:1px solid white;
+	
 		width: 260px;
 		height: 50px;
+		margin-top: 30px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -647,9 +657,10 @@
 	
 	
 	.big_product_2	{
-		border:1px solid white;
+		
 		width: 260px;
 		height: 50px;
+		margin-top: 30px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -660,9 +671,10 @@
 		cursor: pointer;
 	}
 	.big_product_3	{
-		border:1px solid white;
+		
 		width: 260px;
 		height: 50px;
+		margin-top: 30px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -675,9 +687,10 @@
 	}
 	
 	.big_product_4	{
-		border:1px solid white;
+		
 		width: 260px;
 		height: 50px;
+		margin-top: 30px;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
@@ -689,6 +702,7 @@
 	
 	.big_product_main_1	{
 		height: 3660px;
+		margin-top:60px;
 	}
 	.big_product_main_1_1	{
 		margin: 0 40px 0 180px;
@@ -702,6 +716,12 @@
 %>
 </head>
 <body>
+	 
+	
+<div class="all_contents">
+	<div id="header">
+       <jsp:include page="../main/header.jsp"></jsp:include>
+    </div>  <!-- header -->	
 	<div class="contents-width">
 		<div class="breadcrumb-wrap" id="prdtCtgrCrumb">
 			<ul>
@@ -859,11 +879,12 @@
 						<div class="style_size">
 							<div class="style_size_left">사이즈</div>
 							<div class="style_size_right">
-								<button type="button" id="250" value="250" onclick="sizeCheck(1010092974, 250)">250</button>
-								<button type="button" id="260" value="260" onclick="sizeCheck(1010092974, 260)">260</button>
-								<button type="button" id="270" value="270" onclick="sizeCheck(1010092974, 270)">270</button>
-								<button type="button" id="280" value="280" onclick="sizeCheck(1010092974, 280)">280</button>
-								<button type="button" id="290" value="290" onclick="sizeCheck(1010092974, 290)">290</button>
+								<button type="button" id="250" value="250">250</button>
+								<button type="button" id="260" value="260">260</button>
+								<button type="button" id="270" value="270">270</button>
+								<button type="button" id="280" value="280">280</button>
+								<button type="button" id="290" value="290">290</button>
+								<!-- onclick="sizeCheck(1010092974, 290)"  -->						
 							</div>
 						</div>
 						<form id="sizeForm"> 
@@ -876,9 +897,9 @@
 							<input type="hidden" name="price" value="${list[0].price }">
 						<div class="append_product">
 							<div class="append_product_child_left">
-								
-								
-								
+							
+							
+							
 							</div>
 						</div>
 						</form>
@@ -887,7 +908,7 @@
 								총 결제금액
 							</div>
 							<div class="style_total_right">
-									
+									 0
 							</div><span>원</span>
 						</div>
 						<div class="style_myshopping">
@@ -908,6 +929,8 @@
 	</div>
 	
 	<jsp:include page="pd_detail_info.jsp"></jsp:include>
+	
+	
 	
 	<!-- 상품큰 사진 -->
 	<div class="big_product">
@@ -940,7 +963,11 @@
 			</div>
 		</div>
 	</div>
-	
+	<div id="footer">
+        <jsp:include page="../main/footer.jsp"></jsp:include>
+    </div>
+</div>	
+	 
 	
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script type="text/javascript">
@@ -1037,6 +1064,7 @@
 
 		
 		$('#250').click(function(){
+			  
 			
 			if($('.append_product').children().text() != $('.div250').text()) {
 				$('.append_product').children().addClass();
@@ -1142,15 +1170,16 @@
 	
 	
 	
-		var amount1 = 0;
+		var amount1 =0;
+		$(document).on('click','#250', function(){
+			   amount1 = Number(${list[0].price});
+			   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+		   });
+		
 	   $(document).on('change', '#number1', function() {
-		  
-			   
 			   amount1 = Number(${list[0].price})*Number($("#number1").val()); // 89000;
-			      
-			      
-		      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
-			      
+			     
+		      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);     
 	   });
 	   
 	   $(document).on('click','#X1', function(){
@@ -1160,6 +1189,11 @@
 	   
 	   
 	   var amount2 = 0;
+	   $(document).on('click','#260', function(){
+		   amount2 = Number(${list[0].price});
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
 	   $(document).on('change', '#number2', function() {
 	      amount2 = Number(${list[0].price})*Number($("#number2").val()); // 89000;
 	      
@@ -1172,6 +1206,11 @@
 	   });
 	   
 	   var amount3 = 0;
+	   $(document).on('click','#270', function(){
+		   amount3 = Number(${list[0].price});
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
 	   $(document).on('change', '#number3', function() {
 	      amount3 = Number(${list[0].price})*Number($("#number3").val()); // 89000;
 	      
@@ -1184,8 +1223,13 @@
 	   });
 	   
 	   var amount4 = 0;
+	   $(document).on('click','#280', function(){
+		   amount4 = Number(${list[0].price});
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
 	   $(document).on('change', '#number4', function() {
-	      amount2 = Number(${list[0].price})*Number($("#number4").val()); // 89000;
+	      amount4 = Number(${list[0].price})*Number($("#number4").val()); // 89000;
 	      
 	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   }); 
@@ -1196,8 +1240,13 @@
 	   });
 	   
 	   var amount5 = 0;
+	   $(document).on('click','#290', function(){
+		   amount5 = Number(${list[0].price});
+		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+	   });
+	   
 	   $(document).on('change', '#number5', function() {
-	      amount2 = Number(${list[0].price})*Number($("#number5").val()); // 89000;
+	      amount5 = Number(${list[0].price})*Number($("#number5").val()); // 89000;
 	      
 	      $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   }); 
@@ -1207,6 +1256,8 @@
 		   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 	   });
 	
+	   
+	   
 	   /* 장바구니 alert */
 		$(function() {
 			$(document).on('click','#myshopping1' ,function() {
@@ -1215,25 +1266,27 @@
 				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
 					alert('사이즈를 선택해주세요');
 				}else{
-				
-				
-					$.ajax({
-						url: '${pageContext.request.contextPath}/contents/insertBasket.do', //장바구니쪽
-						type: 'get',
-						data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
-						dataType: 'text',
-						success : function(data){
-							if(data == '1'){
-								alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
-								location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
-							}else{
-								alert('장바구니에 담기에 실패했습니다\n다시 시도해주세요');
-							}
-						},
-						error: function(err){
-							console.log(err);
-						}
-					});	
+					
+								$.ajax({
+									url: '${pageContext.request.contextPath}/contents/insertBasket.do', //장바구니쪽
+									type: 'get',
+									data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
+									dataType: 'text',
+									success : function(data){
+										if(data == '1'){
+											alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
+											location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
+										}else if(data == '2'){
+											alert('이미 담겨있는 상품입니다');
+										}else{
+											alert('장바구니가 비었습니다\n장바구니에 상품을 담아주세요');
+										}
+									},
+									error: function(err){
+										console.log(err);
+									}
+								});	
+							
 				
 				}
 			
@@ -1250,12 +1303,12 @@
 		});
 	   
 </script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 	function sizeCheck(product_id, pd_size) {
 		var sendData = "product_id=" + product_id + "&pd_size=" + pd_size;
 			$.ajax({
-					url: "contents/noStock.do",
+					url: "${pageContext.request.contextPath}/contents/noStock.do",
 					data: sendData,
 					dataType: 'text',
 					success: function (data) {
@@ -1265,6 +1318,7 @@
 			})
 	}
 
-</script>
+</script> -->
 </body>
+
 </html>

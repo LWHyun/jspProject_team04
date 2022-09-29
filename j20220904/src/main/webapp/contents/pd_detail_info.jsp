@@ -53,7 +53,7 @@
 	div {
 		display: black;
 	}
-	body {
+	/* body {
 		min-width: 1200px;
 		width: 1200px;
 		color: #000;
@@ -61,7 +61,7 @@
 		line-height: 1;
 		font-size: 13px;
 		overflow-y: scroll;
-	}
+	} */
 	table {
 		width: 1200px;
 		border-collapse: collapse;
