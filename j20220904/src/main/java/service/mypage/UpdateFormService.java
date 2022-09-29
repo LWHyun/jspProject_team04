@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 
-public class CheckPwdFormService implements CommandProcess {
+public class UpdateFormService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
@@ -19,10 +19,9 @@ public class CheckPwdFormService implements CommandProcess {
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
-
 		
-		request.setAttribute("active", "updatePwd");
-		request.setAttribute("display", "myPageCngInfo.jsp");
+		request.setAttribute("active", "update");
+		request.setAttribute("display", "myPagePrivateInfoUp.jsp");
 		
 		return "/mypage/myPage.jsp";
 	}

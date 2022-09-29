@@ -35,6 +35,7 @@ public class LoginService implements CommandProcess {
 		if(checkPwd(memberDTO, mem_pwd)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mem_id", mem_id);
+			session.setAttribute("mem_name", memberDTO.getMem_name());
 			
 			// 아이디 저장
 			if("on".equals(rememberId)) {

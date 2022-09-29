@@ -61,10 +61,10 @@
                                     <a href="${pageContext.request.contextPath }/mypage/checkPwdForm.do" id="updatePwdTag">비밀번호 변경</a>
                                 </li>
                                 <li class="mypage-lnb-item">
-                                    <a href="${pageContext.request.contextPath }/mypage/updateForm.do" id="updateTag">개인정보 수정</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/checkUpdateForm.do" id="updateTag">개인정보 수정</a>
                                 </li>
                                 <li class="mypage-lnb-item">
-                                    <a href="${pageContext.request.contextPath }/mypage/deleteForm.do" id="deleteTag">회원 탈퇴</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/checkDeleteForm.do" id="deleteTag">회원 탈퇴</a>
                                 </li>
                             </ol>
                         </li>
@@ -74,7 +74,7 @@
                 <div class="aside-contents">
                     <div class="member-grade-box">
                         <div class="grade-info-box">
-                            <span class="grade-info"><span>김성현</span> 님은 <span class="bold">온라인 회원</span>입니다.</span>
+                            <span class="grade-info"><span>${sessionScope.mem_name }</span> 님은 <span class="bold">온라인 회원</span>입니다.</span>
                         </div>
 
                         <div class="grade-box-contents shopinfo">

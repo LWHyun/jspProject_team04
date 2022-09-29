@@ -64,6 +64,8 @@
 <script src="${pageContext.request.contextPath }/js/memberJs/regExp.js"></script>
 <script>
 $(function() {
+	let check = false;
+	let check2 = false;
 	// 비밀번호
     $('#mem_pwd').on('blur',function() {
         let mem_pwd = $('#mem_pwd').val();
@@ -75,6 +77,7 @@ $(function() {
             //$('#mem_pwd').focus();
         } else {
             $('#Val_pwdDiv').css('display', 'none');
+            check = true;
         }
     });
     //비밀번호 확인
@@ -85,33 +88,39 @@ $(function() {
         if((mem_rePwd == '') || (mem_pwd !== mem_rePwd)) {
             $('#Val_pwdReDiv').css('display', '');
             $('#Val_pwdReDiv').text('비밀번호가 일치하지 않습니다.');
+            $('#mem_pwd').val('');
             $('#mem_rePwd').val('');
             //$('#mem_pwd').focus();
         } else {
             $('#Val_pwdReDiv').css('display', 'none');
+            check2 = true;
         }
     });
     
     $('#checkPwdBtn').click(function() {
-    	$.ajax({
-    		url : '${pageContext.request.contextPath}/mypage/updatePwd.do',
-    		type : 'post',
-    		data : 'mem_pwd='+$('#mem_pwd').val(),
-    		dataType : 'text',
-    		success : function(data) {
-    			if(data == 1) {
-    				alert("비밀번호가 수정되었습니다.");
-    				location.href="${pageContext.request.contextPath}/member/loginForm.do";
-    			} else {
-    				alert("동일한 비밀번호로는 수정될 수 없습니다.");
-    				$('#mem_pwd').val('');
-    				$('#mem_rePwd').val('');
-    			}
-    		},
-    		error : function(err) {
-    			console.log(err);
-    		}
-    	});
+    	if(check && check2) {
+	    	$.ajax({
+	    		url : '${pageContext.request.contextPath}/mypage/updatePwd.do',
+	    		type : 'post',
+	    		data : 'mem_pwd='+$('#mem_pwd').val(),
+	    		dataType : 'text',
+	    		success : function(data) {
+	    			if(data == 1) {
+	    				alert("비밀번호가 수정되었습니다.");
+	    				location.href="${pageContext.request.contextPath}/member/loginForm.do";
+	    			} else {
+	    				alert("동일한 비밀번호로는 수정될 수 없습니다.");
+	    				$('#mem_pwd').val('');
+	    				$('#mem_rePwd').val('');
+	    			}
+	    		},
+	    		error : function(err) {
+	    			console.log(err);
+	    		}
+	    	});
+    	} else {
+    		alert("새 비밀번호를 입력해주세요.");
+    	}
     });
 })
 </script>
