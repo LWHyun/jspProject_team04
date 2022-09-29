@@ -13,19 +13,25 @@
    .cate_select{
 		width : 100%;
 		height: 500px;
-		display: flex;
+		/* display: flex; */
 		justify-content: center;
 		
 	}
    
    
-  /*   #cate_men:hover .cate_select{
-		display: flex;
-		justify-content: center;
-	}  */
+ 	/* #cate_men:focus .cate_select{
+		
+		
+	} */
 	
+	/* .gnbMenuWrap a:hover #cate_select {
+      display: flex;
+   } */
 	
-	
+	.gnb-bottom-wrap > .inner > .gnbMenuWrap > ul > li:hover .cate_select{
+		background-color: blue;
+		/* display: ''; */
+	} 
    
    .cate_div{
    		margin: 10px;
@@ -188,43 +194,68 @@
             <div class="inner">
                <div class="gnbMenuWrap">
                   <ul class="gnb-menu">
-                     <li>
+                     <li id="li_brand">
                         <a href="#" style="color: #ffe100;">BRAND</a>
                      </li>
-                     <li id="cate_men">
+                     <li id="li_men">
                        <a href="${pageContext.request.contextPath }/category/men3.do?gender=0" >MEN</a>
                      </li>
-                     <li>
+                     <li id="li_women">
                         <a href="${pageContext.request.contextPath }/category/women.do?gender=1">WOMEN</a>
                      </li>
+                     
                   </ul>
                </div>
             </div>
          </div>
       </div>
+      <div class="cate_select" style="display:none">
+	                  <div class="cate_div">
+						<h1 id="cate_high">상위카테고리</h1>
+						<hr>
+						<ul class="cate_low">
+							<li>스니커즈</li>
+							<li>sjfklejlkfjz;lsef</li>
+							<li>sjfklejlkfjz;lsef</li>
+							<li>sjfklejlkfjz;lsef</li>
+							<li>sjfklejlkfjz;lsef</li>
+							<li>sjfklejlkfjz;lsef</li>
+						</ul>
+						</div>
+					</div>
+      
+      
+      
+      <!-- 
+		
+	
+       -->
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 	function goSearch() {
 		window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 	}
 	
+	$('.gnbMenuWrap > ul > #li_men').mouseover(function() {
+		
+		$.ajax({
+			url : 'findCateMen.do',
+			dataType : 'html',
+			data : {result : 'men'},
+			success : function(data) {
+				alert(data);
+			}
+		})
+		
+		$('.cate_select').css('display', 'flex');
+	});
+	$('.gnbMenuWrap > ul > li').mouseout(function() {
+		$('.cate_select').css('display', 'none');
+	});
+	
 	
 </script>
 
-	<div class="cate_select">
-		<div class="cate_div">
-			<h1 id="cate_high">상위카테고리</h1>
-			<hr>
-			<ul class="cate_low">
-				<li>스니커즈</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-			</ul>
-		</div>
-		
-		
-	</div>
+	
 
    </header>

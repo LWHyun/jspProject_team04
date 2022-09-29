@@ -12,7 +12,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.CategoryDTO;
 import dto.ProductDTO;
+import dto.SearchClickDTO;
 
 public class CategoryDAO {
 	private static CategoryDAO instance;
@@ -40,6 +42,22 @@ public class CategoryDAO {
 		return conn;
 	}
 	
+	//close하는 메서드
+		private void close(AutoCloseable... ac) {
+			try {
+				for(AutoCloseable a : ac) {
+					if(a != null) {
+						a.close();
+					}
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
+	
+	//검색하기
 	public List<ProductDTO> selectSearch(String searchBar) throws SQLException {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		String sql = "select * from product where brand like '%"+searchBar+"%' or ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%'";
@@ -79,7 +97,7 @@ public class CategoryDAO {
 		
 		return list;
 	}
-
+	//성별탭으로 검색 ->뿌려주기
 	public List<ProductDTO> selectSearch(int gender) throws SQLException {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		String sql = "select * from product where gender=?";
@@ -118,7 +136,7 @@ public class CategoryDAO {
 			
 		return list;
 	}
-	
+	//필터기능 -->아직 안됨
 	public List<ProductDTO> selectSearch(String[] brandArray, String[] sizeArray) throws SQLException {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
 		String sql = "select * from product where brand='";
@@ -175,6 +193,7 @@ public class CategoryDAO {
 		
 
 	}
+	//인기검색어테이블에 검색어가 있는지 확인
 	public int select(String searchWord) throws SQLException {
 		String sql = "select sc_word from searchclick where sc_word=?";
 		int result = 0;
@@ -204,6 +223,7 @@ public class CategoryDAO {
 		
 		return result;
 	}
+	//인기검색어 테이블에 검색어가 있으면 count+1하는 부분
 	public int update(String searchWord) throws SQLException {
 		String sql = "update searchclick set sc_count = sc_count+1 where sc_word=?";
 		Connection conn = null;
@@ -227,6 +247,7 @@ public class CategoryDAO {
 		
 		return updateResult;
 	}
+	//인기검색어 테이블에 검색어가 없으면 insert해주는 부분
 	public int insert(String searchWord) throws SQLException {
 		int insertResult = 0;
 		String sql = "insert into searchclick values(?,0,sysdate)";
@@ -247,6 +268,72 @@ public class CategoryDAO {
 		}
 		
 		return insertResult;
+	}
+	//인기검색어 출력해서 뿌려주는 부분
+	public List<SearchClickDTO> select() throws SQLException {
+		String sql = "select sc_word, sc_count from searchclick order by sc_count desc";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		List<SearchClickDTO> list = new ArrayList<SearchClickDTO>();
+		
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				SearchClickDTO dto = new SearchClickDTO();
+				dto.setSc_word(rs.getString(1));
+				dto.setSc_count(rs.getInt(2));
+				list.add(dto);
+				if(list.size()==10) break;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs != null)rs.close();
+			if(stmt != null)stmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		
+		return list;
+	}
+	//카테고리탭에 마우스 올렸을때 카테고리 메뉴 찾는 부분
+	public List<CategoryDTO> selectCategory(String result) {
+		String sql= "SELECT LPAD(\' \',(LEVEL-1)*2) || ca_name\r\n"
+				+ "FROM category\r\n"
+				+ "START WITH ca_name = \'"+result+"\' CONNECT BY PRIOR ca_code=ca_code_ref";
+		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
+		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		System.out.println("sql문1-->"+sql);
+		System.out.println("result->"+result);
+		try {
+			conn = getConnection();
+			stmt=conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				CategoryDTO cd = new CategoryDTO();
+				cd.setCa_name(rs.getString(1));
+				list.add(cd);
+				System.out.println("rs.getString(1)->"+rs.getString(1));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return list;
 	}
 	
 	
