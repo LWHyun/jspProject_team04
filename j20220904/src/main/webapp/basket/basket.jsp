@@ -320,7 +320,7 @@
 		//변경된 수량을 반영
 		target.value = count
 		
-		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count"&size_num="+size_num
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count+"&size_num="+size_num
 		
 		//소계 계산
 		//calcSum(prod_id)
