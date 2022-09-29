@@ -21,14 +21,16 @@ public class ImageListService implements CommandProcess {
 			throws ServletException, IOException {
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		int gender = Integer.parseInt(request.getParameter("gender"));
 		
 		try {
 			ProductDAO productDao = ProductDAO.getInstance();
 			
-			List<Product_ImgSrcDTO> list =  productDao.selectImg(product_id);
+			List<Product_ImgSrcDTO> list =  productDao.selectImg(product_id, gender);
 			
 			
 			request.setAttribute("product_id",product_id);
+			request.setAttribute("gender",gender);
 			request.setAttribute("list",list);
 			
 			
