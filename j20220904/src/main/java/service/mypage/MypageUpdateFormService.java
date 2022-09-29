@@ -15,7 +15,7 @@ public class MypageUpdateFormService implements CommandProcess {
 			throws ServletException, IOException {
 		
 		request.setAttribute("active", "update");
-		request.setAttribute("display", "myPageCngInfo.jsp");
+		request.setAttribute("display", "myPagePrivateInfo.jsp");
 		
 		return "/mypage/myPage.jsp";
 	}
