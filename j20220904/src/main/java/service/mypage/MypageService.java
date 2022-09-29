@@ -1,6 +1,7 @@
 package service.mypage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
+import dto.LikeProDTO;
 
 public class MypageService implements CommandProcess {
 
@@ -21,15 +23,21 @@ public class MypageService implements CommandProcess {
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
+		String mem_id = (String)session.getAttribute("mem_id");
 		
 		//DB
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		LikeProDAO likeProDAO = LikeProDAO.getInstance();
 		
 		// 장바구니 , 찜 갯수
-		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
-		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
+		int basketCnt = basketDAO.memBasketCnt(mem_id);
+		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
 		
+		// 찜 상품 가져오기
+		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id);
+		System.out.println(likeProList);
+		
+		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "my"); // 현재 페이지 활성화
