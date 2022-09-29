@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,7 +147,7 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 	      	<!-- 왼쪽 선택창 -->
 	      	<div class="aside-wrap">
 	         <ol class="customer-lnb">
-	            <li class="customer-lnb-item eng"><a href="#" class="active">공지사항</a></li>
+	            <li class="customer-lnb-item eng"><a href="${pageContext.request.contextPath }/manage/memNoticeList.do" class="active">공지사항</a></li>
 	            <li class="customer-lnb-item"><a href="memFaqView.jsp">FAQ</a></li>
 	         </ol>
 	        </div>
@@ -155,14 +156,13 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 	      <div class="aside-contents" align="center">
 	      		<h3 class="text-head2 eng">공지사항</h3>
 	      
-	      		<!-- 공지사항 채워넣기 -->
 	      		<div class="board-view-wrap border-line-box">
 	      			<div class="flex-box board-view-head">
 	      				<span class="view-tit">${notice.notice_title}</span>
 	      				<span class="text-date">${notice.notice_date}</span>
 	      			</div>
 	      			
-	      			<!-- 이전 글 / 다음 글 -->
+	      			<!-- 이전 글 / 다음 글 (EL 값 수정 어떻게..?) -->
 	      			<div class="board-view-cont"><pre>${notice.notice_content}</pre></div>
 			      	<div class="board-view-btm">
 			      		<div class="tbl-wrap tbl-col notice-list">
@@ -174,32 +174,40 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      				</colgroup>
 			      				
 			      				<tbody>
+		      						<!-- 다음글 -->
 			      					<tr>
 			      						<td>
-			      							<span class="ico-next"></span>
+			      							다음 | 
 			      						</td>
 			      						<td class="text-left">
-			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}" id="btnPrevNotice" class="notice-link">${notice.notice_title}</a>
+			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}">
+			      							${notice.notice_title }</a>
 			      						</td>
 			      						<td class="date-txt">${notice.notice_date }</td>
 			      					</tr>
 			      					
+			      					<!-- 이전글 -->
 			      					<tr>
 			      						<td>
-			      							<span class="ico-prev"></span>
+			      							이전 |
 			      						</td>
 			      						<td class="text-left">
-			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}" id="btnPrevNotice" class="notice-link" value="${notice.notice_code-1}">${notice.notice_title}</a>
+			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code-1}&pageNum=${pageNum}">
+											${notice.notice_title }</a>
 			      						</td>
 			      						<td class="date-txt">${notice.notice_date }</td>
 			      					</tr>
 			      				</tbody>
 			      			</table>
-			      		
 			      		</div>
 			      	</div>	
 	      		</div>
 	      		
+	      		<!-- 목록 -->
+	      		<div style="margin-top:50px; margin-left:350px;">
+			    	<input type="button" value="목록"
+			    	onclick="location.href='memNoticeList.do?pageNum=${pageNum}'">
+	      		</div>
 	      </div>      
 	   </div>
 	</div>
