@@ -129,7 +129,7 @@
 	                            
 	                            <div class="col-list-wrap" >
 	                                <ul class="col-list prod-list col-4">
-	                                	<c:forEach var="likeProDTO" items="${likeProList }" begin="0" end="${requestScope.likeProCnt > 4 ? 3 : requestScope.likeProCnt-1}">
+	                                	<c:forEach var="likeProDTO" items="${likeProList }" begin="0" end="${requestScope.likeProCnt > 4 ? 3 : requestScope.likeProCnt == 0 ? 0 : requestScope.likeProCnt-1}">
 		                                	<li class="col-list-item prod-item no-util">
 		                                        <a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${likeProDTO.product_id}&gender=${likeProDTO.gender}" class="prod-link">
 		                                 
@@ -186,6 +186,17 @@ $(function() {
 		$('#deleteTag').addClass('active');
 	}
 	
+	// 찜한 상품이 있을 때 없을 때 display:none 처리
+	var listCnt = Number(${requestScope.likeProCnt});
+	if(listCnt == 0) {
+		$('.mypage-no-data').css('display', '');
+		$('.col-list-wrap').css('display', 'none');
+	} else {
+		$('.mypage-no-data').css('display', 'none');
+		$('.col-list-wrap').css('display', '');
+	}
+	
+	// 찜한 상품 mouseover 처리
 	$('li.prod-item').mouseover(function() {
 		$(this).css('border', '1px solid black');
 	});
