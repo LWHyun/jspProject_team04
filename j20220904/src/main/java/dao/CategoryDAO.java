@@ -303,10 +303,10 @@ public class CategoryDAO {
 		return list;
 	}
 	//카테고리탭에 마우스 올렸을때 카테고리 메뉴 찾는 부분
-	public List<CategoryDTO> selectCategory(String result) {
-		String sql= "SELECT LPAD(\' \',(LEVEL-1)*2) || ca_name\r\n"
+	public List<CategoryDTO> selectCategory(String result) throws SQLException {
+		String sql= "SELECT ca_code,LPAD(\' \',(LEVEL-1)*2) || ca_name\r\n"
 				+ "FROM category\r\n"
-				+ "START WITH ca_name = \'"+result+"\' CONNECT BY PRIOR ca_code=ca_code_ref";
+				+ "START WITH ca_name = \'"+result+"\' CONNECT BY PRIOR ca_code=ca_code_ref order by ca_code asc";
 		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
 		
 		Connection conn = null;
@@ -320,7 +320,8 @@ public class CategoryDAO {
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				CategoryDTO cd = new CategoryDTO();
-				cd.setCa_name(rs.getString(1));
+				cd.setCa_code(rs.getInt(1));
+				cd.setCa_name(rs.getString(2));
 				list.add(cd);
 				System.out.println("rs.getString(1)->"+rs.getString(1));
 			}
@@ -329,6 +330,10 @@ public class CategoryDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			if(rs != null)rs.close();
+			if(stmt != null)stmt.close();
+			if(conn != null)conn.close();
 		}
 		
 		

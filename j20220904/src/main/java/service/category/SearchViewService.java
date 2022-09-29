@@ -19,6 +19,7 @@ public class SearchViewService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String searchBar = request.getParameter("searchBar");
+		String ca_code = request.getParameter("ca_code");
 		HttpSession session = request.getSession();
 		String searchWord = (String) session.getAttribute("searchWord");
 		
@@ -26,16 +27,24 @@ public class SearchViewService implements CommandProcess {
 		CategoryDAO cd = CategoryDAO.getInstance();
 		System.out.println("searchViewService "+searchWord);
 		
-		try {
-			List<ProductDTO> list = cd.selectSearch(searchBar);
-			request.setAttribute("searchBar", searchBar);
-			request.setAttribute("list", list);
-			request.setAttribute("searchWord", searchWord);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		session.removeAttribute("searchWord");
+			try {
+				List<ProductDTO> list = cd.selectSearch(searchBar);
+				request.setAttribute("searchBar", searchBar);
+				request.setAttribute("list", list);
+				request.setAttribute("searchWord", searchWord);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			session.removeAttribute("searchWord");
+		
+		
+		
+		
+		
+		
+		
+		
 		return "searchView.jsp";
 	}
 

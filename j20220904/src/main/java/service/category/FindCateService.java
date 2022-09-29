@@ -1,6 +1,7 @@
 package service.category;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,9 +22,28 @@ public class FindCateService implements CommandProcess {
 		System.out.println("FindCateService result-->"+result);
 		if(result.equals("men")) {
 			result = "남자";
-			List<CategoryDTO> list =cd.selectCategory(result);
-			request.setAttribute("list", list);
+			
+			try {
+				List<CategoryDTO> list = cd.selectCategory(result);
+				request.setAttribute("list", list);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(result.equals("women")) {
+			result = "여자";
+			
+			try {
+				List<CategoryDTO> list = cd.selectCategory(result);
+				request.setAttribute("list", list);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
+		
 		
 		return "result.jsp";
 	}
