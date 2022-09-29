@@ -48,8 +48,8 @@ public class NoticeDAO {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM (Select rownotice_code rn ,a.*  "
-		 		    + "             From(select * from notice order by notice_type desc, reg_date desc) a ) "
+		String sql = "SELECT * FROM (SELECT rownum rn, a.*  "
+		 		    + "             FROM(select * from notice order by notice_type desc, notice_date desc) a ) "
 		 		    + "WHERE rn BETWEEN ? AND ? " ;
 		try {
 			conn = getConnection();

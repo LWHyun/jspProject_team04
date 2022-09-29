@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.QABoardDAO;
 import dto.QABoardDTO;
-import dto.ReviewBoardDTO;
 
 public class QAListService implements CommandProcess {
 
