@@ -132,7 +132,7 @@ public class BasketDAO {
 	}
 	
 	
-	//장바구니 상품 삭제
+	//장바구니 상품 단일 삭제
 	public int deleteItem (BasketDTO basketDTO) {
 		
 		Connection conn = getConnection();
@@ -163,6 +163,34 @@ public class BasketDAO {
 		
 		
 	}
+	
+	
+	//선택한 상품을 장바구니에서 삭제
+	public int delChkItem (BasketDTO basketDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=? AND size_num?";
+		int result = 0;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, basketDTO.getMem_id());
+			pstmt.setInt(2, basketDTO.getProduct_id());
+			pstmt.setInt(3, basketDTO.getSize_num());
+			
+			
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(pstmt, conn);
+		}
+		
+		return result;
+	}
+	
+	
 	
 	//상세페이지에서 장바구니수량 있나 없나 비교하는 메서드
 	public List<BasketProDTO> compareBasketList(String mem_id) {

@@ -187,18 +187,18 @@
 							</tr>
 							</c:if>
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-							<c:forEach var="item" items="${basketList }">
-								<tr id="tr${item.product_id }">
-									<td><input type="checkbox" name="RowCheck" id="chk${item.product_id }" checked></td>
+							<c:forEach var="item" items="${basketList }" varStatus="status">
+								<tr id="tr${item.product_id }_${item.size_num }">
+									<td><input type="checkbox" name="rowCheck1" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									<td><input type="button" value="-" onclick="minusCnt(${item.product_id})">
-										<input type="hidden" value="${item.price }" id="price${item.product_id}">
-										<input type="text" value="${item.cnt }" id="cnt${item.product_id }" min="1" max="99" style="width:15px;">
-										<input type="button" value="+" onclick="plusCnt(${item.product_id})"></td>
+									<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
+										<input type="hidden" value="${item.price }" id="price${item.product_id}_${item.size_num}">
+										<input type="text" value="${item.cnt }" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+										<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 									
-									<td id="sum${item.product_id }" class="sumProduct">${item.price * item.cnt }원</td>
+									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 									
 									<td><input type="button" value="바로구매"><br><br>
 										<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
@@ -210,7 +210,7 @@
 					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
-							<input type="button" value="선택 삭제" id="delChk" onclick="return delChkItem()">
+							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 						</div>
 					</c:if>
 					
@@ -278,10 +278,10 @@
 	})
 	
 	
-	function plusCnt(prod_id) {
+	function plusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
-		let target = document.getElementById("cnt"+prod_id)
+		let target = document.getElementById("cnt"+prod_id+"_"+size_num)
 		let count = parseInt(target.value)
 		
 		//상품 최대 수량 설정
@@ -295,7 +295,7 @@
 		//변경된 수량을 반영
 		target.value = count
 		
-		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count+"&size_num="+size_num
 		
 		//소계 계산
 		//calcSum(prod_id)
@@ -303,10 +303,10 @@
 	}
 	
 	
-	function minusCnt(prod_id) {
+	function minusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
-		let target = document.getElementById("cnt"+prod_id)
+		let target = document.getElementById("cnt"+prod_id+"_"+size_num)
 		let count = parseInt(target.value)
 		
 		//상품 최소 수량 설정
@@ -320,21 +320,21 @@
 		//변경된 수량을 반영
 		target.value = count
 		
-		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count
+		location.href="${pageContext.request.contextPath }/basket/updateBasketCnt.do?product_id="+prod_id+"&cnt="+count+"&size_num="+size_num
 		
 		//소계 계산
 		//calcSum(prod_id)
 	}
 	
 	
-	function calcSum(prod_id) {
+	function calcSum(prod_id, size_num) {
 		
 		//상품 수량 가져오기
-		let targetCnt = document.getElementById("cnt"+prod_id).value
+		let targetCnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
 		//상품 단가 가져오기
-		let targetPrice = document.getElementById("price"+prod_id).value
+		let targetPrice = document.getElementById("price"+prod_id+"_"+size_num).value
 		// 수량*단가를 반영하기
-		let targetSumTd = document.getElementById("sum"+prod_id)
+		let targetSumTd = document.getElementById("sum"+prod_id+"_"+size_num)
 		targetSumTd.innerHTML = targetCnt*targetPrice + "원"
 		// 합계에 반영
 		calcTotal()
@@ -373,59 +373,24 @@
 			}
 	}
 	
-	
-	/* $("#delCheck").click(function(){
-		
-		let rowData = new Array();
-		let tdArr = new Array();
-		let checkbox = $("input[name=RowCheck]:checked");
-		
-		checkbox.each(function(i){
-			
-			//checkbox.parent() : checkbox의 부모는 <td>이다
-			//checkbox.parent().parent() : <td>의 부모이므로 <tr>이다
-			
-			let tr = checkbox.parent().parent()eq.(i)
-			let td = tr.childern();
-			
-			rowData.push(tr.next());
-		
-		});
-		
-	} */
-	
-	
 	function delChkItem() {
-	
+		
+		
+			var list = new Array();
+		 	<c:forEach items="${basketList }" var="list" >	
+		    	list.push("${basketList}.chk${item.product_id }_${item.size_num}");
+			</c:forEach>
+
+			for (var i=0; i<list.length;){
+				alert("list->"+ i + " :  "+ list[i++]);
+			}
+			
+			return list;
+			
+			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+			
+		
 	}
-	
-	
-	
-	
-	/* 
-	let deleteConfirm = confirm('선택한 상품을 삭제하시겠습니까?');
-	
-	if(deleteConfirm == true) {
-		
-		let chkPdcId = [];
-		let chkLength;
-		let count = 0;
-		
-		$('#delChk:checked').each(function() {
-			
-			chkPdcId += $(this).val()+', ';
-			chkLength = $(this).length;
-			
-		})
-		
-		return chkPdcId;
-		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkPdcID='+chkPdcId
-	} 
-	
-	else {
-		alert("상품 삭제가 취소되었습니다.");
-	} */
-	
 	
 	
 

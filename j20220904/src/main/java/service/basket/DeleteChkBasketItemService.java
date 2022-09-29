@@ -16,6 +16,8 @@ public class DeleteChkBasketItemService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
+		System.out.println("DeleteChkBasketItemService start...");
+		
 		//로그인 확인
 		HttpSession session = request.getSession();
 		String mem_id = (String)session.getAttribute("mem_id");
@@ -25,7 +27,7 @@ public class DeleteChkBasketItemService implements CommandProcess {
 			
 		}
 		
-		
+		String zero = "1";
 		
 		
 		

@@ -419,11 +419,12 @@ body .tab-wrap:not(.multi-line).header-tab .tabs {
     flex-basis: calc((100% - (20px * (4 - 1))) / 4);
     -webkit-flex: 0 1 calc((100% - (20px * (4 - 1))) / 4);
     max-width: calc((100% - (20px * (4 - 1))) / 4);
-    margin-left: 20px;
+    margin-left: 19px;
 }
 .prod-item {
     position: relative;
     font-size: 0;
+    margin-bottom: 50px;
 }
 /* 이미지 div */
 .prod-item .img-wrap {

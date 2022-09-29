@@ -20,6 +20,7 @@ public class SearchProService implements CommandProcess {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String searchWord = request.getParameter("searchWord");
+		System.out.println("searchWord --->"+searchWord);
 		session.setAttribute("searchWord", searchWord);
 		int updateResult = 0;
 		int insertResult = 0;
