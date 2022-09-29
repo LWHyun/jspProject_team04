@@ -70,7 +70,7 @@
     	<div id='box-center'>인기검색어
     		<ul>
     		<c:forEach var="list" items="${list }">
-    			<li><a href="#">${list.sc_word }</a></li>
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=${list.sc_word }">${list.sc_word }</a></li>
     		</c:forEach>
     		</ul>
     	</div>

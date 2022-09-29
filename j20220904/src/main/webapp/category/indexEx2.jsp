@@ -234,13 +234,7 @@
 		window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 		
 	}
-	$('#searchButton').click(function() {
-		var word = document.getElementById('searchBar').value;
-		if(word ==null||word==""){
-			alert("검색어를 입력해주세요");
-			$('#searchViewForm').attr("src","#");
-		}
-	})
+	
 	
 	
 	////남성탭 올렸을때 카테고리 메뉴 나오는 부분

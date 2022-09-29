@@ -179,9 +179,7 @@
    
 	<div class="pro_wrap">
 		<ul>
-		<c:if test="${filterList !=null }">
-			
-		</c:if>
+		
 		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>

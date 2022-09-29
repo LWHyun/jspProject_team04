@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import dto.CategoryDTO;
 import dto.ProductDTO;
+import dto.Product_ImgSrcDTO;
 import dto.SearchClickDTO;
 
 public class CategoryDAO {
@@ -60,7 +61,7 @@ public class CategoryDAO {
 	//검색하기
 	public List<ProductDTO> selectSearch(String searchBar) throws SQLException {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
-		String sql = "select * from product where brand like '%"+searchBar+"%' or ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%'";
+		String sql = "select * from product where brand like Upper('%"+searchBar+"%') or ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%'";
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -195,7 +196,7 @@ public class CategoryDAO {
 	}
 	//인기검색어테이블에 검색어가 있는지 확인
 	public int select(String searchWord) throws SQLException {
-		String sql = "select sc_word from searchclick where sc_word=?";
+		String sql = "select sc_word from searchclick where sc_word=Upper(?)";
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -337,6 +338,46 @@ public class CategoryDAO {
 		}
 		
 		
+		
+		return list;
+	}
+	//카테고리 코드별 정렬
+	public List<Product_ImgSrcDTO> selectCodeSearch(String ca_code) throws SQLException {
+		String sql = "select * from product where ca_code=?";
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, ca_code);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Product_ImgSrcDTO pd = new Product_ImgSrcDTO();
+				pd.setProduct_id(rs.getInt(1));
+				pd.setBrand(rs.getString(2));
+				pd.setEng_name(rs.getString("eng_name"));
+				pd.setKor_name(rs.getString("kor_name"));
+				pd.setGender(rs.getInt("gender"));
+				pd.setPrice(rs.getInt("price"));
+				pd.setColor(rs.getString("color"));
+				pd.setRegdate(rs.getDate("regdate"));
+				pd.setCa_code(rs.getInt("ca_code"));
+				list.add(pd);
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
 		
 		return list;
 	}
