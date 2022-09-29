@@ -25,7 +25,7 @@ public class EmailCheck {
 	// 메일 보내고 인증번호 반환
 	public String sendEmail(String mem_email) {
 		//인증코드 생성
-		String host = "http://localhost:8181/ex/";		
+		String host = "http://localhost:8181/j20220904/";		
 		String from = "rmaksgnacu@gmail.com";
 		String to = mem_email;
 		String code = String.valueOf((int)(Math.random()*888888)+111111);

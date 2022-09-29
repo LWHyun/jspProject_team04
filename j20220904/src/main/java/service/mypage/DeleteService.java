@@ -9,42 +9,34 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.MemberDAO;
-import dto.MemberDTO;
 
-public class CheckPwdService implements CommandProcess {
+public class DeleteService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		// 로그인 여부
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
-
-		// 데이터 받기
-		String mem_pwd = request.getParameter("mem_pwd");
+		
+		// DB
 		String mem_id = (String)session.getAttribute("mem_id");
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		int result = memberDAO.delete(mem_id);
 		
-		// 비교
-		int result = 0;
-		
-		if(mem_id != null) {
-			MemberDAO memberDAO = MemberDAO.getInstance();
-			MemberDTO memberDTO = memberDAO.selectMember(mem_id);
-			
-			if(mem_pwd.equals(memberDTO.getMem_pwd())) {
-				result = 1;
-			}
-		} else {
-			result = -1; // 로그인이 끊겻을 경우
+		// 탈퇴 후 세션 끊기
+		if(result == 1) {
+			session.removeAttribute("mem_id");
+			session.removeAttribute("mem_name");
 		}
 		
 		// 응답
 		request.setAttribute("result", result);
 		
 		return "/mypage/result.jsp";
-
 	}
 
 }

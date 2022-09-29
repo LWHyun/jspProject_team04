@@ -81,11 +81,11 @@
                             <div class="shopping-info">
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-cart"></i> 장바구니</span>
-                                    <span class="info-data"><a href="#">0<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="${pageContext.request.contextPath }/basket/goToBasket.do">${requestScope.basketCnt }<span class="unit">개</span></a></span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-favorite"></i> 찜한상품</span>
-                                    <span class="info-data"><a href="#">0<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="#">${requestScope.likeProCnt }<span class="unit">개</span></a></span>
                                 </div>
                             </div>
                         </div><!-- grade-box-contents shopinfo -->

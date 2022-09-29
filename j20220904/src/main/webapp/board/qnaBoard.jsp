@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
 					</li>
 					<li class="tab-item ui-tabs-active">
 						<a href="#" class="tab-link">상품 Q&amp;A
-							<span class="num">(37)</span>
+							<span class="num">(${totCnt})</span>
 						</a>
 					</li>
 					<li class="tab-item">
@@ -49,12 +51,46 @@
 						</li>
 					</ul>
 				</div>
+				<!-- Q&A 탭 -->
 				<div class="tab-qna">
 					<div class="border-line-box">
+						<!-- 글이 없을 때 -->
 						<div class="flex-box" style="display: none;">
 							<p class="no-data-text">작성된 Q&A가 없습니다.</p>
 						</div>
-						<ul class="fold-box-list">
+						<!-- Q&A 글 목록 -->
+						<table>
+							<tr>
+								<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+							</tr>
+							<!-- 글 목록 -->
+							<c:if test="${totCnt > 0 }">
+								<c:forEach var="board" items="${qAList }">
+									<tr>
+										<td>${startNum }</td>
+										<td>${board.q_title}</td>
+										<td>${board.mem_id}</td>
+										<td>${board.q_date }</td>
+										<td>${board.q_views }</td>
+									</tr>
+									<c:set var="startNum" value="${startNum - 1}"/>
+								</c:forEach>
+							</c:if>
+						</table>
+						
+						<!-- 나중에 수정 -->
+						<div style="text-align: center;">
+							<c:if test="${startPage > blockSize }">
+								<a href='qnaBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+							</c:if>
+							<c:forEach var="i" begin="${startPage}" end="${endPage}">
+								<a href='qnaBoard.do?pageNum=${i}'>[${i}]</a>
+							</c:forEach>
+							<c:if test="${endPage < pageCnt }">
+								<a href='qnaBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+							</c:if>
+						</div>	
+						<!-- <ul class="fold-box-list">
 							<li class="fold-box">
 								<div class="fold-box-header">
 									<div class="question-title">금요일 수거해갔어요.</div>
@@ -71,7 +107,7 @@
 										</div> 
 									</div>
 									<div class="answer-box">
-										<p class="desc">  <!-- 아이콘? -->
+										<p class="desc">  아이콘?
 										안녕하세요 고객님.<br><br>
 
 										먼저 ABC 마트를 이용해주셔서 감사합니다.<br><br>
@@ -85,7 +121,7 @@
 									</div>
 								</div>
 							</li>
-						</ul>
+						</ul> -->
 						<!-- 페이징 -->
 						<div class="pagination-wrap" id="product-review-pagination">
 							<div>
@@ -123,7 +159,7 @@
 								</ol>
 							</div>
 							<div class="btn-wrap text-right">
-								<a href="qnaWriteForm.jsp" class="btn btn-dialog">Q&A 작성</a>
+								<a href="qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
 							</div>
 						</div>
 					</div>

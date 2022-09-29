@@ -22,6 +22,7 @@ public class UpdateBasketCntService implements CommandProcess {
 		// mem_id , product_id, cnt 값 가져오기
 		String mem_id = (String)session.getAttribute("mem_id");
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		int size_num = Integer.parseInt(request.getParameter("size_num"));
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
 		//로그인이 안되어있으면 로그인 페이지로 이동
@@ -35,6 +36,7 @@ public class UpdateBasketCntService implements CommandProcess {
 		BasketDTO basketDTO = new BasketDTO();
 		basketDTO.setMem_id(mem_id);
 		basketDTO.setProduct_id(product_id);
+		basketDTO.setSize_num(size_num);
 		basketDTO.setCnt(cnt);
 		basketDAO.updateCnt(basketDTO);
 		
