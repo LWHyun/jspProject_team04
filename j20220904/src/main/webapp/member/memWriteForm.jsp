@@ -287,7 +287,7 @@
                                         <td>
                                             <div class="formTelDiv">
                                                 <input type="text" id="mem_tel" name="mem_tel" placeholder="휴대폰 번호를 '-'없이 입력해주세요.">
-                                                <button type="button" class='btn'>인증번호 요청</button>
+                                                <!-- <button type="button" class='btn'>인증번호 요청</button> -->
                                                 <div id="Val_telDiv" class="valid"></div>
                                             </div>
                                         </td>
@@ -339,7 +339,9 @@
 $(function() {
 	// 취소 버튼 클릭 시 홈 화면 이동
 	$('#btn-not-accept').on('click', function() {
-		location.href="${pageContext.request.contextPath}";
+		if(confirm("회원가입 작성을 취소하시겠습니까?")) {
+			location.href="${pageContext.request.contextPath}";
+		}
 	});
 });
 
