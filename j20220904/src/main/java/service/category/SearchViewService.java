@@ -29,8 +29,7 @@ public class SearchViewService implements CommandProcess {
 		int result = 0;
 		//카테고리 코드가 있으면 아래 실행
 		if(ca_code != null) {
-			
-			
+		
 				try {
 					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code);
 					request.setAttribute("list", list);
@@ -45,7 +44,7 @@ public class SearchViewService implements CommandProcess {
 			
 		}else {//카테고리 탭으로 누른게 아니고 검색탭에 검색어 입력시 아래실행
 			try {
-				List<ProductDTO> list = cd.selectSearch(searchBar);
+				List<Product_ImgSrcDTO> list = cd.selectSearch(searchBar);
 				request.setAttribute("searchBar", searchBar);
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);

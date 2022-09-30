@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.CategoryDAO;
 import dto.ProductDTO;
+import dto.Product_ImgSrcDTO;
 
 public class MenService implements CommandProcess {
 
@@ -28,7 +29,7 @@ public class MenService implements CommandProcess {
 		CategoryDAO cd = CategoryDAO.getInstance();
 		
 		try {
-			List<ProductDTO> list = cd.selectSearch(gender);
+			List<Product_ImgSrcDTO> list = cd.selectSearch(gender);
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			

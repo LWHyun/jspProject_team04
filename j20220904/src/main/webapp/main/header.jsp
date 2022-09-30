@@ -263,37 +263,53 @@ function goSearch() {
 	window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 	}
 	
-////남성탭 올렸을때 카테고리 메뉴 나오는 부분
-$('.gnbMenuWrap > ul > #li_men').click(function() {
+	////남성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_men').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'men'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('MEN');
+		$('.cate_select').css('display', 'flex');
+	});
 	
-	$.ajax({
-		url : '${pageContext.request.contextPath}/category/findCate.do',
-		dataType : 'html',
-		data : {result : 'men'},
-		success : function(data) {
-			console.log(data);
-			$('#cate_low').html(data);
-		}
-	})
-	$('#cate_high').text('MEN');
-	$('.cate_select').css('display', 'flex');
-});
-
-//여성탭 올렸을때 카테고리 메뉴 나오는 부분
-$('.gnbMenuWrap > ul > #li_women').click(function() {
+	//여성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_women').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'women'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('WOMEN');
+		$('.cate_select').css('display', 'flex');
+	});
 	
-	$.ajax({
-		url : '${pageContext.request.contextPath}/category/findCate.do',
-		dataType : 'html',
-		data : {result : 'women'},
-		success : function(data) {
-			console.log(data);
-			$('#cate_low').html(data);
-		}
-	})
-	$('#cate_high').text('WOMEN');
-	$('.cate_select').css('display', 'flex');
-});
+	//브랜드 탭에 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_brand').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'brand'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('BRAND');
+		$('.cate_select').css('display', 'flex');
+	});
 
 /* $('.gnbMenuWrap > ul > li').mouseout(function() {
 	$('.cate_select').css('display', 'none');
