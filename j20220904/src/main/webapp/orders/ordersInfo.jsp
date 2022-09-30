@@ -382,6 +382,15 @@ function calcTotal() {
 	}
 	 	
 	
+/* 	let chkbox = document.getElemenetById("memChkBox");
+	let orderName = document.getElementById("buyername");
+	
+	memChkBox.addEventListener('click', function(){
+		
+		if
+		
+	})
+	 */
 	
 }
 

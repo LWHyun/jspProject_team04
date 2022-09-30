@@ -48,9 +48,11 @@ private static OrdersInfoDAO instance;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT mem_name, mem_tel, mem_email1, mem_email2"
-				+ "FROM member"
-				+ "WHERE mem_id=?"+mem_id;
+		String sql = "SELECT mem_name, mem_tel, mem_email1, mem_email2 FROM member WHERE mem_id=?";
+
+		System.out.println("DAO selectMemInfo sql->"+sql);
+		System.out.println("DAO selectMemInfo mem_id->"+mem_id);
+
 		
 		OrdersInfoDTO ordersInfoDTO = new OrdersInfoDTO();
 		
@@ -62,8 +64,9 @@ private static OrdersInfoDAO instance;
 				
 				if(rs.next()) {
 					
-					
-					ordersInfoDTO.setMem_id(rs.getString("mem_id"));
+					System.out.println("DAO selectMemInfo mem_name->"+rs.getString("mem_name"));
+				
+					ordersInfoDTO.setMem_id(mem_id);
 					ordersInfoDTO.setMem_name(rs.getString("mem_name"));
 					ordersInfoDTO.setMem_tel(rs.getString("mem_tel"));
 					ordersInfoDTO.setMem_email1(rs.getString("mem_email1"));
@@ -73,7 +76,7 @@ private static OrdersInfoDAO instance;
 			
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("DAO selectMemInfo e.getMessage()->"+e.getMessage());
 		} finally {
 			close(conn, pstmt, rs);
 		}
