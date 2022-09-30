@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.PageHandler;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
@@ -18,7 +19,7 @@ public class LikeProList implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		// 로그인 처리
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
@@ -34,12 +35,21 @@ public class LikeProList implements CommandProcess {
 		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
 		
 		// 찜 상품 가져오기
-		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id);
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
+		System.out.println("ph="+ph);
+		
+		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 9, 17...
+		int endRow = startRow+ph.getPageSize()-1; // 8, 16, 24...
+		
+		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
 		System.out.println(likeProList);
 		
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("ph", ph);
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
-		request.setAttribute("likeProCnt", likeProCnt);
+		//request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
 		request.setAttribute("display", "myPageLikeProList.jsp");
 		return "/mypage/myPage.jsp";

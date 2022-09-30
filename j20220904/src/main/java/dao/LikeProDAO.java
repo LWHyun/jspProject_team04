@@ -70,15 +70,17 @@ public class LikeProDAO {
 	}
 	
 	// 회원의 찜한 상품 가져오는 메서드
-	public List<LikeProDTO> selectLikeProList(String mem_id) {
+	public List<LikeProDTO> selectLikeProList(String mem_id, int startRow, int endRow) {
 		Connection conn = getConnection();
 		
-		String sql = "select l.product_id, l.mem_id, l.like_pro_date, p.brand, p.kor_name, p.price, p.gender, ps.s_file_path\r\n"
-				+ "from like_pro l \r\n"
-				+ "join product p on l.product_id = p.product_id\r\n"
-				+ "join product_image ps on l.product_id = ps.product_id\r\n"
-				+ "where l.mem_id = ?\r\n"
-				+ "order by 3 desc";
+		String sql = "select * from (select rownum rn, t.* from "
+				+ "            (select l.product_id, l.mem_id, l.like_pro_date, p.brand, p.kor_name, p.price, p.gender, ps.s_file_path "
+				+ "            from like_pro l "
+				+ "            join product p on l.product_id = p.product_id "
+				+ "            join product_image ps on l.product_id = ps.product_id "
+				+ "            where l.mem_id = ? "
+				+ "            order by 3 desc)t) "
+				+ "where rn >= ? and rn <= ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -88,7 +90,8 @@ public class LikeProDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
-			
+			pstmt.setInt(2, startRow);			
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
