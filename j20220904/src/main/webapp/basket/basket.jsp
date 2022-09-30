@@ -192,10 +192,10 @@
 									<td><input type="checkbox" name="rowCheck1" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
-									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
-										<input type="hidden" value="${item.price }" id="price${item.product_id}_${item.size_num}">
-										<input type="text" value="${item.cnt }" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+										<input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
+										<input type="text" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
 										<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 									
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
@@ -229,7 +229,7 @@
 				<div class="buy-btn">
 					<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
 					<input type="button" value="선택 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
-					<input type="button" value="전체 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
+					<input type="button" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
 				</div>
 				
 				<div class="buy-notice">

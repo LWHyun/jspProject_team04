@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.BasketDAO;
 
 public class DeleteChkBasketItemService implements CommandProcess {
 
@@ -28,6 +29,11 @@ public class DeleteChkBasketItemService implements CommandProcess {
 		}
 		
 		String zero = "1";
+		String[] rowchecks = request.getParameterValues("rowCheck1");
+		String[] pd_img = request.getParameterValues("pd_img");
+		String[] item_info = request.getParameterValues("item_info");
+		
+		BasketDAO basketDAO = BasketDAO.getInstance();
 		
 		
 		

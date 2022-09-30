@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dao.BasketDAO;
 import dao.OrdersInfoDAO;
 
-public class OrderInfoService implements CommandProcess {
+public class SelectMemInfoService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// 오류 체크 기점 확인용
-		System.out.println("OrderInfoService start...");
+		System.out.println("SelectMemInfoService start...");
 		
 		// 로그인 여부 확인
 		HttpSession session = request.getSession();
@@ -31,14 +30,11 @@ public class OrderInfoService implements CommandProcess {
 		}
 		
 		//DB연결
-		BasketDAO basketDAO = BasketDAO.getInstance();
+		OrdersInfoDAO ordersDAO = OrdersInfoDAO.getInstance();
 		
 		
-		//버튼을 눌렀을 때, 장바구니에 담긴 값을 가지고 이동해야함
-		session.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		return null;
 		
-		
-		return "/orders/ordersInfo.jsp";
 	}
 
 }
