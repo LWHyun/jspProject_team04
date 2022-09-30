@@ -25,6 +25,7 @@ public class LikeProList implements CommandProcess {
 			return "/member/loginCheck.jsp";
 		}
 		String mem_id = (String)session.getAttribute("mem_id");
+		String brand = request.getParameter("brand");
 		
 		//DB
 		BasketDAO basketDAO = BasketDAO.getInstance();
@@ -39,8 +40,8 @@ public class LikeProList implements CommandProcess {
 		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
 		System.out.println("ph="+ph);
 		
-		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 9, 17...
-		int endRow = startRow+ph.getPageSize()-1; // 8, 16, 24...
+		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
+		int endRow = startRow+ph.getPageSize()-1; // 4, 8, 12...
 		
 		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
 		System.out.println(likeProList);

@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/memberCss/myPage.css">
 <style>
+/* likePro-header */
+.likePro-header {
+	margin-bottom:10px;
+}
 /* 페이지 네비게이션 css */
 .pagination-wrap {
 	margin-top: 30px;
@@ -46,22 +51,46 @@
 }
 </style>
 <div class="tab-wrap header-tab ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul class="tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <!-- <li class="tabs-li1">
-            <a href="#" id="newProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">최근 본 상품(<span id="recentPdtCount">0</span>) </a>
-        </li > -->
-
-        <li class="tabs-li2">
-            <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.ph.totalCnt}) </a>
-        </li>
-    </ul>
-
+	<div class="likePro-header">
+	    <ul class="tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+	        <!-- <li class="tabs-li1">
+	            <a href="#" id="newProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">최근 본 상품(<span id="recentPdtCount">0</span>) </a>
+	        </li > -->
+	
+	        <li class="tabs-li2">
+	            <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.ph.totalCnt}) </a>
+	        </li>
+	    </ul>
+	    
+	    <c:if test="${requestScope.ph.totalCnt > 0}">
+		    <div class="check-wrap">
+		    	<span class="ui-chk">
+					<input id="chk-list-all" type="checkbox">
+					<label for="chk-list-all">
+						<span class="search-result-text">모두 선택</span>
+					</label>
+				</span>
+				<div class="btn-wrap">
+		            <button type="button" class="btn-txt-arr" id="deleteLikeBtn">찜 삭제</button>
+		        </div>
+			</div>
+		</c:if>
+	</div>
+	
     <div class="tab-content">
-        
         <div class="col-list-wrap" >
             <ul class="col-list prod-list col-4">
+            	<!-- 체크 박스 넘버 -->
+            	<c:set var="chkNum" value="0"/>
                 <c:forEach var="likeProDTO" items="${likeProList }">
                     <li class="col-list-item prod-item no-util">
+                    	<!-- 찜하기 선택 체크박스 -->
+                    	<span class="ui-chk chk-prod">
+							<input id="chk-prod-${chkNum }" class="chk-prod-box" type="checkbox" name="prodChecked" value="${likeProDTO.product_id }">
+							<label for="chk-prod-${chkNum }"></label>
+						</span>
+						<c:set var="chkNum" value="${chkNum+1 }"/>
+						
                         <a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${likeProDTO.product_id}&gender=${likeProDTO.gender}" class="prod-link">
                  
                             <div class="img-wrap">
@@ -129,3 +158,65 @@
     </c:if>
 </div><!-- tab-wrap header-tab 최근 본 상품 / 찜한 상품-->
 
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+$(function() {
+	// 찜한 상품 모두 선택 / 해제
+	$('#chk-list-all').click(function() {
+		let checked = $(this).is(':checked');
+		
+		if(checked) {
+			$('.chk-prod-box').prop('checked', true);
+		} else {
+			$('.chk-prod-box').prop('checked', false);
+		}
+	});
+	
+	// chk-prod-box
+	// 개별 선택 / 해제
+	$('.chk-prod-box').click(function() {
+		let is_checked = true;
+		
+		$('.chk-prod-box').each(function() {
+			is_checked = is_checked && $(this).is(':checked');
+		});	
+		
+		$('#chk-list-all').prop('checked', is_checked);
+	});
+	
+	// 찜 삭제 버튼
+	$('#deleteLikeBtn').click(function() {
+		var queryString = "";
+		$('.chk-prod-box:checked').each(function(index) {
+			let is_checked = $(this);
+			
+			if(index == $('.chk-prod-box:checked').length-1) {
+				queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value');
+			} else {
+				queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value')+"&";
+			}
+		});	
+		
+		if(confirm('선택하신 제품을 삭제하시겠습니까?')) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/mypage/deleteLike.do',
+				type : 'post',
+				data : queryString,
+				dataType : 'text',
+				success : function(data) {
+					if(data != '0') {
+						alert('삭제되었습니다.');
+						location.href="${pageContext.request.contextPath}/mypage/likeProList.do"
+					} else {
+						alert('삭제에 실패했습니다. 다시 시도해주세요.');
+					}
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			});
+		}
+	});
+});
+
+</script>
