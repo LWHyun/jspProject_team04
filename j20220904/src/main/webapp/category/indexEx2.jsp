@@ -328,6 +328,22 @@ background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
 		$('.cate_select').css('display', 'flex');
 	});
 	
+	//브랜드 탭에 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_brand').click(function() {
+		
+		$.ajax({
+			url : 'findCate.do',
+			dataType : 'html',
+			data : {result : 'brand'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('BRAND');
+		$('.cate_select').css('display', 'flex');
+	});
+	
 	/* $('.gnbMenuWrap > ul > li').mouseout(function() {
 		$('.cate_select').css('display', 'none');
 	}); */
