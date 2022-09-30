@@ -98,6 +98,20 @@
     z-index: 1
 	}
 	
+	summary {
+    cursor: pointer;
+     list-style: none;
+     padding : 20px;
+  }
+
+ 
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+	
+	
+	
 </style>
 <script type="text/javascript">
 function sample6_execDaumPostcode() {
@@ -319,25 +333,12 @@ function sample6_execDaumPostcode() {
 								</tr>
 							</table>
 						</div>
-						<div class="agree-fold-box-wrap">
-							<span class="order-agree">주문 동의</span>
-							<div class="agree-box"  style="width: 500px;">
-								<ul class="fold-box-list" data-type="single">
-									<li>
-										<div class="fold-box-header">
-											<span class="ui-chk">
-												<label>
-													<input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의">
-													<span class="must">[필수]</span> 
-													주문 내역에 대한 동의
-												</label>
-											</span>
-										</div>
-									</li>
-									
-								</ul>
-							</div>
-						</div>
+							<details>
+								  <summary>주문 동의</summary>
+								  <p><input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의"><span class="must">[필수]</span>주문 내역에 대한 동의</p>
+							</details>
+						
+					
 					</div>	 <!-- orderinfo div 끝 -->			
 				
 
@@ -349,7 +350,6 @@ function sample6_execDaumPostcode() {
 
 				</div>
 				
- 	</div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
@@ -363,36 +363,38 @@ function sample6_execDaumPostcode() {
 
 
 
-function calcTotal() {
-
-	// 모든 소계를 가져와야함
-	let targetSumArr = document.getElementsByClassName("sumProduct")
+	function calcTotal() {
 	
-	// 모든 소계 합산
-	let result = 0;
-	for ( let i = 0 ; i < targetSumArr.length ; i++){
-		let str = targetSumArr[i].innerHTML
-		result += parseInt(str.substring(0,str.length-1))
-	}
-	// 합산 가격 반영
-	
-	let totalArr = document.getElementsByClassName("totalArr")
-	for (let i = 0; i < totalArr.length; i++){
-		totalArr[i].innerHTML = result+"원"
-	}
+		// 모든 소계를 가져와야함
+		let targetSumArr = document.getElementsByClassName("sumProduct")
+		
+		// 모든 소계 합산
+		let result = 0;
+		for ( let i = 0 ; i < targetSumArr.length ; i++){
+			let str = targetSumArr[i].innerHTML
+			result += parseInt(str.substring(0,str.length-1))
+		}
+		// 합산 가격 반영
+		
+		let totalArr = document.getElementsByClassName("totalArr")
+		for (let i = 0; i < totalArr.length; i++){
+			totalArr[i].innerHTML = result+"원"
+		}
 	 	
-	
-/* 	let chkbox = document.getElemenetById("memChkBox");
-	let orderName = document.getElementById("buyername");
+	}
+
+		let chkbox = document.getElementById("memChkBox");
+		let orderName = document.getElementById("buyername");
+		let orderTel = document.getElementById("buyerphone");
+		let orderEmail = document.getElementById("buyermail");
 	
 	memChkBox.addEventListener('click', function(){
 		
-		if
-		
-	})
-	 */
-	
-}
+		ordername.innerHTML = ${mem_name}
+		orderTel.innerHTML = ${mem_tel}
+		orderEmail.innerHTML = ${mem_email1}+'@'+${mem_email2} })
+	 
+
 
 
 </script>
