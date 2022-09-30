@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 </head>
 <body>
-	<%-- <div id="header">
+	<div id="header">
 		<jsp:include page="../main//header.jsp"></jsp:include>
-	</div> --%>
+	</div>
 	<div id="content">
 		<div id="productReview" class="top-wrap">
 			<div class="inner">
@@ -149,7 +149,7 @@
 					<!-- 리뷰 개수 -->
 					<div class="border-line-box-header">
 						<span class="search-result-text">
-							총 37개의 리뷰가 있습니다.
+							총 ${totCnt }개의 리뷰가 있습니다.
 						</span>
 					</div>
 					<!-- 후기 리스트 -->
@@ -158,15 +158,45 @@
 						<div class="flex-box" style="display: none;">
 							<p class="no-data-text">작성된 후기가 없습니다. 첫 번째 후기를 남겨보세요.</p>
 						</div>
-						<!-- 후기 글 4/5개씩(고민) -->
-						<ul class="fold-box-list">
-							<!-- 게시글 1개 -->
+						<!-- 후기 글 목록 -->
+						<table>
+							<tr>
+								<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+							</tr>
+							<!-- 글 목록 -->
+							<c:if test="${totCnt > 0 }">
+								<c:forEach var="board" items="${reviewList }">
+									<tr>
+										<td>${startNum }</td>
+										<td>${board.rb_title }</td>
+										<td>${board.mem_id }</td>
+										<td>${board.rb_date }</td>
+										<td>${board.rb_views }</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
+						
+						<!-- 나중에 수정 -->
+						<div style="text-align: center;">
+							<c:if test="${startPage > blockSize }">
+								<a href='reviewBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+							</c:if>
+							<c:forEach var="i" begin="${startPage}" end="${endPage}">
+								<a href='reviewBoard.do?pageNum=${i}'>[${i}]</a>
+							</c:forEach>
+							<c:if test="${endPage < pageCnt }">
+								<a href='reviewBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+							</c:if>
+						</div>	
+						<!--<ul class="fold-box-list">
+							게시글 1개
 							<li class="fold-box">
 								<div class="fold-box-header">
 									<div class="review-box">
-										<!-- 별점 표시 나중에 구현 -->
+										별점 표시 나중에 구현
 										<div class="rating-wrap">
-											<!-- <div class="star-rating"></div> -->
+											<div class="star-rating"></div>
 											<ul class="rating-list">
 												<li>
 													<span class="rating-type">사이즈</span>
@@ -226,7 +256,7 @@
 									</div>
 								</div>
 							</li>
-						</ul>
+						</ul> -->
 						<!-- 페이징 -->
 						<div class="pagination-wrap" id="product-review-pagination">
 							<div>
@@ -274,8 +304,8 @@
 		</div>
 	</div>
 	
-	<%-- <div id="footer">
+	<div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
-    </div><!-- footer --> --%>
+    </div><!-- footer -->
 </body>
 </html>
