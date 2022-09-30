@@ -40,7 +40,8 @@ private static OrdersInfoDAO instance;
 		return conn;
 	}
 	
-	public int selectMemInfo (String mem_id) {
+	//member 정보 가져가는 메소드
+	public OrdersInfoDTO selectMemInfo(String mem_id) {
 		
 		
 		Connection conn = getConnection();
@@ -49,24 +50,24 @@ private static OrdersInfoDAO instance;
 		
 		String sql = "SELECT mem_name, mem_tel, mem_email1, mem_email2"
 				+ "FROM member"
-				+ "WHERE mem_id=?";
+				+ "WHERE mem_id=?"+mem_id;
 		
-		int result = 0;
+		OrdersInfoDTO ordersInfoDTO = new OrdersInfoDTO();
 		
 		try {
-			
+				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mem_id);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					
-					OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
-					ordersDTO.setMem_id(rs.getString("mem_id"));
-					ordersDTO.setMem_name(rs.getString("mem_name"));
-					ordersDTO.setMem_tel(rs.getString("mem_tel"));
-					ordersDTO.setMem_email1(rs.getString("mem_email1"));
-					ordersDTO.setMem_email2(rs.getString("mem_email2"));
+					
+					ordersInfoDTO.setMem_id(rs.getString("mem_id"));
+					ordersInfoDTO.setMem_name(rs.getString("mem_name"));
+					ordersInfoDTO.setMem_tel(rs.getString("mem_tel"));
+					ordersInfoDTO.setMem_email1(rs.getString("mem_email1"));
+					ordersInfoDTO.setMem_email2(rs.getString("mem_email2"));
 					
 				}
 			
@@ -77,7 +78,7 @@ private static OrdersInfoDAO instance;
 			close(conn, pstmt, rs);
 		}
 		
-		return result;
+		return ordersInfoDTO;
 		
 		
 	}

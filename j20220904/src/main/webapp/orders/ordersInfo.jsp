@@ -193,9 +193,9 @@ function sample6_execDaumPostcode() {
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
 							<ul>
-								<li class="totalArr"></li>
-								<li>배송비 : 무료</li>
-								<li>총 결제예정금액 : </li>
+								<li class="totalArr"></li><br><br>
+								<li>배송비 : 무료</li><br><br>
+								<li>총 결제예정금액 : </li><br><br>
 								<li><input type="button" value="결제하기" onclick="">
 							</ul>
 						</div>
