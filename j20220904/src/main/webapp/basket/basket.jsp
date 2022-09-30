@@ -187,9 +187,9 @@
 							</tr>
 							</c:if>
 							<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-							<c:forEach var="item" items="${basketList }">
+							<c:forEach var="item" items="${basketList }" varStatus="status">
 								<tr id="tr${item.product_id }_${item.size_num }">
-									<td><input type="checkbox" name="RowCheck" id="chk${item.product_id }" checked></td>
+									<td><input type="checkbox" name="rowCheck1" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
 									<td><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
@@ -210,7 +210,7 @@
 					<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 					<c:if test="${basketList ne null }">
 						<div class="order-delete-btn">
-							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem(${basketList})">
+							<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 						</div>
 					</c:if>
 					
@@ -373,75 +373,24 @@
 			}
 	}
 	
-	
-	/* $("#delCheck").click(function(){
+	function delChkItem() {
 		
-		let rowData = new Array();
-		let tdArr = new Array();
-		let checkbox = $("input[name=RowCheck]:checked");
 		
-		checkbox.each(function(i){
-			
-			//checkbox.parent() : checkbox의 부모는 <td>이다
-			//checkbox.parent().parent() : <td>의 부모이므로 <tr>이다
-			
-			let tr = checkbox.parent().parent()eq.(i)
-			let td = tr.childern();
-			
-			rowData.push(tr.next());
-		
-		});
-		
-	} */
-	
-	
-	function delChkItem(basketlist) {
-	
-	
 			var list = new Array();
 		 	<c:forEach items="${basketList }" var="list" >	
-		    	list.push("${list.check1}");
+		    	list.push("${basketList}.chk${item.product_id }_${item.size_num}");
 			</c:forEach>
 
 			for (var i=0; i<list.length;){
 				alert("list->"+ i + " :  "+ list[i++]);
-		
+			}
+			
 			return list;
 			
-			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?basketList='+basketlist
-		}	
-		
-		
+			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+			
 		
 	}
-	
-	
-	
-	
-	/* 
-	let deleteConfirm = confirm('선택한 상품을 삭제하시겠습니까?');
-	
-	if(deleteConfirm == true) {
-		
-		let chkPdcId = [];
-		let chkLength;
-		let count = 0;
-		
-		$('#delChk:checked').each(function() {
-			
-			chkPdcId += $(this).val()+', ';
-			chkLength = $(this).length;
-			
-		})
-		
-		return chkPdcId;
-		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkPdcID='+chkPdcId
-	} 
-	
-	else {
-		alert("상품 삭제가 취소되었습니다.");
-	} */
-	
 	
 	
 

@@ -2,6 +2,10 @@ package dto;
 
 public class OrdersInfoDTO {
 
+	private int product_id;
+	private int size_num;
+	private int cnt;
+	
 	private int order_id;
 	private String mem_id;
 	private String order_name;
@@ -81,5 +85,23 @@ public class OrdersInfoDTO {
 		this.order_status = order_status;
 	}
 	
+	public int getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}
+	public int getSize_num() {
+		return size_num;
+	}
+	public void setSize_num(int size_num) {
+		this.size_num = size_num;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	
 }
