@@ -46,7 +46,7 @@
                             <span class="mypage-lnb-title">쇼핑수첩</span>
                             <ol>
                                 <li class="mypage-lnb-item">
-                                    <a href="#">찜한상품</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/likeProList.do" id="mylike">찜한상품</a>
                                 </li>
                                 <li class="mypage-lnb-item">
                                     <a href="#">상품 Q&A</a>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-favorite"></i> 찜한상품</span>
-                                    <span class="info-data"><a href="#">${requestScope.likeProCnt }<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="${pageContext.request.contextPath }/mypage/likeProList.do">${requestScope.likeProCnt }<span class="unit">개</span></a></span>
                                 </div>
                             </div>
                         </div><!-- grade-box-contents shopinfo -->
@@ -124,7 +124,7 @@
 	
 	                        <div class="tab-content">
 	                            <div class="btn-wrap">
-	                                <button type="button" class="btn-txt-arr" id="moreOrder">더보기</button>
+	                                <a href="${pageContext.request.contextPath }/mypage/likeProList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
 	                            </div>
 	                            
 	                            <div class="col-list-wrap" >
@@ -184,6 +184,8 @@ $(function() {
 		$('#updatePwdTag').addClass('active');
 	} else if(active == 'delete') {
 		$('#deleteTag').addClass('active');
+	} else if(active == 'likePro') {
+		$('#mylike').addClass('active');
 	}
 	
 	// 찜한 상품이 있을 때 없을 때 display:none 처리
@@ -203,6 +205,7 @@ $(function() {
 	$('li.prod-item').mouseout(function() {
 		$(this).css('border', '');
 	});
+	
 });
 </script>
 </body>
