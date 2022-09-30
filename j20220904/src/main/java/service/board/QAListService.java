@@ -36,6 +36,12 @@ public class QAListService implements CommandProcess {
 			// Board 조회
 			List<QABoardDTO> qAList = qbd.qABoardList(startRow, endRow);
 			
+			System.out.println("QAListService qAList totCnt=>"+totCnt);
+			System.out.println("QAListService qAList qAList.size()=>"+qAList.size());
+			for (QABoardDTO qaBoardDTO : qAList) {
+				System.out.println("QAListService qAList qaBoardDTO.getQ_title()=>"+qaBoardDTO.getQ_title());
+			}
+			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 			
 			int startPage = (int)(currentPage - 1) / blockSize * blockSize + 1;

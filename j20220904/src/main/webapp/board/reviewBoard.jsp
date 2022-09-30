@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 </head>
 <body>
-	<div id="header">
+	<%-- <div id="header">
 		<jsp:include page="../main//header.jsp"></jsp:include>
-	</div>
+	</div> --%>
 	<div id="content">
 		<div id="productReview" class="top-wrap">
 			<div class="inner">
@@ -274,8 +274,8 @@
 		</div>
 	</div>
 	
-	<div id="footer">
+	<%-- <div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
-    </div><!-- footer -->
+    </div><!-- footer --> --%>
 </body>
 </html>

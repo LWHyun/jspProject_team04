@@ -1090,6 +1090,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="review_board">
+		<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
+	</div>
+	<div class="qna_board">
+		<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
+	</div>
 	<div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
     </div>

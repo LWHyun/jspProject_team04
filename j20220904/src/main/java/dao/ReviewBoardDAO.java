@@ -69,10 +69,9 @@ public class ReviewBoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// sql문 변경하기
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from review_board order by ref desc,re_step) a ) "
+	 		    + "      From 	 (select * from review_board order by rb_id desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		//
@@ -99,6 +98,8 @@ public class ReviewBoardDAO {
 				reviewBoard.setRb_img(rs.getString("rb_img"));
 				reviewBoard.setRb_date(rs.getDate("rb_img"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
+			
+				reviewList.add(reviewBoard);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
