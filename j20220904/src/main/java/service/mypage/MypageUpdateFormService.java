@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.PageHandler;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
@@ -29,7 +30,9 @@ public class MypageUpdateFormService implements CommandProcess {
 		// 장바구니 , 찜 갯수
 		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
 		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
+		PageHandler ph = new PageHandler(likeProCnt); // jsp에서 찜한 갯수 처리 통일하기 위해 그냥 가져가는 것
 		
+		request.setAttribute("ph", ph);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "update");

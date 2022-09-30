@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -119,6 +120,38 @@ public class LikeProDAO {
 		return list;
 	}
 	
+	// 선택한 찜 상품(들) 삭제하는 메서드
+	public int deleteLike(List<LikeProDTO> list) {
+		Connection conn = getConnection();
+		
+		String product_id = "";
+		String mem_id = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			product_id += i==0 ? "'"+list.get(i).getProduct_id()+"'" : ","+"'"+list.get(i).getProduct_id()+"'";
+			mem_id += i==0 ? "'"+list.get(i).getMem_id()+"'" : ","+"'"+list.get(i).getMem_id()+"'";
+		}
+		System.out.println(product_id);
+		System.out.println(mem_id);
+		
+		String sql = String.format("delete from like_pro where product_id in (%s) and mem_id in(%s)", product_id , mem_id);
+		System.out.println(sql);
+		Statement stmt = null;
+		int result = 0;
+		try {
+			stmt = conn.createStatement();
+			
+			result = stmt.executeUpdate(sql);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, conn);
+		}
+		
+		return result;
+	}
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
@@ -130,4 +163,6 @@ public class LikeProDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

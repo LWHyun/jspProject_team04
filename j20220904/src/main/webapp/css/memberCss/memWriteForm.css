@@ -264,6 +264,11 @@ th.required:after {
     background: #ee1c25;
     vertical-align: super;
 }
+/* 인증번호 버튼 */
+#emailBtn:hover {
+	background-color: black;
+	color:white;
+}
 
 /* valid div */
 #Val_nameDiv, #Val_idDiv, #Val_pwdDiv, #Val_pwdReDiv, #Val_emailDiv, #Val_telDiv, #Val_addrDiv {

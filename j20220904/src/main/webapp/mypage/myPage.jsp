@@ -45,6 +45,9 @@
                         <li>
                             <span class="mypage-lnb-title">쇼핑수첩</span>
                             <ol>
+                            	<li class="mypage-lnb-item">
+                                    <a href="#">최근 주문내역</a>
+                                </li>
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/likeProList.do" id="mylike">찜한상품</a>
                                 </li>
