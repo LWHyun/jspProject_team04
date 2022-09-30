@@ -13,7 +13,14 @@
 
 <%@include file="indexEx2.jsp" %>
 <style type="text/css">
-	
+	a{
+		color: black;
+		text-decoration: none;
+	}
+	#nameResult{
+		font-weight: 700;
+		font-size: 38px;
+	}
 	
 	.cate_name{
 		height: 100px;
@@ -111,6 +118,10 @@
 		display: block;
 		
 	}
+	
+	#btn_search{
+		float:right;
+	}
 
 </style>
 <script type="text/javascript">
@@ -122,11 +133,13 @@
 			$(this).attr('src','../img/contexts/heart1.png');
 		})
 	}
-	function buynow() {
-		
-	}
 	
-	$('#cate_men').mouse
+	$(function() {
+		$(".pro_buynow").click(function() {
+			confirm('바로 구매하시겠습니까?');
+			location.href="#"; /* 바로구매창 이동 */
+		});
+	});
 	
 	
 </script>
@@ -135,7 +148,7 @@
 	
 
 	<div class="cate_name">
-		<h1>${result }</h1><br>
+		<h1 id="nameResult">${result }</h1><br>
 		<hr>
 	</div>
 
@@ -147,8 +160,8 @@
 	   		<span>브랜드</span>
 		   	<div class="dropdown_content">
 		   		<ul>
-		   			<li><label for="chkbox_brand">나이키</label><input type="checkbox" name="chkbox_brand" value="NIKE"></li>
-		   			<li><label for="chkbox_brand">아디다스</label><input type="checkbox" name="chkbox_brand" value="ADIDAS"></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="NIKE"><label for="chkbox_brand">나이키</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="ADIDAS"><label for="chkbox_brand">아디다스</label></li>
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -157,9 +170,9 @@
 	   		<span>사이즈</span>
 		   	<div class="dropdown_content">
 		   		<ul>
-		   			<li><label for="chkbox_size">260</label><input type="checkbox" name="chkbox_size" value="260"></li>
-		   			<li><label for="chkbox_size">270</label><input type="checkbox" name="chkbox_size" value="270"></li>		   			
-		   			<li><label for="chkbox_size">280</label><input type="checkbox" name="chkbox_size" value="270"></li>		   			
+		   			<li><input type="checkbox" name="chkbox_size" value="260"><label for="chkbox_size">260</label></li>
+		   			<li><input type="checkbox" name="chkbox_size" value="270"><label for="chkbox_size">270</label></li>		   			
+		   			<li><input type="checkbox" name="chkbox_size" value="270"><label for="chkbox_size">280</label></li>		   			
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -173,7 +186,8 @@
 				</ul>
 			</div>
 		</div>
-		<button type="button" onclick="searchFilter()">검색하기</button>
+    	<button type="reset" id="btn_reset" class="custom-btn btn-close">초기화</button>
+		<button type="button" id="btn_search" class="custom-btn btn-close" onclick="searchFilter()">검색하기</button>
 		</form>
 	</div>
    
@@ -187,12 +201,12 @@
 				<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
-				<span class="pro_price">${list.price }</span><br>
+				<span class="pro_price">${list.price }</span><span>원</span><br>
 				</a>
 				<hr>
 				<div class="pro_buycontent">
 					<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
-					<button onclick="buynow()" class="pro_buynow">바로구매</button>
+					<button type="button" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>
 			
