@@ -12,7 +12,14 @@
 <script type="text/javascript" src="../js/jquery.js"></script>
 <%@include file="indexEx2.jsp" %>
 <style type="text/css">
-	
+	a{
+		color: black;
+		text-decoration: none;
+	}
+	.nameResult{
+		font-weight: 700;
+		font-size: 38px;
+	}
 	.cate_name{
 		height: 100px;
 	}
@@ -109,6 +116,9 @@
 		display: block;
 		
 	}
+	#btn_search{
+		float:right;
+	}
 
 </style>
 <script type="text/javascript">
@@ -120,12 +130,25 @@
 			$(this).attr('src','../img/contexts/heart1.png');
 		})
 	}
+	
+	
+	$(function() {
+		$(".pro_buynow").click(function() {
+			confirm('바로 구매하시겠습니까?');
+			location.href="#"; /* 바로구매창 이동 */
+		});
+	});
 </script>
 </head>
 <body>
 
 	<div class="cate_name">
-		<h1>${searchBar } 을(를) 검색한 결과</h1><br>
+		<c:if test="${result ==0 }">
+			<h1 class="nameResult">${searchBar } 을(를) 검색한 결과</h1><br>
+		</c:if>
+		<c:if test="${result ==1 }">
+			<h1 class="nameResult">${ca_name }</h1>
+		</c:if>
 		<hr>
 	</div>
 
@@ -168,14 +191,16 @@
 			<c:forEach var="list" items="${list }">
 			<li class="pro_content">
 				<div>
+					<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
 					<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img"><br>
 					<span class="pro_brand">${list.brand }</span><br>
 					<span class="pro_model">${list.kor_name }</span><br>
 					<span class="pro_price">${list.price }</span><br>
+					</a>
 					<hr>
 					<div class="pro_buycontent">
 						<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
-						<button onclick="buynow()" class="pro_buynow">바로구매</button>
+						<button type="button" class="pro_buynow">바로구매</button>
 					</div>
 				</div>
 			</li>

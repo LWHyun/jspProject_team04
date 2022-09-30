@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.CategoryDAO;
+import dto.CategoryDTO;
 import dto.ProductDTO;
 import dto.Product_ImgSrcDTO;
 
@@ -25,7 +26,7 @@ public class SearchViewService implements CommandProcess {
 		String searchWord = (String) session.getAttribute("searchWord");
 		CategoryDAO cd = CategoryDAO.getInstance();
 		System.out.println("searchViewService "+searchWord);
-		
+		int result = 0;
 		//카테고리 코드가 있으면 아래 실행
 		if(ca_code != null) {
 			
@@ -33,7 +34,9 @@ public class SearchViewService implements CommandProcess {
 				try {
 					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code);
 					request.setAttribute("list", list);
-					
+					String codeName = cd.selectCateName(ca_code);
+					request.setAttribute("ca_name", codeName);
+					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -46,6 +49,7 @@ public class SearchViewService implements CommandProcess {
 				request.setAttribute("searchBar", searchBar);
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);
+				result=0;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,7 +58,7 @@ public class SearchViewService implements CommandProcess {
 
 		}
 		
-		
+		request.setAttribute("result", result);
 		
 			
 		

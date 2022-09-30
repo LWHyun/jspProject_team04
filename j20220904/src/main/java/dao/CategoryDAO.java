@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import dto.CategoryDTO;
 import dto.ProductDTO;
 import dto.Product_ImgSrcDTO;
+import dto.Recent_SearchClickDTO;
 import dto.SearchClickDTO;
 
 public class CategoryDAO {
@@ -380,6 +381,72 @@ public class CategoryDAO {
 		}
 		
 		return list;
+	}
+	public String selectCateName(String ca_code) throws SQLException {
+		String sql = "select ca_name from category where ca_code=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result = "";
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ca_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString(1);
+			}
+			System.out.println("SelectCateName result -->"+result);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		
+		return result;
+	}
+	public List<Recent_SearchClickDTO> selectRecentWord(String id) throws SQLException {
+		List<Recent_SearchClickDTO>rsc_list = new ArrayList<Recent_SearchClickDTO>();
+		String sql = "select * from recent_searchclick where mem_id=? order by rsc_num desc";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Recent_SearchClickDTO rsc = new Recent_SearchClickDTO();
+				rsc.setRsc_num(rs.getInt(2));
+				rsc.setRsc_word(rs.getString(3));
+				rsc_list.add(rsc);
+				if(rsc_list.size()==10) break;
+
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		
+		
+		return rsc_list;
 	}
 	
 	

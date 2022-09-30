@@ -33,16 +33,43 @@
 		width: 1000px;
 	}
 	#box-left {
-	  background: red;
-	  flex: 1;
-	}
-	#box-center {
-	  background: orange;
-	  flex: 1;
-	}
+		  flex: 1;
+		}
+		#box-center {
+		  
+		  flex: 1;
+		}
 	#box-right {
-	  background: yellow;
-	  flex: 1;
+		  flex: 1;
+		}
+	ul{
+	  list-style:none;
+	  line-height: 35px;
+	}
+	#box-center li{
+	  list-style:numbers;
+	  
+	}
+	#box-center li:first-child{
+		list-style: 
+	}
+	#box-center{
+	  border-left:1px solid black;
+	  border-right:1px solid black;
+	  
+	}
+	.box-all{
+	  padding:20px;
+	 
+	}
+	a{
+	  color:black;
+	  text-decoration:none;
+	}
+	.box_span{
+	  font-weight:bold;
+	  font-size:20px;
+	  
 	}
 </style>
 </head>
@@ -61,20 +88,21 @@
 	
 	
 	<div id='container'>
-    	<div id='box-left'>최근 검색어
+    	<div id='box-left' class="box-all"><span class="box_span">최근 검색어</span>
     		<ul>
-    			<li>나이키</li>
-    			<li>아디다스</li>
+    		<c:forEach var="rsc_list" items="${rsc_list }">
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=${rsc_list.rsc_word }">${rsc_list.rsc_word }</a></li>
+    		</c:forEach>
     		</ul>
     	</div>
-    	<div id='box-center'>인기검색어
+    	<div id='box-center' class="box-all"><span class="box_span">인기 검색어</span>
     		<ul>
     		<c:forEach var="list" items="${list }">
     			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=${list.sc_word }">${list.sc_word }</a></li>
     		</c:forEach>
     		</ul>
     	</div>
-    	<div id='box-right'>추천 검색어
+    	<div id='box-right' class="box-all"><span class="box_span">추천 검색어</span>
     		<ul>
     			<li>나이키</li>
     			<li>아디다스</li>
