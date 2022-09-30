@@ -71,10 +71,13 @@ public class ReviewBoardDAO {
 		
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from review_board order by rb_id desc) a ) "
+	 		    + "      From 	 (select * from review_board order by rb_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
-		//
+		System.out.println("DAO reviewBoardList sql->"+sql);
+		System.out.println("DAO reviewBoardList startRow->"+startRow);
+		System.out.println("DAO reviewBoardList endRow->"+endRow);
+		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -84,6 +87,7 @@ public class ReviewBoardDAO {
 			
 			while(rs.next()) {
 				ReviewBoardDTO reviewBoard = new ReviewBoardDTO();
+				System.out.println("DAO reviewBoardList rb_title->"+rs.getString("rb_title"));
 				
 				reviewBoard.setRb_id(rs.getInt("rb_id"));
 				reviewBoard.setMem_id(rs.getString("mem_id"));
@@ -96,13 +100,13 @@ public class ReviewBoardDAO {
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
 				reviewBoard.setRb_img(rs.getString("rb_img"));
-				reviewBoard.setRb_date(rs.getDate("rb_img"));
+				reviewBoard.setRb_date(rs.getDate("rb_date"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
-			
 				reviewList.add(reviewBoard);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()); 
+			e.printStackTrace();
 		} finally {
 			close(rs, pstmt, conn);
 		}

@@ -21,8 +21,10 @@ public class ReviewListService implements CommandProcess {
 		// Dao랑 Service 연결
 		ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
 		
+		
 		try {
 			int totCnt = rbd.getTotalCnt();	// 총 개수
+			System.out.println("ReviewListService totCnt->"+totCnt);
 			
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
@@ -36,6 +38,11 @@ public class ReviewListService implements CommandProcess {
 			
 			// Board 조회
 			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow, endRow);
+			
+				System.out.println("QAListService reviewList reviewList.size()=>"+reviewList.size());
+			for (ReviewBoardDTO reviewBoardDTO : reviewList) {
+				System.out.println("ReviewListService reviewList reviewBoardDTO.getQ_title() => " + reviewBoardDTO.getRb_title());
+			}
 			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 			

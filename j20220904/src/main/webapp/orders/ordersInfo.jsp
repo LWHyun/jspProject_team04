@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 						display : block;
 			
 	}
-	.order-wrap {
+	.order-wrap, .order-info {
 					margin-top: 79px;
 				    padding-left: 150px;
 				    padding-right: 150px
@@ -23,7 +24,10 @@
 		font-weight : bold;
 	
 	}
-
+	
+	.basketbtn {
+		float : right;
+	}
 	.order-body, .cal-tbl {	
 								/* width : 1200px;
 								margin-top : 30px;
@@ -142,6 +146,7 @@ function sample6_execDaumPostcode() {
             document.getElementById("sample6_detailAddress").focus();
         }
     }).open();
+     
 }
 </script>
 </head>
@@ -152,25 +157,33 @@ function sample6_execDaumPostcode() {
 	
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
+ 			<div class="go-back-basket">
+ 				<input type="button" value="주문정보수정" class="basketbtn" onclick="history.back();">
+ 			</div>
+ 			
  			<div class="order-basket">
-					
-					
+					<!-- 장바구니에서 넘어왔을 때 -->
 					<table class="order-body">
 					
-						<tbody>
-							<tr>
-								<td class="pd_img"><img src="images/shoe.jpg" width="100px" float="center"></td>
-								<td>DAYSOF DUAL THONG<br> MELON </td>
-								<td>27,000원</td>
-							</tr>
-						</tbody>
+						<c:forEach var="item" items="${basketList }" varStatus="status">
+								<tr id="tr${item.product_id }_${item.size_num }">
+									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
+									
+									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
+										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
+									
+									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
+								</tr>
+						</c:forEach>
 					</table>
  			</div>	
  				<div class="price-cal">
-					<table class="cal-tbl">
-						<tr><td>결제 예정 금액</td></tr>
-						<tr><td>27,000원</td></tr>
-					</table>
+						<table class="cal-tbl">
+							<tr><td>결제 예정 금액</td></tr>
+							<tr><td class="totalArr">원</td></tr>
+						</table>
+					</div>
 				</div>
 				
 				<!-- 여기부터 주문 정보 디테일 -->
@@ -178,16 +191,19 @@ function sample6_execDaumPostcode() {
 				<div class="order-info">
 						
 						<div class="order-payment-box" id="orderPaymentBox">
-							<h4>결제 정보 </h4>
+							<h4>결제 정보 </h4><br><br>
 							<ul>
-								<li></li>
-							
+								<li class="totalArr"></li>
+								<li>배송비 : 무료</li>
+								<li>총 결제예정금액 : </li>
+								<li><input type="button" value="결제하기" onclick="">
 							</ul>
 						</div>
 						
 						
 				<div class="order-form">
 						<span class="order-user">주문 고객정보</span>
+						<label><input type="checkbox" id="memChkBox"> 회원 정보와 동일</label>
 						<table class="tbl-form">
 							<tbody>
 								<tr>
@@ -337,4 +353,38 @@ function sample6_execDaumPostcode() {
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
+<script type="text/javascript">
+
+
+	// 화면 로딩될때 가격 계산도 해줘
+	$(function(){
+		calcTotal()
+	})
+
+
+
+function calcTotal() {
+
+	// 모든 소계를 가져와야함
+	let targetSumArr = document.getElementsByClassName("sumProduct")
+	
+	// 모든 소계 합산
+	let result = 0;
+	for ( let i = 0 ; i < targetSumArr.length ; i++){
+		let str = targetSumArr[i].innerHTML
+		result += parseInt(str.substring(0,str.length-1))
+	}
+	// 합산 가격 반영
+	
+	let totalArr = document.getElementsByClassName("totalArr")
+	for (let i = 0; i < totalArr.length; i++){
+		totalArr[i].innerHTML = result+"원"
+	}
+	 	
+	
+	
+}
+
+
+</script>
 </html>

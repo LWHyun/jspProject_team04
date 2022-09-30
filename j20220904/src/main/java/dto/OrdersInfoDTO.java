@@ -6,6 +6,14 @@ public class OrdersInfoDTO {
 	private int size_num;
 	private int cnt;
 	
+	//
+	private String mem_name;
+	private String mem_tel;
+	private String mem_email1;
+	private String mem_email2;
+	
+	
+	//
 	private int order_id;
 	private String mem_id;
 	private String order_name;
@@ -103,5 +111,32 @@ public class OrdersInfoDTO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
+	public String getMem_tel() {
+		return mem_tel;
+	}
+	public void setMem_tel(String mem_tel) {
+		this.mem_tel = mem_tel;
+	}
+	public String getMem_email1() {
+		return mem_email1;
+	}
+	public void setMem_email1(String mem_email1) {
+		this.mem_email1 = mem_email1;
+	}
+	public String getMem_email2() {
+		return mem_email2;
+	}
+	public void setMem_email2(String mem_email2) {
+		this.mem_email2 = mem_email2;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+	
+	
 	
 }

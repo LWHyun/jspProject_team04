@@ -46,7 +46,7 @@
                             <span class="mypage-lnb-title">쇼핑수첩</span>
                             <ol>
                                 <li class="mypage-lnb-item">
-                                    <a href="#">찜한상품</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/likeProList.do" id="mylike">찜한상품</a>
                                 </li>
                                 <li class="mypage-lnb-item">
                                     <a href="#">상품 Q&A</a>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="info-item">
                                     <span class="info-title"><i class="icon-favorite"></i> 찜한상품</span>
-                                    <span class="info-data"><a href="#">${requestScope.likeProCnt }<span class="unit">개</span></a></span>
+                                    <span class="info-data"><a href="${pageContext.request.contextPath }/mypage/likeProList.do">${requestScope.ph.totalCnt}<span class="unit">개</span></a></span>
                                 </div>
                             </div>
                         </div><!-- grade-box-contents shopinfo -->
@@ -118,18 +118,18 @@
 	                            </li > -->
 	
 	                            <li class="tabs-li2">
-	                                <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.likeProCnt > 4 ? 4 : requestScope.likeProCnt}) </a>
+	                                <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.ph.totalCnt}) </a>
 	                            </li>
 	                        </ul>
 	
 	                        <div class="tab-content">
 	                            <div class="btn-wrap">
-	                                <button type="button" class="btn-txt-arr" id="moreOrder">더보기</button>
+	                                <a href="${pageContext.request.contextPath }/mypage/likeProList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
 	                            </div>
 	                            
 	                            <div class="col-list-wrap" >
 	                                <ul class="col-list prod-list col-4">
-	                                	<c:forEach var="likeProDTO" items="${likeProList }" begin="0" end="${requestScope.likeProCnt > 4 ? 3 : requestScope.likeProCnt == 0 ? 0 : requestScope.likeProCnt-1}">
+	                                	<c:forEach var="likeProDTO" items="${likeProList }" begin="0" end="${requestScope.ph.totalCnt > 4 ? 3 : requestScope.ph.totalCnt == 0 ? 0 : requestScope.ph.totalCnt-1}">
 		                                	<li class="col-list-item prod-item no-util">
 		                                        <a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${likeProDTO.product_id}&gender=${likeProDTO.gender}" class="prod-link">
 		                                 
@@ -184,10 +184,12 @@ $(function() {
 		$('#updatePwdTag').addClass('active');
 	} else if(active == 'delete') {
 		$('#deleteTag').addClass('active');
+	} else if(active == 'likePro') {
+		$('#mylike').addClass('active');
 	}
 	
 	// 찜한 상품이 있을 때 없을 때 display:none 처리
-	var listCnt = Number(${requestScope.likeProCnt});
+	var listCnt = Number(${requestScope.ph.totalCnt});
 	if(listCnt == 0) {
 		$('.mypage-no-data').css('display', '');
 		$('.col-list-wrap').css('display', 'none');
@@ -203,6 +205,7 @@ $(function() {
 	$('li.prod-item').mouseout(function() {
 		$(this).css('border', '');
 	});
+	
 });
 </script>
 </body>
