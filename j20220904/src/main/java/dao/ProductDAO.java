@@ -400,5 +400,82 @@ public class ProductDAO {
 	}
 
 	
+	public List<ProductDAO> insertProduct() throws SQLException {
+		List<ProductDAO> list =  new ArrayList<ProductDAO>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, pi.s_file_path, pi.l_file_path\r\n"
+				+ "FROM product p, product_image pi\r\n"
+				+ "WHERE p.product_id = pi.product_id\r\n"
+				+ "AND p.brand = 'NIKE'";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				
+				rs.getInt(1);
+				rs.getString(2);
+				rs.getString(3);
+				rs.getString(4);
+				rs.getInt(5);
+				rs.getLong(6);
+				rs.getString(7);
+				rs.getString(8);
+				rs.getString(8);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if(rs !=null) rs.close();
+			if(stmt != null) stmt.close();
+			if(conn != null) conn.close();
+		}
+		
+		return list;
+			
+	}
+	
+	public List<Product_ImgSrcDTO> selectCa_code(int ca_code) throws SQLException {
+		ArrayList<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select p.* from product p where p.brand=(select ca_name from category where ca_code=?)";
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ca_code);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Product_ImgSrcDTO product_ImgSrcDTO = new Product_ImgSrcDTO();
+				product_ImgSrcDTO.setProduct_id(rs.getInt(1));
+				product_ImgSrcDTO.setBrand(rs.getString(2));
+				product_ImgSrcDTO.setEng_name(rs.getString(3));
+				product_ImgSrcDTO.setKor_name(rs.getString(4));
+				product_ImgSrcDTO.setGender(rs.getInt(5));
+				product_ImgSrcDTO.setPrice(rs.getLong(6));
+				product_ImgSrcDTO.setColor(rs.getString(7));
+				product_ImgSrcDTO.setRegdate(rs.getDate(8));
+				product_ImgSrcDTO.setCa_code(rs.getInt(9));;
+				list.add(product_ImgSrcDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs !=null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		return list;
+		
+		
+		
+		
+	}
 	
 }
