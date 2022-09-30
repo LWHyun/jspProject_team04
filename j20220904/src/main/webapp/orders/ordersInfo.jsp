@@ -181,7 +181,7 @@ function sample6_execDaumPostcode() {
  				<div class="price-cal">
 						<table class="cal-tbl">
 							<tr><td>결제 예정 금액</td></tr>
-							<tr><td id="total">원</td></tr>
+							<tr><td class="totalArr">원</td></tr>
 						</table>
 					</div>
 				</div>
@@ -193,7 +193,7 @@ function sample6_execDaumPostcode() {
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
 							<ul>
-								<li id="total">원</li>
+								<li class="totalArr"></li>
 								<li>배송비 : 무료</li>
 								<li>총 결제예정금액 : </li>
 								<li><input type="button" value="결제하기" onclick="">
@@ -203,6 +203,7 @@ function sample6_execDaumPostcode() {
 						
 				<div class="order-form">
 						<span class="order-user">주문 고객정보</span>
+						<label><input type="checkbox" id="memChkBox"> 회원 정보와 동일</label>
 						<table class="tbl-form">
 							<tbody>
 								<tr>
@@ -375,16 +376,15 @@ function calcTotal() {
 	}
 	// 합산 가격 반영
 	
-	let targetTotal = document.getElementById("total");
-	targetTotal.innerHTML = result + "원"
-}
-
-
-function chkInfo() {
-	
-	if
+	let totalArr = document.getElementsByClassName("totalArr")
+	for (let i = 0; i < totalArr.length; i++){
+		totalArr[i].innerHTML = result+"원"
+	}
+	 	
 	
 	
 }
+
+
 </script>
 </html>
