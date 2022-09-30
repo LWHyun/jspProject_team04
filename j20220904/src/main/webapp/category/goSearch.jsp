@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +69,9 @@
     	</div>
     	<div id='box-center'>인기검색어
     		<ul>
-    			<li>나이키</li>
-    			<li>아디다스</li>
+    		<c:forEach var="list" items="${list }">
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=${list.sc_word }">${list.sc_word }</a></li>
+    		</c:forEach>
     		</ul>
     	</div>
     	<div id='box-right'>추천 검색어

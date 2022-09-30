@@ -41,7 +41,7 @@ public class NoticeDAO {
 	}
 	
 	
-	/* [ALL] 페이징 메소드 */
+	// [ALL] 페이징 메소드
 	public List<NoticeDTO> noticeList(int startRow, int endRow) throws SQLException {
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		Connection conn = null;	
@@ -78,6 +78,12 @@ public class NoticeDAO {
 		} 
 		return list;
 	}
+	
+	
+	// [ALL] 이전글 메소드
+	
+	// [ALL] 다음글 메소드
+	
 	
 	/* [관리자] 게시글 작성 메소드 */
 	public int insert(NoticeDTO notice) throws SQLException {
@@ -138,7 +144,7 @@ public class NoticeDAO {
 		return notice;
 	}
 	
-	// [관리자] 게시글 수정 메소드
+	/* [관리자] 게시글 수정 메소드 */
 	public int update(NoticeDTO notice) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
@@ -208,4 +214,6 @@ public class NoticeDAO {
 		}
 		return tot;
 	}
+	
+	
 }

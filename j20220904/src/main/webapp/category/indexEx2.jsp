@@ -13,19 +13,25 @@
    .cate_select{
 		width : 100%;
 		height: 500px;
-		display: flex;
+		/* display: flex; */
 		justify-content: center;
 		
 	}
    
    
-  /*   #cate_men:hover .cate_select{
-		display: flex;
-		justify-content: center;
+ 	/* #cate_men:focus .cate_select{
+		
+		
+	} */
+	
+	/* .gnbMenuWrap a:hover #cate_select {
+      display: flex;
+   } */
+	
+	/* .gnb-bottom-wrap > .inner > .gnbMenuWrap > ul > li:hover .cate_select{
+		background-color: blue;
+		/* display: ''; 
 	}  */
-	
-	
-	
    
    .cate_div{
    		margin: 10px;
@@ -151,9 +157,9 @@
                   <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
                </a>
               	<div class="gnb-search-wrap">
-                  <form action="${pageContext.request.contextPath }/category/searchView.do">
+                  <form action="${pageContext.request.contextPath }/category/searchView.do" id="searchViewForm">
                      <input type="search" name="searchBar" id="searchBar" value="${searchWord }" onclick="goSearch()">
-                     <button class="material-icons">search</button><!-- 버튼 클릭되면 진짜 찾는걸로 -->
+                     <button class="material-icons" id="searchButton">search</button><!-- 버튼 클릭되면 진짜 찾는걸로 -->
                   </form>
                </div>
                <div class="util-list-wrap">
@@ -188,43 +194,90 @@
             <div class="inner">
                <div class="gnbMenuWrap">
                   <ul class="gnb-menu">
-                     <li>
+                     <li id="li_brand">
                         <a href="#" style="color: #ffe100;">BRAND</a>
                      </li>
-                     <li id="cate_men">
+                     <li id="li_men">
                        <a href="${pageContext.request.contextPath }/category/men3.do?gender=0" >MEN</a>
                      </li>
-                     <li>
+                     <li id="li_women">
                         <a href="${pageContext.request.contextPath }/category/women.do?gender=1">WOMEN</a>
                      </li>
+                     
                   </ul>
                </div>
             </div>
          </div>
       </div>
+      <div class="cate_select" style="display:none">
+	                  <div class="cate_div">
+						<h1 id="cate_high"></h1>
+						<hr>
+						<ul class="cate_low" id="cate_low">
+							
+						</ul>
+						<button id="close">닫기</button>
+						</div>
+					</div>
+      
+      
+      
+      <!-- 
+		
+	
+       -->
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 	function goSearch() {
+		
+		
 		window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
+		
 	}
 	
 	
+	
+	////남성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_men').mouseover(function() {
+		
+		$.ajax({
+			url : 'findCate.do',
+			dataType : 'html',
+			data : {result : 'men'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('남성');
+		$('.cate_select').css('display', 'flex');
+	});
+	
+	//여성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_women').mouseover(function() {
+		
+		$.ajax({
+			url : 'findCate.do',
+			dataType : 'html',
+			data : {result : 'women'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('여성');
+		$('.cate_select').css('display', 'flex');
+	});
+	
+	/* $('.gnbMenuWrap > ul > li').mouseout(function() {
+		$('.cate_select').css('display', 'none');
+	}); */
+	//카테고리 메뉴 닫기
+	$('#close').click(function() {
+		$('.cate_select').css('display', 'none');
+	})
 </script>
 
-	<div class="cate_select">
-		<div class="cate_div">
-			<h1 id="cate_high">상위카테고리</h1>
-			<hr>
-			<ul class="cate_low">
-				<li>스니커즈</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-				<li>sjfklejlkfjz;lsef</li>
-			</ul>
-		</div>
-		
-		
-	</div>
+	
 
    </header>
