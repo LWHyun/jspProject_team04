@@ -169,10 +169,6 @@
 	<div class="basket-wrap">
 		<div class="basket-content">
 			<h2>장바구니</h2>
-				<div class="order-count">
-					
-				</div>
-			
 				<div class="order-basket">
 					<table class="basket-body">
 						<tbody>
