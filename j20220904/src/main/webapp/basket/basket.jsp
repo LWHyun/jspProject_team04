@@ -193,6 +193,7 @@
 										</tr>
 									</c:forEach>
 								</c:when>
+								
 								<c:when test="${empty basketList}">
 									<tr>
 										<td>장바구니가 비어있습니다.</td>
@@ -208,9 +209,7 @@
 								<input type="button" value="선택 삭제" id="delChk">
 							</div>
 						
-					
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
-						
 							<div class="price-cal">
 								<table class="cal-tbl">
 									<tr><td>결제 예정 금액</td></tr>
@@ -230,10 +229,10 @@
 							<p>결제는 무통장 입금방식으로만 진행됩니다.</p>
 							</div>
 						</div>
-				
-				</c:if> 
-		</div>
-	</div> 
+					</c:if> 
+		</div> <!-- order-basket 끝-->
+	</div> <!-- basket-content 끝 -->
+		
 		<div class="basket-view">
 		
 		<!-- tab 관련 html코드 -->
@@ -273,6 +272,7 @@
 	})
 	
 	
+	// 상품 수량 증가 함수
 	function plusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
@@ -297,7 +297,7 @@
 	
 	}
 	
-	
+	// 상품 수량 감소 함수
 	function minusCnt(prod_id, size_num) {
 		
 		//상품 수량을 가져와야함
@@ -321,7 +321,7 @@
 		//calcSum(prod_id)
 	}
 	
-	
+	// 상품 수량*원가 계산 함수
 	function calcSum(prod_id, size_num) {
 		
 		//상품 수량 가져오기
@@ -336,9 +336,10 @@
 	}
 
 	
+	// 장바구니에 담긴 모든 상품 계산
 	function calcTotal() {
 		//장바구니에 값이 없으면 계산안함
-		<c:if test="${basketList eq null }">
+		<c:if test="${empty basketList }">
 			return false	
 		</c:if>
 		

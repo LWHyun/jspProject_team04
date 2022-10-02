@@ -40,6 +40,7 @@ private static OrdersInfoDAO instance;
 		return conn;
 	}
 	
+	
 	//member 정보 가져가는 메소드
 	public OrdersInfoDTO selectMemInfo(String mem_id) {
 		
