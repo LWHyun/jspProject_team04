@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,7 +179,7 @@ function sample6_execDaumPostcode() {
 					<!-- 장바구니에서 넘어왔을 때 -->
 					<table class="order-body">
 					
-						<c:forEach var="item" items="${basketList }" varStatus="status">
+						
 								<tr id="tr${item.product_id }_${item.size_num }">
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
@@ -189,13 +189,13 @@ function sample6_execDaumPostcode() {
 									
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
-						</c:forEach>
+						
 					</table>
  			</div>	
  				<div class="price-cal">
 						<table class="cal-tbl">
 							<tr><td>결제 예정 금액</td></tr>
-							<tr><td class="totalArr">원</td></tr>
+							<tr><td>원</td></tr>
 						</table>
 					</div>
 				</div>

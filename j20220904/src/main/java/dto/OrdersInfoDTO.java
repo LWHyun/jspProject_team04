@@ -26,6 +26,60 @@ public class OrdersInfoDTO {
 	private String order_date;
 	private String order_status;
 
+	
+	//
+	private String brand;
+	private String eng_name;
+	private String kor_name;
+	private int gender;
+	private int price;
+	private String color;
+	
+	//
+	private String s_file_path;
+	
+	public String getS_file_path() {
+		return s_file_path;
+	}
+	public void setS_file_path(String s_file_path) {
+		this.s_file_path = s_file_path;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public String getEng_name() {
+		return eng_name;
+	}
+	public void setEng_name(String eng_name) {
+		this.eng_name = eng_name;
+	}
+	public String getKor_name() {
+		return kor_name;
+	}
+	public void setKor_name(String kor_name) {
+		this.kor_name = kor_name;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public int getOrder_id() {
 		return order_id;
 	}

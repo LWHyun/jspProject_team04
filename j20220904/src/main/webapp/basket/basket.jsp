@@ -188,7 +188,7 @@
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 											
-											<td><input type="button" value="바로구매"><br><br>
+											<td><input type="button" value="바로구매" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
 												<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 										</tr>
 									</c:forEach>
@@ -368,6 +368,17 @@
 			location.href='${pageContext.request.contextPath }/basket/deleteBasketItem.do?product_id='+prod_id+'&size_num='+size_num
 			}
 	}
+	
+	
+	function goDirectOrder(prod_id, size_num) {
+		
+		let cnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
+		
+		let str = 'product_id='+prod_id+'&size_num='+size_num+'&cnt='+cnt
+		location.href='${pageContext.request.contextPath }/basket/ordersPageDirect.do?'+str
+		
+	}
+	
 	
 /* 	function delChkItem() {
 		

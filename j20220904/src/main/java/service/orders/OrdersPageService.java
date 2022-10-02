@@ -31,30 +31,21 @@ public class OrdersPageService implements CommandProcess {
 			
 		}
 		
-//		String mem_name = request.getParameter("mem_name");
-//		String mem_tel = request.getParameter("mem_tel");
-//		String mem_email1 = request.getParameter("mem_email1");
-//		String mem_email2 = request.getParameter("mem_email2");
 
-
-		
 		//DB연결
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		OrdersInfoDAO ordersDAO = OrdersInfoDAO.getInstance();
 		OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
 		
-//		ordersDTO.setMem_name(mem_name);
-//		ordersDTO.setMem_tel(mem_tel);
-//		ordersDTO.setMem_email1(mem_email1);
-//		ordersDTO.setMem_email2(mem_email2);
-		
 		ordersDTO = ordersDAO.selectMemInfo(mem_id);
 
-		System.out.println("DAO selectMemInfo mem_id->"+ordersDTO.getMem_id());
-		System.out.println("DAO selectMemInfo mem_name->"+ordersDTO.getMem_name());
-		System.out.println("DAO selectMemInfo mem_tel->"+ordersDTO.getMem_tel());
-		System.out.println("DAO selectMemInfo mem_email1->"+ordersDTO.getMem_email1());
-		System.out.println("DAO selectMemInfo mem_email2->"+ordersDTO.getMem_email2());
+		/*
+		 * System.out.println("DAO selectMemInfo mem_id->"+ordersDTO.getMem_id());
+		 * System.out.println("DAO selectMemInfo mem_name->"+ordersDTO.getMem_name());
+		 * System.out.println("DAO selectMemInfo mem_tel->"+ordersDTO.getMem_tel());
+		 * System.out.println("DAO selectMemInfo mem_email1->"+ordersDTO.getMem_email1());
+		 * System.out.println("DAO selectMemInfo mem_email2->"+ordersDTO.getMem_email2());
+		 */
 		
 		request.setAttribute("ordersDTO", ordersDTO);	
 		
@@ -65,6 +56,7 @@ public class OrdersPageService implements CommandProcess {
 		
 		
 		return "ordersInfo.jsp";
+		
 	}
 
 }
