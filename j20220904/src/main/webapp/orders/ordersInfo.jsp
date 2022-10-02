@@ -131,7 +131,7 @@ function sample6_execDaumPostcode() {
                 addr = data.jibunAddress;
             }
 
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+           /*  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
             if(data.userSelectedType === 'R'){
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
@@ -147,17 +147,17 @@ function sample6_execDaumPostcode() {
                     extraAddr = ' (' + extraAddr + ')';
                 }
                 // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value = extraAddr;
-            
+               document.getElementById("detailAddress").value = extraAddr;
+            console.log(extraAddr);
             } else {
-                document.getElementById("sample6_extraAddress").value = '';
-            }
+                document.getElementById("detailAddress").value = '';
+            } */
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("address").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
+            document.getElementById("detailAddress").focus();
         }
     }).open();
      
@@ -226,7 +226,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername"> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" value=""> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -236,7 +236,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone"> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" value=""> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -246,7 +246,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail"> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" value=""> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -307,10 +307,10 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										
-											<input type="text" id="sample6_postcode" placeholder="우편번호">
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호">
 											<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="sample6_address" placeholder="주소"><br>
-											<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+											<input type="text" id="address" name="address" placeholder="주소"><br>
+											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
 										
 									</td>
 								</tr>
@@ -353,6 +353,7 @@ function sample6_execDaumPostcode() {
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 
 
@@ -382,18 +383,30 @@ function sample6_execDaumPostcode() {
 		}
 	 	
 	}
-
-		let chkbox = document.getElementById("memChkBox");
-		let orderName = document.getElementById("buyername");
-		let orderTel = document.getElementById("buyerphone");
-		let orderEmail = document.getElementById("buyermail");
 	
-	memChkBox.addEventListener('click', function(){
-		
-		ordername.innerHTML = ${mem_name}
-		orderTel.innerHTML = ${mem_tel}
-		orderEmail.innerHTML = ${mem_email1}+'@'+${mem_email2} })
-	 
+		$(document).ready(function(){
+			$("#memChkBox").change(function(){
+				if($("#memChkBox").is(":checked")){
+
+				$('#buyername').val('${ordersDTO.mem_name}');
+				$('#buyerphone').val('${ordersDTO.mem_tel}');
+				$('#buyermail').val('${ordersDTO.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
+				
+			} else {
+				
+				$('#buyername').val('');
+				$('#buyerphone').val('');
+				$('#buyermail').val('');
+				
+			}
+				
+			});
+			
+		});
+	
+	
+	
+	
 
 
 

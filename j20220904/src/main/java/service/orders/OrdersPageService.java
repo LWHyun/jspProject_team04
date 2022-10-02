@@ -55,12 +55,13 @@ public class OrdersPageService implements CommandProcess {
 		System.out.println("DAO selectMemInfo mem_tel->"+ordersDTO.getMem_tel());
 		System.out.println("DAO selectMemInfo mem_email1->"+ordersDTO.getMem_email1());
 		System.out.println("DAO selectMemInfo mem_email2->"+ordersDTO.getMem_email2());
+		
 		request.setAttribute("ordersDTO", ordersDTO);	
 		
 		//***
 
 		//버튼을 눌렀을 때, 장바구니에 담긴 값을 가지고 이동해야함
-		session.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
 		
 		
 		return "ordersInfo.jsp";
