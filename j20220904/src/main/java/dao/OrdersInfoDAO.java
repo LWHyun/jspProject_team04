@@ -40,6 +40,7 @@ private static OrdersInfoDAO instance;
 		return conn;
 	}
 	
+	
 	//member 정보 가져가는 메소드
 	public OrdersInfoDTO selectMemInfo(String mem_id) {
 		
@@ -85,6 +86,57 @@ private static OrdersInfoDAO instance;
 		
 		
 	}
+	
+	
+	// product 정보 가져오는 메소드
+	public OrdersInfoDTO selectProductInfo(OrdersInfoDTO ordersDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		String sql = "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, pi.s_file_path, ps.size_num, ps.pd_size\r\n"
+				+ "FROM product p\r\n"
+				+ "JOIN product_image pi\r\n"
+				+ "ON p.product_id = pi.product_id\r\n"
+				+ "JOIN product_size ps\r\n"
+				+ "ON pi.product_id = ps.product_id\r\n"
+				+ "WHERE p.product_id = ?\r\n"
+				+ "AND ps.size_num = ?";
+		
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ordersDTO.getProduct_id());
+			pstmt.setInt(2, ordersDTO.getSize_num());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				ordersDTO.setProduct_id(rs.getInt("product_id"));
+				ordersDTO.setBrand(rs.getString("brand"));
+				ordersDTO.setEng_name(rs.getString("eng_name"));
+				ordersDTO.setKor_name(rs.getString("kor_name"));
+				ordersDTO.setGender(rs.getInt("gender"));
+				ordersDTO.setPrice(rs.getInt("price"));
+				ordersDTO.setColor(rs.getString("color"));
+				ordersDTO.setS_file_path(rs.getString("s_file_path"));
+				ordersDTO.setSize_num(rs.getInt("size_num"));
+				ordersDTO.setPd_size(rs.getInt("pd_size"));
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DAO selectProductInfo e.getMessage()->"+e.getMessage());
+		} finally {
+			close(conn, pstmt, rs);
+		}
+
+		return ordersDTO;
+	}
+	
 	
 	
 	private void close(AutoCloseable... ac) {
