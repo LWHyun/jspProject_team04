@@ -175,9 +175,9 @@
 							<c:choose>
 								<c:when test="${not empty basketList }">
 								<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-									<c:forEach var="item" items="${basketList }" varStatus="status">
+									<c:forEach var="item" items="${basketList }">
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck1" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
+											<td><input type="checkbox" name="rowCheck" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
 											<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 											
 											<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>

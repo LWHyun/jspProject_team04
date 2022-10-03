@@ -39,17 +39,17 @@ public class OrdersPageDirectService implements CommandProcess {
 		
 		
 		//DB연결 1. member 정보 불러옴
-		BasketDAO basketDAO = BasketDAO.getInstance();
 		OrdersInfoDAO ordersDAO = OrdersInfoDAO.getInstance();
 		request.setAttribute("members", ordersDAO.selectMemInfo(mem_id));
 		
+		// 2. product 정보 불러오기
 		OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
 		ordersDTO.setProduct_id(product_id);
 		ordersDTO.setSize_num(size_num);
 		ordersDTO = ordersDAO.selectProductInfo(ordersDTO);
 		ordersDTO.setCnt(cnt);
 		
-		//2. product_id값을 통해 상품에 해당하는 정보를 불러와야함
+		
 		request.setAttribute("ordersDTO", ordersDTO );
 		
 		return "ordersInfoDirect.jsp";
