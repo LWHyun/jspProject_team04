@@ -38,6 +38,15 @@ public class OrdersInfoDTO {
 	//
 	private String s_file_path;
 	
+	//
+	private int pd_size;
+	
+	public int getPd_size() {
+		return pd_size;
+	}
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
+	}
 	public String getS_file_path() {
 		return s_file_path;
 	}

@@ -17,7 +17,9 @@ public class OrdersPageDirectService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		// 장바구니 -> 바로구매 / 제품 상세 -> 바로구매 둘 다 가능한 서비스
+			
 		// 오류 체크 기점 확인용
 		System.out.println("OrdersPageDirectService start...");
 		
@@ -36,15 +38,19 @@ public class OrdersPageDirectService implements CommandProcess {
 		int cnt 		= Integer.parseInt(request.getParameter("cnt"));
 		
 		
-		//DB연결
+		//DB연결 1. member 정보 불러옴
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		OrdersInfoDAO ordersDAO = OrdersInfoDAO.getInstance();
-		request.setAttribute("ordersDTO", ordersDAO.selectMemInfo(mem_id));
+		request.setAttribute("members", ordersDAO.selectMemInfo(mem_id));
 		
-		//product_id값을 통해 상품에 해당하는 정보를 불러와야함
 		OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
-		ordersDTO = ordersDAO.selectProductInfo(product_id);
+		ordersDTO.setProduct_id(product_id);
+		ordersDTO.setSize_num(size_num);
+		ordersDTO = ordersDAO.selectProductInfo(ordersDTO);
+		ordersDTO.setCnt(cnt);
 		
+		//2. product_id값을 통해 상품에 해당하는 정보를 불러와야함
+		request.setAttribute("ordersDTO", ordersDTO );
 		
 		return "ordersInfoDirect.jsp";
 	}

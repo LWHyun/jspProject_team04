@@ -89,40 +89,42 @@ private static OrdersInfoDAO instance;
 	
 	
 	// product 정보 가져오는 메소드
-	public OrdersInfoDTO selectProductInfo(int product_id) {
+	public OrdersInfoDTO selectProductInfo(OrdersInfoDTO ordersDTO) {
 		
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		
-		String sql = "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, pi.s_file_path, ps.size_num"
-				+ "FROM product"
-				+ "JOIN product_image"
-				+ "ON p.product_id = pi.product_id"
-				+ "JOIN product_size ps"
-				+ "ON pi.product_id = ps.product_id"
-				+ "WHERE p.product_id = ?"
-				+ "AND ps.size_num = ?;";
+		String sql = "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, pi.s_file_path, ps.size_num, ps.pd_size\r\n"
+				+ "FROM product p\r\n"
+				+ "JOIN product_image pi\r\n"
+				+ "ON p.product_id = pi.product_id\r\n"
+				+ "JOIN product_size ps\r\n"
+				+ "ON pi.product_id = ps.product_id\r\n"
+				+ "WHERE p.product_id = ?\r\n"
+				+ "AND ps.size_num = ?";
 		
-		OrdersInfoDTO ordersInfoDTO = new OrdersInfoDTO();
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, ordersInfoDTO.getProduct_id());
-			pstmt.setInt(2, ordersInfoDTO.getSize_num());
+			pstmt.setInt(1, ordersDTO.getProduct_id());
+			pstmt.setInt(2, ordersDTO.getSize_num());
 			rs = pstmt.executeQuery();
 			
-			ordersInfoDTO.setBrand(rs.getString("brand"));
-			ordersInfoDTO.setEng_name(rs.getString("eng_name"));
-			ordersInfoDTO.setKor_name(rs.getString("kor_name"));
-			ordersInfoDTO.setGender(rs.getInt("gender"));
-			ordersInfoDTO.setPrice(rs.getInt("price"));
-			ordersInfoDTO.setColor(rs.getString("color"));
-			ordersInfoDTO.setS_file_path(rs.getString("s_file_path"));
-			
 			if(rs.next()) {
+				
+				ordersDTO.setProduct_id(rs.getInt("product_id"));
+				ordersDTO.setBrand(rs.getString("brand"));
+				ordersDTO.setEng_name(rs.getString("eng_name"));
+				ordersDTO.setKor_name(rs.getString("kor_name"));
+				ordersDTO.setGender(rs.getInt("gender"));
+				ordersDTO.setPrice(rs.getInt("price"));
+				ordersDTO.setColor(rs.getString("color"));
+				ordersDTO.setS_file_path(rs.getString("s_file_path"));
+				ordersDTO.setSize_num(rs.getInt("size_num"));
+				ordersDTO.setPd_size(rs.getInt("pd_size"));
 				
 			}
 			
@@ -132,7 +134,7 @@ private static OrdersInfoDAO instance;
 			close(conn, pstmt, rs);
 		}
 
-		return ordersInfoDTO;
+		return ordersDTO;
 	}
 	
 	

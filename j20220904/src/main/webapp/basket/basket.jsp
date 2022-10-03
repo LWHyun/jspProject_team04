@@ -375,7 +375,7 @@
 		let cnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
 		
 		let str = 'product_id='+prod_id+'&size_num='+size_num+'&cnt='+cnt
-		location.href='${pageContext.request.contextPath }/basket/ordersPageDirect.do?'+str
+		location.href='${pageContext.request.contextPath }/orders/ordersPageDirect.do?'+str
 		
 	}
 	
