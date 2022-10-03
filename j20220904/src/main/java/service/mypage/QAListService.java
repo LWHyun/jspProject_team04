@@ -12,47 +12,53 @@ import bean.PageHandler;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
-import dto.LikeProDTO;
+import dao.MemberDAO;
+import dto.MyPage_QABoardDTO;
 
-public class LikeProList implements CommandProcess {
+public class QAListService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 로그인 처리
+		// 로그인 여부
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
-		String mem_id = (String)session.getAttribute("mem_id");
-		String brand = request.getParameter("brand");
 		
-		//DB
+		// 데이터 받기
+		String mem_id = (String)session.getAttribute("mem_id");
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+		
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		LikeProDAO likeProDAO = LikeProDAO.getInstance();
 		
 		// 장바구니 , 찜 갯수
-		int basketCnt = basketDAO.memBasketCnt(mem_id);
-		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
+		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
+		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
 		
-		// 찜 상품 가져오기
-		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
-		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
-		System.out.println("ph="+ph);
+		// QA 총 개수
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		int totalCnt = memberDAO.QAListCnt(mem_id);
 		
-		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
-		int endRow = startRow+ph.getPageSize()-1; // 4, 8, 12...
+		// paging
+		PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
+
+		// QA 리스트 받기
+		int startNum = (curPage-1) * ph.getPageSize() + 1;
+		int endNum = startNum + ph.getPageSize() -1;
 		
-		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
-		System.out.println(likeProList);
+		List<MyPage_QABoardDTO> list = memberDAO.QAList(mem_id, startNum, endNum);
 		
+		// 응답
+		request.setAttribute("active", "myQA");
 		request.setAttribute("curPage", curPage);
-		request.setAttribute("ph", ph);
-		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);
-		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
-		request.setAttribute("display", "myPageLikeProList.jsp");
+		request.setAttribute("ph", ph);
+		request.setAttribute("list", list);
+		request.setAttribute("display", "myPageQAList.jsp");
+		
 		return "/mypage/myPage.jsp";
 	}
 
