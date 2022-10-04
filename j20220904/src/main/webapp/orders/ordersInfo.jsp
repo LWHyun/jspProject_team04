@@ -190,6 +190,7 @@ function sample6_execDaumPostcode() {
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
 						</c:forEach>
+						
 					</table>
  			</div>	
  				<div class="price-cal">
