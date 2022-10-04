@@ -145,8 +145,8 @@ public class CategoryDAO {
 		return list;
 	}
 	//필터기능 -->아직 안됨
-	public List<ProductDTO> selectSearch(String[] brandArray, String[] sizeArray) throws SQLException {
-		List<ProductDTO> list = new ArrayList<ProductDTO>();
+	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size) throws SQLException {
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 		String sql = "select * from product where brand='";
 		String sql1 = "select * from product p, product_size ps where p.product_id = ps.product_id and \"size\"=";
 		Connection conn = null;
@@ -165,7 +165,7 @@ public class CategoryDAO {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				ProductDTO productDTO = new ProductDTO();
+				Product_ImgSrcDTO productDTO = new Product_ImgSrcDTO();
 				productDTO.setProduct_id(rs.getInt("product_id"));
 				productDTO.setBrand(rs.getString("brand"));
 				productDTO.setEng_name(rs.getString("eng_name"));
@@ -460,7 +460,7 @@ public class CategoryDAO {
 	}
 	//최근검색어 저장하는 부분
 	public int insertRecentWord(String searchWord, String id) throws SQLException {
-		String sql = "insert into recent_searchclick values (?,(select max(rsc_num)+1 from recent_searchclick where mem_id=?),?)";
+		String sql = "insert into recent_searchclick values (?,(select NVL(max(rsc_num),0)+1 from recent_searchclick where mem_id=?),?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -482,6 +482,29 @@ public class CategoryDAO {
 			if(conn != null)conn.close();
 		}
 		
+		return result;
+	}
+	//최근검색어 지우는 부분
+	public int deleteRecentWord(String word, String id) throws SQLException {
+		String sql = "delete from recent_searchclick where rsc_num=? and mem_id=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, word);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
 		return result;
 	}
 	

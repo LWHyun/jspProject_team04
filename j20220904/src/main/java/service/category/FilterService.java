@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.CategoryDAO;
 import dto.ProductDTO;
+import dto.Product_ImgSrcDTO;
 
-public class AjaxFilterService implements CommandProcess {
+public class FilterService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String[] brandArray = request.getParameterValues("brandArray");
-		String[] sizeArray = request.getParameterValues("sizeArray");
+		String size = request.getParameter("size");
 		
 			CategoryDAO cd = CategoryDAO.getInstance();
-			List<ProductDTO> filterList = null;
+			List<Product_ImgSrcDTO> filterList = null;
 			try {
-				filterList = cd.selectSearch(brandArray,sizeArray);
+				filterList = cd.selectSearch(brandArray,size);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

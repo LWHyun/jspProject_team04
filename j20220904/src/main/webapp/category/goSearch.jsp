@@ -128,9 +128,17 @@
 	  font-size:20px;
 	  
 	}
+	
+	#X1 {
+		border:1px white solid;
+		display: inline-block;
+		width: 20px;
+		
+		float: right;
+	}
 </style>
 </head>
-<body>
+<body onload="rcs_load()">
 	<h1>검색창 검색어를 입력하세요</h1>
 	<hr>
 	
@@ -147,10 +155,8 @@
 	
 	<div id='container'>
     	<div id='box-left' class="box-all"><span class="box_span">최근 검색어</span>
-    		<ul>
-    		<c:forEach var="rsc_list" items="${rsc_list }">
-    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=${rsc_list.rsc_word }">${rsc_list.rsc_word }</a></li>
-    		</c:forEach>
+    		<ul id="box-left-ul">
+    		
     		</ul>
     	</div>
     	<div id='box-center' class="box-all"><span class="box_span">인기 검색어</span>
@@ -196,5 +202,18 @@
 			});
 		}
 	}
+	
+	function rcs_load() {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findRcs.do',
+			dataType : 'html',
+			success : function(data) {
+				$('#box-left-ul').html(data);
+			}
+		});
+	};
+	
+	
+	
 </script>
 </html>
