@@ -11,7 +11,8 @@
 <c:if test="${result == 1 }">
 	<c:if test="${not empty requestScope.toURI }">
 		<script>
-			location.href="${requestScope.toURI}";
+			//location.href="${requestScope.toURI}";
+			history.go(-3);
 		</script>	
 	</c:if>
 	
