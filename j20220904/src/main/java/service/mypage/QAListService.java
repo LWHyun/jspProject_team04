@@ -1,6 +1,7 @@
 package service.mypage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,9 @@ import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
 import dao.MemberDAO;
-import dto.MemberDTO;
+import dto.MyPage_QABoardDTO;
 
-public class UpdateFormService implements CommandProcess {
+public class QAListService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
@@ -25,24 +26,41 @@ public class UpdateFormService implements CommandProcess {
 			return "/member/loginCheck.jsp";
 		}
 		
-		// DB
-		MemberDAO memberDAO = MemberDAO.getInstance();
+		// 데이터 받기
+		String mem_id = (String)session.getAttribute("mem_id");
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+		
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		LikeProDAO likeProDAO = LikeProDAO.getInstance();
-		
-		MemberDTO memberDTO = memberDAO.selectMember((String)session.getAttribute("mem_id"));
 		
 		// 장바구니 , 찜 갯수
 		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
 		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
 		
-		request.setAttribute("likeProCnt", likeProCnt);
+		// QA 총 개수
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		int totalCnt = memberDAO.QAListCnt(mem_id);
+		
+		// paging
+		PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
+
+		// QA 리스트 받기
+		int startNum = (curPage-1) * ph.getPageSize() + 1;
+		int endNum = startNum + ph.getPageSize() -1;
+		
+		List<MyPage_QABoardDTO> list = memberDAO.QAList(mem_id, startNum, endNum);
+		System.out.println(list);
+		
+		// 응답
+		request.setAttribute("active", "myQA");
+		request.setAttribute("curPage", curPage);
 		request.setAttribute("basketCnt", basketCnt);
-		request.setAttribute("memberDTO", memberDTO);
-		request.setAttribute("active", "update");
-		request.setAttribute("display", "myPagePrivateInfoUp.jsp");
+		request.setAttribute("likeProCnt", likeProCnt);
+		request.setAttribute("ph", ph);
+		request.setAttribute("list", list);
+		request.setAttribute("display", "myPageQAList.jsp");
 		
 		return "/mypage/myPage.jsp";
 	}
-	
+
 }

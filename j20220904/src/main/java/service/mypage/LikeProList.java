@@ -50,7 +50,7 @@ public class LikeProList implements CommandProcess {
 		request.setAttribute("ph", ph);
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
-		//request.setAttribute("likeProCnt", likeProCnt);
+		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
 		request.setAttribute("display", "myPageLikeProList.jsp");
 		return "/mypage/myPage.jsp";

@@ -43,13 +43,33 @@ public class ReviewBoardDAO {
 		return conn;
 	}
 	
-	// 총 개수
-	public int getTotalCnt() throws SQLException {
+	// 리뷰 게시판 게시물 총 개수
+	public int getTotalRBCnt() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
 		String sql = "select count(*) from review_board";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
+	
+	// Q&A 게시판 게시물 총 개수
+	public int getQATotalCnt() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from qa_board";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -113,6 +133,62 @@ public class ReviewBoardDAO {
 		return reviewList;
 	}
 	
+	// 게시글 1개 선택
+	public ReviewBoardDTO select(int rb_id) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from review_board where rb_id=" + rb_id;
+		
+		ReviewBoardDTO reviewBoard = new ReviewBoardDTO();
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				reviewBoard.setRb_id(rs.getInt("rb_id"));
+				reviewBoard.setMem_id(rs.getString("mem_id"));
+				reviewBoard.setProduct_id(rs.getInt("product_id"));
+				reviewBoard.setRb_total(rs.getInt("rb_total"));
+				reviewBoard.setRb_size(rs.getInt("rb_size"));
+				reviewBoard.setRb_color(rs.getInt("rb_color"));
+				reviewBoard.setRb_wide(rs.getInt("rb_wide"));
+				reviewBoard.setRb_instep(rs.getInt("rb_instep"));
+				reviewBoard.setRb_title(rs.getString("rb_title"));
+				reviewBoard.setRb_content(rs.getString("rb_content"));
+				reviewBoard.setRb_img(rs.getString("rb_img"));
+				reviewBoard.setRb_date(rs.getDate("rb_date"));
+				reviewBoard.setRb_views(rs.getInt("rb_views"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return reviewBoard;			
+	}
+
+	
+	// 조회수 증가
+	public void readCount(int rb_id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update review_board set rb_views=rb_views+1 where rb_id=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+	}
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
@@ -124,6 +200,8 @@ public class ReviewBoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 }

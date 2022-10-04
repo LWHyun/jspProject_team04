@@ -437,45 +437,5 @@ public class ProductDAO {
 			
 	}
 	
-	public List<Product_ImgSrcDTO> selectCa_code(int ca_code) throws SQLException {
-		ArrayList<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "select p.* from product p where p.brand=(select ca_name from category where ca_code=?)";
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, ca_code);
-			
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Product_ImgSrcDTO product_ImgSrcDTO = new Product_ImgSrcDTO();
-				product_ImgSrcDTO.setProduct_id(rs.getInt(1));
-				product_ImgSrcDTO.setBrand(rs.getString(2));
-				product_ImgSrcDTO.setEng_name(rs.getString(3));
-				product_ImgSrcDTO.setKor_name(rs.getString(4));
-				product_ImgSrcDTO.setGender(rs.getInt(5));
-				product_ImgSrcDTO.setPrice(rs.getLong(6));
-				product_ImgSrcDTO.setColor(rs.getString(7));
-				product_ImgSrcDTO.setRegdate(rs.getDate(8));
-				product_ImgSrcDTO.setCa_code(rs.getInt(9));;
-				list.add(product_ImgSrcDTO);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(rs !=null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		}
-		return list;
-		
-		
-		
-		
-	}
 	
 }

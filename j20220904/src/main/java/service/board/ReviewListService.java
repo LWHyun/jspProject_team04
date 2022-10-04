@@ -23,8 +23,9 @@ public class ReviewListService implements CommandProcess {
 		
 		
 		try {
-			int totCnt = rbd.getTotalCnt();	// 총 개수
-			System.out.println("ReviewListService totCnt->"+totCnt);
+			int rbTotCnt = rbd.getTotalRBCnt();	// 리뷰 총 개수
+			int qATotCnt = rbd.getQATotalCnt(); // Q&A 총 개수
+			System.out.println("ReviewListService totCnt->"+rbTotCnt);
 			
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
@@ -34,7 +35,7 @@ public class ReviewListService implements CommandProcess {
 			int pageSize = 10, blockSize = 10;
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow = startRow + pageSize - 1;
-			int startNum = totCnt - startRow + 1;
+			int startNum = rbTotCnt - startRow + 1;
 			
 			// Board 조회
 			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow, endRow);
@@ -44,14 +45,15 @@ public class ReviewListService implements CommandProcess {
 				System.out.println("ReviewListService reviewList reviewBoardDTO.getQ_title() => " + reviewBoardDTO.getRb_title());
 			}
 			
-			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
+			int pageCnt = (int)Math.ceil((double)rbTotCnt/pageSize);
 			
 			int startPage = (int)(currentPage - 1) / blockSize * blockSize + 1;
 			int endPage = startPage + blockSize - 1;
 			// 공갈 Page 방지
 			if (endPage > pageCnt) endPage = pageCnt;
 			
-			request.setAttribute("totCnt", totCnt);
+			request.setAttribute("rbTotCnt", rbTotCnt);
+			request.setAttribute("qATotCnt", qATotCnt);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("startNum", startNum);
@@ -66,7 +68,7 @@ public class ReviewListService implements CommandProcess {
 		} 
 		
 		
-		return "reviewBoard.jsp";
+		return "../contents/contents_men.jsp";
 	}
 
 }

@@ -44,6 +44,7 @@ public class MypageService implements CommandProcess {
 		
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
+		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("ph", ph);
 		request.setAttribute("active", "my"); // 현재 페이지 활성화
 		return "/mypage/myPage.jsp";
