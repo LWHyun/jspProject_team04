@@ -1074,13 +1074,13 @@
 				 <img src="${list[0].l_file_path}" class="big_product_main_1_1" id="big_product_main_1_1"> 
 			</div>
 			<div class="big_product_main_2">
-			
-			    			<!--예림님이 상품후기 여기다가 작성  -->
+				<!--예림님이 상품후기 여기다가 작성  -->	
+			    			
 			    			
 			</div>
 			<div class="big_product_main_3">
-			   	
-			   				<!--예림님이 상품Q&A 여기다가 작성  -->	
+			   	<!--예림님이 상품Q&A 여기다가 작성  -->	
+			   				
 			   				
 			</div>
 			<div class="big_product_main_4">
@@ -1091,12 +1091,15 @@
 		</div>
 	</div>
 	
-	<div class="review_board">
-		<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
-	</div>
-	<div class="qna_board">
-		<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
-	</div>
+			<div class="review_board">
+				<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
+		    </div>
+   
+	   		<div class="qna_board">
+				<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
+			</div>
+	
+	
 	<div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
     </div>
@@ -1141,11 +1144,13 @@ $(document).ready(function(){
 		}
 	});
 
+	
 
 	
-//찜하면 빨간하트로 바뀌고 찜한상품 insert하는 로직	
+//찜하면 빨간하트로 바뀌고 찜한상품 insert하는 로직	, 로그인 안했을때 장바구니 안담기게
 	$(function () {
 		var num = 0;
+
 		var imageName = ["heart1", "heart0"];
 		$("#heart").click(function() {
 			if(num == 1) {
@@ -1161,14 +1166,18 @@ $(document).ready(function(){
 						
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 삭제되었습니다');
+						if(data == '1') {	
+							alert('찜한 상품이 삭제되었습니다');
+						}else{
+							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}
 					},
 					error: function(err){
 						console.log(err);
 					}
 				});	
 				
-			}else 	     {
+			}else	    {
 				num++;
 				
 				$.ajax({
@@ -1180,7 +1189,11 @@ $(document).ready(function(){
 						  },
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 등록되었습니다');
+						if(data == '1') {
+							alert('찜한 상품이 등록되었습니다');
+						}else{
+							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}
 					},
 					error: function(err){
 						console.log(err);
@@ -1188,7 +1201,8 @@ $(document).ready(function(){
 				});	
 				
 			
-			}
+				}
+			
 			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
 		});
 	});	
