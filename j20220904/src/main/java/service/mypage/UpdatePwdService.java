@@ -28,6 +28,7 @@ public class UpdatePwdService implements CommandProcess {
 		// 로그인 여부
 		if(mem_id == null) {
 			result = -1;
+			request.setAttribute("result", result);
 			return "/mypage/result.jsp";
 		}
 		

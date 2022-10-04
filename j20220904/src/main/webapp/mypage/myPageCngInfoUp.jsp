@@ -7,6 +7,7 @@
 
                     <!-- form -->
                     <form id="checkPasswordForm">
+                    	<input type="hidden" name="toURI" value="${requestScope.toURI }">
                         <!-- 개인정보 수정 타이틀 -->
                         <div class="border-line-box-header">
                             <span class="text-head2">비밀번호 변경</span>
