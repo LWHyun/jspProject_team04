@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.ProductDAO;
@@ -18,25 +19,35 @@ public class InsertLikeService implements CommandProcess {
 		
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String mem_id = request.getParameter("mem_id");
-		
-		
 		ProductDAO productDAO = ProductDAO.getInstance();
 		
-		try {
-			
-			int result = productDAO.insertLike(product_id, mem_id);
-			
-			request.setAttribute("mem_id", mem_id);
-			request.setAttribute("product_id", product_id);
-			request.setAttribute("result", result);
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		HttpSession session = request.getSession();
+		
+		//세션에 아이디 값이 있는지 확인
+	
+//		if(session.getAttribute("mem_id") == null) {
+//			System.out.println("mem_id있다");
+//			return "/member/loginCheck.jsp";
+//		}
 		
 		
-		return "/contents/contents_men.jsp";
+		
+			try {
+				
+					int result = productDAO.insertLike(product_id, mem_id);
+					
+					request.setAttribute("mem_id", mem_id);
+					request.setAttribute("product_id", product_id);
+					request.setAttribute("result", result);
+				
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		
+			return "/contents/checkOk.jsp";
 	}
 
 }

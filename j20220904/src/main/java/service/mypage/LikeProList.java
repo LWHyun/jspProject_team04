@@ -22,6 +22,8 @@ public class LikeProList implements CommandProcess {
 		// 로그인 처리
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
+			System.out.println("uri="+request.getRequestURI());
+			request.setAttribute("toURI", request.getRequestURI());
 			return "/member/loginCheck.jsp";
 		}
 		String mem_id = (String)session.getAttribute("mem_id");
@@ -50,7 +52,7 @@ public class LikeProList implements CommandProcess {
 		request.setAttribute("ph", ph);
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
-		//request.setAttribute("likeProCnt", likeProCnt);
+		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
 		request.setAttribute("display", "myPageLikeProList.jsp");
 		return "/mypage/myPage.jsp";

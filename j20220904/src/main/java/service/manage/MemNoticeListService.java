@@ -27,7 +27,7 @@ public class MemNoticeListService implements CommandProcess {
 			String pageNum = request.getParameter("pageNum");	
 			if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 			int currentPage = Integer.parseInt(pageNum);   
-			int pageSize  = 10, blockSize = 10;
+			int pageSize  = 10, blockSize = 5;
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow   = startRow + pageSize - 1;
 			int startNum = totCnt - startRow + 1;

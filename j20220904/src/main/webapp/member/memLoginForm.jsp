@@ -36,6 +36,7 @@
                         <!-- 로그인 FORM -->
                         <div class="tab-login-form">
                             <form action="${pageContext.request.contextPath }/member/login.do" id="loginForm" name="loginForm" method="post">
+                    			<input type="hidden" name="toURI" value=${requestScope.toURI }>
                                 <div class="login-input login-input-id">
                                     <input type="text" id="mem_id" name="mem_id" placeholder="아이디를 입력해주세요." value="${cookie.id.value }">
                                 </div>

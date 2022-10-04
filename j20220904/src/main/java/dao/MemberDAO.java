@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.MemberDTO;
+import dto.MyPage_QABoardDTO;
 
 public class MemberDAO {
 	private static MemberDAO instance;
@@ -232,6 +233,93 @@ public class MemberDAO {
 		}
 		
 		return result;
+	}
+	
+	// 자기 자신 QA 총 개수 가져오는 메서드
+	public int QAListCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select count(*) from QA_board where mem_id = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return result;
+	}
+	
+	// 자기 자신 QA들 가져오는 메서드
+	public List<MyPage_QABoardDTO> QAList(String mem_id, int startNum, int endNum) {
+		Connection conn = getConnection();
+		
+		String sql = "select * from (select rownum rn, t.* from (select p.kor_name,p.gender, q.* from QA_Board q "
+				+ "join Product p on q.product_id = p.product_id "
+				+ "where mem_id = ? order by q.q_id desc)t) "
+				+ "where rn >= ? and rn <= ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<MyPage_QABoardDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				do {
+					StringBuilder sb = new StringBuilder(mem_id.length());
+					sb.append(mem_id.charAt(0));
+					for(int i = 0; i < mem_id.length()-2; i++) {
+						sb.append("*");
+					}
+					sb.append(mem_id.charAt(mem_id.length()-1));
+					
+					MyPage_QABoardDTO dto = new MyPage_QABoardDTO();
+					dto.setQ_id(rs.getInt("q_id"));;
+					dto.setMem_id(sb.toString());
+					dto.setProduct_id(rs.getInt("product_id"));
+					dto.setKor_name(rs.getString("kor_name"));
+					dto.setGender(rs.getInt("gender"));;
+					dto.setQ_passwd(rs.getString("q_passwd"));
+					dto.setQ_title(rs.getString("q_title"));
+					dto.setQ_content(rs.getString("q_content"));
+					dto.setQ_date(new Date(rs.getDate("q_date").getTime()));
+					dto.setQ_views(rs.getInt("q_views"));
+					dto.setQ_answer(rs.getString("q_answer"));
+					
+					list.add(dto);
+					
+				} while(rs.next());
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return list;
 	}
 	
 	//close하는 메서드

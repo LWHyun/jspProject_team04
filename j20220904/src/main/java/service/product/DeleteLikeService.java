@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.ProductDAO;
@@ -24,21 +25,29 @@ public class DeleteLikeService implements CommandProcess {
 		
 		ProductDAO productDAO = ProductDAO.getInstance();
 		
-		try {
-			
-			int result = productDAO.deleteLike(product_id, mem_id);
-			
-			request.setAttribute("mem_id", mem_id);
-			request.setAttribute("product_id", product_id);
-			request.setAttribute("result", result);
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
+		//세션에 아이디 값이 있는지 확인
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("mem_id") == null) {
+//			return "/member/loginCheck.jsp";
+//		}
 		
-		return "/contents/contents_men.jsp";
+			try {
+				
+				
+					int result = productDAO.deleteLike(product_id, mem_id);
+					
+					request.setAttribute("mem_id", mem_id);
+					request.setAttribute("product_id", product_id);
+					request.setAttribute("result", result);
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		
+		return "/contents/checkFail.jsp";
 		
 		
 		

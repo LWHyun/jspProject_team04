@@ -14,6 +14,8 @@ public class ManNoticeWriteFormService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		System.out.println("~~ManNoticeWriteForm 시작~~");
+		
 		try {
 			// 신규글 
 			int notice_code = 0;

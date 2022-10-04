@@ -19,6 +19,8 @@ public class MypageDeleteFormService implements CommandProcess {
 			throws ServletException, IOException {
 		// 로그인 여부
 		HttpSession session = request.getSession();
+		System.out.println("uri="+request.getRequestURI());
+		request.setAttribute("toURI", request.getRequestURI());
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
@@ -31,9 +33,7 @@ public class MypageDeleteFormService implements CommandProcess {
 		int basketCnt = basketDAO.memBasketCnt((String)session.getAttribute("mem_id"));
 		int likeProCnt = likeProDAO.memLikeProCnt((String)session.getAttribute("mem_id"));
 		
-		PageHandler ph = new PageHandler(likeProCnt); // jsp에서 찜한 갯수 처리 통일하기 위해 그냥 가져가는 것
-		
-		request.setAttribute("ph", ph);
+		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("active", "delete");
 		request.setAttribute("display", "memDeleteInfo.jsp");
