@@ -19,11 +19,11 @@
 	margin: 0 auto;
 }
 
-.contents-wrap .breadcumb-wrap {
+.contents-width .breadcrumb-wrap {
 	height: 60px;
 }
 
-.contents-wrap .breadcumb-wrap .breadcrumb-list {
+.contents-wrap .breadcrumb-wrap .breadcrumb-list {
 	margin-top: 23px;
 }
 
@@ -267,7 +267,6 @@ label {
 	}
 	.product-list {
 		width: 950px;
-		height: 1700px;
 		border-top: 2px solid black;
 		margin-bottom: 100px;
 		margin-left: 80px;
@@ -381,6 +380,7 @@ label {
 /* 페이지 이동----------------------------------------------------------------------------------- */
 	.pagination-wrap {
 		text-align: center;
+		border: 2px dotted black;
 	}
 	.pagination-wrap .pagination-list {
 		display: inline-block;
@@ -400,32 +400,41 @@ label {
 	  	font-size: 13px;
 		border: 0;
 		background: white;
+		font-size: 0;
+	}
+	#btn_prev {
+		margin-left: 6px;
+		background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_icon_pagination.png) no-repeat 0 0;
+		background-position: -28px 0;
 	}
 	#btn_next {
 		margin-left: 6px;
 		background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_icon_pagination.png) no-repeat 0 0;
 		background-position: 0 -28px;
-		font-size: 0;
 	}
 </style>
 </head>
 <body>
-	<div id="contentsWrap" class="contents-wrap" data-page-title="나이키">
+	<div id="header">
+       <jsp:include page="../main/header.jsp"></jsp:include>
+    </div>  <!-- header -->	
+
+	<div id="contentsWrap" class="contents-wrap">
   															<!-- 리스트의 상품이 12개가 넘어가면 페이지 이동버튼이 가려집니다...-->
   		<!-- 배너 (맨 왼쪽 위) -->
 		<div class="contents-width">
 			<div class="breadcrumb-wrap">
 				<ol class="breadcrumb-list">
 					<li class="crumb home">
-						<a href="https://abcmart.a-rt.com/">HOME ></a>							<!-- 클릭시 홈으로 이동 -->
+						<a href="../index.jsp">HOME ></a>							<!-- 클릭시 홈으로 이동 -->
 					</li>
 					<li class="crumb">
-						<a href="https://abcmart.a-rt.com/product/brand">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
-					<li class="crumb">NIKE</li>													<!--  현재 페이지의 브랜드-->
+						<a href="#">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
+					<li class="crumb">${list.brand }</li>													<!--  현재 페이지의 브랜드-->
 				</ol>
 			</div>
 			<div class="page-title-wrap">
-				<h2 class="text-head0 brand-name"><span class="eng">NIKE</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
+				<h2 class="text-head0 brand-name"><span class="eng">${list.brand }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
 			</div>
 		</div>
 		<div class="brand-slide-wrap">
@@ -433,7 +442,7 @@ label {
 				<div class="bg-item">
 					<div class="brand-img-division">
 						<div class="banner-division-text">
-							<strong>나이키</strong>											<!-- 브랜드 이름과 주석 -->
+							<strong>${list.brand }</strong>											<!-- 브랜드 이름과 주석 -->
 							<p>
 								1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
 								그 위치를 증명하고 있습니다.
@@ -485,7 +494,7 @@ label {
 		                </span>
 		              </li>
 		              <li class="smart-search-option" data-code="1" data-name="여성">
-		                <input id="1" name="gender" type="checkbox"><label for="0">WOMEN</label>
+		                <input id="1" name="gender" type="checkbox"><label for="1">WOMEN</label>
 		              </li>
 		            </ul>
 		          </div>
@@ -568,16 +577,15 @@ label {
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
 		
-		
-		
-		<c:forEach var="product" items="${Alex }">
+		<c:if test="${totCnt > 0 }">
+		<c:forEach var="Product_ImgSrcDTO" items="${list }">
 			<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 				<div class="prod-wrap">
-					<a class="prod-link" href="contents_men.do?product_id=${product_id }"> <!-- 상품상세 페이지로 이동 -->
+					<a class="prod-link" href="contents_men.do?product_id=${Product_ImgSrcDTO.product_id }"> <!-- 상품상세 페이지로 이동 -->
 					<img class="img-box" alt="신발" src="${Product_ImgSrcDTO.s_file_path }">
-					<span class="prod-brand">${product.brand}</span><br>
-				<span class="prod-name">${product.kor_name}</span><br> 																	<!-- 상품이름 -->
-			<span class="prod-price">${product.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
+					<span class="prod-brand">${Product_ImgSrcDTO.brand}</span><br>
+					<span class="prod-name">${Product_ImgSrcDTO.kor_name}</span><br> 																	<!-- 상품이름 -->
+					<span class="prod-price">${Product_ImgSrcDTO.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
 					</a>
 					<div class="prod-util-wrap">
 						<div class="prod-btn-wrap">
@@ -591,16 +599,14 @@ label {
 				</div>
 			</div>
 		</c:forEach>
-			
-			
-		<c:forEach var="Clara" items="${Alex }">
+		</c:if>
 			<div class="product-box cell">
 				<div class="prod-wrap">
 					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
 					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">${Clara.brand }</span><br>
-					<span class="prod-name">${Clara.kor_name }</span><br> 
-					<span class="prod-price">${Clara.price }</span> <span class="price-unit">원</span>
+					<span class="prod-brand">나이키</span><br>
+					<span class="prod-name">나이키 샬라샬라</span><br> 
+					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
 					</a>
 					<div class="prod-util-wrap">
 						<div class="prod-btn-wrap">
@@ -613,32 +619,25 @@ label {
 					</div>
 				</div>
 			</div>
-		</c:forEach>
 			
+		<!-- 페이지 -->
 		</div>
 		
 	  </div> <!-- filter-list-wrap 끝-->			
-	</div> <!-- contents-wrap 끝--> 
-	
-		<!-- 페이지 -->
 		<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
 			<div>
-				<ol class="pagination-list">
-					<li class="pagination-item">
-						<button type="button" class="btn-page" name="1">1</button>
-					</li>
-					<li class="pagination-item">
-						<button type="button" class="btn-page" name="1">2</button>
-					</li>
-					<li class="pagination-item">
-						<button type="button" class="btn-page" name="1">3</button>
-					</li>
-					<li class="pagination-item">
-						<button type="button" class="btn-page next" id="btn_next">다음 페이지로</button>
-					</li>
-					
-				</ol>
+				<c:if test="${startPage > blockSize }">
+					<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+				</c:if>
+				<c:forEach var="i" begin="${startPage }" end="${endPage }">
+					<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+				</c:forEach>
+				<c:if test="${endPage > pageCnt }">
+					<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+				</c:if>
 			</div>
 		</div>
+	</div> <!-- contents-wrap 끝--> 
+	
 </body>
 </html>
