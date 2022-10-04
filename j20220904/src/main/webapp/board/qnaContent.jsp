@@ -8,11 +8,11 @@
 </head>
 <body>
 	<table>
-		<tr><td>제목</td><td>${board.q_title}</td></tr>
-		<tr><td>작성자</td><td>${board.mem_id}</td></tr>
-		<tr><td>작성일</td><td>${board.q_date}</td></tr>
-		<tr><td>조회수</td><td>${board.q_views}</td></tr>
-		<tr><td>내용</td><td><pre>${board.q_content}</pre></td></tr>
+		<tr><td>제목</td><td>${qABoard.q_title}</td></tr>
+		<tr><td>작성자</td><td>${qABoard.mem_id}</td></tr>
+		<tr><td>작성일</td><td>${qABoard.q_date}</td></tr>
+		<tr><td>조회수</td><td>${qABoard.q_views}</td></tr>
+		<tr><td>내용</td><td><pre>${qABoard.q_content}</pre></td></tr>
 	</table>
 </body>
 </html>

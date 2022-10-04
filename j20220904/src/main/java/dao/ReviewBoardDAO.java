@@ -43,13 +43,33 @@ public class ReviewBoardDAO {
 		return conn;
 	}
 	
-	// 총 개수
-	public int getTotalCnt() throws SQLException {
+	// 리뷰 게시판 게시물 총 개수
+	public int getTotalRBCnt() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
 		String sql = "select count(*) from review_board";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
+	
+	// Q&A 게시판 게시물 총 개수
+	public int getQATotalCnt() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from qa_board";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();

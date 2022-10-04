@@ -25,13 +25,13 @@
 						<a href="#" class="tab-link">상품정보</a>
 					</li>
 					<li class="tab-item ui-tabs-active">
-						<a href="#" class="tab-link">상품후기
-							<span class="num">(37)</span>
+						<a href="../board/reviewBoard.do" class="tab-link">상품후기
+							<span class="num">(${rbTotCnt })</span>
 						</a>
 					</li>
 					<li class="tab-item">
-						<a href="#" class="tab-link">상품 Q&amp;A
-							<span class="num">(37)</span>
+						<a href="../board/qnaBoard.do" class="tab-link">상품 Q&amp;A
+							<span class="num">(${qATotCnt})</span>
 						</a>
 					</li>
 					<li class="tab-item">
@@ -149,7 +149,7 @@
 					<!-- 리뷰 개수 -->
 					<div class="border-line-box-header">
 						<span class="search-result-text">
-							총 ${totCnt }개의 리뷰가 있습니다.
+							총 ${rbTotCnt }개의 리뷰가 있습니다.
 						</span>
 					</div>
 					<!-- 후기 리스트 -->
@@ -164,18 +164,19 @@
 								<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 							</tr>
 							<!-- 글 목록 -->
-							<c:if test="${totCnt > 0 }">
-								<c:forEach var="board" items="${reviewList }">
+							<c:if test="${rbTotCnt > 0 }">
+								<c:forEach var="reviewBoard" items="${reviewList }">
 									<tr>
 										<td>${startNum }</td>
 										<td>
-											<a href="reviewContent.do?rb_id=${board.rb_id}&pageNum=${currentPage}">
-												${board.rb_title}
+											<a href="reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage}">
+												${reviewBoard.rb_title}
 											</a>
-										${board.rb_title }</td>
-										<td>${board.mem_id }</td>
-										<td>${board.rb_date }</td>
-										<td>${board.rb_views }</td>
+											${reviewBoard.rb_title }
+										</td>
+										<td>${reviewBoard.mem_id }</td>
+										<td>${reviewBoard.rb_date }</td>
+										<td>${reviewBoard.rb_views }</td>
 									</tr>
 								</c:forEach>
 							</c:if>

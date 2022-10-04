@@ -24,13 +24,13 @@
 						<a href="#" class="tab-link">상품정보</a>
 					</li>
 					<li class="tab-item">
-						<a href="#" class="tab-link">상품후기
-							<span class="num">(37)</span>
+						<a href="../board/reviewBoard.do" class="tab-link">상품후기
+							<span class="num">(${rbTotCnt })</span>
 						</a>
 					</li>
 					<li class="tab-item ui-tabs-active">
-						<a href="#" class="tab-link">상품 Q&amp;A
-							<span class="num">(${totCnt})</span>
+						<a href="../board/qnaBoard.do" class="tab-link">상품 Q&amp;A
+							<span class="num">(${qATotCnt})</span>
 						</a>
 					</li>
 					<li class="tab-item">
@@ -64,18 +64,18 @@
 								<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 							</tr>
 							<!-- 글 목록 -->
-							<c:if test="${totCnt > 0 }">
-								<c:forEach var="board" items="${qAList }">
+							<c:if test="${qATotCnt > 0 }">
+								<c:forEach var="qABoard" items="${qAList }">
 									<tr>
 										<td>${startNum }</td>
 										<td>
-											<a href='qnaContent.do?q_id=${board.q_id}&pageNum=${currentPage}'>
-												${board.q_title}
+											<a href='qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage}'>
+												${qABoard.q_title}
 											</a>
 										</td>
-										<td>${board.mem_id}</td>
-										<td>${board.q_date }</td>
-										<td>${board.q_views }</td>
+										<td>${qABoard.mem_id}</td>
+										<td>${qABoard.q_date }</td>
+										<td>${qABoard.q_views }</td>
 									</tr>
 									<c:set var="startNum" value="${startNum - 1}"/>
 								</c:forEach>
