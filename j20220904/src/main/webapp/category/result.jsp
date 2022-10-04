@@ -16,7 +16,7 @@
 			<li><a style="text-decoration: none" href="${pageContext.request.contextPath }/category/women.do?gender=1">${item.ca_name }</a></li>
 		</c:when>
 		<c:otherwise>
-		<li><a style="text-decoration: none" href="${pageContext.request.contextPath }/category/searchView.do?ca_code=${item.ca_code }">${item.ca_name }</a></li>
+		<li><a style="text-decoration: none" href="${pageContext.request.contextPath }/contents/brandPdList.do?ca_code=${item.ca_code }">${item.ca_name }</a></li>
 		</c:otherwise>
 	</c:choose>
 	
