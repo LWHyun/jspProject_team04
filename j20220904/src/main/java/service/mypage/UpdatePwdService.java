@@ -19,6 +19,8 @@ public class UpdatePwdService implements CommandProcess {
 		// 로그인 체크
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
+			System.out.println("uri="+request.getRequestURI());
+			request.setAttribute("toURI", request.getRequestURI());
 			return "/member/loginCheck.jsp";
 		}
 
