@@ -1170,7 +1170,7 @@ $(document).ready(function(){
 							alert('찜한 상품이 삭제되었습니다');
 						}else{
 							location.href="${pageContext.request.contextPath}/member/loginForm.do";
-						}
+						}	
 					},
 					error: function(err){
 						console.log(err);
@@ -1191,7 +1191,8 @@ $(document).ready(function(){
 					success : function(data){
 						if(data == '1') {
 							alert('찜한 상품이 등록되었습니다');
-						}else{
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
 							location.href="${pageContext.request.contextPath}/member/loginForm.do";
 						}
 					},
