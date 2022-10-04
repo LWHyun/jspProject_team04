@@ -179,8 +179,9 @@
 									<c:forEach var="item" items="${basketList }">
 										<input type="hidden" name="item_product_id" value="${item.product_id }">
 										<input type="hidden" name="item_size_num" value="${item.size_num }">
+										
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="chkval${item.product_id }_${item.size_num}" id="chk${item.product_id }_${item.size_num}" checked></td>
+											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"checked></td>
 											
 											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
 											
@@ -195,6 +196,7 @@
 											<td><input type="button" value="바로구매" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
 												<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 										</tr>
+									
 									</c:forEach>
 								</c:when>
 								
@@ -386,20 +388,27 @@
 	
   	function delChkItem() {
 
-  		chk_arr = $('input[name="rowCheck"]');
-		var chk_data =[];
-		for(var i=0;i<chk_arr.length;i++){
-			if(chk_arr[i].checked == true){
-				chk_data.push($(chk_arr[i]).val());
-			}
-		}
+  		var chkCnt = $("input[name='rowCheck']:checked").length;
+  		var chkArr = new Array();
+  		$("input[name='rowCheck']:checked").each(function(){
+  			
+  			arr.push($(this).value);
   		
-		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
-			alert("상품 삭제가 취소되었습니다.");
-		} else {
-			alert("상품이 삭제되었습니다.")
-		
-		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+  		});
+  		
+  		if(cnt == 0){
+  			alert("선택된 상품이 없습니다.")
+  		}
+  		else {
+  			if(!confirm("선택한 상품을 삭제하시겠습니까?")){
+  				alert("상품 삭제가 취소되었습니다.");
+  			} else {
+  				alert("상품이 삭제되었습니다.")
+			
+  				location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+  			
+  		}
+  		
 		
 	} 
 	 
