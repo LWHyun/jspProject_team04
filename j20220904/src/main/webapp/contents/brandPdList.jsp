@@ -111,7 +111,6 @@ h2 {
 }
 
 .brand-img-division {
- 	background-image: url('https://image.a-rt.com/art/product/brand/202203/1647850989834.jpg');
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -146,7 +145,7 @@ strong+p {
 	line-height: 28px;
 }
 
-.brand-rogo {
+.brand-logo {
 	position: absolute;
 	left: 49%;
 	text-align: left;
@@ -440,24 +439,140 @@ label {
 				<h2 class="text-head0 brand-name"><span class="eng">${ca_name }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
 			</div>
 		</div>
-		<div class="brand-slide-wrap">
-			<div class="prod-main-branner">
-				<div class="bg-item">
-					<div class="brand-img-division">
-						<div class="banner-division-text">
-							<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
-							<p>
-								1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
-								그 위치를 증명하고 있습니다.
-							</p>
-						</div>
-						<div class="brand-rogo">											<!--  브랜드 로고 -->
-							<img alt="나이키 로고" src="https://image.a-rt.com//art/product/brand/202108/1629697044355.png">
+		<c:if test="${ca_name == 'NIKE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/nike_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
+									그 위치를 증명하고 있습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="나이키 로고" src="../img/brand_logo_imgs/nike_logo.png">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${ca_name == 'FILA' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/fila_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1911년 이태리, FILA 형제들로부터 탄생한 브랜드입니다. <br>100년 이상의 브랜드 헤리티지를 바탕으로 한 글로벌 스포츠 패션 트렌드를 제안합니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="필라 로고" src="../img/brand_logo_imgs/fila_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'ADIDAS' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/adidas_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1949년부터, 스토리와 스타일, 스포츠를 이끌다. <br>세상의 모든 스포츠를 포용하는 브랜드
+									<br>아디다스는 모두의 스포츠 브랜드입니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="아디다스 로고" src="../img/brand_logo_imgs/adidas_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'CONVERSE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/converse_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									젊은이들의 '자유로움의 표상'이 된 컨버스. <br>100년의 역사를 가진 Original America 브랜드로, 없어선 안될 스테디셀러 아이콘으로 자리잡았습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="컨버스 로고" src="../img/brand_logo_imgs/converse_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'DR.MARTENS' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/dr_martens_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									닥터마틴은 자신만의 개성을 지닌 진정성 있는 사람들과 자아 표현에 자부심을 지닌 사람들, 그리고 보통 사람들과는 다른 사람들에게 어필합니다. 
+									<br>심플하지만 유니크한 스타일로 공연, 스트릿 패션 등 다양한 문화 전반에서 사랑받는 브랜드입니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="닥터마틴 로고" src="../img/brand_logo_imgs/dr_martens_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'LACOSTE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/lacoste_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									역사적인 테니스 스타 라코스테가 설립한 프리미엄 캐주얼 브랜드입니다. <br>'악어'캐릭터는 그의 별명에서 유래되었으며, 현재까지 사랑받는 시그니처가 되었습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="라코스테 로고" src="../img/brand_logo_imgs/lacoste_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'BIRKENSTOCK' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/birkenstock_banner.jpg')">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
   
  		<!-- 필터와 상품리스트 묶음 -->
 		<div class="filter-list-wrap">
