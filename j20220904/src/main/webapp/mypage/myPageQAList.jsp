@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+/* 내가 쓴 글 */
+.border-header {
+	font-size: 22px;
+    font-weight: 500;
+    height: 55px;
+    line-height : 55px;
+    color: #000;
+}
 /* fold-box expanded */
 .fold-box-list .fold-box.expanded {
     border-bottom-color: #b5b5b5;
@@ -94,7 +102,8 @@
     color: #ee1c25;
 }
 /* question-info 내용물들 전체 적용 css */
-.fold-box-list.qna-list .fold-box .fold-box-header .question-info .question-type, .fold-box-list.qna-list .fold-box .fold-box-header .question-info .question-date, .fold-box-list.qna-list .fold-box .fold-box-header .question-info .answer-status {
+.fold-box-list.qna-list .fold-box .fold-box-header .question-info .question-type, .fold-box-list.qna-list .fold-box .fold-box-header .question-info .question-date, 
+.fold-box-list.qna-list .fold-box .fold-box-header .question-info .answer-status, .fold-box-list.qna-list .fold-box .fold-box-header .question-title a{
     display: inline-block;
     font-size: 14px;
     letter-spacing: -.7px;
@@ -155,6 +164,10 @@
 	cursor:pointer;
 }
 </style>
+
+<div class="border-header">
+	내가 쓴 글(${ph.totalCnt })
+</div>
 <div class="border-line-box fold-box-list-wrap">
 	<!-- // 찜한 상품이 있을 때 없을 때 display:none 처리는 myPage.jsp에 있는 jquery 의 영향을 받고있음 -->
     <div class="mypage-no-data has-line-bottom" style="display:none;" >
@@ -162,12 +175,12 @@
             <p class="no-data-text">작성된 상품Q&amp;A가 없습니다.</p>
         </div>
     </div><!-- has-line-bottom -->
-			
+	
 	<ul class="fold-box-list qna-list" data-type="single" id="inquiry-list" style="">
 		<c:forEach var="QAList" items="${list }" >
 			<li class="fold-box">
 				<div class="fold-box-header">
-					<div class="question-title">${QAList.q_title }</div>
+					<div class="question-title">${QAList.q_title }&emsp;&emsp;&emsp;<a id="barogagi" href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${QAList.product_id}&gender=${QAList.gender}">(${QAList.kor_name })로 가기</a></div>
 					<div class="question-info">
 						<span class="question-type">${QAList.mem_id }</span>
 						<span class="question-date"><fmt:formatDate value="${QAList.q_date }" pattern="yyyy.MM.dd"/></span>
