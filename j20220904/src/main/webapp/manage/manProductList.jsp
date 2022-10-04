@@ -6,262 +6,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
-<style type="text/css">
-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-	table-layout: fixed;
-}
-
-span {
-	font: bold;
-}
-
-/* ============= FAQ  =============  */
-/* 고객센터 */
-.contents-inner .page-title-wrap {
-	margin-top: 18px;
-}
-
-/* 고객센터 아랫부분 */
-.contents-wrap .page-title-wrap+.contents-inner.contents-aside {
-	margin-top: 50px;
-}
-
-/* 왼쪽 선택창 (공지사항, FAQ) */
-.wrap .contents-wrap .contents-aside .aside-wrap {
-	width: 220px;
-	padding-right: 60px;
-}
-
-.customer-wrap .customer-lnb {
-	-webkit-transform: translateY(-1px);
-	transform: translateX(-1px);
-}
-
-.customer-wrap .customer-lnb .customer-lnb-item.eng a {
-	font-family: "Montserrat", sans-serif;
-	font-weight: 600;
-	color: red;
-	text-decoration: underline;
-	letter-spacing: 0;
-}
-
-.customer-wrap .customer-lnb .customer-lnb-item+.customer-lnb-item {
-	margin-top: 25px;
-}
-
-/* 중앙화면 */
-.aside-contents {
-	margin-top: -140px;
-	width: calc(95% - 162px);
-}
-
-.text-head2.eng, .text-head2 .eng {
-	font-family: "Montserrat", sans-serif;
-	letter-spacing: 0;
-}
-
-body .tab-wrap.multi-line {
-	font-size: 14px;
-}
-
-.tbl-search-wrap+.tbl-prod-wrap, .tbl-search-wrap+.tab-wrap {
-	margin-top: 40px;
-}
-
-body .tab-wrap {
-	margin: 0 auto;
-	padding: 46px;
-}
-
-body .tab-wrap.multi-line .tabs {
-	padding: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	display: -webkit-flex;
-	-webkit-box-pack: start;
-	-ms-flex-pack: start;
-	justify-content: flex-start;
-	-ms-flex-wrap: wrap;
-	/* flex-wrap: wrap; */
-	-webkit-transform: translateX(1px);
-	transform: translateX(138px);
-}
-
-body .tab-wrap .tabs {
-	margin-bottom: -25px;
-}
-
-body .tab-wrap.multi-line .tabs .tab-item {
-	color: #666;
-	height: 20px;
-	margin: 0 0 0 -1px;
-	padding: 20px 0;
-	border: 1px solid #d5d5d5;
-	flex-grow: 0;
-	flex-shrink: 1;
-	flex-basis: calc(100% - 1px);
-	-webkit-flex: 0 1 calc(99%/ 5 + 1px);
-	font-size: 20px;
-	letter-spacing: -1.35px;
-	-webkit-transition: all .23s ease-out;
-	transition: all 0.23s ease-out;
-}
-
-
-.wrap .contents-wrap .contents-aside .aside-contents {
-    width: calc(100% - 220px);
-}
-
-.border-line-box-header {
-	position: relative;
-}
-
-.border-line-box-header+.border-line-box, .border-line-box-header+.mypage-detail-info-box,
-	.border-line-box-header+.mypage-complete-wrap {
-	margin-top: 16px;
-}
-
-.border-line-box {
-	margin-top: 54px;
-	border-top: 2px solid #000;
-	transform: translateX(138px);
-}
-
-ol, ul {
-	list-style: none;
-}
-
-.border-line-box .fold-box-list .fold-box:first-child {
-	border-top: none;
-}
-
-.text-head1 {
-	color: #000;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-	font-size: 32px;
-	font-weight: 700;
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
-
-.contents-width {
-	width: 1200px;
-	margin: 0 auto;
-}
-
-.aside-wrap {
-	width: 220px;
-	padding-right: 60px;
-}
-
-[id$="-toggle"] {
-	margin-right: 15px;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-table {
-	border: 1px solid grey;
-	border-collapse: collapse;
-	margin-bottom: 30px;
-	text-align: center;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-td {
-	border: 1px solid grey;
-	border-collapse: collapse;
-	width: 180px;
-	height: 40px;
-	padding: 10px;
-}
-
-.text-head2 {
-	color: #000;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-	font-weight: 800;
-	font-size: 22px;
-	letter-spacing: -1.1px;
-	transform: translateX(138px);
-}
-
-.text-head2.eng, .text-head2 .eng {
-	font-family: "Montserrat", sans-serif;
-	letter-spacing: 18px;
-}
-
-li.product-manage {
-	margin: 6px 0 0 10px;
-}
-
-/* =================================== */
-/* 공지사항 목록 css */
-.tbl-wrap.tbl-col {
-	text-align: center;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-.border-line-box-header+.tbl-wrap, .border-line-box-header+.tbl-prod-wrap
-	{
-	margin-top: 14px;
-}
-
-.tbl-wrap.tbl-col table thead tr:last-child th {
-	border-bottom: 1px solid #b5b5b5;
-}
-
-.tbl-col.notice-list table thead tr th {
-	height: 50px;
-}
-
-.tbl-wrap.tbl-col table thead tr th {
-	height: 21px;
-	color: #666;
-	padding: 10px 10px;
-	border-top: 0px solid #000;
-	font-weight: 500;
-	line-height: 21px;
-	font-size: 14px;
-	letter-spacing: -.7px;
-}
-
-.tbl-col.notice-list table tbody {
-	border-color: #d5d5d5;
-}
-
-.tbl-wrap.tbl-col table tbody {
-	border-bottom: 1px solid #b5b5b5;
-}
-
-.tbl-wrap.tbl-col table tbody tr:first-child td {
-	border-top: none;
-}
-
-.tbl-col.notice-list table tbody tr td {
-	padding: 19px 10px 16px;
-}
-
-.tbl-wrap.tbl-col table tbody tr td {
-	color: #000;
-	height: 9px;
-	padding: 13px 10px;
-	border-top: 1px solid #e5e5e5;
-	line-height: 20px;
-	font-size: 15px;
-	letter-spacing: -.75px;
-}
-</style>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#delBtn').click(function() {
+			if($("input[type=radio]").on("click", function(e) {
+				// e.target 	  : 선택된 타깃
+				// e.target.value : 선택된 타깃의 value 값
+				// e.target.name  : 선택된 타깃의 네임
+				alert(e.target.value);
+				location.href = 'manProductDelete.do?product_id=' + e.target.value;
+			}))
+			
+		})
+	})
+</script>
+<title>상품관리</title>
 </head>
+<link rel="stylesheet" href="../css/manageCss/notice.css">
 <body>
 	<!-- 헤더 -->
 	<div id="header">
@@ -273,7 +35,7 @@ li.product-manage {
 		<div class="contents-width">
 			<div class="contents-inner">
 
-				<!--관리자 페이지 -->
+				<!-- 관리자 페이지 -->
 				<div class="page-title-wrap mypage">
 					<h2 class="text-head1 text-left">관리자 페이지</h2>
 				</div>
@@ -283,41 +45,51 @@ li.product-manage {
 					<!-- 왼쪽 선택창 -->
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
-							<!-- 나중에 .do로 바꿔야 함. -->
-							<li class="customer-lnb-item"><a href="manNoticeList.jsp">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductManage.jsp" class="active">상품 관리</a></li>
-							<li class="customer-lnb-item"><a href="manQna.jsp">Q&A 관리</a></li>
+							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manProductList.do" class="active">상품관리</a></li>
+							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
 
-					<!-- 중앙 화면 : 공지사항 목록 -->
+					<!-- 중앙 화면 : 상품 목록 -->
 					<div class="aside-contents" align="center">
-						<h3 class="text-head2 eng">공지사항</h3>
-
+						<h3 class="text-head2 eng">상품관리</h3>
+						
 						<div class="border-line-box fold-box-list-wrap">
+							<span style="position: fixed; right: 2%; bottom: 103%;">  
+								<input type="button" value="상품 등록" onclick="location.href='manProductRegister.do'">
+								<button name="button" id="delBtn" onclick="location.href='manProductDelete.do?product_id=${product.product_id}'">상품 삭제</button>
+							</span>
+						
 							<div class="tbl-wrap tbl-col notice-list">
 								<table style="table-layout:fixed">
-									<!-- Row 1 : 번호 제목 작성일 -->
+									<!-- Row 1 : 선택 | 제품코드 | 브랜드 | 한글 이름 | 가격 | 색상 | 카테고리 코드 */ -->
 									<thead>
 										<tr>
-											<th width="75px">번호</th>
-											<th width="500px">제목</th>
-											<th width="121px">작성일</th>
+											<th>선택</th>
+											<th>제품코드</th>
+											<th>브랜드</th>
+											<th width="200px">한글이름</th>
+											<th>가격</th>
+											<th width="70px">색상</th>
+											<th width="80px">카테고리<br>코드</th>
 										</tr>
 									</thead>
 
 									<!-- Row2~ : 찐 공지사항 목록 -->
-									<tbody id="noticeList" style="vertical-align: center;">
+									<tbody id="productList" style="vertical-align: center;">
 										<c:if test="${totCnt > 0}">
-											<c:forEach var="notice" items="${list}">
+											<c:forEach var="product" items="${productList}">
 												<tr>
-													<td>${startNum}</td>
-
-													<td class="text-left" width=200><a
-														href="memNoticeContent.do?notice_code=${notice.notice_code}&pageNum=${currentPage}">
-															${notice.notice_title}</a></td>
-
-													<td>${notice.notice_date}</td>
+													<td>
+														<input type="radio" name="toDelete" value="${product.product_id}">
+													</td>
+													<td>${product.product_id}</td>
+													<td>${product.brand}</td>
+													<td>${product.kor_name}</td>
+													<td>${product.price}</td>
+													<td>${product.color}</td>
+													<td>${product.ca_code}</td>
 												</tr>
 
 												<c:set var="startNum" value="${startNum - 1}"></c:set>
@@ -336,15 +108,15 @@ li.product-manage {
 							<!-- 페이징 -->
 							<div style="text-align: center; margin-top: 45px;">
 								<c:if test="${startPage > blockSize}">
-									<a href="memNoticeList.do?pageNum=${startPage - blockSize}">[이전]</a>
+									<a href="manProductList.do?pageNum=${startPage - blockSize}">[이전]</a>
 								</c:if>
 
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<a href="memNoticeList.do?pageNum=${i}">[${i}]</a>
+									<a href="manProductList.do?pageNum=${i}">[${i}]</a>
 								</c:forEach>
 
 								<c:if test="${endPage < pageCnt }">
-									<a href="memNoticeList.do?pageNum=${startPage + blockSize}">[다음]</a>
+									<a href="manProductList.do?pageNum=${startPage + blockSize}">[다음]</a>
 								</c:if>
 							</div>
 						</div>

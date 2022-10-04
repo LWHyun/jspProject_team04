@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
-<style type="text/css">
+<title>Insert title here</title>
+</head>
+<style>
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -227,11 +226,10 @@ li.product-manage {
 .tbl-wrap.tbl-col table thead tr th {
 	height: 21px;
 	color: #666;
-	padding: 10px 10px;
+	padding: 9px 20px;
 	border-top: 0px solid #000;
 	font-weight: 500;
 	line-height: 21px;
-	font-size: 14px;
 	letter-spacing: -.7px;
 }
 
@@ -261,7 +259,7 @@ li.product-manage {
 	letter-spacing: -.75px;
 }
 </style>
-</head>
+<script type="text/javascript" src="../js/jquery.js"></script>
 <body>
 	<!-- 헤더 -->
 	<div id="header">
@@ -269,11 +267,12 @@ li.product-manage {
 	</div>
 
 	<!-- 본문 -->
+
 	<div id="contentsWrap" class="contents-wrap">
 		<div class="contents-width">
 			<div class="contents-inner">
 
-				<!--관리자 페이지 -->
+				<!-- 관리자 페이지 -->
 				<div class="page-title-wrap mypage">
 					<h2 class="text-head1 text-left">관리자 페이지</h2>
 				</div>
@@ -283,77 +282,79 @@ li.product-manage {
 					<!-- 왼쪽 선택창 -->
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
-							<!-- 나중에 .do로 바꿔야 함. -->
-							<li class="customer-lnb-item"><a href="manNoticeList.jsp">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductManage.jsp" class="active">상품 관리</a></li>
-							<li class="customer-lnb-item"><a href="manQna.jsp">Q&A 관리</a></li>
+							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manProductManage.do" class="active">상품관리</a></li>
+							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
 
-					<!-- 중앙 화면 : 공지사항 목록 -->
+					<!-- 중앙 화면 : 공지사항 등록 -->
 					<div class="aside-contents" align="center">
-						<h3 class="text-head2 eng">공지사항</h3>
-
-						<div class="border-line-box fold-box-list-wrap">
-							<div class="tbl-wrap tbl-col notice-list">
-								<table style="table-layout:fixed">
-									<!-- Row 1 : 번호 제목 작성일 -->
-									<thead>
-										<tr>
-											<th width="75px">번호</th>
-											<th width="500px">제목</th>
-											<th width="121px">작성일</th>
-										</tr>
-									</thead>
-
-									<!-- Row2~ : 찐 공지사항 목록 -->
-									<tbody id="noticeList" style="vertical-align: center;">
-										<c:if test="${totCnt > 0}">
-											<c:forEach var="notice" items="${list}">
-												<tr>
-													<td>${startNum}</td>
-
-													<td class="text-left" width=200><a
-														href="memNoticeContent.do?notice_code=${notice.notice_code}&pageNum=${currentPage}">
-															${notice.notice_title}</a></td>
-
-													<td>${notice.notice_date}</td>
-												</tr>
-
-												<c:set var="startNum" value="${startNum - 1}"></c:set>
-											</c:forEach>
-										</c:if>
-
-										<c:if test="${totCnt == 0}">
-											<tr>
-												<td colspan="7">NO DATA</td>
-											</tr>
-										</c:if>
-									</tbody>
-								</table>
-							</div>
-
-							<!-- 페이징 -->
-							<div style="text-align: center; margin-top: 45px;">
-								<c:if test="${startPage > blockSize}">
-									<a href="memNoticeList.do?pageNum=${startPage - blockSize}">[이전]</a>
-								</c:if>
-
-								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<a href="memNoticeList.do?pageNum=${i}">[${i}]</a>
-								</c:forEach>
-
-								<c:if test="${endPage < pageCnt }">
-									<a href="memNoticeList.do?pageNum=${startPage + blockSize}">[다음]</a>
-								</c:if>
-							</div>
+						<h3 class="text-head2 eng">상품 등록</h3>
+						
+						<form action="manProductRegisterPro.do?pageNum=${pageNum}" method="post" enctype="multipart/form-data">
+						
+						<table style="margin-top: 50px; margin-left:20%;">
+							<tr>
+								<td style="width:80px;"> 제품코드</td>
+								<td> <input type="text" name="product_id" required="required"></td>
+							</tr>
+							<tr>
+								<td> 브랜드 </td>
+								<td>
+									<!-- 나중에 시간되면 select 타입으로 바꾸기 -->
+									<input type="text" name="brand" required="required">
+								</td>
+							</tr>
+							<tr>
+								<td>영어이름</td>
+								<td> <input type="text" name="eng_name" required="required"></td>
+							</tr>
+							<tr>
+								<td>한글이름</td>
+								<td> <input type="text" name="kor_name" required="required"></td>
+							</tr>
+							<tr>
+								<td>성별</td>
+								<td>
+									<input type="radio" name="gender" value="0">남자
+									<input type="radio" name="gender" value="1">여자
+								</td>
+							</tr>
+							<tr>
+								<td>가격</td>
+								<td><input type="text" name="price" required="required"></td>
+							</tr>
+							<tr>
+								<td>색상</td>
+								<td><input type="text" name="color" required="required"></td>
+							</tr>
+							<tr>
+								<td>카테고리 코드</td>
+								<td><input type="text" name="ca_code" required="required"></td>
+							</tr>
+							<tr>
+								<td>상품 대표 이미지 등록</td>
+								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
+								<td><input type="file" name="filename" required="required"></td>
+							</tr>
+							<tr>
+								<td>상품 상세 이미지 등록</td>
+								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
+								<td><input type="file" name="filename" required="required"></td>
+							</tr>
+						</table>
+						<div style="margin-left:250px; margin-top:15px;">
+							<input type="submit" value="확인">
+							<input type="reset" value="취소">
 						</div>
+					</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- 푸터 -->
 	<div id="footer">
 		<jsp:include page="../main/footer.jsp"></jsp:include>
