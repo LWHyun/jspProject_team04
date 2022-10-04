@@ -16,6 +16,9 @@ public class LoginFormService implements CommandProcess {
 		
 		String mem_id = request.getParameter("mem_id");
 		String toURI = request.getParameter("toURI");
+		if(request.getParameter("gender")!= null) {
+			toURI = toURI+"&gender="+request.getParameter("gender");
+		}
 		System.out.println("toURI="+toURI);
 		
 		// 아이디 찾기 후 입력한 아이디 전달
