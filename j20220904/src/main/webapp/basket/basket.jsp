@@ -176,11 +176,11 @@
 								<c:when test="${not empty basketList }">
 								<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
 									
-									<c:forEach var="item" items="${basketList }" varStatus="status">
+									<c:forEach var="item" items="${basketList }">
 										<input type="hidden" name="item_product_id" value="${item.product_id }">
 										<input type="hidden" name="item_size_num" value="${item.size_num }">
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck1" value="chkval${item.product_id }_${item.size_num}" id="chk${item.product_id }_${item.size_num}" checked></td>
+											<td><input type="checkbox" name="rowCheck" value="chkval${item.product_id }_${item.size_num}" id="chk${item.product_id }_${item.size_num}" checked></td>
 											
 											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
 											
@@ -386,6 +386,14 @@
 	
   	function delChkItem() {
 
+  		chk_arr = $('input[name="rowCheck"]');
+		var chk_data =[];
+		for(var i=0;i<chk_arr.length;i++){
+			if(chk_arr[i].checked == true){
+				chk_data.push($(chk_arr[i]).val());
+			}
+		}
+  		
 		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
 			alert("상품 삭제가 취소되었습니다.");
 		} else {

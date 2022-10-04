@@ -31,7 +31,7 @@ public class DeleteChkBasketItemService implements CommandProcess {
 			
 		}
 		
-		String[] checks = request.getParameterValues("rowCheck1");
+		String[] checks = request.getParameterValues("rowCheck");
 		String[] product_id = request.getParameterValues("item_product_id");
 		String[] size_num = request.getParameterValues("item_size_num");
 		
