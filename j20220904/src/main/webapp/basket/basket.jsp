@@ -387,30 +387,34 @@
 	
 	
   	function delChkItem() {
-
-  		var chkCnt = $("input[name='rowCheck']:checked").length;
-  		var chkArr = new Array();
-  		$("input[name='rowCheck']:checked").each(function(){
-  			
-  			arr.push($(this).value);
   		
-  		});
-  		
-  		if(cnt == 0){
+  		let target = $("input[name='rowCheck']:checked");
+  		var chkCnt = target.length;
+  		if(chkCnt == 0){
   			alert("선택된 상품이 없습니다.")
+  			return false;
   		}
-  		else {
-  			if(!confirm("선택한 상품을 삭제하시겠습니까?")){
-  				alert("상품 삭제가 취소되었습니다.");
-  			} else {
-  				alert("상품이 삭제되었습니다.")
-			
-  				location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+  		
+  		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
+			alert("상품 삭제가 취소되었습니다.");
+			return false;
+		}
+  		
+  		var chkStr = '';
+  		for( let i=0; i<chkCnt ; i++) {
+  			
+  			chkStr += $(target).eq(i).val()
+  			if( i != chkCnt-1 ) {
+  				chkStr += ',';
+  			}
   			
   		}
   		
-		
-	} 
+  		
+		console.log(chkStr);
+
+		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkStr='+chkStr
+		 		
 	 
   	}
  	/* function delChkItem() {

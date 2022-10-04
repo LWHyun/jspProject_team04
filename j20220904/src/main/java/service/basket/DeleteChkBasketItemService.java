@@ -1,9 +1,6 @@
 package service.basket;
 
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,23 +28,23 @@ public class DeleteChkBasketItemService implements CommandProcess {
 			
 		}
 		
-		String[] checks = request.getParameterValues("rowCheck");
-		String[] product_id = request.getParameterValues("item_product_id");
-		String[] size_num = request.getParameterValues("item_size_num");
+		String chkStr = request.getParameter("chkStr");
+		String[] chkItem = chkStr.split(",");
 		
 		BasketDAO basketDAO = BasketDAO.getInstance();
-		BasketDTO basketDTO = new BasketDTO();
 		
-		for(int i = 0; i < checks.length ; i++) {
-			
-			basketDTO.setMem_id(mem_id);
-			basketDTO.setProduct_id(Integer.parseInt(product_id[i]));
-			basketDTO.setSize_num(Integer.parseInt(size_num[i]));
+		for ( int i = 0; i < chkItem.length/2 ; i++) {
+		  BasketDTO basketDTO = new BasketDTO();
+		  basketDTO.setMem_id(mem_id);
+		  basketDTO.setProduct_id(Integer.parseInt(chkItem[2*i]));
+		  basketDTO.setSize_num(Integer.parseInt(chkItem[2*i+1]));
+		  basketDAO.deleteItem(basketDTO);
+		  
 		}
+		 
+		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
 		
-		basketDAO.delChkItem(basketDTO);
-		
-		return "basket.jsp";
+		return "/basket/basket.jsp";
 	}
 
 }
