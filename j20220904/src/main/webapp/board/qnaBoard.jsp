@@ -68,7 +68,11 @@
 								<c:forEach var="board" items="${qAList }">
 									<tr>
 										<td>${startNum }</td>
-										<td>${board.q_title}</td>
+										<td>
+											<a href='qnaContent.do?q_id=${board.q_id}&pageNum=${currentPage}'>
+												${board.q_title}
+											</a>
+										</td>
 										<td>${board.mem_id}</td>
 										<td>${board.q_date }</td>
 										<td>${board.q_views }</td>

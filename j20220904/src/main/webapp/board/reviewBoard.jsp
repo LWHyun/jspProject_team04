@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 </head>
 <body>
-	<div id="header">
+	<%-- <div id="header">
 		<jsp:include page="../main//header.jsp"></jsp:include>
-	</div>
+	</div> --%>
 	<div id="content">
 		<div id="productReview" class="top-wrap">
 			<div class="inner">
@@ -168,7 +168,11 @@
 								<c:forEach var="board" items="${reviewList }">
 									<tr>
 										<td>${startNum }</td>
-										<td>${board.rb_title }</td>
+										<td>
+											<a href="reviewContent.do?rb_id=${board.rb_id}&pageNum=${currentPage}">
+												${board.rb_title}
+											</a>
+										${board.rb_title }</td>
 										<td>${board.mem_id }</td>
 										<td>${board.rb_date }</td>
 										<td>${board.rb_views }</td>
@@ -304,8 +308,8 @@
 		</div>
 	</div>
 	
-	<div id="footer">
+	<%-- <div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
-    </div><!-- footer -->
+    </div><!-- footer --> --%>
 </body>
 </html>
