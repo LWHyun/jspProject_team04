@@ -43,8 +43,8 @@ public class QABoardDAO {
 		return conn;
 	}
 	
-	// 총 개수
-	public int getTotalCnt() throws SQLException {
+	// Q&A 게시판 게시물 총 개수
+	public int getQATotalCnt() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -62,7 +62,27 @@ public class QABoardDAO {
 		}
 		return tot;
 	}
+	// 리뷰 게시판 게시물 총 개수
+	public int getTotalRBCnt() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from review_board";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
 	
+	// Q&A 목록 불러오기
 	public List<QABoardDTO> qABoardList(int startRow, int endRow) {
 		List<QABoardDTO> qAList = new ArrayList<QABoardDTO>();
 		Connection conn = null;
@@ -106,7 +126,58 @@ public class QABoardDAO {
 		}
 		return qAList;
 	}
-
+	
+	// 게시글 1개 선택
+	public QABoardDTO select(int q_id) throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from qa_board where q_id=" + q_id;
+		
+		QABoardDTO qABoard = new QABoardDTO();
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				qABoard.setQ_id(rs.getInt("q_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setProduct_id(rs.getInt("product_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setQ_title(rs.getString("q_title"));
+				qABoard.setQ_content(rs.getString("q_content"));
+				qABoard.setQ_date(rs.getDate("q_date"));
+				qABoard.setQ_views(rs.getInt("q_views"));
+				qABoard.setQ_answer(rs.getString("q_answer"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return qABoard;
+	}
+	
+	// 조회수 증가
+	public void readCount(int q_id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update qa_board set q_views=q_views+1 where q_id=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, q_id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+	}
+	
 	
 	private void close(AutoCloseable... ac) {
 		try {
@@ -119,4 +190,6 @@ public class QABoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 }
