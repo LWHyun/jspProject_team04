@@ -16,7 +16,8 @@ public class ManNoticeListService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("MemNoticeListService 시작!");
+		
+		System.out.println("ManNoticeListService 시작!");
 		
 		NoticeDAO nd = NoticeDAO.getInstance();
 		
@@ -26,15 +27,16 @@ public class ManNoticeListService implements CommandProcess {
 			String pageNum = request.getParameter("pageNum");	
 			if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 			int currentPage = Integer.parseInt(pageNum);   
-			int pageSize  = 10, blockSize = 10;
+			int pageSize  = 10, blockSize = 5;
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow   = startRow + pageSize - 1;
 			int startNum = totCnt - startRow + 1;
 			
 			List<NoticeDTO> list = nd.noticeList(startRow,endRow); 
+			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
-			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;  // 1    
-			int endPage = startPage + blockSize -1;	                       // 10   
+			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;   
+			int endPage = startPage + blockSize -1;	                       
 			if (endPage > pageCnt) endPage = pageCnt;
 		
 			request.setAttribute("list", list);   // ***

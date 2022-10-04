@@ -162,7 +162,7 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 	      				<span class="text-date">${notice.notice_date}</span>
 	      			</div>
 	      			
-	      			<!-- 이전 글 / 다음 글 (EL 값 수정 어떻게..?) -->
+	      			<!-- 이전 글 / 다음 글 -->
 	      			<div class="board-view-cont"><pre>${notice.notice_content}</pre></div>
 			      	<div class="board-view-btm">
 			      		<div class="tbl-wrap tbl-col notice-list">
@@ -181,9 +181,9 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      						</td>
 			      						<td class="text-left">
 			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code+1}&pageNum=${pageNum}">
-			      							${notice.notice_title }</a>
+			      							${noticeBA.notice_title_after }</a>
 			      						</td>
-			      						<td class="date-txt">${notice.notice_date }</td>
+			      						<td class="date-txt">${noticeBA.notice_date_after }</td>
 			      					</tr>
 			      					
 			      					<!-- 이전글 -->
@@ -193,9 +193,9 @@ a, a:active, a:focus, a:hover, a:link, a:visited {
 			      						</td>
 			      						<td class="text-left">
 			      							<a href="memNoticeContent.do?notice_code=${notice.notice_code-1}&pageNum=${pageNum}">
-											${notice.notice_title }</a>
+											${noticeBA.notice_title_before }</a>
 			      						</td>
-			      						<td class="date-txt">${notice.notice_date }</td>
+			      						<td class="date-txt">${noticeBA.notice_date_before }</td>
 			      					</tr>
 			      				</tbody>
 			      			</table>

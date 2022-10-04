@@ -8,21 +8,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
-import dao.NoticeDAO;
-import dto.NoticeDTO;
+import dao.ProductDAO;
+import dto.ProductDTO;
 
-public class MemNoticeListService implements CommandProcess {
+public class ManProductListService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		System.out.println("MemNoticeListService 시작!");
 		
-		NoticeDAO nd = NoticeDAO.getInstance();
+		
+		/* 상품 리스트 쫙 끌고 와서 한 페이지 내에 수정 등록 버튼 두 개 넣어 처리하게 할 예정 */
+		System.out.println("ManProductListService 시작!");
+		
+		ProductDAO pd = ProductDAO.getInstance();
 		
 		try {
-			int totCnt = nd.getTotalCnt();
+			int totCnt = pd.getTotalCnt();
 
 			String pageNum = request.getParameter("pageNum");	
 			if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
@@ -32,13 +34,15 @@ public class MemNoticeListService implements CommandProcess {
 			int endRow   = startRow + pageSize - 1;
 			int startNum = totCnt - startRow + 1;
 			
-			List<NoticeDTO> list = nd.noticeList(startRow,endRow); 
+			/* 가져올 정보 : 선택 | 제품코드 | 브랜드 | 한글이름 | 가격 | 색상 | 카테고리 코드 */
+			List<ProductDTO> productList = pd.productList(startRow, endRow); 
+			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
-			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;  // 1    
-			int endPage = startPage + blockSize -1;	                       // 10   
+			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;    
+			int endPage = startPage + blockSize -1;	                       
 			if (endPage > pageCnt) endPage = pageCnt;
 		
-			request.setAttribute("list", list);   // ***
+			request.setAttribute("productList", productList);   // ***
 			request.setAttribute("totCnt", totCnt);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("currentPage", currentPage);
@@ -48,9 +52,9 @@ public class MemNoticeListService implements CommandProcess {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 		} catch (Exception e) {
-			System.out.println("[MemNoticeListService] e.getMessage()->"+e.getMessage());
+			System.out.println("[ManProductListService] e.getMessage()->"+e.getMessage());
 		}
 
-		return "memNoticeList.jsp";
+		return "manProductList.jsp";
 	}
 }

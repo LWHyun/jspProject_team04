@@ -24,11 +24,14 @@ public class MemNoticeContentService implements CommandProcess {
 		try {
 			NoticeDAO nd = NoticeDAO.getInstance();
 			
+			/* 수정 ! (원문 : NoticeDTO notice = nd.select(notice_code); ) */
 			NoticeDTO notice = nd.select(notice_code);
+			NoticeDTO noticeBA = nd.selectBeforeAfter(notice_code);
 			
 			request.setAttribute("notice_code", notice_code);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("notice", notice);
+			request.setAttribute("noticeBA", noticeBA);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
