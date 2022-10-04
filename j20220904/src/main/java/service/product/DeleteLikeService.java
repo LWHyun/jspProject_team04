@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.LikeProDAO;
 import dao.ProductDAO;
 
 public class DeleteLikeService implements CommandProcess {
@@ -19,32 +20,42 @@ public class DeleteLikeService implements CommandProcess {
 		
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String mem_id = request.getParameter("mem_id");
-		
-		System.out.println("product_id="+product_id);
-		System.out.println("mem_id="+mem_id);
-		
+	
 		ProductDAO productDAO = ProductDAO.getInstance();
-		
+		int result = 0;
 		
 		//세션에 아이디 값이 있는지 확인
 //		HttpSession session = request.getSession();
 //		if(session.getAttribute("mem_id") == null) {
+//			System.out.println("uri="+request.getRequestURI());
+//			request.setAttribute("toURI", request.getRequestURI());
 //			return "/member/loginCheck.jsp";
 //		}
+		//int likeCnt = likeProDAO.memLikeProCnt(mem_id);
+
 		
+		
+		if(mem_id != null || !("".equals(mem_id))) {
 			try {
 				
 				
-					int result = productDAO.deleteLike(product_id, mem_id);
+				 result = productDAO.deleteLike(product_id, mem_id);
 					
 					request.setAttribute("mem_id", mem_id);
+					//request.setAttribute("gender", gender);
 					request.setAttribute("product_id", product_id);
-					request.setAttribute("result", result);
+					
+					
+					
 				
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+		}
+			request.setAttribute("result", result);
+			
 			
 		
 		return "/contents/checkFail.jsp";
