@@ -203,5 +203,27 @@ public class BrandListDAO {
 		}
 		return ca_name;
 	}
+
+	public int registerLike(int product_id, String mem_id) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		String sql = "INSERT INTO like_pro VALUES(?, '?', sysdate)";
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+			pstmt.setString(2, mem_id);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+	
+	
 	
 }

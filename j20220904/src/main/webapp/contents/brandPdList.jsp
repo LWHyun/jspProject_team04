@@ -699,7 +699,7 @@ label {
 				<c:forEach var="list" items="${list }">
 					<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 						<div class="prod-wrap">
-							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }"> <!-- 상품상세 페이지로 이동 -->
+							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }&gender=${list.gender}"> <!-- 상품상세 페이지로 이동 -->
 							<img class="img-box" alt="신발" src="${list.s_file_path }">
 							<span class="prod-brand">${ca_name}</span><br>
 							<span class="prod-name">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
@@ -709,7 +709,7 @@ label {
 								<div class="prod-btn-wrap">
 									<div class="util-btn-wrap">																			
 										<button type="button" class="btn-prod-favorite">즐겨찾기</button>				<!-- 클릭시 찜목록에 상품코드 저장? -->
-										<button type="button" class="btn-prod-cart">장바구니 담기</button>			<!-- 장바구니에 상품코드 저장 -->
+										<!-- <button type="button" class="btn-prod-cart">장바구니 담기</button> -->			<!-- 장바구니에 상품코드 저장 -->
 									</div>
 									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
 								</div>
