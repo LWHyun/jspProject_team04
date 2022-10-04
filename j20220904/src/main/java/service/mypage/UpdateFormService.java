@@ -21,6 +21,8 @@ public class UpdateFormService implements CommandProcess {
 			throws ServletException, IOException {
 		// 로그인 여부
 		HttpSession session = request.getSession();
+		System.out.println("uri="+request.getRequestURI());
+		request.setAttribute("toURI", request.getRequestURI());
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}

@@ -6,6 +6,7 @@
 
 <!-- form -->
 <form action="${pageContext.request.contextPath }/mypage/updatePwdForm.do" id="checkPasswordForm" method="post">
+	<input type="hidden" name="toURI" value="${requestScope.toURI }">
 	<!-- 개인정보 수정 타이틀 -->
 	<div class="border-line-box-header">
 		<span class="text-head2">비밀번호 변경</span>
@@ -49,7 +50,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script>
 $(function() {
-	$('#checkPwdBtn').click(function() {
+	$('#checkPwdBtn').click(function() {	
 		if (!$('#pswdText').val()) {
 			alert("비밀번호를 입력해주세요.");
 		} else {
@@ -68,6 +69,7 @@ $(function() {
 						$('#pswdText').val('');
 					} else {
 						alert("로그인을 해주세요.");
+						location.href='${pageContext.request.contextPath}/member/loginForm.do?toURI=${requestScope.toURI}';
 					}
 				},
 				error : function(err) {

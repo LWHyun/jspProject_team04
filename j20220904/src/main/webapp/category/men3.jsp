@@ -125,14 +125,14 @@
 
 </style>
 <script type="text/javascript">
-	function like() {
+	/* function like() {
 		$('.like_img').click(function() {
 			$(this).attr('src','../img/contexts/heart0.png');
 		});
 		$('.like_img').dblclick(function() {
 			$(this).attr('src','../img/contexts/heart1.png');
 		})
-	}
+	} */
 	
 	$(function() {
 		$(".pro_buynow").click(function() {
@@ -140,6 +140,83 @@
 			location.href="#"; /* 바로구매창 이동 */
 		});
 	});
+	
+	
+	$(function () {
+		var num = 0;
+		var imageName = ["heart1", "heart0"];
+		
+		$(".like_img").click(function() {
+			var product_id = $(this).attr('alt');
+			console.log(product_id);
+			if(num == 1) {
+				num=0;
+				
+				$.ajax({
+					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
+					type: 'get',
+					data: {
+							'product_id' : product_id ,
+							'mem_id' :  '${sessionScope.mem_id}'
+					      },
+						
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 삭제되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			}else 	     {
+				num++;
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/contents/insertLike.do',
+					type: 'get',
+					data: {
+							'product_id' : product_id,
+							'mem_id' :  '${sessionScope.mem_id}'
+						  },
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 등록되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			
+			}
+			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
+		});
+	});	
+	
+	
+	
+	function searchFilter() {
+		var brandArray = [];
+		var size = $('input[name="radio_size"]:checked').val();
+		$('input[name="chkbox_brand"]:checked').each(function(){//체크된 리스트 저장
+            brandArray.push($(this).val());
+        });
+		console.log(size);
+		console.log(brandArray);
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findFilter.do',
+			data : {'brandArray' : brandArray,
+					'size' : size},
+			dataType : 'html',
+			success : function(data) {
+				alert(data);
+			}
+		});
+		
+	}
+	
 	
 	
 </script>
@@ -170,9 +247,9 @@
 	   		<span>사이즈</span>
 		   	<div class="dropdown_content">
 		   		<ul>
-		   			<li><input type="checkbox" name="chkbox_size" value="260"><label for="chkbox_size">260</label></li>
-		   			<li><input type="checkbox" name="chkbox_size" value="270"><label for="chkbox_size">270</label></li>		   			
-		   			<li><input type="checkbox" name="chkbox_size" value="270"><label for="chkbox_size">280</label></li>		   			
+		   			<li><input type="radio" name="radio_size" value="260"><label for="chkbox_size">260</label></li>
+		   			<li><input type="radio" name="radio_size" value="270"><label for="chkbox_size">270</label></li>		   			
+		   			<li><input type="radio" name="radio_size" value="270"><label for="chkbox_size">280</label></li>		   			
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -205,7 +282,7 @@
 				</a>
 				<hr>
 				<div class="pro_buycontent">
-					<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
+					<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
 					<button type="button" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>

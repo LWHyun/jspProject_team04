@@ -20,8 +20,15 @@ public class Product_ImgSrcDTO {
 	private int size_num ; //제품 사이즈 넘버
 	private int pd_size;
 	
+	private String ca_name;
 	
 	
+	public String getCa_name() {
+		return ca_name;
+	}
+	public void setCa_name(String ca_name) {
+		this.ca_name = ca_name;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}

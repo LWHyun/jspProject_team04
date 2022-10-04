@@ -18,15 +18,20 @@ public class UpdatePwdService implements CommandProcess {
 			throws ServletException, IOException {
 		// 로그인 체크
 		HttpSession session = request.getSession();
-		if(session.getAttribute("mem_id") == null) {
-			return "/member/loginCheck.jsp";
-		}
 
 		// 데이터 받기
 		String mem_pwd = request.getParameter("mem_pwd");
 		String mem_id = (String)session.getAttribute("mem_id");
-		
+		System.out.println("mem_id="+mem_id+", mem_pwd="+mem_pwd);
 		int result = 0;
+		
+		// 로그인 여부
+		if(mem_id == null) {
+			result = -1;
+			request.setAttribute("result", result);
+			return "/mypage/result.jsp";
+		}
+		
 		// 이미 있는지 비교
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		MemberDTO memberDTO = memberDAO.selectMember(mem_id);

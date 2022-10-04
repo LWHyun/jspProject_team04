@@ -7,6 +7,7 @@
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
 
 <form id="updateForm">
+	<input type="hidden" name="toURI" value="${requestScope.toURI }">
     <!-- 회원 가입 -->
     <div class="border-line-box-header">
         <span class="text-head2">개인정보 수정</span>
@@ -172,8 +173,11 @@ $(function() {
 								if(data == 1) {
 									alert('회원정보가 수정되었습니다.');
 									location.href="${pageContext.request.contextPath}/mypage/updateForm.do";
-								} else {
+								} else if(data == 0){
 									alert('회원정보 수정에 실패했습니다.\n다시 시도해주세요.');
+								} else {
+									alert("로그인을 해주세요.");
+									location.href='${pageContext.request.contextPath}/member/loginForm.do?toURI=${requestScope.toURI}';
 								}
 							}, 
 							error : function(err) {
@@ -186,6 +190,7 @@ $(function() {
 						$('#mem_rePwd').val('');
 					} else {
 						alert("로그인을 해주세요.");
+						location.href='${pageContext.request.contextPath}/member/loginForm.do?toURI=${requestScope.toURI}';
 					}
 				},
 				error : function(err) {

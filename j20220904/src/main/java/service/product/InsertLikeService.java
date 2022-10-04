@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.LikeProDAO;
 import dao.ProductDAO;
 
 public class InsertLikeService implements CommandProcess {
@@ -21,24 +22,22 @@ public class InsertLikeService implements CommandProcess {
 		String mem_id = request.getParameter("mem_id");
 		ProductDAO productDAO = ProductDAO.getInstance();
 		
-		HttpSession session = request.getSession();
 		
-		//세션에 아이디 값이 있는지 확인
+		
+		int result=0;
+		//System.out.println("memid가 없을때="+mem_id);
 	
-//		if(session.getAttribute("mem_id") == null) {
-//			System.out.println("mem_id있다");
-//			return "/member/loginCheck.jsp";
-//		}
-		
-		
-		
+			
+		if(mem_id !=null || !("".equals(mem_id))) {
 			try {
 				
-					int result = productDAO.insertLike(product_id, mem_id);
+					result = productDAO.insertLike(product_id, mem_id);
 					
 					request.setAttribute("mem_id", mem_id);
+					//request.setAttribute("gender", gender);
 					request.setAttribute("product_id", product_id);
-					request.setAttribute("result", result);
+					
+					
 				
 				
 				
@@ -46,8 +45,11 @@ public class InsertLikeService implements CommandProcess {
 				e.printStackTrace();
 			}
 		
+		}
+		request.setAttribute("result", result);
 		
-			return "/contents/checkOk.jsp";
+			
+		return "/contents/checkOk.jsp";
 	}
 
 }

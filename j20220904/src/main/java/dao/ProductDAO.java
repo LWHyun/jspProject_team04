@@ -97,7 +97,7 @@ public class ProductDAO {
                
                
                Product_ImgSrcDTO pro = new Product_ImgSrcDTO();
-            
+               Product_Like_ProDTO likePro = new Product_Like_ProDTO();
                
                
                
@@ -118,6 +118,7 @@ public class ProductDAO {
                pro.setSize_num(rs.getInt("size_num"));
                pro.setPd_size(rs.getInt("pd_size"));
                pro.setStock(rs.getInt("stock"));
+               
                
             
                

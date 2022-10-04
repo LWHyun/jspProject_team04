@@ -7,6 +7,7 @@
 
                     <!-- form -->
                     <form id="checkPasswordForm">
+                    	<input type="hidden" name="toURI" value="${requestScope.toURI }">
                         <!-- 개인정보 수정 타이틀 -->
                         <div class="border-line-box-header">
                             <span class="text-head2">비밀번호 변경</span>
@@ -105,14 +106,18 @@ $(function() {
 	    		data : 'mem_pwd='+$('#mem_pwd').val(),
 	    		dataType : 'text',
 	    		success : function(data) {
+	    			console.log(data);
 	    			if(data == 1) {
 	    				alert("비밀번호가 수정되었습니다.");
 	    				location.href="${pageContext.request.contextPath}/member/loginForm.do";
-	    			} else {
+	    			} else if(data == 0) {
 	    				alert("동일한 비밀번호로는 수정될 수 없습니다.");
 	    				$('#mem_pwd').val('');
 	    				$('#mem_rePwd').val('');
-	    			}
+	    			} else {
+						alert("로그인을 해주세요.");
+						location.href='${pageContext.request.contextPath}/member/loginForm.do?toURI=${requestScope.toURI}';
+					}
 	    		},
 	    		error : function(err) {
 	    			console.log(err);

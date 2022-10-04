@@ -792,6 +792,7 @@
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
     </div>  <!-- header -->	
+    	<input type="hidden" name="toURI" id="toURI" value="${toURI }">
 	<div class="contents-width">
 		<div class="breadcrumb-wrap" id="prdtCtgrCrumb">
 			<ul>
@@ -870,7 +871,14 @@
 				<div class="detail_brandbox">
 					<span class="ABC_MRRT">ABC-MART</span>
 						<div class="detail_brandbox_like">
+							<c:if test="${likeCnt == 0}">
+							<input type="hidden" class="heart" name="heart" value="0">
 							<img src="/j20220904/img/contexts/heart1.png" id="heart">
+							</c:if>
+							<c:if test="${likeCnt != 0}">
+							<input type="hidden" class="heart" name="heart" value="1">
+							<img src="/j20220904/img/contexts/heart0.png" id="heart">
+							</c:if>
 						</div>
 				</div>
 				<div class="brand_name"> <p>
@@ -1144,12 +1152,13 @@ $(document).ready(function(){
 		}
 	});
 
-	
+
+
 
 	
 //찜하면 빨간하트로 바뀌고 찜한상품 insert하는 로직	, 로그인 안했을때 장바구니 안담기게
 	$(function () {
-		var num = 0;
+		var num =$('.heart').val();
 
 		var imageName = ["heart1", "heart0"];
 		$("#heart").click(function() {
@@ -1162,14 +1171,17 @@ $(document).ready(function(){
 					data: {
 							'product_id' : ${product_id},
 							'mem_id' :  '${sessionScope.mem_id}'
+							
 					      },
 						
 					dataType: 'text',
 					success : function(data){
+						console.log('data='+data);
 						if(data == '1') {	
 							alert('찜한 상품이 삭제되었습니다');
-						}else{
-							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 						}
 					},
 					error: function(err){
@@ -1189,10 +1201,13 @@ $(document).ready(function(){
 						  },
 					dataType: 'text',
 					success : function(data){
+						console.log('data='+data);
 						if(data == '1') {
 							alert('찜한 상품이 등록되었습니다');
-						}else{
-							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 						}
 					},
 					error: function(err){
@@ -1207,7 +1222,8 @@ $(document).ready(function(){
 		});
 	});	
 	
-	
+
+
 	 
 	
 //작은 이미지 hover하면 큰 이미지로 바뀌는 로직	(시간남으면 이미지 더 추가)
@@ -1581,7 +1597,7 @@ $(document).ready(function(){
 				location.href="https://www.daum.net"; /* 바로구매창 이동 */
 			});
 		});
-	   
+   
 </script>
 
 </body>
