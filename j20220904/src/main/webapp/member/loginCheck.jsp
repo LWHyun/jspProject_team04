@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${empty sessionScope.mem_id }">
 	<script>
-		location.href="${pageContext.request.contextPath}/member/loginForm.do";
+		location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${requestScope.toURI}";
 	</script>
 </c:if>

@@ -22,6 +22,7 @@ public class LoginService implements CommandProcess {
 		String mem_id = request.getParameter("mem_id");
 		String mem_pwd = request.getParameter("mem_pwd");
 		String rememberId = request.getParameter("rememberId");
+		String toURI = request.getParameter("toURI");
 		System.out.println(mem_id+","+mem_pwd+","+rememberId);
 		
 		// DB 
@@ -50,6 +51,9 @@ public class LoginService implements CommandProcess {
 			result = 1;
 		}
 		
+		if(toURI != null) {
+			request.setAttribute("toURI", toURI);
+		}
 		request.setAttribute("result", result);
 		
 		return "/member/memLoginResult.jsp";

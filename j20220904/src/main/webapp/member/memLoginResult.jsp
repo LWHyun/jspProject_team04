@@ -9,9 +9,18 @@
 </head>
 <body>
 <c:if test="${result == 1 }">
-	<script>
-		location.href="${pageContext.request.contextPath}";
-	</script>
+	<c:if test="${not empty requestScope.toURI }">
+		<script>
+			location.href="${requestScope.toURI}";
+		</script>	
+	</c:if>
+	
+	<c:if test="${empty requestScope.toURI }">
+		<script>
+			location.href="${pageContext.request.contextPath}";
+		</script>	
+	</c:if>
+	
 </c:if>
 <c:if test="${result == 0 }">
 	<script>
