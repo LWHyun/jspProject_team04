@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.BasketDAO;
+import dto.BasketDTO;
 
 public class DeleteChkBasketItemService implements CommandProcess {
 
@@ -30,17 +31,23 @@ public class DeleteChkBasketItemService implements CommandProcess {
 			
 		}
 		
-		String zero = "1";
-		String[] rowCheck = request.getParameterValues("rowCheck");
+		String[] checks = request.getParameterValues("rowCheck");
+		String[] product_id = request.getParameterValues("item_product_id");
+		String[] size_num = request.getParameterValues("item_size_num");
 		
-		/*
-		 * List<BasketListDTO> list = new ArrayList<>(); for()
-		 */
 		BasketDAO basketDAO = BasketDAO.getInstance();
+		BasketDTO basketDTO = new BasketDTO();
 		
+		for(int i = 0; i < checks.length ; i++) {
+			
+			basketDTO.setMem_id(mem_id);
+			basketDTO.setProduct_id(Integer.parseInt(product_id[i]));
+			basketDTO.setSize_num(Integer.parseInt(size_num[i]));
+		}
 		
+		basketDAO.delChkItem(basketDTO);
 		
-		return null;
+		return "basket.jsp";
 	}
 
 }

@@ -19,6 +19,8 @@ public class BasketDTO {
 	private String s_file_path; //제품 이미지 작은사진 경로
 	private int pd_size;
 	
+	//
+	
 	public int getPd_size() {
 		return pd_size;
 	}
