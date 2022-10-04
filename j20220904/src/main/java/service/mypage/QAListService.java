@@ -49,6 +49,7 @@ public class QAListService implements CommandProcess {
 		int endNum = startNum + ph.getPageSize() -1;
 		
 		List<MyPage_QABoardDTO> list = memberDAO.QAList(mem_id, startNum, endNum);
+		System.out.println(list);
 		
 		// 응답
 		request.setAttribute("active", "myQA");

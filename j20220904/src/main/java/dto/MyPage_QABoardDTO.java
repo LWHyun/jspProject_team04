@@ -6,6 +6,7 @@ public class MyPage_QABoardDTO {
 	private int q_id;
 	private String mem_id;
 	private int product_id;
+	private int gender;
 	private String q_passwd;
 	private String q_title;
 	private String q_content;
@@ -94,13 +95,19 @@ public class MyPage_QABoardDTO {
 	public void setKor_name(String kor_name) {
 		this.kor_name = kor_name;
 	}
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
 
 	@Override
 	public String toString() {
-		return "MyPage_QABoardDTO [q_id=" + q_id + ", mem_id=" + mem_id + ", product_id=" + product_id + ", q_passwd="
-				+ q_passwd + ", q_title=" + q_title + ", q_content=" + q_content + ", q_date=" + q_date + ", q_views="
-				+ q_views + ", q_answer=" + q_answer + ", kor_name=" + kor_name + "]";
+		return "MyPage_QABoardDTO [q_id=" + q_id + ", mem_id=" + mem_id + ", product_id=" + product_id + ", gender="
+				+ gender + ", q_passwd=" + q_passwd + ", q_title=" + q_title + ", q_content=" + q_content + ", q_date="
+				+ q_date + ", q_views=" + q_views + ", q_answer=" + q_answer + ", kor_name=" + kor_name + "]";
 	}
-	
-	
+
 }
