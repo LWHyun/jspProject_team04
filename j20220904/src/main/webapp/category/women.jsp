@@ -123,14 +123,14 @@
 
 </style>
 <script type="text/javascript">
-	function like() {
+	/* function like() {
 		$('.like_img').click(function() {
 			$(this).attr('src','../img/contexts/heart0.png');
 		});
 		$('.like_img').dblclick(function() {
 			$(this).attr('src','../img/contexts/heart1.png');
 		})
-	}
+	} */
 	
 	
 	$(function() {
@@ -140,6 +140,58 @@
 		});
 	});
 	
+	
+	$(function () {
+		var num = 0;
+		var imageName = ["heart1", "heart0"];
+		
+		$(".like_img").click(function() {
+			var product_id = $(this).attr('alt');
+			console.log(product_id);
+			if(num == 1) {
+				num=0;
+				
+				$.ajax({
+					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
+					type: 'get',
+					data: {
+							'product_id' : product_id ,
+							'mem_id' :  '${sessionScope.mem_id}'
+					      },
+						
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 삭제되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			}else 	     {
+				num++;
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/contents/insertLike.do',
+					type: 'get',
+					data: {
+							'product_id' : product_id,
+							'mem_id' :  '${sessionScope.mem_id}'
+						  },
+					dataType: 'text',
+					success : function(data){
+						alert('찜한 상품이 등록되었습니다');
+					},
+					error: function(err){
+						console.log(err);
+					}
+				});	
+				
+			
+			}
+			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
+		});
+	});	
 	
 </script>
 </head>
@@ -203,7 +255,7 @@
 				</a>
 				<hr>
 				<div class="pro_buycontent">
-					<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
+					<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
 					<button type="button" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>
