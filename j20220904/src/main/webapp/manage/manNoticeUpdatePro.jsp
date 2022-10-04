@@ -18,7 +18,7 @@
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
 			alert("수정되지 않았습니다.");
-			location.href="manNoticeUpdateForm.do?num=${num}&pageNum=${pageNum}";
+			location.href="manNoticeUpdateForm.do?notice_code=${notice_code}&pageNum=${pageNum}";
 		</script>
 	</c:if>
 </body>
