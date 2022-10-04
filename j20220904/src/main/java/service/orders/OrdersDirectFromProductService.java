@@ -32,6 +32,7 @@ public class OrdersDirectFromProductService implements CommandProcess {
 		OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
 		ordersDTO.setProduct_id(product_id);
 		
+		request.setAttribute("ordersDTO", ordersDAO.selectProductInfo(ordersDTO));
 		
 		
 		
