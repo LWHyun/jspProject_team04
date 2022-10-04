@@ -18,13 +18,16 @@ public class UpdateService implements CommandProcess {
 			throws ServletException, IOException {
 		// 로그인 여부
 		HttpSession session = request.getSession();
-		if(session.getAttribute("mem_id") == null) {
-			System.out.println("uri="+request.getRequestURI());
-			request.setAttribute("toURI", request.getRequestURI());
-			return "/member/loginCheck.jsp";
+		
+		String mem_id = (String)session.getAttribute("mem_id");
+		int result = 0;
+		// 로그인 여부
+		if(mem_id == null) {
+			result = -1;
+			request.setAttribute("result", result);
+			return "/mypage/result.jsp";
 		}
 		// 데이터 받기
-		String mem_id = (String)session.getAttribute("mem_id");
 		String email = request.getParameter("mem_email1");
 		String mem_tel = request.getParameter("mem_tel");
 		String mem_zipcode = request.getParameter("mem_zipcode");
@@ -46,7 +49,7 @@ public class UpdateService implements CommandProcess {
 		
 		// DB
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		int result = memberDAO.update(memberDTO);
+		result = memberDAO.update(memberDTO);
 		
 		// 응답
 		request.setAttribute("result", result);
