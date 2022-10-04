@@ -175,15 +175,19 @@
 							<c:choose>
 								<c:when test="${not empty basketList }">
 								<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-									<c:forEach var="item" items="${basketList }">
+									
+									<c:forEach var="item" items="${basketList }" varStatus="status">
+										<input type="hidden" name="item_product_id" value="${item.product_id }">
+										<input type="hidden" name="item_size_num" value="${item.size_num }">
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
-											<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
+											<td><input type="checkbox" name="rowCheck1" value="chkval${item.product_id }_${item.size_num}" id="chk${item.product_id }_${item.size_num}" checked></td>
 											
-											<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
+											
+											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
 											<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
-												<input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-												<input type="text" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+												<input type="hidden" value="${item.price }" name="price" id="price${item.product_id}_${item.size_num}">
+												<input type="text" value="${item.cnt }" name="cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
 												<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
@@ -206,7 +210,7 @@
 						<c:if test="${not empty basketList}">
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 							<div class="order-delete-btn">
-								<input type="button" value="선택 삭제" id="delChk">
+								<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 							</div>
 						
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
@@ -380,15 +384,27 @@
 	}
 	
 	
-/* 	function delChkItem() {
+  	function delChkItem() {
+
+		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
+			alert("상품 삭제가 취소되었습니다.");
+		} else {
+			alert("상품이 삭제되었습니다.")
+		
+		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
+		
+	} 
+	 
+  	}
+ 	/* function delChkItem() {
 		
 		
-			var list = new Array();
+			var chkList = new Array();
 		 	<c:forEach items="${basketList }" var="list" >	
-		    	list.push("${basketList}.chk${item.product_id }_${item.size_num}");
+		    	chkList.push("${basketList}.chk${item.product_id }_${item.size_num}");
 			</c:forEach>
 
-			for (var i=0; i<list.length;){
+			for (var i=0; i<chkList.length;){
 				alert("list->"+ i + " :  "+ list[i++]);
 			}
 			
@@ -397,12 +413,7 @@
 			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
 			
 		
-	} */
-	
-	
-
-	
-	
+	}  */
 	
 </script>
 </body>
