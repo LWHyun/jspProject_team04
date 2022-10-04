@@ -8,28 +8,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 
-public class ManNoticeWriteFormService implements CommandProcess {
+public class ManProductRegisterService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		System.out.println("~~ManNoticeWriteForm 시작~~");
+
+		System.out.println("~~ManProductRegisterService 시작~~");
 		
 		try {
-			// 신규글 
-			int notice_code = 0;
+			// 신규 상품 등록
+			int product_id = 0;
 			String pageNum = request.getParameter("pageNum");
 			
-			if (pageNum == null) pageNum = "1";
+			if(pageNum == null) pageNum = "1";
 			
-			request.setAttribute("notice_code", notice_code);
-			request.setAttribute("pageNum", pageNum);		
-			
+			request.setAttribute("product_id", product_id);
+			request.setAttribute("pageNum", pageNum);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
-		
-		return "manNoticeWriteForm.jsp";
+		return "manProductRegister.jsp";
 	}
+
 }

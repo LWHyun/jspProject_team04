@@ -24,10 +24,12 @@ public class ManNoticeContentService implements CommandProcess {
 			NoticeDAO nd = NoticeDAO.getInstance();
 			
 			NoticeDTO notice = nd.select(notice_code);
+			NoticeDTO noticeBA = nd.selectBeforeAfter(notice_code);
 			
 			request.setAttribute("notice_code", notice_code);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("notice", notice);
+			request.setAttribute("noticeBA", noticeBA);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

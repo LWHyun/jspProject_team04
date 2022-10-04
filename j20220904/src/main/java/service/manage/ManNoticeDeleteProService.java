@@ -7,29 +7,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
+import dao.NoticeDAO;
 
-public class ManNoticeWriteFormService implements CommandProcess {
+public class ManNoticeDeleteProService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		System.out.println("~~ManNoticeWriteForm 시작~~");
+
+		System.out.println("~~ManNoticeDeleteProService 시작~~");
 		
 		try {
-			// 신규글 
-			int notice_code = 0;
+			int notice_code = Integer.parseInt(request.getParameter("notice_code"));
 			String pageNum = request.getParameter("pageNum");
 			
-			if (pageNum == null) pageNum = "1";
+			NoticeDAO nd = NoticeDAO.getInstance();
+			
+			int result = nd.delete(notice_code);
 			
 			request.setAttribute("notice_code", notice_code);
-			request.setAttribute("pageNum", pageNum);		
+			request.setAttribute("result", result);
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
-		return "manNoticeWriteForm.jsp";
+		return "manNoticeDeletePro.jsp";
 	}
 }

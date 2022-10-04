@@ -1,6 +1,7 @@
 package service.manage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,19 +17,21 @@ public class ManNoticeUpdateFormService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int notice_code = Integer.parseInt(request.getParameter("notice_code"));
-		String pageNum = request.getParameter("pageNum");
+		System.out.println("~~ManNoticeUpdateFormService Start~~");
+		
 
 		try {
-	        
+			int notice_code = Integer.parseInt(request.getParameter("notice_code"));
+			String pageNum = request.getParameter("pageNum");
+			
 			NoticeDAO nd = NoticeDAO.getInstance();
 			NoticeDTO notice = nd.select(notice_code);
-	        
+			
 	        request.setAttribute("pageNum", pageNum);
 	        request.setAttribute("notice", notice);
 		
-		} catch (Exception e) {
-			System.out.println(e.getMessage()); 
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
         return "manNoticeUpdateForm.jsp";

@@ -22,6 +22,8 @@ public class MypageService implements CommandProcess {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
+			System.out.println("uri="+request.getRequestURI());
+			request.setAttribute("toURI", request.getRequestURI());
 			return "/member/loginCheck.jsp";
 		}
 		String mem_id = (String)session.getAttribute("mem_id");
