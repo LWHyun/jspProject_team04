@@ -30,6 +30,65 @@
    		font-size: 20px;
    		line-height: 40px;
    }
+   	.custom-btn {
+	  width: 130px;
+	  height: 40px;
+	  color: #fff;
+	  border-radius: 5px;
+	  padding: 10px 25px;
+	  font-family: 'Lato', sans-serif;
+	  font-weight: 500;
+	  background: transparent;
+	  cursor: pointer;
+	  transition: all 0.3s ease;
+	  position: relative;
+	  display: inline-block;
+	   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+	   7px 7px 20px 0px rgba(0,0,0,.1),
+	   4px 4px 5px 0px rgba(0,0,0,.1);
+	  outline: none;
+	}
+	.btn-close {
+	  width: 130px;
+	  height: 40px;
+	  line-height: 42px;
+	  padding: 0;
+	  border: none;
+	  background: rgb(255,27,0);
+	background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
+	}
+	.btn-close:hover {
+	  color: #f0094a;
+	  background: transparent;
+	   box-shadow:none;
+	}
+	.btn-close:before,
+	.btn-close:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background: #f0094a;
+	  box-shadow:
+	   -1px -1px 5px 0px #fff,
+	   7px 7px 20px 0px #0003,
+	   4px 4px 5px 0px #0002;
+	  transition:400ms ease all;
+	}
+	.btn-close:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	}
+	.btn-close:hover:before,
+	.btn-close:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
+   
    .gnb-wrap {
       height: 145px;
       font-family: "Montserrat","Noto Sans KR",sans-serif;
@@ -146,7 +205,7 @@
                   <ul class="util-list">
                   <c:if test="${sessionScope.mem_id == 'admin' }">
                 	<li>
-                        <a href="${pageContext.request.contextPath }/manage/manNoticeList.jsp" class="material-symbols-outlined">person</a>
+                        <a href="${pageContext.request.contextPath }/manage/manNoticeList.do" class="material-symbols-outlined">person</a>
                         <a href="#" style="font-size: 10px;">관리자</a>
                      </li>
                   </c:if>
@@ -178,63 +237,79 @@
                         <a href="#" style="color: #ffe100;">BRAND</a>
                      </li>
                      <li id="li_men">
-                       <a href="${pageContext.request.contextPath }/category/men3.do?gender=0" >MEN</a>
+                       <a href="#">MEN</a>
                      </li>
                      <li id="li_women">
-                        <a href="${pageContext.request.contextPath }/category/women.do?gender=1">WOMEN</a>
+                        <a href="#">WOMEN</a>
                      </li>
                   </ul>
                </div>
             </div>
          </div>
       </div>
-      <div class="cate_select" style="display:none">
-        <div class="cate_div">
-			<h1 id="cate_high"></h1>
-			<hr>
-			<ul class="cate_low" id="cate_low">
-				
-			</ul>
-			<button id="close">닫기</button>
+		<div class="cate_select" style="display:none">
+			<div class="cate_div">
+				<h1 id="cate_high"></h1>
+				<hr>
+				<ul class="cate_low" id="cate_low">
+			
+				</ul>
+				<button id="close" class="custom-btn btn-close">닫기</button>
+			</div>
 		</div>
-	</div>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>	
 <script type="text/javascript">
 function goSearch() {
 	window.open('${pageContext.request.contextPath }/category/goSearch.do','_blank','width=1000px','height=1000px');
 	}
 	
-////남성탭 올렸을때 카테고리 메뉴 나오는 부분
-$('.gnbMenuWrap > ul > #li_men').mouseover(function() {
+	////남성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_men').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'men'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('MEN');
+		$('.cate_select').css('display', 'flex');
+	});
 	
-	$.ajax({
-		url : '${pageContext.request.contextPath}/category/findCate.do',
-		dataType : 'html',
-		data : {result : 'men'},
-		success : function(data) {
-			console.log(data);
-			$('#cate_low').html(data);
-		}
-	})
-	$('#cate_high').text('남성');
-	$('.cate_select').css('display', 'flex');
-});
-
-//여성탭 올렸을때 카테고리 메뉴 나오는 부분
-$('.gnbMenuWrap > ul > #li_women').mouseover(function() {
+	//여성탭 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_women').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'women'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('WOMEN');
+		$('.cate_select').css('display', 'flex');
+	});
 	
-	$.ajax({
-		url : '${pageContext.request.contextPath}/category/findCate.do',
-		dataType : 'html',
-		data : {result : 'women'},
-		success : function(data) {
-			console.log(data);
-			$('#cate_low').html(data);
-		}
-	})
-	$('#cate_high').text('여성');
-	$('.cate_select').css('display', 'flex');
-});
+	//브랜드 탭에 올렸을때 카테고리 메뉴 나오는 부분
+	$('.gnbMenuWrap > ul > #li_brand').click(function() {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/findCate.do',
+			dataType : 'html',
+			data : {result : 'brand'},
+			success : function(data) {
+				console.log(data);
+				$('#cate_low').html(data);
+			}
+		})
+		$('#cate_high').text('BRAND');
+		$('.cate_select').css('display', 'flex');
+	});
 
 /* $('.gnbMenuWrap > ul > li').mouseout(function() {
 	$('.cate_select').css('display', 'none');

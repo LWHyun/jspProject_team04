@@ -2,6 +2,8 @@ package service.basket;
 
 import java.io.IOException;
 import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.BasketDAO;
 
 public class DeleteChkBasketItemService implements CommandProcess {
 
@@ -28,6 +31,12 @@ public class DeleteChkBasketItemService implements CommandProcess {
 		}
 		
 		String zero = "1";
+		String[] rowCheck = request.getParameterValues("rowCheck");
+		
+		/*
+		 * List<BasketListDTO> list = new ArrayList<>(); for()
+		 */
+		BasketDAO basketDAO = BasketDAO.getInstance();
 		
 		
 		

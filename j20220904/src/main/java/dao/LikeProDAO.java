@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -70,15 +71,17 @@ public class LikeProDAO {
 	}
 	
 	// 회원의 찜한 상품 가져오는 메서드
-	public List<LikeProDTO> selectLikeProList(String mem_id) {
+	public List<LikeProDTO> selectLikeProList(String mem_id, int startRow, int endRow) {
 		Connection conn = getConnection();
 		
-		String sql = "select l.product_id, l.mem_id, l.like_pro_date, p.brand, p.kor_name, p.price, p.gender, ps.s_file_path\r\n"
-				+ "from like_pro l \r\n"
-				+ "join product p on l.product_id = p.product_id\r\n"
-				+ "join product_image ps on l.product_id = ps.product_id\r\n"
-				+ "where l.mem_id = ?\r\n"
-				+ "order by 3 desc";
+		String sql = "select * from (select rownum rn, t.* from "
+				+ "            (select l.product_id, l.mem_id, l.like_pro_date, p.brand, p.kor_name, p.price, p.gender, ps.s_file_path "
+				+ "            from like_pro l "
+				+ "            join product p on l.product_id = p.product_id "
+				+ "            join product_image ps on l.product_id = ps.product_id "
+				+ "            where l.mem_id = ? "
+				+ "            order by 3 desc)t) "
+				+ "where rn >= ? and rn <= ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -88,7 +91,8 @@ public class LikeProDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
-			
+			pstmt.setInt(2, startRow);			
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -116,6 +120,38 @@ public class LikeProDAO {
 		return list;
 	}
 	
+	// 선택한 찜 상품(들) 삭제하는 메서드
+	public int deleteLike(List<LikeProDTO> list) {
+		Connection conn = getConnection();
+		
+		String product_id = "";
+		String mem_id = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			product_id += i==0 ? "'"+list.get(i).getProduct_id()+"'" : ","+"'"+list.get(i).getProduct_id()+"'";
+			mem_id += i==0 ? "'"+list.get(i).getMem_id()+"'" : ","+"'"+list.get(i).getMem_id()+"'";
+		}
+		System.out.println(product_id);
+		System.out.println(mem_id);
+		
+		String sql = String.format("delete from like_pro where product_id in (%s) and mem_id in(%s)", product_id , mem_id);
+		System.out.println(sql);
+		Statement stmt = null;
+		int result = 0;
+		try {
+			stmt = conn.createStatement();
+			
+			result = stmt.executeUpdate(sql);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, conn);
+		}
+		
+		return result;
+	}
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
@@ -127,4 +163,6 @@ public class LikeProDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

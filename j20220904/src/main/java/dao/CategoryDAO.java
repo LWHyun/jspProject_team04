@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import dto.CategoryDTO;
 import dto.ProductDTO;
 import dto.Product_ImgSrcDTO;
+import dto.Recent_SearchClickDTO;
 import dto.SearchClickDTO;
 
 public class CategoryDAO {
@@ -59,30 +60,34 @@ public class CategoryDAO {
 	
 	
 	//검색하기
-	public List<ProductDTO> selectSearch(String searchBar) throws SQLException {
-		List<ProductDTO> list = new ArrayList<ProductDTO>();
-		String sql = "select * from product where brand like Upper('%"+searchBar+"%') or ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%'";
+	public List<Product_ImgSrcDTO> selectSearch(String searchBar) throws SQLException {
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and pi.product_id in"
+				+ "(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+						+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		
+		System.out.println("sql문-->"+sql);
 		
 			try {
 				conn = getConnection();
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql);
 				while(rs.next()) {
-					ProductDTO productDTO = new ProductDTO();
-					productDTO.setProduct_id(rs.getInt("product_id"));
-					productDTO.setBrand(rs.getString("brand"));
-					productDTO.setEng_name(rs.getString("eng_name"));
-					productDTO.setKor_name(rs.getString("kor_name"));
-					productDTO.setGender(rs.getInt("gender"));
-					productDTO.setPrice(rs.getInt("price"));
-					productDTO.setColor(rs.getString("color"));
-					productDTO.setRegdate(rs.getDate("regdate"));
-					productDTO.setCa_code(rs.getInt("ca_code"));
-					list.add(productDTO);
+					Product_ImgSrcDTO pis = new Product_ImgSrcDTO();
+					pis.setProduct_id(rs.getInt("product_id"));
+					pis.setBrand(rs.getString("brand"));
+					pis.setEng_name(rs.getString("eng_name"));
+					pis.setKor_name(rs.getString("kor_name"));
+					pis.setGender(rs.getInt("gender"));
+					pis.setPrice(rs.getInt("price"));
+					pis.setColor(rs.getString("color"));
+					pis.setRegdate(rs.getDate("regdate"));
+					pis.setCa_code(rs.getInt("ca_code"));
+					pis.setS_file_path(rs.getString("s_file_path"));
+					pis.setL_file_path(rs.getString("l_file_path"));
+					list.add(pis);
 			} 
 			
 		}catch (SQLException e) {
@@ -99,9 +104,9 @@ public class CategoryDAO {
 		return list;
 	}
 	//성별탭으로 검색 ->뿌려주기
-	public List<ProductDTO> selectSearch(int gender) throws SQLException {
-		List<ProductDTO> list = new ArrayList<ProductDTO>();
-		String sql = "select * from product where gender=?";
+	public List<Product_ImgSrcDTO> selectSearch(int gender) throws SQLException {
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and p.gender=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -113,17 +118,19 @@ public class CategoryDAO {
 				pstmt.setInt(1, gender);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
-					ProductDTO productDTO = new ProductDTO();
-					productDTO.setProduct_id(rs.getInt("product_id"));
-					productDTO.setBrand(rs.getString("brand"));
-					productDTO.setEng_name(rs.getString("eng_name"));
-					productDTO.setKor_name(rs.getString("kor_name"));
-					productDTO.setGender(rs.getInt("gender"));
-					productDTO.setPrice(rs.getInt("price"));
-					productDTO.setColor(rs.getString("color"));
-					productDTO.setRegdate(rs.getDate("regdate"));
-					productDTO.setCa_code(rs.getInt("ca_code"));
-					list.add(productDTO);
+					Product_ImgSrcDTO pis = new Product_ImgSrcDTO();
+					pis.setProduct_id(rs.getInt("product_id"));
+					pis.setBrand(rs.getString("brand"));
+					pis.setEng_name(rs.getString("eng_name"));
+					pis.setKor_name(rs.getString("kor_name"));
+					pis.setGender(rs.getInt("gender"));
+					pis.setPrice(rs.getInt("price"));
+					pis.setColor(rs.getString("color"));
+					pis.setRegdate(rs.getDate("regdate"));
+					pis.setCa_code(rs.getInt("ca_code"));
+					pis.setS_file_path(rs.getString("s_file_path"));
+					pis.setL_file_path(rs.getString("l_file_path"));
+					list.add(pis);
 			} 
 			
 		}catch (SQLException e) {
@@ -343,7 +350,7 @@ public class CategoryDAO {
 	}
 	//카테고리 코드별 정렬
 	public List<Product_ImgSrcDTO> selectCodeSearch(String ca_code) throws SQLException {
-		String sql = "select * from product where ca_code=?";
+		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and ca_code=?";
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 		
 		Connection conn = null;
@@ -366,6 +373,8 @@ public class CategoryDAO {
 				pd.setColor(rs.getString("color"));
 				pd.setRegdate(rs.getDate("regdate"));
 				pd.setCa_code(rs.getInt("ca_code"));
+				pd.setS_file_path(rs.getString("s_file_path"));
+				pd.setL_file_path(rs.getString("l_file_path"));
 				list.add(pd);
 				
 				
@@ -380,6 +389,100 @@ public class CategoryDAO {
 		}
 		
 		return list;
+	}
+	
+	//카테고리 이름찾는 부분
+	public String selectCateName(String ca_code) throws SQLException {
+		String sql = "select ca_name from category where ca_code=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result = "";
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ca_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString(1);
+			}
+			System.out.println("SelectCateName result -->"+result);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		
+		return result;
+	}
+	public List<Recent_SearchClickDTO> selectRecentWord(String id) throws SQLException {
+		List<Recent_SearchClickDTO>rsc_list = new ArrayList<Recent_SearchClickDTO>();
+		String sql = "select * from recent_searchclick where mem_id=? order by rsc_num desc";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Recent_SearchClickDTO rsc = new Recent_SearchClickDTO();
+				rsc.setRsc_num(rs.getInt(2));
+				rsc.setRsc_word(rs.getString(3));
+				rsc_list.add(rsc);
+				if(rsc_list.size()==10) break;
+
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		
+		
+		return rsc_list;
+	}
+	//최근검색어 저장하는 부분
+	public int insertRecentWord(String searchWord, String id) throws SQLException {
+		String sql = "insert into recent_searchclick values (?,(select max(rsc_num)+1 from recent_searchclick where mem_id=?),?)";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		System.out.println(sql);
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			pstmt.setString(3, searchWord);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		return result;
 	}
 	
 	

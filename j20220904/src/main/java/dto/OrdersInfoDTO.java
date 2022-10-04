@@ -6,6 +6,14 @@ public class OrdersInfoDTO {
 	private int size_num;
 	private int cnt;
 	
+	//
+	private String mem_name;
+	private String mem_tel;
+	private String mem_email1;
+	private String mem_email2;
+	
+	
+	//
 	private int order_id;
 	private String mem_id;
 	private String order_name;
@@ -18,6 +26,69 @@ public class OrdersInfoDTO {
 	private String order_date;
 	private String order_status;
 
+	
+	//
+	private String brand;
+	private String eng_name;
+	private String kor_name;
+	private int gender;
+	private int price;
+	private String color;
+	
+	//
+	private String s_file_path;
+	
+	//
+	private int pd_size;
+	
+	public int getPd_size() {
+		return pd_size;
+	}
+	public void setPd_size(int pd_size) {
+		this.pd_size = pd_size;
+	}
+	public String getS_file_path() {
+		return s_file_path;
+	}
+	public void setS_file_path(String s_file_path) {
+		this.s_file_path = s_file_path;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public String getEng_name() {
+		return eng_name;
+	}
+	public void setEng_name(String eng_name) {
+		this.eng_name = eng_name;
+	}
+	public String getKor_name() {
+		return kor_name;
+	}
+	public void setKor_name(String kor_name) {
+		this.kor_name = kor_name;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public int getOrder_id() {
 		return order_id;
 	}
@@ -103,5 +174,32 @@ public class OrdersInfoDTO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
+	public String getMem_tel() {
+		return mem_tel;
+	}
+	public void setMem_tel(String mem_tel) {
+		this.mem_tel = mem_tel;
+	}
+	public String getMem_email1() {
+		return mem_email1;
+	}
+	public void setMem_email1(String mem_email1) {
+		this.mem_email1 = mem_email1;
+	}
+	public String getMem_email2() {
+		return mem_email2;
+	}
+	public void setMem_email2(String mem_email2) {
+		this.mem_email2 = mem_email2;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+	
+	
 	
 }

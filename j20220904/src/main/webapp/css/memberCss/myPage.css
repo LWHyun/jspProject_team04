@@ -106,6 +106,11 @@ h2,h3 {
 	color : red;
 }
 
+.mypage-lnb .mypage-lnb-item a:hover {
+	text-decoration: underline;
+	color : red;
+}
+
 .mypage-lnb .mypage-lnb-item a {
     display: inline-block;
     color: #999;
@@ -234,14 +239,14 @@ button {
     border: 0;
     color: #000;
 }
-.btn-txt-arr:after {
+/* .btn-txt-arr:after {
     content: '';
     display: inline-block;
     margin-left: 3px;
     width: 7px;
     height: 10px;
     background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_txt_arr.png) 0 0 no-repeat;
-}
+} */
 
 /* border-line-box */
 .border-line-box-header+.border-line-box {
@@ -484,3 +489,105 @@ body .tab-wrap:not(.multi-line).header-tab .tabs {
     font-weight: 800;
 }
 
+/* 약관동의 전체 체크버튼 - 기본 체크박스 없애기 */
+.ui-rdo input, .ui-chk input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+} 
+select, input, textarea {
+    font-size: 13px;
+}
+.ui-rdo.text-medium input+label, .ui-chk.text-medium input+label {
+    font-size: 16px;
+    letter-spacing: -.8px;
+}
+/* 웹의 경우 커서에 pointer 설정 */
+.ui-rdo input+label, .ui-chk input+label {
+    display: inline-block;
+    position: relative;
+    color: #000;
+    padding: 0 0 0 28px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    line-height: 20px;
+    vertical-align: middle;
+    font-size: 15px;
+    letter-spacing: -.75px;
+}
+
+/* 새로운 디자인의 체크박스 만들기 */
+.ui-rdo input+label:before, .ui-chk input+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: border-color .23s ease-out,border-width .23s ease-out;
+    transition: border-color .23s ease-out,border-width .23s ease-out;
+}
+.ui-chk input[type=checkbox]+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 1;
+    -webkit-transition: opacity .23s ease-out;
+    transition: opacity .23s ease-out;
+    -webkit-transition-delay: calc(.23s / 2);
+    transition-delay: calc(.23s / 2);
+}
+.ui-chk input[type=checkbox]:checked+label:before {
+    border-width: 10px;
+}
+    .ui-chk input:checked+label:before {
+    border-color: #000;
+}
+.ui-chk input[type=checkbox]:checked+label:after {
+    background: url(https://abcmart.a-rt.com/static/images/ui/form/chk_icon_checked.png) center no-repeat;
+    opacity: 1;
+}
+.ui-chk input[type=checkbox]+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 1;
+    -webkit-transition: opacity .23s ease-out;
+    transition: opacity .23s ease-out;
+    -webkit-transition-delay: calc(.23s / 2);
+    transition-delay: calc(.23s / 2);
+}
+/* 찜 삭제를 위한 체크박스 */
+.chk-prod {
+    position: relative;
+    z-index: 10;
+    top: 5px;
+    left: 5px;
+}

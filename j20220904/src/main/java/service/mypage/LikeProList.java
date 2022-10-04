@@ -14,17 +14,18 @@ import dao.BasketDAO;
 import dao.LikeProDAO;
 import dto.LikeProDTO;
 
-public class MypageService implements CommandProcess {
+public class LikeProList implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		// 로그인 처리
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mem_id") == null) {
 			return "/member/loginCheck.jsp";
 		}
 		String mem_id = (String)session.getAttribute("mem_id");
+		String brand = request.getParameter("brand");
 		
 		//DB
 		BasketDAO basketDAO = BasketDAO.getInstance();
@@ -34,18 +35,24 @@ public class MypageService implements CommandProcess {
 		int basketCnt = basketDAO.memBasketCnt(mem_id);
 		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
 		
-		// 찜 상품 가져오기 (마이페이지에서는 4개만 가져옴)
-		int startRow = 1;
-		int endRow = startRow+3;
-		PageHandler ph = new PageHandler(likeProCnt); // jsp에서 찜한 갯수 처리 통일하기 위해 그냥 가져가는 것
+		// 찜 상품 가져오기
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
+		System.out.println("ph="+ph);
+		
+		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
+		int endRow = startRow+ph.getPageSize()-1; // 4, 8, 12...
 		
 		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
 		System.out.println(likeProList);
 		
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("ph", ph);
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
-		request.setAttribute("ph", ph);
-		request.setAttribute("active", "my"); // 현재 페이지 활성화
+		//request.setAttribute("likeProCnt", likeProCnt);
+		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
+		request.setAttribute("display", "myPageLikeProList.jsp");
 		return "/mypage/myPage.jsp";
 	}
 

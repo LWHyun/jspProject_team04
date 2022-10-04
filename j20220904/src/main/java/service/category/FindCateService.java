@@ -41,6 +41,16 @@ public class FindCateService implements CommandProcess {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(result.equals("brand")) {
+			result = "브랜드";
+			
+			try {
+				List<CategoryDTO> list = cd.selectCategory(result);
+				request.setAttribute("list", list);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		

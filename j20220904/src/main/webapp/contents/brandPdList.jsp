@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 /* 배너----------------------------------------------------------------------------------- */
+.contents-wrap {
+	min-width: 1440px;
+	font-size: 13px;
+	overflow: hidden;
+}
+
 .contents-width {
 	width: 1200px;
 	margin: 0 auto;
@@ -400,11 +407,6 @@ label {
 		background-position: 0 -28px;
 		font-size: 0;
 	}
-	body {
-		min-width: 1440px;
-		font-size: 13px;
-		overflow: scroll;
-	}
 </style>
 </head>
 <body>
@@ -479,11 +481,11 @@ label {
 		            <ul class="ip-filter-list col2">
 		              <li class="smart-search-option" data-code="0" data-name="남성">
 		                <span class="ui-chk type-line">
-		                <input id="1" name="gender" type="checkbox"><label for="0">MEN</label>
+		                <input id="0" name="gender" type="checkbox"><label for="0">MEN</label>
 		                </span>
 		              </li>
 		              <li class="smart-search-option" data-code="1" data-name="여성">
-		                <input id="0" name="gender" type="checkbox"><label for="1">WOMEN</label>
+		                <input id="1" name="gender" type="checkbox"><label for="0">WOMEN</label>
 		              </li>
 		            </ul>
 		          </div>
@@ -565,13 +567,17 @@ label {
 
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
+		
+		
+		
+		<c:forEach var="product" items="${Alex }">
 			<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900"> <!-- 상품상세 페이지로 이동 -->
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-				<span class="prod-name">나이키 샬라샬라</span><br> 																	<!-- 상품이름 -->
-			<span class="prod-price">59,000</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
+					<a class="prod-link" href="contents_men.do?product_id=${product_id }"> <!-- 상품상세 페이지로 이동 -->
+					<img class="img-box" alt="신발" src="${Product_ImgSrcDTO.s_file_path }">
+					<span class="prod-brand">${product.brand}</span><br>
+				<span class="prod-name">${product.kor_name}</span><br> 																	<!-- 상품이름 -->
+			<span class="prod-price">${product.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
 					</a>
 					<div class="prod-util-wrap">
 						<div class="prod-btn-wrap">
@@ -584,13 +590,17 @@ label {
 					</div>
 				</div>
 			</div>
+		</c:forEach>
+			
+			
+		<c:forEach var="Clara" items="${Alex }">
 			<div class="product-box cell">
 				<div class="prod-wrap">
 					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
 					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
+					<span class="prod-brand">${Clara.brand }</span><br>
+					<span class="prod-name">${Clara.kor_name }</span><br> 
+					<span class="prod-price">${Clara.price }</span> <span class="price-unit">원</span>
 					</a>
 					<div class="prod-util-wrap">
 						<div class="prod-btn-wrap">
@@ -603,196 +613,8 @@ label {
 					</div>
 				</div>
 			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		</c:forEach>
+			
 		</div>
 		
 	  </div> <!-- filter-list-wrap 끝-->			

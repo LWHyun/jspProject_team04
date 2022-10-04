@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,24 +179,23 @@ function sample6_execDaumPostcode() {
 					<!-- 장바구니에서 넘어왔을 때 -->
 					<table class="order-body">
 					
-						<c:forEach var="item" items="${basketList }" varStatus="status">
-								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
+								
+								<tr id="tr${ordersDTO.product_id }_${ordersDTO.size_num }">
+									<td class="pd_img"><img src="${ordersDTO.s_file_path }" width="100px"></td>
 									
-									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
+									<td class="item_info"><span class="item-name">${ordersDTO.kor_name}</span><br><br><span>${ordersDTO.pd_size} <br></span><span class="item-color">${ordersDTO.color }</span></td>
+									<td><input type="hidden" value="${ordersDTO.price }" name="item_price" id="price${ordersDTO.product_id}_${ordersDTO.size_num}">
+										<input type="text"  readonly="readonly" value="${ordersDTO.cnt }" name="item_cnt" id="cnt${ordersDTO.product_id }_${ordersDTO.size_num}" min="1" max="99" style="width:15px;"></td>
 									
-									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
+									<td id="sum${ordersDTO.product_id }_${ordersDTO.size_num}" class="sumProduct">${ordersDTO.price * ordersDTO.cnt }원</td>
 								</tr>
-						</c:forEach>
 						
 					</table>
  			</div>	
  				<div class="price-cal">
 						<table class="cal-tbl">
 							<tr><td>결제 예정 금액</td></tr>
-							<tr><td class="totalArr">원</td></tr>
+							<tr><td>${ordersDTO.price * ordersDTO.cnt }원</td></tr>
 						</table>
 					</div>
 				</div>
@@ -341,14 +340,6 @@ function sample6_execDaumPostcode() {
 						
 					
 					</div>	 <!-- orderinfo div 끝 -->			
-				
-
-
-
-
-
-
-
 				</div>
 				
 </body>
@@ -357,53 +348,26 @@ function sample6_execDaumPostcode() {
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 
+	// 체크박스 이벤트리스너
+	$(document).ready(function(){
+		$("#memChkBox").change(function(){
+			if($("#memChkBox").is(":checked")){
 
-	// 화면 로딩될때 가격 계산도 해줘
-	$(function(){
-		calcTotal()
-	})
-
-
-
-	function calcTotal() {
-	
-		// 모든 소계를 가져와야함
-		let targetSumArr = document.getElementsByClassName("sumProduct")
-		
-		// 모든 소계 합산
-		let result = 0;
-		for ( let i = 0 ; i < targetSumArr.length ; i++){
-			let str = targetSumArr[i].innerHTML
-			result += parseInt(str.substring(0,str.length-1))
+			$('#buyername').val('${members.mem_name}');
+			$('#buyerphone').val('${members.mem_tel}');
+			$('#buyermail').val('${members.mem_email1}'+'@'+'${members.mem_email2}');
+			
+		} else {
+			
+			$('#buyername').val('');
+			$('#buyerphone').val('');
+			$('#buyermail').val('');
+			
 		}
-		// 합산 가격 반영
-		
-		let totalArr = document.getElementsByClassName("totalArr")
-		for (let i = 0; i < totalArr.length; i++){
-			totalArr[i].innerHTML = result+"원"
-		}
-	 	
-	}
-	
-		$(document).ready(function(){
-			$("#memChkBox").change(function(){
-				if($("#memChkBox").is(":checked")){
-
-				$('#buyername').val('${ordersDTO.mem_name}');
-				$('#buyerphone').val('${ordersDTO.mem_tel}');
-				$('#buyermail').val('${ordersDTO.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
-				
-			} else {
-				
-				$('#buyername').val('');
-				$('#buyerphone').val('');
-				$('#buyermail').val('');
-				
-			}
-				
-			});
 			
 		});
+		
+	});
 	
 	
 	
