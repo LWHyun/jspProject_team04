@@ -97,7 +97,7 @@ public class ProductDAO {
                
                
                Product_ImgSrcDTO pro = new Product_ImgSrcDTO();
-               Product_Like_ProDTO likePro = new Product_Like_ProDTO();
+              
                
                
                
@@ -275,6 +275,7 @@ public class ProductDAO {
       
       int result = 0;
       int i= 0;
+      
       try {
          
          

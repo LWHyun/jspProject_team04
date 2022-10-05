@@ -3,12 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.OrdersInfoDTO;
+import dto.Product_ImgSrcDTO;
 
 public class OrdersInfoDAO {
 
@@ -137,6 +139,73 @@ private static OrdersInfoDAO instance;
 		return ordersDTO;
 	}
 	
+	
+	//결제하면 결제상품목록들 insert하는 메서드
+	public int insertOrdList(OrdersInfoDTO ordersDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "insert into orders value(seq_orders.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
+		
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ordersDTO.getMem_name());
+			pstmt.setString(2, ordersDTO.getOrder_name());
+			pstmt.setString(3, ordersDTO.getOrder_phone());
+			pstmt.setString(4, ordersDTO.getOrder_email());
+			pstmt.setString(5, ordersDTO.getTake_name());
+			pstmt.setString(6, ordersDTO.getTake_phone());
+			pstmt.setString(7, ordersDTO.getTake_add());
+			pstmt.setString(8, ordersDTO.getOrder_msg());
+			pstmt.setString(9, ordersDTO.getOrder_status());
+			
+			
+			result =pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt,conn);
+		}
+		
+		return result;
+		
+	}
+	
+	//결제하면 결제상품목록 디테일들 insert하는 메서드
+	public int insertOrd_DetailList() {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "insert into orders_detail value(seq_orders.currval,?,?,?,?)";
+		
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			OrdersInfoDTO ordersDTO = new OrdersInfoDTO();
+			
+			
+			pstmt.setInt(1,ordersDTO.getSize_num());
+			pstmt.setInt(2,ordersDTO.getProduct_id());
+			pstmt.setInt(3,ordersDTO.getCnt());
+			pstmt.setInt(4,ordersDTO.getPrice());
+			
+			
+			
+			
+			
+			result =pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt,conn);
+		}
+		
+		return result;
+		
+		
+	}
 	
 	
 	private void close(AutoCloseable... ac) {

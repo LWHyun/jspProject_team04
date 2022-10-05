@@ -11,7 +11,7 @@
 	
 	.contents-width	{
 		width: 1200px;
-		height: 800px;
+		height: 900px;
 		margin: 0 auto;
 		
 		
@@ -995,6 +995,7 @@
 						<div class="style_myshopping">
 							<div class="style_myshopping_left">
 								<button type="button" id="myshopping1" value="장바구니">장바구니</button>
+								<input type="hidden" class="myshoppingChk" name="myshoppingChk" value="${sessionScope.mem_id }">
 							</div>
 							<div class="style_myshopping_right">
 								<button type="button"  id="myshopping2" value="바로구매">바로구매</button>
@@ -1556,35 +1557,42 @@ $(document).ready(function(){
 	   
 	   /* 장바구니 alert */
 		$(function() {
+			
 			$(document).on('click','#myshopping1' ,function() {
-				
-				//만약에 사이즈가 0이거나 선택을 안했을시에
-				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
-					alert('사이즈를 선택해주세요');
+				if($('.myshoppingChk').val() == ''){
+					alert('먼저 로그인 해주세요');
+					location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 				}else{
-					
-								$.ajax({
-									url: '${pageContext.request.contextPath}/contents/insertBasket.do', //장바구니쪽
-									type: 'get',
-									data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
-									dataType: 'text',
-									success : function(data){
-										if(data == '1'){
-											alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
-											location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
-										}else if(data == '2'){
-											alert('이미 담겨있는 상품입니다');
-										}else{
-											alert('장바구니가 비었습니다\n장바구니에 상품을 담아주세요');
+					//만약에 사이즈가 0이거나 선택을 안했을시에
+					if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
+						alert('사이즈를 선택해주세요');
+					}else{
+						
+									$.ajax({
+										url: '${pageContext.request.contextPath}/contents/insertBasket.do', //장바구니쪽
+										type: 'get',
+										data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
+										dataType: 'text',
+										success : function(data){
+											if(data == '1'){
+												alert('장바구니에 상품이 등록되었습니다\n장바구니로 가시겠습니까?');
+												location.href='http://localhost:8181/j20220904/basket/goToBasket.do';
+											}else if(data == '2'){
+												alert('이미 담겨있는 상품입니다');
+											}else{
+												alert('장바구니가 비었습니다\n장바구니에 상품을 담아주세요');
+											}
+										},
+										error: function(err){
+											console.log(err);
 										}
-									},
-									error: function(err){
-										console.log(err);
-									}
-								});	
-							
-				
+									});	
+								
+					
+					}
 				}
+				
+				
 			
 			});
 		});
