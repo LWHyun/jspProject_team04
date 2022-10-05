@@ -10,7 +10,7 @@
 
 </head>
 <body>
-	<div class="ui-dialog">
+	<!-- <div class="ui-dialog">
 		<div class="ui-dialog-titlebar">
 			<span class="ui-dialog-title">Q&amp;A 작성</span>
 			<span class="material-symbols-outlined">close</span>
@@ -101,6 +101,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </body>
 </html>
