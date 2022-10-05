@@ -465,24 +465,28 @@ $(document).on('click','#deleteLikeBtn', function() {
 		}
 	});	
 	
-	if(confirm('선택하신 제품을 삭제하시겠습니까?')) {
-		$.ajax({
-			url : '${pageContext.request.contextPath}/mypage/deleteLike.do',
-			type : 'post',
-			data : queryString,
-			dataType : 'text',
-			success : function(data) {
-				if(data != '0') {
-					alert('삭제되었습니다.');
-					location.href="${pageContext.request.contextPath}/mypage/likeProList.do"
-				} else {
-					alert('삭제에 실패했습니다. 다시 시도해주세요.');
+	if($('.chk-prod-box:checked').length != 0) {
+		if(confirm('선택하신 제품을 삭제하시겠습니까?')) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/mypage/deleteLike.do',
+				type : 'post',
+				data : queryString,
+				dataType : 'text',
+				success : function(data) {
+					if(data != '0') {
+						alert('삭제되었습니다.');
+						location.href="${pageContext.request.contextPath}/mypage/likeProList.do"
+					} else {
+						alert('삭제에 실패했습니다. 다시 시도해주세요.');
+					}
+				},
+				error : function(err) {
+					console.log(err);
 				}
-			},
-			error : function(err) {
-				console.log(err);
-			}
-		});
+			});
+		}
+	} else {
+		alert("삭제할 상품을 체크해주세요.");
 	}
 });
 
