@@ -50,6 +50,7 @@
 	cursor:pointer;
 }
 </style>
+<input type="hidden" name="curPage" id="curPage" value="${requestScope.curPage }">
 <div class="tab-wrap header-tab ui-tabs ui-corner-all ui-widget ui-widget-content">
 	<div class="likePro-header">
 	    <ul class="tabs ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
@@ -58,11 +59,11 @@
 	        </li > -->
 	
 	        <li class="tabs-li2">
-	            <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.ph.totalCnt}) </a>
+	            <a href="#" id="wishProductCount" class="tab-link ui-tabs-anchor" role="presentation" tabindex="-1">찜한 상품(${requestScope.likeProCnt}) </a>
 	        </li>
 	    </ul>
 	    
-	    <c:if test="${requestScope.ph.totalCnt > 0}">
+	    <c:if test="${requestScope.likeProCnt > 0}">
 		    <div class="check-wrap">
 		    	<span class="ui-chk">
 					<input id="chk-list-all" type="checkbox">
@@ -119,7 +120,7 @@
     </div><!-- tab-content -->
     
    	<!-- 찜한 상품이 있을 때만 표기 -->
-    <c:if test="${ph.totalCnt > 0 }">
+    <c:if test="${requestScope.likeProCnt > 0 }">
 	    <!-- 페이징 처리부분 -->
 	    <div id="mypage-product-interest-pagination" class="pagination-wrap">
 	    	<div>	
@@ -161,8 +162,39 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script>
 $(function() {
+	/* ajax - json */
+	$.ajax({
+		url : '${pageContext.request.contextPath}/mypage/jsonLikeProList.do',
+		type : 'post',
+		data : 'curPage='+$('#curPage').val(),
+		dataType : 'json',
+		success : function(data) {
+			alert(JSON.stringify(data));
+			
+			// for문
+			$.each(data.list, function(index, items) {
+				console.log(index, items.kor_name, items.gender, items.price, items.product_id, items.mem_id, 
+						items.s_file_path, items.brand, items.like_pro_date);
+				
+				
+			});
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+	
 	// 찜한 상품 모두 선택 / 해제
-	$('#chk-list-all').click(function() {
+	/* $('#chk-list-all').click(function() {
+		let checked = $(this).is(':checked');
+		
+		if(checked) {
+			$('.chk-prod-box').prop('checked', true);
+		} else {
+			$('.chk-prod-box').prop('checked', false);
+		}
+	}); */
+	$(document).on('click', '#chk-list-all', function() {
 		let checked = $(this).is(':checked');
 		
 		if(checked) {
@@ -174,7 +206,16 @@ $(function() {
 	
 	// chk-prod-box
 	// 개별 선택 / 해제
-	$('.chk-prod-box').click(function() {
+	/* $('.chk-prod-box').click(function() {
+		let is_checked = true;
+		
+		$('.chk-prod-box').each(function() {
+			is_checked = is_checked && $(this).is(':checked');
+		});	
+		
+		$('#chk-list-all').prop('checked', is_checked);
+	}); */
+	$(document).on('click', '.chk-prod-box', function() {
 		let is_checked = true;
 		
 		$('.chk-prod-box').each(function() {
@@ -185,7 +226,7 @@ $(function() {
 	});
 	
 	// 찜 삭제 버튼
-	$('#deleteLikeBtn').click(function() {
+	$(document).on('click','#deleteLikeBtn', function() {
 		var queryString = "";
 		$('.chk-prod-box:checked').each(function(index) {
 			let is_checked = $(this);
@@ -217,6 +258,9 @@ $(function() {
 			});
 		}
 	});
+	/* $('#deleteLikeBtn').click(function() {
+		
+	}); */
 });
 
 </script>

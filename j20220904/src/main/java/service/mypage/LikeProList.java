@@ -1,12 +1,16 @@
 package service.mypage;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import bean.PageHandler;
 import control.CommandProcess;
@@ -37,20 +41,20 @@ public class LikeProList implements CommandProcess {
 		int basketCnt = basketDAO.memBasketCnt(mem_id);
 		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
 		
-		// 찜 상품 가져오기
+//		// 찜 상품 가져오기
 		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
-		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
-		System.out.println("ph="+ph);
-		
-		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
-		int endRow = startRow+ph.getPageSize()-1; // 4, 8, 12...
-		
-		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
-		System.out.println(likeProList);
+//		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
+//		System.out.println("ph="+ph);
+//		
+//		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
+//		int endRow = startRow+ph.getPageSize()-1; // 4, 8, 12...
+//		
+//		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
+//		System.out.println(likeProList);
 		
 		request.setAttribute("curPage", curPage);
-		request.setAttribute("ph", ph);
-		request.setAttribute("likeProList", likeProList);
+//		request.setAttribute("ph", ph);
+//		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("active", "likePro"); // 현재 페이지 활성화
