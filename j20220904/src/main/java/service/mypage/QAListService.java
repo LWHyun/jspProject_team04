@@ -44,22 +44,23 @@ public class QAListService implements CommandProcess {
 		int totalCnt = memberDAO.QAListCnt(mem_id);
 		
 		// paging
-		PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
+		//PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
 
 		// QA 리스트 받기
-		int startNum = (curPage-1) * ph.getPageSize() + 1;
-		int endNum = startNum + ph.getPageSize() -1;
+		//int startNum = (curPage-1) * ph.getPageSize() + 1;
+		//int endNum = startNum + ph.getPageSize() -1;
 		
-		List<MyPage_QABoardDTO> list = memberDAO.QAList(mem_id, startNum, endNum);
-		System.out.println(list);
+		//List<MyPage_QABoardDTO> list = memberDAO.QAList(mem_id, startNum, endNum);
+		//System.out.println(list);
 		
 		// 응답
 		request.setAttribute("active", "myQA");
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);
-		request.setAttribute("ph", ph);
-		request.setAttribute("list", list);
+		request.setAttribute("QACnt", totalCnt);
+		//request.setAttribute("ph", ph);
+		//request.setAttribute("list", list);
 		request.setAttribute("display", "myPageQAList.jsp");
 		
 		return "/mypage/myPage.jsp";

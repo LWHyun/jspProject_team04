@@ -164,9 +164,9 @@
 	cursor:pointer;
 }
 </style>
-
+<input type="hidden" name="curPage" id="curPage" value="${requestScope.curPage }">
 <div class="border-header">
-	내가 쓴 글(${ph.totalCnt })
+	내가 쓴 글(${requestScope.QACnt })
 </div>
 <div class="border-line-box fold-box-list-wrap">
 	<!-- // 찜한 상품이 있을 때 없을 때 display:none 처리는 myPage.jsp에 있는 jquery 의 영향을 받고있음 -->
@@ -177,7 +177,7 @@
     </div><!-- has-line-bottom -->
 	
 	<ul class="fold-box-list qna-list" data-type="single" id="inquiry-list" style="">
-		<c:forEach var="QAList" items="${list }" >
+		<%-- <c:forEach var="QAList" items="${list }" >
 			<li class="fold-box">
 				<div class="fold-box-header">
 					<div class="question-title">${QAList.q_title }&emsp;&emsp;&emsp;<a id="barogagi" href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${QAList.product_id}&gender=${QAList.gender}">(${QAList.kor_name })로 가기</a></div>
@@ -202,17 +202,17 @@
 					</div>
 				</div>
 			</li>
-		</c:forEach>
+		</c:forEach> --%>
 	</ul>
 </div>
 
-<!-- 찜한 상품이 있을 때만 표기 -->
-    <c:if test="${ph.totalCnt > 0 }">
+<!-- QA가 있을 때만 표기 -->
+    <c:if test="${requestScope.QACnt > 0 }">
 	    <!-- 페이징 처리부분 -->
 	    <div id="mypage-product-interest-pagination" class="pagination-wrap">
 	    	<div>	
 	    		<ol class="pagination-list">
-	    			<c:if test="${ph.showPrev == true }">		
+	    			<%-- <c:if test="${ph.showPrev == true }">		
 		    			<li class="pagination-item showPrev">
 		    				<a href="${pageContext.request.contextPath }/mypage/QAList.do?curPage=${ph.startPage-1}">&lt;</a>
 		    			</li>
@@ -239,24 +239,258 @@
 	    				<li class="pagination-item showNext">
 		    				<a href="${pageContext.request.contextPath }/mypage/QAList.do?curPage=${ph.endPage+1}">&gt;</a>
 		    			</li>	
-	    			</c:if>
+	    			</c:if> --%>
    				</ol>
 			</div>
 		</div>
     </c:if>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>    
 <script>
-$(function() {
-	// fold-box 접었다 폈다
-	$('.fold-box').click(function() {
-		// 해당 element 가 있는지 length를 통해 판단 (답변완료 / 미답변 존재 유무)
-		if($('.answer-status.complete').length) { 
-			if(!$(this).hasClass('expanded')) {
-				$(this).addClass('expanded');
-			} else {
-				$(this).removeClass('expanded');
+function boardPaging(pagingNumber) {
+	// 이미 존재하는 li 삭제
+	$('.fold-box-list.qna-list li').remove();
+	
+	/* ajax - json */
+	$.ajax({
+		url : '${pageContext.request.contextPath}/mypage/jsonQAList.do',
+		type : 'post',
+		data : 'curPage='+pagingNumber,
+		dataType : 'json',
+		success : function(data) {
+			//alert(JSON.stringify(data));
+			
+			$.each(data.list, function(index, items) {
+				console.log(index, items.q_id, items.mem_id, items.product_id, items.kor_name, items.gender, 
+						items.q_passwd, items.q_title, items.q_content, items.q_date, items.q_views, items.q_answer);
+				
+				// ul 태그
+				$('.fold-box-list.qna-list').append($('<li/>', {
+					class : 'fold-box'
+											}).append($('<div/>', {
+												class : 'fold-box-header'
+												}).append($('<div/>', {
+													class : 'question-title',
+													html : items.q_title+'&emsp;&emsp;&emsp;'
+													}).append($('<a/>', {
+														id : 'barogagi',
+														href : '${pageContext.request.contextPath }/contents/contents_men.do?product_id='+items.product_id+'&gender='+items.gender,
+														html : 	'('+items.kor_name+')로 가기'	
+													}))
+												 ).append($('<div/>', {
+													 class : 'question-info'
+													 }).append($('<span/>', {
+														class : 'question-type', 
+														html : items.mem_id
+													 })).append($('<span/>', {
+														 class : 'question-date',
+														 html : items.q_date
+													 })).append($('<span/>', {
+															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
+															 html : (items.q_answer != null ? '답변완료' : '미답변')
+													 }))
+												 )
+											).append($('<div/>', {
+												class : 'fold-box-contents'
+												}).append($('<div/>', {
+													class : 'question-box-detail'
+													}).append($('<div/>', {
+														class : 'question-desc',
+														html : items.q_content
+													}))
+												).append($('<div/>', {
+													class : 'answer-box'
+													}).append($('<p/>', {
+														class : 'desc',
+														html : items.q_answer
+													})))
+							)// li의 append
+				)// ul 의 append
+			});//$.each
+			
+			// 이미 존재하는 페이징 삭제
+			$('.pagination-list li').remove();
+			
+			// 페이징 처리
+			if(data.ph.showPrev == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showPrev'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.startPage-1)+')',	
+											text : '<'
+										})))
 			}
+			
+			for(let i = Number(data.ph.startPage); i <= Number(data.ph.endPage); i++) {
+				if(data.curPage == i) {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num selected',
+												text : i
+											}))))
+				} else {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num',
+												text : i
+											}))))
+				}
+			} // for 문
+			
+			if(data.ph.showNext == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showNext'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.endPage+1)+')',
+											text : '>'
+										})))
+			}
+		},
+		error : function(err) {
+			console.log(err);
 		}
 	});
+}
+$(function() {
+	/* ajax - json */
+	$.ajax({
+		url : '${pageContext.request.contextPath}/mypage/jsonQAList.do',
+		type : 'post',
+		data : 'curPage='+$('#curPage').val(),
+		dataType : 'json',
+		success : function(data) {
+			//alert(JSON.stringify(data));
+			
+			$.each(data.list, function(index, items) {
+				console.log(index, items.q_id, items.mem_id, items.product_id, items.kor_name, items.gender, 
+						items.q_passwd, items.q_title, items.q_content, items.q_date, items.q_views, items.q_answer);
+				
+				// ul 태그
+				$('.fold-box-list.qna-list').append($('<li/>', {
+					class : 'fold-box'
+											}).append($('<div/>', {
+												class : 'fold-box-header'
+												}).append($('<div/>', {
+													class : 'question-title',
+													html : items.q_title+'&emsp;&emsp;&emsp;'
+													}).append($('<a/>', {
+														id : 'barogagi',
+														href : '${pageContext.request.contextPath }/contents/contents_men.do?product_id='+items.product_id+'&gender='+items.gender,
+														html : 	'('+items.kor_name+')로 가기'	
+													}))
+												 ).append($('<div/>', {
+													 class : 'question-info'
+													 }).append($('<span/>', {
+														class : 'question-type', 
+														html : items.mem_id
+													 })).append($('<span/>', {
+														 class : 'question-date',
+														 html : items.q_date
+													 })).append($('<span/>', {
+															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
+															 html : (items.q_answer != null ? '답변완료' : '미답변')
+													 }))
+												 )
+											).append($('<div/>', {
+												class : 'fold-box-contents'
+												}).append($('<div/>', {
+													class : 'question-box-detail'
+													}).append($('<div/>', {
+														class : 'question-desc',
+														html : items.q_content
+													}))
+												).append($('<div/>', {
+													class : 'answer-box'
+													}).append($('<p/>', {
+														class : 'desc',
+														html : items.q_answer
+													})))
+							)// li의 append
+				)// ul 의 append
+			});//$.each
+			
+			// 페이징 처리
+			if(data.ph.showPrev == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showPrev'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.startPage-1)+')',	
+											text : '<'
+										})))
+			}
+			
+			for(let i = Number(data.ph.startPage); i <= Number(data.ph.endPage); i++) {
+				if(data.curPage == i) {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num selected',
+												text : i
+											}))))
+				} else {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num',
+												text : i
+											}))))
+				}
+			} // for 문
+			
+			if(data.ph.showNext == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showNext'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.endPage+1)+')',
+											text : '>'
+										})))
+			}
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+});
+
+//fold-box 접었다 폈다
+$(document).on('click', '.fold-box', function() {
+	// 해당 element 가 있는지 length를 통해 판단 (답변완료 / 미답변 존재 유무)
+	console.log();
+	if($(this).find('.answer-status').text() == '답변완료') { 
+		if(!$(this).hasClass('expanded')) {
+			$(this).addClass('expanded');
+		} else {
+			$(this).removeClass('expanded');
+		}
+	}
 });
 </script>
