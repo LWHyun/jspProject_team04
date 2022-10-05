@@ -144,11 +144,10 @@
 	
 	$(function () {
 		var num = 0;
+
 		var imageName = ["heart1", "heart0"];
-		
 		$(".like_img").click(function() {
 			var product_id = $(this).attr('alt');
-			console.log(product_id);
 			if(num == 1) {
 				num=0;
 				
@@ -156,20 +155,24 @@
 					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
 					type: 'get',
 					data: {
-							'product_id' : product_id ,
+							'product_id' : product_id,
 							'mem_id' :  '${sessionScope.mem_id}'
 					      },
 						
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 삭제되었습니다');
+						if(data == '1') {	
+							alert('찜한 상품이 삭제되었습니다');
+						}else{
+							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}
 					},
 					error: function(err){
 						console.log(err);
 					}
 				});	
 				
-			}else 	     {
+			}else	    {
 				num++;
 				
 				$.ajax({
@@ -181,7 +184,11 @@
 						  },
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 등록되었습니다');
+						if(data == '1') {
+							alert('찜한 상품이 등록되었습니다');
+						}else{
+							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}
 					},
 					error: function(err){
 						console.log(err);
@@ -189,32 +196,43 @@
 				});	
 				
 			
-			}
+				}
+			
 			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
 		});
 	});	
 	
 	
 	
+	
+	//필터기능
 	function searchFilter() {
-		var brandArray = [];
-		var size = $('input[name="radio_size"]:checked').val();
-		$('input[name="chkbox_brand"]:checked').each(function(){//체크된 리스트 저장
-            brandArray.push($(this).val());
-        });
-		console.log(size);
-		console.log(brandArray);
-		
-		$.ajax({
-			url : '${pageContext.request.contextPath}/category/findFilter.do',
-			data : {'brandArray' : brandArray,
-					'size' : size},
-			dataType : 'html',
-			success : function(data) {
-				alert(data);
-			}
-		});
-		
+		if($('input[name="radio_size"]').is(':checked')==false&&$('input[name="chkbox_brand"]').is(':checked')==false){			
+			alert("체크해주세요");
+		}else{
+			
+			var brandArray = [];
+			var size = $('input[name="radio_size"]:checked').val();
+			$('input[name="chkbox_brand"]:checked').each(function(){//체크된 리스트 저장
+	            brandArray.push($(this).val());
+	        });
+			console.log(size);
+			console.log(brandArray);
+			console.log(${ca_code})
+			$.ajax({
+				url : '${pageContext.request.contextPath}/category/findFilter.do',
+				data : {'brandArray' : brandArray,
+						'size' : size,
+						'gender' : 0},
+				traditional : true,
+				dataType : 'html',
+				success : function(data) {
+					console.log(data);
+					alert(data);
+					$('.pro_inner').html(data);
+				}
+			});	
+		}
 	}
 	
 	
@@ -237,8 +255,13 @@
 	   		<span>브랜드</span>
 		   	<div class="dropdown_content">
 		   		<ul>
-		   			<li><input type="checkbox" name="chkbox_brand" value="NIKE"><label for="chkbox_brand">나이키</label></li>
 		   			<li><input type="checkbox" name="chkbox_brand" value="ADIDAS"><label for="chkbox_brand">아디다스</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="BIRKENSTOCK"><label for="chkbox_brand">버켄스탁</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="CONVERSE"><label for="chkbox_brand">컨버스</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="DR.MARTENS"><label for="chkbox_brand">닥터마틴</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="FILA"><label for="chkbox_brand">휠라</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="LACOSTE"><label for="chkbox_brand">라코스테</label></li>
+		   			<li><input type="checkbox" name="chkbox_brand" value="NIKE"><label for="chkbox_brand">나이키</label></li>
 		   		</ul>
 	   		</div>
 	   	</div>
@@ -247,35 +270,31 @@
 	   		<span>사이즈</span>
 		   	<div class="dropdown_content">
 		   		<ul>
+		   			<li><input type="radio" name="radio_size" value="220"><label for="chkbox_size">220</label></li>
+		   			<li><input type="radio" name="radio_size" value="230"><label for="chkbox_size">230</label></li>
+		   			<li><input type="radio" name="radio_size" value="240"><label for="chkbox_size">240</label></li>
+		   			<li><input type="radio" name="radio_size" value="250"><label for="chkbox_size">250</label></li>
 		   			<li><input type="radio" name="radio_size" value="260"><label for="chkbox_size">260</label></li>
 		   			<li><input type="radio" name="radio_size" value="270"><label for="chkbox_size">270</label></li>		   			
-		   			<li><input type="radio" name="radio_size" value="270"><label for="chkbox_size">280</label></li>		   			
+		   			<li><input type="radio" name="radio_size" value="280"><label for="chkbox_size">280</label></li>		   			
+		   			<li><input type="radio" name="radio_size" value="290"><label for="chkbox_size">290</label></li>		   			
 		   		</ul>
 	   		</div>
 	   	</div>
 	
-	   	<div class="dropdown">
-	   		<span>가격</span>
-		   	<div class="dropdown_content">
-				<ul>
-					<li><a href="#">260</a></li>
-					<li><a>270</a></li>
-				</ul>
-			</div>
-		</div>
     	<button type="reset" id="btn_reset" class="custom-btn btn-close">초기화</button>
 		<button type="button" id="btn_search" class="custom-btn btn-close" onclick="searchFilter()">검색하기</button>
 		</form>
 	</div>
    
 	<div class="pro_wrap">
-		<ul>
+		<ul class="pro_inner">
 		
 		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>
 			<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
-				<img alt="상품이미지" src="../img/contexts/nike_waffle01.jpg" class="pro_img" id="pro_img"><br>
+				<img alt="상품이미지" src="${list.s_file_path }" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
 				<span class="pro_price">${list.price }</span><span>원</span><br>
