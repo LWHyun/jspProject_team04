@@ -152,6 +152,40 @@ public class LikeProDAO {
 		return result;
 	}
 	
+	// 회원의 하나의 제품의 찜한 상품 갯수 가져오는 메서드
+		public int proLikeProCnt(String mem_id,int product_id) {
+			System.out.println("mem_id+product_id는 무엇?"+mem_id+product_id);
+			Connection conn = getConnection();
+			
+			String sql = "select count(*) from like_pro where product_id=? and mem_id=?";
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int likeCnt = 0;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, product_id);
+				pstmt.setString(2, mem_id);
+				
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					likeCnt = rs.getInt(1);
+					System.out.println("DAOlikeCnt="+likeCnt);
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs, pstmt, conn);
+			}
+			
+			return likeCnt;
+		}
+	
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {

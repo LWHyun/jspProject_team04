@@ -8,6 +8,7 @@
 <style type="text/css">
 	.main-section {
 		margin-top: 100px;
+		margin-bottom: 200px;
 	}
 	.main-section .abc-best-brand {
 		position: relative;

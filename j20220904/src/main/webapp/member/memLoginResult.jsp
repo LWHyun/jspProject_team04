@@ -12,6 +12,7 @@
 	<c:if test="${not empty requestScope.toURI }">
 		<script>
 			location.href="${requestScope.toURI}";
+			
 		</script>	
 	</c:if>
 	

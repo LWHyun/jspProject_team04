@@ -175,15 +175,20 @@
 							<c:choose>
 								<c:when test="${not empty basketList }">
 								<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
+									
 									<c:forEach var="item" items="${basketList }">
+										<input type="hidden" name="item_product_id" value="${item.product_id }">
+										<input type="hidden" name="item_size_num" value="${item.size_num }">
+										
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="1" id="chk${item.product_id }_${item.size_num}" checked></td>
-											<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
+											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"checked></td>
 											
-											<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
+											
+											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
 											<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
-												<input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-												<input type="text" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+												<input type="hidden" value="${item.price }" name="price" id="price${item.product_id}_${item.size_num}">
+												<input type="text" value="${item.cnt }" name="cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
 												<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
@@ -191,6 +196,7 @@
 											<td><input type="button" value="바로구매" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
 												<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 										</tr>
+									
 									</c:forEach>
 								</c:when>
 								
@@ -206,7 +212,7 @@
 						<c:if test="${not empty basketList}">
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
 							<div class="order-delete-btn">
-								<input type="button" value="선택 삭제" id="delChk">
+								<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 							</div>
 						
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
@@ -358,7 +364,7 @@
 		targetTotal.innerHTML = result + "원"
 	}
 	
-	
+	// 단건 [상품 삭제] 함수
 	function delItem(prod_id, size_num) {
 		
 		if(!confirm("상품을 삭제하시겠습니까?")){
@@ -369,7 +375,7 @@
 			}
 	}
 	
-	
+	// [바로구매] 함수
 	function goDirectOrder(prod_id, size_num) {
 		
 		let cnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
@@ -379,31 +385,43 @@
 		
 	}
 	
-	
-/* 	function delChkItem() {
-		
-		
-			var list = new Array();
-		 	<c:forEach items="${basketList }" var="list" >	
-		    	list.push("${basketList}.chk${item.product_id }_${item.size_num}");
-			</c:forEach>
-
-			for (var i=0; i<list.length;){
-				alert("list->"+ i + " :  "+ list[i++]);
-			}
-			
-			return list;
-			
-			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
-			
-		
-	} */
-	
-	
-
-	
-	
-	
+	// [선택삭제] 함수
+  	function delChkItem() {
+  		
+  		let target = $("input[name='rowCheck']:checked"); // rowCheck라는 name의 선택된 checkbox를 target배열로 지정
+  		let chkCnt = target.length;			// chkCnt는 target의 길이
+  		if(chkCnt == 0){
+  			alert("선택된 상품이 없습니다.")
+  			return false;	// 선택된 상품이 없는데 삭제를 눌렀을 경우 함수 종료
+  		}
+  		
+  		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
+			alert("상품 삭제가 취소되었습니다.");
+			return false;	// 취소를 눌렀을 경우 함수 종료
+		}
+  		
+ 
+  		// [확인] 눌렀을 경우
+  		// 가지고 와야하는 값이 2개(product_id, size_num)여서 rowcheck의 value에 ,를 사용하여 두 값을 넣어둠
+  		// 두개의 값을 가져갈 때 가능한 방법 : 배열로 가져가거나 / String으로 가져가서 ,를 후에 제거하기 
+  		// 두번째 방법 선택
+  		let chkStr = '';	
+  		for( let i=0; i<chkCnt ; i++) {
+  			// 선택된 checkbox의 수만큼 value를 가져가야하므로 for문 사용
+  			chkStr += $(target).eq(i).val()		// target 배열의 .eq(i) : 인덱스 번호에 따른 .val() : value값을 chkStr에 넣음 
+  			if( i != chkCnt-1 ) {	// 체크된 value를 모두 가져오고 마지막 값이 ,로 끝나지 않기 위해 -1
+  				chkStr += ',';		// ,로 가져온 값들을 구분 짓기 위해 
+  			}
+  			
+  		}
+  		
+		console.log(chkStr);
+		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkStr='+chkStr
+		// String 상태가 된 chkStr을 가지고 체크된 Basket 상품을 삭제하는 서비스로 이동
+		 		
+	 
+  	}
+ 	
 </script>
 </body>
 </html>

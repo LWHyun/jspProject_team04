@@ -43,7 +43,7 @@ public class UpdateBasketCntService implements CommandProcess {
 		// 저장된 값을 가져간다
 		
 		// 세션에 장바구니 값을 저장
-		session.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
 
 		
 		// basket.jsp페이지로 돌아간다

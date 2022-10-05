@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +111,6 @@ h2 {
 }
 
 .brand-img-division {
- 	background-image: url('https://image.a-rt.com/art/product/brand/202203/1647850989834.jpg');
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -145,7 +145,7 @@ strong+p {
 	line-height: 28px;
 }
 
-.brand-rogo {
+.brand-logo {
 	position: absolute;
 	left: 49%;
 	text-align: left;
@@ -380,7 +380,6 @@ label {
 /* 페이지 이동----------------------------------------------------------------------------------- */
 	.pagination-wrap {
 		text-align: center;
-		border: 2px dotted black;
 	}
 	.pagination-wrap .pagination-list {
 		display: inline-block;
@@ -413,6 +412,9 @@ label {
 		background-position: 0 -28px;
 	}
 </style>
+<%
+	String context = request.getContextPath();
+%>
 </head>
 <body>
 	<div id="header">
@@ -430,31 +432,147 @@ label {
 					</li>
 					<li class="crumb">
 						<a href="#">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
-					<li class="crumb">${list.brand }</li>													<!--  현재 페이지의 브랜드-->
+					<li class="crumb">${ca_name }</li>													<!--  현재 페이지의 브랜드-->
 				</ol>
 			</div>
 			<div class="page-title-wrap">
-				<h2 class="text-head0 brand-name"><span class="eng">${list.brand }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
+				<h2 class="text-head0 brand-name"><span class="eng">${ca_name }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
 			</div>
 		</div>
-		<div class="brand-slide-wrap">
-			<div class="prod-main-branner">
-				<div class="bg-item">
-					<div class="brand-img-division">
-						<div class="banner-division-text">
-							<strong>${list.brand }</strong>											<!-- 브랜드 이름과 주석 -->
-							<p>
-								1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
-								그 위치를 증명하고 있습니다.
-							</p>
-						</div>
-						<div class="brand-rogo">											<!--  브랜드 로고 -->
-							<img alt="나이키 로고" src="https://image.a-rt.com//art/product/brand/202108/1629697044355.png">
+		<c:if test="${ca_name == 'NIKE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/nike_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
+									그 위치를 증명하고 있습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="나이키 로고" src="../img/brand_logo_imgs/nike_logo.png">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${ca_name == 'FILA' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/fila_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1911년 이태리, FILA 형제들로부터 탄생한 브랜드입니다. <br>100년 이상의 브랜드 헤리티지를 바탕으로 한 글로벌 스포츠 패션 트렌드를 제안합니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="필라 로고" src="../img/brand_logo_imgs/fila_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'ADIDAS' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/adidas_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1949년부터, 스토리와 스타일, 스포츠를 이끌다. <br>세상의 모든 스포츠를 포용하는 브랜드
+									<br>아디다스는 모두의 스포츠 브랜드입니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="아디다스 로고" src="../img/brand_logo_imgs/adidas_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'CONVERSE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/converse_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									젊은이들의 '자유로움의 표상'이 된 컨버스. <br>100년의 역사를 가진 Original America 브랜드로, 없어선 안될 스테디셀러 아이콘으로 자리잡았습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="컨버스 로고" src="../img/brand_logo_imgs/converse_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'DR.MARTENS' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/dr_martens_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									닥터마틴은 자신만의 개성을 지닌 진정성 있는 사람들과 자아 표현에 자부심을 지닌 사람들, 그리고 보통 사람들과는 다른 사람들에게 어필합니다. 
+									<br>심플하지만 유니크한 스타일로 공연, 스트릿 패션 등 다양한 문화 전반에서 사랑받는 브랜드입니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="닥터마틴 로고" src="../img/brand_logo_imgs/dr_martens_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'LACOSTE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/lacoste_banner.jpg');">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									역사적인 테니스 스타 라코스테가 설립한 프리미엄 캐주얼 브랜드입니다. <br>'악어'캐릭터는 그의 별명에서 유래되었으며, 현재까지 사랑받는 시그니처가 되었습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="라코스테 로고" src="../img/brand_logo_imgs/lacoste_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${ca_name == 'BIRKENSTOCK' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/birkenstock_banner.jpg')">
+							<div class="banner-division-text">
+								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
   
  		<!-- 필터와 상품리스트 묶음 -->
 		<div class="filter-list-wrap">
@@ -500,7 +618,7 @@ label {
 		          </div>
 		        </li>
 		        <li class="fold-box expanded" id="sizeFilterContentLi">
-		          <div class="fold-box-header" id="sizeSearchContentLi">사이즈					<!-- 사이즈 체크하면 사이즈에 맞는 상품 보여주기?-->
+		          <div class="fold-box-header" id="sizeSearchContentLi">사이즈
 		          </div>
 		          <div class="fold-box-contents size">
 		            <div class="simple-wrapper" style="margin: 0px;">
@@ -511,19 +629,19 @@ label {
 		                     <div class="custom-scroll-inner" style="position: relative;">
 		                        <span class="search-subtitle">신발</span>
 		                        <ul class="ip-filter-list col3">
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">	<!-- 사이즈에 맞는 상품코드? -->
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize220">	<!-- 사이즈에 맞는 상품코드? -->
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">220</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize230">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">230</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize240">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">240</label>
@@ -535,25 +653,25 @@ label {
 		                              <label for="ishoesSize0">250</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize260">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">260</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize270">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">270</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize280">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">280</label>
 		                            </span>
 		                          </li>
-		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
+		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize290">
 		                            <span class="ui-chk type-line">
 		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">290</label>
@@ -577,67 +695,49 @@ label {
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
 		
-		<c:if test="${totCnt > 0 }">
-		<c:forEach var="Product_ImgSrcDTO" items="${list }">
-			<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
-				<div class="prod-wrap">
-					<a class="prod-link" href="contents_men.do?product_id=${Product_ImgSrcDTO.product_id }"> <!-- 상품상세 페이지로 이동 -->
-					<img class="img-box" alt="신발" src="${Product_ImgSrcDTO.s_file_path }">
-					<span class="prod-brand">${Product_ImgSrcDTO.brand}</span><br>
-					<span class="prod-name">${Product_ImgSrcDTO.kor_name}</span><br> 																	<!-- 상품이름 -->
-					<span class="prod-price">${Product_ImgSrcDTO.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">																			
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>				<!-- 클릭시 찜목록에 상품코드 저장? -->
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>			<!-- 장바구니에 상품코드 저장 -->
+			<%-- <c:if test="${totCnt > 0 }"> --%>
+				<c:forEach var="list" items="${list }">
+					<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
+						<div class="prod-wrap">
+							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }"> <!-- 상품상세 페이지로 이동 -->
+							<img class="img-box" alt="신발" src="${list.s_file_path }">
+							<span class="prod-brand">${ca_name}</span><br>
+							<span class="prod-name">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
+							<span class="prod-price">${list.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
+							</a>
+							<div class="prod-util-wrap">
+								<div class="prod-btn-wrap">
+									<div class="util-btn-wrap">																			
+										<button type="button" class="btn-prod-favorite">즐겨찾기</button>				<!-- 클릭시 찜목록에 상품코드 저장? -->
+										<button type="button" class="btn-prod-cart">장바구니 담기</button>			<!-- 장바구니에 상품코드 저장 -->
+									</div>
+									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
+								</div>
 							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
 						</div>
 					</div>
-				</div>
-			</div>
-		</c:forEach>
-		</c:if>
-			<div class="product-box cell">
-				<div class="prod-wrap">
-					<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-					<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/upload2/AT1801_001/S1.jpg?shrink=590:590">
-					<span class="prod-brand">나이키</span><br>
-					<span class="prod-name">나이키 샬라샬라</span><br> 
-					<span class="prod-price">59,000</span> <span class="price-unit">원</span>
-					</a>
-					<div class="prod-util-wrap">
-						<div class="prod-btn-wrap">
-							<div class="util-btn-wrap">
-								<button type="button" class="btn-prod-favorite">즐겨찾기</button>
-								<button type="button" class="btn-prod-cart">장바구니 담기</button>
-							</div>
-							<button type="button" class="btn-buy-now">바로구매</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		<!-- 페이지 -->
-		</div>
-		
-	  </div> <!-- filter-list-wrap 끝-->			
-		<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
-			<div>
-				<c:if test="${startPage > blockSize }">
-					<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
-				</c:if>
-				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
 				</c:forEach>
-				<c:if test="${endPage > pageCnt }">
-					<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
-				</c:if>
-			</div>
+			<%-- </c:if> --%>
+			
+		</div> <!-- product-list row 끝 -->
+		
+	</div> <!-- filter-list-wrap 끝-->			
+	<!-- 페이지 -->
+	<%-- <div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
+		<div>
+			<c:if test="${startPage > blockSize }">
+				<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPage }" end="${endPage }">
+				<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+			</c:forEach>
+			<c:if test="${endPage > pageCnt }">
+				<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+			</c:if>
 		</div>
-	</div> <!-- contents-wrap 끝--> 
+	</div> --%>
+	
+</div> <!-- contents-wrap 끝--> 
 	
 </body>
 </html>

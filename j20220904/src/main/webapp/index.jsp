@@ -22,11 +22,16 @@ body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h
 			<jsp:include page="./main/banner.jsp"></jsp:include>
         </div><!-- banner -->
 
+        <div id="section">
+        	<jsp:include page="./main/section.jsp"></jsp:include>
+        </div>
+        
         <div id="content">
 			<jsp:include page="./main/content.jsp"></jsp:include>
         </div><!-- content -->
+        
     </div><!-- container -->
-
+		
     <div id="footer">
         <jsp:include page="./main/footer.jsp"></jsp:include>
     </div><!-- footer -->
