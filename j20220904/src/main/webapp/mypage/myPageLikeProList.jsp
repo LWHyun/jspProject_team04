@@ -163,6 +163,128 @@
 
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script>
+function boardPaging(pagingNumber) {
+	/* 이미 만들어진 li 태그 삭제 */
+	$('ul.col-list.prod-list.col-4 li').remove();
+	
+	/* ajax - json */
+	$.ajax({
+		url : '${pageContext.request.contextPath}/mypage/jsonLikeProList.do',
+		type : 'post',
+		data : 'curPage='+pagingNumber,
+		dataType : 'json',
+		success : function(data) {
+			//alert(JSON.stringify(data));
+			
+			// for문
+			
+			// 체크 박스 넘버
+			let chkNum = 0;
+			$.each(data.list, function(index, items) {
+				console.log(index, items.kor_name, items.gender, items.price, items.product_id, items.mem_id, 
+						items.s_file_path, items.brand, items.like_pro_date);
+
+				// ul 태그
+				$('.col-list.prod-list.col-4').append($('<li/>', {
+												class : 'col-list-item prod-item no-util'
+												}).append($('<span/>', {
+													class : 'ui-chk chk-prod'
+													}).append($('<input>', {
+														id : 'chk-prod-'+(++chkNum),
+														class : 'chk-prod-box',
+														type : 'checkbox',
+														name : 'prodChecked',
+														value : items.product_id
+													})).append($('<label/>', {
+														for : 'chk-prod-'+chkNum
+													}))
+												).append($('<a/>', {
+													href : '${pageContext.request.contextPath }/contents/contents_men.do?product_id='+items.product_id+'&gender='+items.gender,
+													class : 'prod-link'		
+													}).append($('<div/>', {
+														class : 'img-wrap'
+														}).append($('<img>', {
+															src : items.s_file_path,
+															alt : items.kor_name,
+															class : 'recent-product-image'
+														}))
+													 ).append($('<div/>', {
+														 class : 'prod-info-wrap'
+														 }).append($('<span/>', {
+															 class : 'prod-brand',
+															 text : items.brand
+														 })).append($('<span/>', {
+															 class : 'prod-name',
+															 text : items.kor_name
+														 })).append($('<span/>', {
+															 class : 'prod-price',
+															 text : items.price
+														 })))
+															
+								)// li 의 append
+				)// ul의 append
+			});// $.each
+			
+			// 이미 만들어진 페이징 삭제
+			$('.pagination-list li').remove();
+			
+			// 페이징 처리
+			if(data.ph.showPrev == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showPrev'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.startPage-1)+')',	
+											text : '<'
+										})))
+			}
+			
+			for(let i = Number(data.ph.startPage); i <= Number(data.ph.endPage); i++) {
+				if(data.curPage == i) {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num selected',
+												text : i
+											}))))
+				} else {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num',
+												text : i
+											}))))
+				}
+			} // for 문
+			
+			if(data.ph.showNext == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showNext'
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.endPage+1)+')',
+											text : '>'
+										})))
+			}
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+}
+
 $(function() {
 	/* ajax - json */
 	$.ajax({
@@ -171,7 +293,7 @@ $(function() {
 		data : 'curPage='+$('#curPage').val(),
 		dataType : 'json',
 		success : function(data) {
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 			
 			// for문
 			
@@ -228,19 +350,21 @@ $(function() {
 				/* ol 부분 */
 				$('.pagination-list').append($('<li/>', {
 					class : 'pagination-item showPrev'
-										}).append($('<a/>', {
-											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+data.ph.startPage-1,
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.startPage-1)+')',	
 											text : '<'
 										})))
 			}
 			
-			for(let i = Number(data.ph.startPage); i < Number(data.ph.endPage); i++) {
+			for(let i = Number(data.ph.startPage); i <= Number(data.ph.endPage); i++) {
 				if(data.curPage == i) {
 					$('.pagination-list').append($('<li/>', {
 						class : 'pagination-item',
 						name : 'li_page'
-										}).append($('<a/>', {
-											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+i
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
 											}).append($('<button/>', {
 												type : 'button',
 												class : 'btn-page btn-page-num selected',
@@ -250,8 +374,9 @@ $(function() {
 					$('.pagination-list').append($('<li/>', {
 						class : 'pagination-item',
 						name : 'li_page'
-										}).append($('<a/>', {
-											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+i
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+i+')'
 											}).append($('<button/>', {
 												type : 'button',
 												class : 'btn-page btn-page-num',
@@ -264,8 +389,9 @@ $(function() {
 				/* ol 부분 */
 				$('.pagination-list').append($('<li/>', {
 					class : 'pagination-item showNext'
-										}).append($('<a/>', {
-											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+data.ph.endPage+1,
+										}).append($('<span/>', {
+											//href : '#',
+											onclick : 'boardPaging('+(data.ph.endPage+1)+')',
 											text : '>'
 										})))
 			}
@@ -359,4 +485,6 @@ $(document).on('click','#deleteLikeBtn', function() {
 		});
 	}
 });
+
+
 </script>
