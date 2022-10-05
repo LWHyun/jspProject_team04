@@ -322,6 +322,34 @@ public class MemberDAO {
 		return list;
 	}
 	
+	// 회원의 주문 갯수 가져오는 메서드
+	public int ordersCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select count(*) from orders where mem_id =?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int ordersCnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				ordersCnt = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return ordersCnt;
+	}
+	
 	//close하는 메서드
 	private void close(AutoCloseable... ac) {
 		try {
