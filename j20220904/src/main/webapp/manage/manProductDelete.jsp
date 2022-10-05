@@ -44,12 +44,13 @@
 						<div style="margin-left: 25%; margin-top: 50px; line-height: 20px;">
 							<form action="manProductDeletePro.do" method="post">
 							 	<input type="hidden" name="pageNum" value="${pageNum }">
-							 	<input type="hidden" name="product_id" value="${product_id }">
+							 	<input type="hidden" name="product_id" value="${product.product_id }">
+							 	<input type="hidden" name="pd_size" value="${product.pd_size }">
 								
-								<h2 style="margin-bottom: 20px;">상품 삭제를 원하시면 <br>아래 칸에 삭제를 입력해주세요.</h2>
+								<h2 style="margin-bottom: 20px;">상품 삭제를 원하시면 <br>아래 칸에 '삭제'를 입력해주세요.</h2>
 								<input type="text" required="required" placeholder="삭제"><p><br>
 								<input type="submit" value="확인">
-								<button onclick="location.href='manProductList.do'">취소</button>
+								<button onclick="location.href='manProductList.do'">돌아가기</button>
 							</form>
 						</div>
 					</div>
