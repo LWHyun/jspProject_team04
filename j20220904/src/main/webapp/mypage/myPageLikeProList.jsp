@@ -157,7 +157,7 @@
 	    			</c:if> --%>
    				</ol>
 			</div>
-		</div>
+		</div><!-- pagination-wrap -->
     </c:if>
 </div><!-- tab-wrap header-tab 최근 본 상품 / 찜한 상품-->
 
