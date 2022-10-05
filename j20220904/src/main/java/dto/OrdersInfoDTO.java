@@ -11,7 +11,9 @@ public class OrdersInfoDTO {
 	private String mem_tel;
 	private String mem_email1;
 	private String mem_email2;
-	
+	private String mem_zipcode;
+	private String mem_addr1;
+	private String mem_addr2;
 	
 	//
 	private int order_id;
@@ -40,6 +42,27 @@ public class OrdersInfoDTO {
 	
 	//
 	private int pd_size;
+	
+	
+
+	public String getMem_zipcode() {
+		return mem_zipcode;
+	}
+	public void setMem_zipcode(String mem_zipcode) {
+		this.mem_zipcode = mem_zipcode;
+	}
+	public String getMem_addr1() {
+		return mem_addr1;
+	}
+	public void setMem_addr1(String mem_addr1) {
+		this.mem_addr1 = mem_addr1;
+	}
+	public String getMem_addr2() {
+		return mem_addr2;
+	}
+	public void setMem_addr2(String mem_addr2) {
+		this.mem_addr2 = mem_addr2;
+	}
 	
 	public int getPd_size() {
 		return pd_size;

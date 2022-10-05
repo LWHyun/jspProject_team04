@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import control.CommandProcess;
 import dao.ProductDAO;
+import dao.Product_ImgDAO;
 import dto.ProductDTO;
+import dto.Product_ImgDTO;
 import dto.Product_ImgSrcDTO;
 
 public class ManProductRegisterProService implements CommandProcess {
@@ -26,7 +29,9 @@ public class ManProductRegisterProService implements CommandProcess {
 			throws ServletException, IOException {
 
 		System.out.println("~~ManProductRegisterProService 시작~~");
+		
 		request.setCharacterEncoding("UTF-8");
+		String pageNum = request.getParameter("pageNum");
 		
 		// 파일 업로드 위해 cos.jar 추가 및 객체 생성
 		MultipartRequest multi = null;
@@ -41,31 +46,43 @@ public class ManProductRegisterProService implements CommandProcess {
 		try {
 			multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+
 		
 			// 서버에 저장된 파일 이름
 			String filename = multi.getFilesystemName("filename");
 			
 			// 파라미터 받는 값들, request -> multi로 대체
+			// DTO 작업
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
+			productDTO.setBrand(multi.getParameter("brand"));
+			productDTO.setEng_name(multi.getParameter("eng_name"));
+			productDTO.setKor_name(multi.getParameter("kor_name"));
+			productDTO.setGender(Integer.parseInt(multi.getParameter("gender")));
+			productDTO.setPrice(Integer.parseInt(multi.getParameter("price")));
+			productDTO.setColor(multi.getParameter("color"));
+			productDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
 			
-			int cnt = 0;
 			
-			Product_ImgSrcDTO product = new Product_ImgSrcDTO();
-			product.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
-			product.setBrand(multi.getParameter("brand"));
-			product.setEng_name(multi.getParameter("eng_name"));
-			product.setKor_name(multi.getParameter("kor_name"));
-			product.setGender(Integer.parseInt(multi.getParameter("gender")));
-			product.setPrice(Integer.parseInt(multi.getParameter("price")));
-			product.setColor(multi.getParameter("color"));
-			product.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
+			Product_ImgDTO imgDTO = new Product_ImgDTO();
+			imgDTO.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
 			
+			
+			
+			// DB
 			ProductDAO pd = ProductDAO.getInstance();
+			Product_ImgDAO pi = Product_ImgDAO.getInstance();
 			
-			//int result = pd.insert(product);
-		
+			int prodResult = pd.insert(product);
+			
+			
+			request.setAttribute("product_id", pd.getProduct_id());
+			request.setAttribute("prodResult", prodResult);
+			request.setAttribute("pageNum", pageNum);
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "manProductRegisterPro.jsp";
 	}
 

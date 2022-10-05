@@ -205,15 +205,17 @@ $(function() {
 		$('.qna-list').css('display', '');
 	}
 	
-	// 찜한 상품 mouseover 처리
-	$('li.prod-item').mouseover(function() {
-		$(this).css('border', '1px solid black');
-	});
-	$('li.prod-item').mouseout(function() {
-		$(this).css('border', '');
-	});
+	
 	
 });
+
+//찜한 상품 mouseover / out 처리
+$(document).on('mouseover', 'li.prod-item', function() {
+	$(this).css('border', '1px solid black');
+})
+$(document).on('mouseout', 'li.prod-item', function() {
+	$(this).css('border', '');
+})
 </script>
 </body>
 </html>
