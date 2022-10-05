@@ -85,11 +85,11 @@
 		font-size: 17px;
 		color: white;
 		opacity: .4;
-		cursor: pointer; /* ?? */
+		cursor: pointer;
 		display: inline-block;
 	}
   	.swiper-pagination-bullet+.swiper-pagination-bullet {
-	    margin-left: 35px;  
+	    margin-left: 95px;  
 	}
 	.best-brand-banner-nav {
 		top: 0;
@@ -235,8 +235,6 @@
 							<span class="swiper-pagination-bullet">ADIDAS</span>
 							<span class="swiper-pagination-bullet">FILA</span>
 							<span class="swiper-pagination-bullet">CONVERSE</span>
-              <span class="swiper-pagination-bullet">DR.MARTENS</span>
-							<span class="swiper-pagination-bullet">BIRKENSTOCK</span>
 							<span class="swiper-pagination-bullet">LACOSTE</span>
               
 						</span>
