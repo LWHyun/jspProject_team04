@@ -29,12 +29,12 @@ public class SearchViewService implements CommandProcess {
 		int result = 0;
 		//카테고리 코드가 있으면 아래 실행
 		if(ca_code != null) {
-		
 				try {
 					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code);
 					request.setAttribute("list", list);
 					String codeName = cd.selectCateName(ca_code);
 					request.setAttribute("ca_name", codeName);
+					request.setAttribute("ca_code", ca_code);
 					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.CategoryDAO;
-import dto.ProductDTO;
 import dto.Product_ImgSrcDTO;
 
 public class FilterService implements CommandProcess {
@@ -19,11 +18,16 @@ public class FilterService implements CommandProcess {
 			throws ServletException, IOException {
 		String[] brandArray = request.getParameterValues("brandArray");
 		String size = request.getParameter("size");
+		String gender = request.getParameter("gender");
+		String ca_code = request.getParameter("ca_code");
+		System.out.println("gender"+gender);
+		System.out.println("ca_code->"+ca_code);
 		
+		System.out.println("FilterService size-->"+size);
 			CategoryDAO cd = CategoryDAO.getInstance();
 			List<Product_ImgSrcDTO> filterList = null;
 			try {
-				filterList = cd.selectSearch(brandArray,size);
+				filterList = cd.selectSearch(brandArray,size,gender,ca_code);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -31,9 +35,8 @@ public class FilterService implements CommandProcess {
 			request.setAttribute("filterList", filterList);
 			
 			
-			
 		
-		return "ajax";
+		return "findFilter.jsp";
 	}
 
 }
