@@ -275,7 +275,7 @@ function sample6_execDaumPostcode() {
 													<input type="radio" name="choose-one" id="recent-addr"> 최근 배송지
 												</li>
 												<li>
-													<input type="radio" name="choose-one" id="new-addr" checked="checked"> 신규 입력
+													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -404,8 +404,25 @@ function sample6_execDaumPostcode() {
 			});
 			
 		});
-	
-	
+		
+		
+		$(document).ready(function(){
+	         $("#origin-addr").change(function(){
+	            if($("#origin-addr").is(":checked")){
 
+	            $('#receiver-name').val('${members.mem_name}');
+	            $('#receiver-phone').val('${members.mem_tel}');
+	            $('#postcode').val('${members.mem_zipcode}');
+	            $('#address').val('${members.mem_addr1}');
+	            $('#detailAddress').val('${members.mem_addr2}');
+	            
+	         } 
+	            
+	         });
+	         
+	      });
+		
+
+		
 </script>
 </html>
