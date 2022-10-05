@@ -30,7 +30,6 @@ public class RegisterLikeService implements CommandProcess {
 			request.setAttribute("product_id", product_id);
 			request.setAttribute("mem_id", mem_id);
 			request.setAttribute("result", result);
-			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
