@@ -49,7 +49,7 @@ private static OrdersInfoDAO instance;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT mem_name, mem_tel, mem_email1, mem_email2 FROM member WHERE mem_id=?";
+		String sql = "SELECT mem_name, mem_tel, mem_email1, mem_email2, mem_zipcode, mem_addr1, mem_addr2 FROM member WHERE mem_id=?";
 
 		System.out.println("DAO selectMemInfo sql->"+sql);
 		System.out.println("DAO selectMemInfo mem_id->"+mem_id);
@@ -72,6 +72,9 @@ private static OrdersInfoDAO instance;
 					ordersInfoDTO.setMem_tel(rs.getString("mem_tel"));
 					ordersInfoDTO.setMem_email1(rs.getString("mem_email1"));
 					ordersInfoDTO.setMem_email2(rs.getString("mem_email2"));
+					ordersInfoDTO.setMem_zipcode(rs.getString("mem_zipcode"));
+					ordersInfoDTO.setMem_addr1(rs.getString("mem_addr1"));
+					ordersInfoDTO.setMem_addr2(rs.getString("mem_addr2"));
 					
 				}
 			

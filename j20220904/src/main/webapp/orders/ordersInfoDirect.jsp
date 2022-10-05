@@ -271,10 +271,7 @@ function sample6_execDaumPostcode() {
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
 												<li>
-													<input type="radio" name="choose-one" id="recent-addr"> 최근 배송지
-												</li>
-												<li>
-													<input type="radio" name="choose-one" id="new-addr" checked="checked"> 신규 입력
+													<input type="radio" name="choose-one" id="new-addr"> 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -368,6 +365,37 @@ function sample6_execDaumPostcode() {
 		});
 		
 	});
+	
+	// 가져온 member정보 radio 체크에 따라 보여주기
+	$(document).ready(function(){
+        $("#origin-addr").change(function(){
+           if($("#origin-addr").is(":checked")){
+
+           $('#receiver-name').val('${members.mem_name}');
+           $('#receiver-phone').val('${members.mem_tel}');
+           $('#postcode').val('${members.mem_zipcode}');
+           $('#address').val('${members.mem_addr1}');
+           $('#detailAddress').val('${members.mem_addr2}');
+           
+           }
+        });
+			
+    
+       $("#new-addr").change(function(){
+       	  if($("#new-addr").is(":checked")){
+      	 
+           $('#receiver-name').val(null);
+           $('#receiver-phone').val(null);
+           $('#postcode').val(null);
+           $('#address').val(null);
+           $('#detailAddress').val(null);
+
+    	         }
+        
+           });
+           
+        });
+	
 	
 </script>
 </html>

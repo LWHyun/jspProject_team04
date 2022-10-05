@@ -204,4 +204,52 @@ public class BrandListDAO {
 		return ca_name;
 	}
 	
+	// 찜 조회
+	
+	
+	// 찜 등록
+	public int registerLike(int product_id, String mem_id) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		String sql = "INSERT INTO like_pro VALUES(?, ?, sysdate)";
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+			pstmt.setString(2, mem_id);
+			result = pstmt.executeUpdate();
+			System.out.println("result -> " + result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+	
+	// 찜 삭제
+	public int removeLike(int product_id, String mem_id) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		String sql = "DELETE FROM like_pro WHERE product_id=? AND mem_id=?";
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product_id);
+			pstmt.setString(2, mem_id);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result;
+	}
+	
+	
+	
 }
