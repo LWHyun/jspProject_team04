@@ -203,6 +203,16 @@ strong+p {
   font-size: 15px;
   padding-right: 33px;
 }
+.fold-box-header:brfoe {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 13px;
+  height: 7px;
+  background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
+  right: 10px;
+  top: 32px;
+}
 .fold-box-header:after {
   content: '';
   position: absolute;
@@ -335,25 +345,20 @@ label {
 		position: relative;
 		width: 24px;
 		height: 22px;
-		background: url("https://abcmart.a-rt.com/static/images/product/prod_icon_list_util_btn.png")
-		no-repeat 0 0;
 		vertical-align: middle;
+		background-image: url('../img/contexts/prod_icon_list_util_btn.png');
 		font-size: 0;
 		top: 0;
 		border: none;
-		flex-grow: 0;
-		flex-shrink: 0;
 		flex-basis: 24px;
+		background-color: white;
 	}
 	 .btn-prod-favorite:hover {
 	  background-position: 0 -22px;
 	}
-	.btn-prod-favorite selected {
+	/* .btn-prod-favorite:focus {
 	  background-position: 0 -44px;
-	}
-	.btn-prod-favorite:focus {
-	  background-position: 0 -44px;
-	}
+	} */
 	.btn-prod-cart:hover {
 	  background-position: -48px -22px;
 	}
@@ -370,8 +375,8 @@ label {
 		height: 44px;
 		line-height: 42px;
 	}
-	.btn-buy-now:checked {
-		color: fuchsia;
+	.btn-buy-now {
+		cursor: pointer;
 	}
 	button {
 		margin: 0;
@@ -415,7 +420,71 @@ label {
 <%
 	String context = request.getContextPath();
 %>
+
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+			$(document).on("click", ".btn-prod-favorite", function () {
+				$(this).css("background-position", "0 -44px");
+				alert("찜은 갈비찜");
+				var sandData = "product_id=" + $(this).attr('id');
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
+				type: 'get',
+				data: sandData,
+				dataType: 'text',
+				success: function (data) {
+					if (data == "1") {
+						alert('찜한상품에 담겼습니다.');
+					} else {
+						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					}
+				
+				}
+			});
+		});
+	});
+	
+	/* $(function () {
+		
+		$(document).on("click","#like-btn",function () {
+				console.log(ㅌㅌㅌㅌㅌ);
+				$.ajax({
+					url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
+					type: 'get',
+					data: {'product_id': ${product_id}, 'mem_id': ${mem_id}	},
+					dataType: 'text',
+					success: function (data) {
+						if (data == '1') {
+							alert('찜한상품에 담겼습니다.');
+						} else {
+							alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+							location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+						}
+					},
+					error: function (err) {
+						console.log(찜 에러);
+					}
+				});
+				
+			$(this).css("background-position", "0 -44px");
+		});
+	});  */
+	
+			
+	
+		/* $(".btn-buy-now").click(function () {
+			location.href="#"
+		});
+	
+		$(".fold-box-header").click( function () {
+			$(".ip-filter-list col1").slideToggle();
+		}) */
+		
+</script>
 <body>
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
@@ -708,7 +777,7 @@ label {
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
 									<div class="util-btn-wrap">																			
-										<button type="button" class="btn-prod-favorite">즐겨찾기</button>				<!-- 클릭시 찜목록에 상품코드 저장? -->
+										<button type="button" id="${list.product_id }" class="btn-prod-favorite">즐겨찾기</button>
 										<!-- <button type="button" class="btn-prod-cart">장바구니 담기</button> -->			<!-- 장바구니에 상품코드 저장 -->
 									</div>
 									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
@@ -738,6 +807,7 @@ label {
 	</div> --%>
 	
 </div> <!-- contents-wrap 끝--> 
-	
+
+
 </body>
 </html>
