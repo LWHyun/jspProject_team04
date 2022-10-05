@@ -20,14 +20,16 @@ public class ManProductDeleteProService implements CommandProcess {
 		
 		try {
 			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int pd_size = Integer.parseInt(request.getParameter("pd_size"));
 			String pageNum = request.getParameter("pageNum");
 			
 			ProductDAO pd = ProductDAO.getInstance();
-			
-			int result = pd.delete(product_id);
+			int result = pd.delete(product_id, pd_size);
 			
 			request.setAttribute("product_id", product_id);
+			request.setAttribute("pd_size", pd_size);
 			request.setAttribute("result", result);
+			request.setAttribute("pageNum", pageNum);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

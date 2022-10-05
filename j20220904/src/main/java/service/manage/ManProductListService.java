@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.ProductDAO;
 import dto.ProductDTO;
+import dto.Product_ImgSrcDTO;
 
 public class ManProductListService implements CommandProcess {
 
@@ -17,9 +18,7 @@ public class ManProductListService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		/* 상품 리스트 쫙 끌고 와서 한 페이지 내에 수정 등록 버튼 두 개 넣어 처리하게 할 예정 */
-		System.out.println("ManProductListService 시작!");
+		System.out.println("~~ManProductListService 시작~~");
 		
 		ProductDAO pd = ProductDAO.getInstance();
 		
@@ -35,7 +34,7 @@ public class ManProductListService implements CommandProcess {
 			int startNum = totCnt - startRow + 1;
 			
 			/* 가져올 정보 : 선택 | 제품코드 | 브랜드 | 한글이름 | 가격 | 색상 | 카테고리 코드 */
-			List<ProductDTO> productList = pd.productList(startRow, endRow); 
+			List<Product_ImgSrcDTO> productList = pd.productList(startRow, endRow); 
 			
 			int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;    

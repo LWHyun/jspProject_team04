@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import control.CommandProcess;
 import dao.ProductDAO;
 import dto.ProductDTO;
+import dto.Product_ImgSrcDTO;
 
 public class ManProductDeleteService implements CommandProcess {
 
@@ -18,14 +19,17 @@ public class ManProductDeleteService implements CommandProcess {
 		System.out.println("~~ManProductDeleteService Start~~");
 		
 		try {
+			// product_id, pd_size, pageNum Get
 			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int pd_size = Integer.parseInt(request.getParameter("pd_size"));
 			String pageNum = request.getParameter("pageNum");
-			
+
 			ProductDAO pd = ProductDAO.getInstance();
-			ProductDTO product = pd.select(product_id);
+			Product_ImgSrcDTO product = pd.select(product_id, pd_size);
 			
-			request.setAttribute("product_id", product_id);
 			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("product_id", product_id);
+			request.setAttribute("pd_size", pd_size);
 			request.setAttribute("product", product);
 		
 		} catch (Exception e) {
