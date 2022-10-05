@@ -271,9 +271,7 @@ function sample6_execDaumPostcode() {
 												<li>
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
-												<li>
-													<input type="radio" name="choose-one" id="recent-addr"> 최근 배송지
-												</li>
+												
 												<li>
 													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
@@ -321,14 +319,16 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											<select class="message">
+											<select class="message" id="selectMessage">
 												<option value="security">부재 시 경비실에 맡겨주세요</option>
 												<option value="door">부재 시 문 앞에 놓아주세요</option>
 												<option value="call">배송 전에 연락 주세요</option>
 												<option value="direct">직접 수령하겠습니다</option>
 												<option value="write">직접 입력</option>
 											</select><br><br>
+											<div class="forWrite">
 											<input type="text" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요">
+											</div>
 										</div>
 									</td>
 								</tr>
@@ -385,44 +385,70 @@ function sample6_execDaumPostcode() {
 	 	
 	}
 	
-		$(document).ready(function(){
-			$("#memChkBox").change(function(){
-				if($("#memChkBox").is(":checked")){
+	
+	$(document).ready(function() {
+		  $('#selectMessage').change(function() {
+		    let result = $('#selectMessage option:selected').val();
+		    if (result == 'write') {
+		      $('.forWrite').show();
+		    } else {
+		      $('.forWrite').hide();
+		    }
+		  }); 
+		}); 
 
-				$('#buyername').val('${members.mem_name}');
-				$('#buyerphone').val('${members.mem_tel}');
-				$('#buyermail').val('${members.mem_email1}'+'@'+'${members.mem_email2}');
-				
-			} else {
-				
-				$('#buyername').val('');
-				$('#buyerphone').val('');
-				$('#buyermail').val('');
-				
-			}
-				
-			});
+	
+	
+	
+	$(document).ready(function(){
+		$("#memChkBox").change(function(){
+			if($("#memChkBox").is(":checked")){
+
+			$('#buyername').val('${members.mem_name}');
+			$('#buyerphone').val('${members.mem_tel}');
+			$('#buyermail').val('${members.mem_email1}'+'@'+'${members.mem_email2}');
+			
+		} else {
+			
+			$('#buyername').val('');
+			$('#buyerphone').val('');
+			$('#buyermail').val('');
+			
+		}
 			
 		});
 		
+	});
 		
-		$(document).ready(function(){
-	         $("#origin-addr").change(function(){
-	            if($("#origin-addr").is(":checked")){
-
-	            $('#receiver-name').val('${members.mem_name}');
-	            $('#receiver-phone').val('${members.mem_tel}');
-	            $('#postcode').val('${members.mem_zipcode}');
-	            $('#address').val('${members.mem_addr1}');
-	            $('#detailAddress').val('${members.mem_addr2}');
-	            
-	         } 
-	            
-	         });
-	         
-	      });
 		
+	$(document).ready(function(){
+         $("#origin-addr").change(function(){
+            if($("#origin-addr").is(":checked")){
 
+            $('#receiver-name').val('${members.mem_name}');
+            $('#receiver-phone').val('${members.mem_tel}');
+            $('#postcode').val('${members.mem_zipcode}');
+            $('#address').val('${members.mem_addr1}');
+            $('#detailAddress').val('${members.mem_addr2}');
+            
+            }
+         });
+			
+ 
+     $("#new-addr").change(function(){
+     	  if($("#new-addr").is(":checked")){
+       	 
+            $('#receiver-name').val(null);
+            $('#receiver-phone').val(null);
+            $('#postcode').val(null);
+            $('#address').val(null);
+            $('#detailAddress').val(null);
+
+        }
+  
+     });
+     
+  });
 		
 </script>
 </html>
