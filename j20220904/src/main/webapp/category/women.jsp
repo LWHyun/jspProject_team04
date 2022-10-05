@@ -222,6 +222,13 @@
 		}
 	}
 	
+	//필터 초기화 버튼 누를시 동작
+	$(function() {
+		$('#btn_reset').click(function() {
+			location.reload();
+		})
+	});
+	
 	
 </script>
 </head>
@@ -282,7 +289,7 @@
 				<img alt="상품이미지" src="${list.s_file_path }" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
-				<span class="pro_price">${list.price }</span><br>
+				<span class="pro_price">${list.price }</span><span>원</span><br>
 				</a>
 				<hr>
 				<div class="pro_buycontent">

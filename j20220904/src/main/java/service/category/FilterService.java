@@ -20,14 +20,16 @@ public class FilterService implements CommandProcess {
 		String size = request.getParameter("size");
 		String gender = request.getParameter("gender");
 		String ca_code = request.getParameter("ca_code");
-		System.out.println("gender"+gender);
+		String searchBar = request.getParameter("searchBar");
+		System.out.println("size -->"+size);
+		System.out.println("gender --> "+gender);
 		System.out.println("ca_code->"+ca_code);
-		
+		System.out.println("searchBar ->"+searchBar);
 		System.out.println("FilterService size-->"+size);
 			CategoryDAO cd = CategoryDAO.getInstance();
 			List<Product_ImgSrcDTO> filterList = null;
 			try {
-				filterList = cd.selectSearch(brandArray,size,gender,ca_code);
+				filterList = cd.selectSearch(brandArray,size,gender,ca_code,searchBar);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

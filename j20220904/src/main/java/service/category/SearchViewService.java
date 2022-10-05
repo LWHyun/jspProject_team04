@@ -31,10 +31,13 @@ public class SearchViewService implements CommandProcess {
 		if(ca_code != null) {
 				try {
 					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code);
+					System.out.println("SearchViewService list.size()-->"+list.size());
+
 					request.setAttribute("list", list);
 					String codeName = cd.selectCateName(ca_code);
 					request.setAttribute("ca_name", codeName);
 					request.setAttribute("ca_code", ca_code);
+					request.setAttribute("searchBar", searchBar);
 					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -48,6 +51,7 @@ public class SearchViewService implements CommandProcess {
 				request.setAttribute("searchBar", searchBar);
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);
+				request.setAttribute("ca_code", ca_code);
 				result=0;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

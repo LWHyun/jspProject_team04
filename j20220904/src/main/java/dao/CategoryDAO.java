@@ -144,34 +144,83 @@ public class CategoryDAO {
 			
 		return list;
 	}
-	//필터기능 -->아직 안됨
-	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code) throws SQLException {
+	//필터기능
+	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code, String searchBar) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
+		//브랜드만 있을때
 		String sql = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path from product p join product_image i on p.product_id = i.product_id where p.brand=\'";
 		//size가 없는 필터
-		String sql1 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where ps.pd_size=? and p.gender=?";
+		String sql1 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where ps.pd_size=";
+		//size랑 브랜드 모두 있을때
 		String sql2 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where p.brand=\'";
+		//사이즈가 있는 거 ->상위카테고리용
+		String sql3 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id join (SELECT * FROM category WHERE  ca_code_ref=";
+		//사이즈가 들어가면 아래 ->상위카테고리용
+		String sql4 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path from product p join product_image i on p.product_id = i.product_id join (SELECT * FROM category WHERE  ca_code_ref=";
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		PreparedStatement pstmt = null;
+		System.out.println("CategoryDAO searchBar-->"+searchBar);
+		System.out.println("CategoryDAO ca_code-->"+ca_code);
+		
 		String sqlResult="";
 		try {
 			if(size == null||size.equals("")) {
-				for(int i=0; i<brandArray.length;i++) {
-					sql+=brandArray[i]+"\'";
-					System.out.println(sql);
-					if(gender ==null) {
-						sql+="and p.ca_code = \'"+ca_code+"\'";
-					}else if (ca_code == null) {
-						sql+="and p.gender = "+gender;
+				if(ca_code !=null) {
+					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
+						sql = sql4+ca_code+") c on c.ca_code=p.ca_code where p.brand=\'";
+						for(int i=0; i<brandArray.length;i++) {
+							sql+=brandArray[i]+"\'";
+							System.out.println("CategoryDAO sql전 ->"+sql);
+							if(gender !=null) {
+								sql+=" and p.gender = "+gender;
+							}else if (searchBar != null) {
+								sql+=" and i.product_id in(select product_id from product where brand like Upper(\'%"+searchBar+"%\') or "
+										+ "ENG_NAME like \'%"+searchBar+"%\' or KOR_NAME like \'%"+searchBar+"%\')";
+							}
+							if(i<brandArray.length-1) {
+								sql+=" or p.brand='";
+							}
+							
+						}
+					}else {
+						for(int i=0; i<brandArray.length;i++) {
+							sql+=brandArray[i]+"\'";
+							System.out.println("sql 전"+sql);
+							if(gender !=null) {
+								sql+=" and p.gender = "+gender;
+							}else if (ca_code !=null) {
+								sql+=" and p.ca_code = \'"+ca_code+"\'";
+							}else if (searchBar != null) {
+								sql+=" and i.product_id in(select product_id from product where brand like Upper(\'%"+searchBar+"%\') or "
+										+ "ENG_NAME like \'%"+searchBar+"%\' or KOR_NAME like \'%"+searchBar+"%\')";
+							}
+							if(i<brandArray.length-1) {
+								sql+=" or p.brand='";
+							}
+							
+						}
 					}
-					if(i<brandArray.length-1) {
-						sql+=" or p.brand='";
+				}else {
+					for(int i=0; i<brandArray.length;i++) {
+						sql+=brandArray[i]+"\'";
+						System.out.println("sql 전"+sql);
+						if(gender !=null) {
+							sql+=" and p.gender = "+gender;
+						}else if (ca_code !=null) {
+							sql+=" and p.ca_code = \'"+ca_code+"\'";
+						}else if (searchBar != null) {
+							sql+=" and i.product_id in(select product_id from product where brand like Upper(\'%"+searchBar+"%\') or "
+									+ "ENG_NAME like \'%"+searchBar+"%\' or KOR_NAME like \'%"+searchBar+"%\')";
+						}
+						if(i<brandArray.length-1) {
+							sql+=" or p.brand='";
+						}
+						
 					}
-					
 				}
-				
+				System.out.println("CategoryDAO sql후 ->"+sql);
+				System.out.println("sql 후"+sql);
 				conn = getConnection();
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql);
@@ -193,12 +242,50 @@ public class CategoryDAO {
 				}
 				sqlResult = sql;
 			}else if(brandArray==null) {
+				System.out.println("여기냐?");
+				if(ca_code !=null) {
+					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
+						System.out.println("여기냐1?");
+						sql1 = sql3+ca_code+") c on c.ca_code=p.ca_code where ps.pd_size=";
+						sql1 += size;
+						System.out.println("CategoryDAO sql1전 ->"+sql1);
+						if(gender !=null) {
+							sql1+=" and p.gender = "+gender;
+						}else if (searchBar != null) {
+							sql1+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+									+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+						}
+						System.out.println("오긴하냐?");
+					}
+					else{
+						System.out.println("여기냐?2");
+						sql1 += size;
+						if(gender !=null) {
+							sql1+=" and p.gender = "+gender;
+						}else if (searchBar != null) {
+							sql1+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+									+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+						}
+						System.out.println("오냐?");
+					}
+				}else{
+					System.out.println("여기냐?2");
+					sql1 += size;
+					if(gender !=null) {
+						sql1+=" and p.gender = "+gender;
+					}else if (searchBar != null) {
+						sql1+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+								+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+					}
+					System.out.println("오냐?");
+				}
+
+				System.out.println("여기냐?3");
+				System.out.println("CategoryDAO sql1후 ->"+sql1);
 				conn=getConnection();
-				pstmt = conn.prepareStatement(sql1);
-				pstmt.setString(1, size);
-				pstmt.setString(2, gender);
-				rs = pstmt.executeQuery();
-				
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql1);
+
 				while(rs.next()) {
 					Product_ImgSrcDTO product = new Product_ImgSrcDTO();
 					product.setProduct_id(rs.getInt("product_id"));
@@ -220,25 +307,65 @@ public class CategoryDAO {
 				sqlResult = sql1;
 				
 			}else {
-				for(int i=0; i<brandArray.length;i++) {
-					sql2+=brandArray[i]+"\'";
-					System.out.println(sql2);
-					if(gender ==null) {
-						sql2+=" and p.ca_code = \'"+ca_code+"\'";
-					}else if (ca_code == null) {
-						sql2+=" and p.gender = "+gender;
+				if(ca_code !=null) {
+					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
+						sql2 = sql3+ca_code+") c on c.ca_code=p.ca_code where p.brand=\'";
+						for(int i=0; i<brandArray.length;i++) {
+							sql2+=brandArray[i]+"\'";
+							System.out.println("sql2"+sql2);
+							if(gender !=null) {
+								sql2+=" and p.gender = "+gender;
+							}else if (searchBar != null) {
+								sql2+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+										+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+							}
+							sql2+=" and ps.pd_size="+size;
+							if(i<brandArray.length-1) {
+								sql2+=" or p.brand='";
+							}
+							
+						}
 					}
-					sql2+=" and ps.pd_size="+size;
-					if(i<brandArray.length-1) {
-						sql2+=" or p.brand='";
+					else {
+				 		for(int i=0; i<brandArray.length;i++) {
+						sql2+=brandArray[i]+"\'";
+						System.out.println("CategoryDAO sql2전 ->"+sql2);
+						if(gender !=null) {
+							sql2+=" and p.gender = "+gender;
+						}else if (ca_code != null) {
+							sql2+=" and p.ca_code = \'"+ca_code+"\'";
+						}else if (searchBar != null) {
+							sql2+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+									+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+						}
+						sql2+=" and ps.pd_size="+size;
+						if(i<brandArray.length-1) {
+							sql2+=" or p.brand='";
+							}
+				 		}
 					}
-					
-				}
-				
+				}else {
+				 		for(int i=0; i<brandArray.length;i++) {
+						sql2+=brandArray[i]+"\'";
+						System.out.println("CategoryDAO sql2전 ->"+sql2);
+						if(gender !=null) {
+							sql2+=" and p.gender = "+gender;
+						}else if (ca_code != null) {
+							sql2+=" and p.ca_code = \'"+ca_code+"\'";
+						}else if (searchBar != null) {
+							sql2+=" and i.product_id in(select product_id from product where brand like Upper('%"+searchBar+"%') or "
+									+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
+						}
+						sql2+=" and ps.pd_size="+size;
+						if(i<brandArray.length-1) {
+							sql2+=" or p.brand='";
+							}
+				 		}
+					}
+				System.out.println("CategoryDAO sql2후 ->"+sql2);
 				conn = getConnection();
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql2);
-				
 				while(rs.next()) {
 					Product_ImgSrcDTO product = new Product_ImgSrcDTO();
 					product.setProduct_id(rs.getInt("product_id"));
@@ -256,24 +383,16 @@ public class CategoryDAO {
 				}
 				sqlResult = sql2;
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("에러는:"+e.getMessage());
 		}finally {
-			if(pstmt != null)pstmt.close();
 			if(rs != null)rs.close();
 			if(stmt != null)stmt.close();
 			if(conn != null)conn.close();
-			
 		}
-		
-		
-		
 		System.out.println("CategoryDAO Filter sql-->"+sqlResult);
-		
-	
-		
 		return list;
-		
 
 	}
 	//인기검색어테이블에 검색어가 있는지 확인
@@ -296,8 +415,7 @@ public class CategoryDAO {
 				result = 0;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}finally {
 			if(rs !=null)rs.close();
 			if(pstmt != null)pstmt.close();
@@ -426,11 +544,21 @@ public class CategoryDAO {
 	//카테고리 코드별 정렬
 	public List<Product_ImgSrcDTO> selectCodeSearch(String ca_code) throws SQLException {
 		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and ca_code=?";
+		if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
+			sql = "select *\r\n"
+					+ "from     product p\r\n"
+					+ "   ,    product_image pi \r\n"
+					+ "    ,   (SELECT * FROM category WHERE  ca_code_ref=?) c\r\n"
+					+ "where p.ca_code = c.ca_code\r\n"
+					+ "and  p.product_id=pi.product_id";
+		}
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+		System.out.println("CategoryDAO selectCodeSearch-->"+sql);
+		System.out.println("CategoryDAO ca_code-->"+ca_code);
 
 		try {
 			conn = getConnection();
@@ -443,6 +571,8 @@ public class CategoryDAO {
 				pd.setBrand(rs.getString(2));
 				pd.setEng_name(rs.getString("eng_name"));
 				pd.setKor_name(rs.getString("kor_name"));
+				System.out.println("CategoryDAO kor_name-->"+rs.getString("kor_name"));
+
 				pd.setGender(rs.getInt("gender"));
 				pd.setPrice(rs.getInt("price"));
 				pd.setColor(rs.getString("color"));

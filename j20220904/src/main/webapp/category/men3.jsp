@@ -218,7 +218,6 @@
 	        });
 			console.log(size);
 			console.log(brandArray);
-			console.log(${ca_code})
 			$.ajax({
 				url : '${pageContext.request.contextPath}/category/findFilter.do',
 				data : {'brandArray' : brandArray,
@@ -233,8 +232,14 @@
 				}
 			});	
 		}
-	}
+	};
 	
+	//필터 초기화 버튼 누를시 동작
+	$(function() {
+		$('#btn_reset').click(function() {
+			location.reload();
+		})
+	});
 	
 	
 </script>
