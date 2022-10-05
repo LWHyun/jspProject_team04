@@ -23,7 +23,7 @@ public class QAListService implements CommandProcess {
 		try {
 			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
 			int rbTotCnt = qbd.getTotalRBCnt(); // 리뷰게시판 총 개수
-			
+
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
 				pageNum = "1";
@@ -49,6 +49,7 @@ public class QAListService implements CommandProcess {
 			int endPage = startPage + blockSize - 1;
 			// 공갈 Page 방지
 			if (endPage > pageCnt) endPage = pageCnt;
+			
 			
 			request.setAttribute("qATotCnt", qATotCnt);
 			request.setAttribute("rbTotCnt", rbTotCnt);

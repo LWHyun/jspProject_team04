@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/boardCss/boardCommon.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 <style type="text/css">
 	
 	
@@ -1085,30 +1089,480 @@
 			</div>
 			<div class="big_product_main_2">
 				<!--예림님이 상품후기 여기다가 작성  -->	
+				<div id="content">
+					<div id="productReview" class="top-wrap">
+						<div class="inner">
+							<!-- 메뉴 탭 list -->
+							<%-- <ul class="tabs">
+								<li class="tab-item">
+									<a href="#" class="tab-link">상품정보</a>
+								</li>
+								<li class="tab-item ui-tabs-active">
+									<a href="../board/reviewBoard.do" class="tab-link" id="review-btn">상품후기
+										<span class="num">(${rbTotCnt })</span>
+									</a>
+								</li>
+								<li class="tab-item">
+									<a href="../board/qnaBoard.do" class="tab-link" id="qna-btn">상품 Q&amp;A
+										<span class="num">(${qATotCnt})</span>
+									</a>
+								</li>
+								<li class="tab-item">
+									<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
+								</li>
+							</ul> --%>
+							<!-- 상품 후기 안내사항 -->
+							<div class="tab-content">
+								<ul class="bullet-text-list">
+									<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
+										<br>(동영상 후기는 mp4 형식의 파일만 해당됩니다.)
+									</li>
+									<li class="bullet-text">
+										후기 등록일 이후 최대 3일 이내에 후기 포인트 적립해드립니다. (주말 및 공휴일 제외)
+									</li>
+									<li class="bullet-text">
+										상품 결제 가격이 2만 원 미만인 경우 후기 포인트가 지급되지 않습니다.
+									</li>
+									<li class="bullet-text">
+										구매 확정일로부터 30일 이후에 후기를 등록한 경우 후기 포인트가 지급되지 않습니다.
+									</li>
+									<li class="bullet-text">
+										직접 촬영한 사진 및 동영상이 아닐 경우 포토/동영상 후기에 대한 포인트 지급이 제외됩니다.
+									</li>
+									<li class="bullet-text">
+										동일한 이미지를 사용하여 여러 번 상품 후기를 등록하시는 경우 포토 후기에 대한 포인트는 한 번만 지급됩니다.
+									</li>
+									<li class="bullet-text">
+										허위, 과대광고, 문의 등 후기 내용과 관련 없는 글은 통보 없이 삭제될 수 있습니다.
+									</li>
+									<li class="bullet-text">
+										포인트는 통합멤버십 회원에게만 지급됩니다.
+									</li>
+									<li class="bullet-text">
+										상품후기는 A-RT.COM 주문 상품만 작성 가능합니다.
+									</li>
+									<li class="bullet-text">
+										작성하신 상품후기는 A-RT.COM에 귀속되며, 마케팅 용도로 사용될 수 있습니다.
+									</li>
+								</ul>
+							</div>
+							<!-- 평균 별점 및 리뷰 -->
+							<div class="review-gray-box">
+								<div class="rating-box">
+									<div class="tit_type1">상품만족도</div>
+									<div class="tit_type2">
+										95
+										<span class="unit">%</span>
+									</div>
+									<div class="tit_type3">
+										<div class="rating-container">
+											<div class="rating-stars">
+												<span class="empty-stars">
+													<span class="material-symbols-outlined" id="empty-star">star</span>
+													<span class="material-symbols-outlined" id="empty-star">star</span>
+													<span class="material-symbols-outlined" id="empty-star">star</span>
+													<span class="material-symbols-outlined" id="empty-star">star</span>
+													<span class="material-symbols-outlined" id="empty-star">star</span>
+												</span>
+												<span class="filled-stars" style="width: 100%; display: none;">
+													<span class="material-symbols-outlined" id="filled-star">star</span>
+													<span class="material-symbols-outlined" id="filled-star">star</span>
+													<span class="material-symbols-outlined" id="filled-star">star</span>
+													<span class="material-symbols-outlined" id="filled-star">star</span>
+													<span class="material-symbols-outlined" id="filled-star">star</span>
+												</span>
+											</div>
+										</div>
+										<span class="num">5</span>
+									</div>
+								</div>
+								<div class="review-text-contents">
+									<div class="left-box">
+										<div class="review-category-list-wrap">
+											<ul class="review-category-list">
+												<li class="category-item" id="">
+													<div class="category">사이즈</div>
+													<div class="text" id="">정 사이즈</div>
+													<div class="percent">
+														81
+														<span class="unit">%</span>
+													</div>
+												</li>
+												<li class="category-item" id="">
+													<div class="category">색상</div>
+													<div class="text" id="">화면과 같음</div>
+													<div class="percent">
+														89
+														<span class="unit">%</span>
+													</div>
+												</li>
+												<li class="category-item" id="">
+													<div class="category">발볼</div>
+													<div class="text" id="">적당함</div>
+													<div class="percent">
+														77
+														<span class="unit">%</span>
+													</div>
+												</li>
+												<li class="category-item" id="">
+													<div class="category">발등</div>
+													<div class="text" id="">적당함</div>
+													<div class="percent">
+														84
+														<span class="unit">%</span>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 리뷰 모아보기 -->
+							<div class="tab-review">
+								<!-- 리뷰 개수 -->
+								<div class="border-line-box-header">
+									<span class="search-result-text">
+										총 ${rbTotCnt }개의 리뷰가 있습니다.
+									</span>
+								</div>
+								<!-- 후기 리스트 -->
+								<div class="border-line-box">
+									<!-- 후기 없을 때 -->
+									<div class="flex-box" style="display: none;">
+										<p class="no-data-text">작성된 후기가 없습니다. 첫 번째 후기를 남겨보세요.</p>
+									</div>
+									<!-- 후기 글 목록 -->
+									<table>
+										<tr>
+											<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+										</tr>
+										<!-- 글 목록 -->
+										<c:if test="${rbTotCnt > 0 }">
+											<c:forEach var="reviewBoard" items="${reviewList }">
+												<tr>
+													<td>${startNum }</td>
+													<td>
+														<a href="reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage}">
+															${reviewBoard.rb_title}
+														</a>
+													</td>
+													<td>${reviewBoard.mem_id }</td>
+													<td>${reviewBoard.rb_date }</td>
+													<td>${reviewBoard.rb_views }</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</table>
+									
+									<!-- 나중에 수정 -->
+									<div style="text-align: center;">
+										<c:if test="${startPage > blockSize }">
+											<a href='reviewBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+										</c:if>
+										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+											<a href='reviewBoard.do?pageNum=${i}'>[${i}]</a>
+										</c:forEach>
+										<c:if test="${endPage < pageCnt }">
+											<a href='reviewBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+										</c:if>
+									</div>	
+									<!--<ul class="fold-box-list">
+										게시글 1개
+										<li class="fold-box">
+											<div class="fold-box-header">
+												<div class="review-box">
+													별점 표시 나중에 구현
+													<div class="rating-wrap">
+														<div class="star-rating"></div>
+														<ul class="rating-list">
+															<li>
+																<span class="rating-type">사이즈</span>
+																<span class="desc">정 사이즈</span>
+															</li>
+															<li>
+																<span class="rating-type">색상</span>
+																<span class="desc">화면과 같음</span>
+															</li>
+															<li>
+																<span class="rating-type">발볼</span>
+																<span class="desc">적당함</span>
+															</li>
+															<li>
+																<span class="rating-type">발등</span>
+																<span class="desc">적당함</span>
+															</li>
+														</ul>
+													
+													</div>
+																							<p class="review-text">1 신발이 너무 예뻐요.</p>
+													<div class="id-date-text">
+														<span class="id-text">0*******a</span>
+														<span class="date-text">2022.09.02 13:53:47</span>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li class="fold-box">
+											<div class="fold-box-header">
+												<div class="review-box">
+													<div class="rating-wrap">
+														<ul class="rating-list">
+															<li>
+																<span class="rating-type">사이즈</span>
+																<span class="desc">정 사이즈</span>
+															</li>
+															<li>
+																<span class="rating-type">색상</span>
+																<span class="desc">화면과 같음</span>
+															</li>
+															<li>
+																<span class="rating-type">발볼</span>
+																<span class="desc">적당함</span>
+															</li>
+															<li>
+																<span class="rating-type">발등</span>
+																<span class="desc">적당함</span>
+															</li>
+														</ul>
+													</div>
+													<p class="review-text">2 신발이 너무 예뻐요.</p>
+													<div class="id-date-text">
+														<span class="id-text">0*******a</span>
+														<span class="date-text">2022.09.02 13:53:47</span>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul> -->
+									<!-- 페이징 -->
+									<div class="pagination-wrap" id="product-review-pagination">
+										<div>
+											<ol class="pagination-list">
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num selected">1</button>
+												</li>
+													<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">2</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">3</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">4</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">5</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">6</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">7</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">8</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">9</button>
+												</li>
+												<li class="pagination-item">
+													<button type="button" class="btn-page btn-page-num">10</button>
+												</li>
+											</ol>
+										</div>
+										<div class="btn-wrap text-right">
+											<a href="reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <%-- <div class="review_board">
+					<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
+		    	</div>	 --%>
 			    			
 			    			
 			</div>
 			<div class="big_product_main_3">
 			   	<!--예림님이 상품Q&A 여기다가 작성  -->	
-			   				
+			   	<div id="content">
+					<div id="productQna" class="top-wrap">
+						<div class="inner">
+							<!-- Q&A 부분 -->
+							<div class="qnaBox">
+								<%-- <ul class="tabs">
+									<li class="tab-item">
+										<a href="#" class="tab-link">상품정보</a>
+									</li>
+									<li class="tab-item">
+										<a href="../board/reviewBoard.do" class="tab-link" id="review-btn">상품후기
+											<span class="num">(${rbTotCnt })</span>
+										</a>
+									</li>
+									<li class="tab-item ui-tabs-active">
+										<a href="../board/qnaBoard.do" class="tab-link" id="qna-btn">상품 Q&amp;A
+											<span class="num">(${qATotCnt})</span>
+										</a>
+									</li>
+									<li class="tab-item">
+										<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
+									</li>
+								</ul> --%>
+								<div class="tab-content">
+									<ul class="bullet-text-list">
+										<li class="bullet-text">
+											단순 상품비방, 상업적인 내용, 미풍양속 위반, 게시판의 성격에 맞지 않는 글은 통보 없이 삭제될 수 있습니다.
+										</li>
+										<li class="bullet-text">
+											오프라인 매장 재고현황 문의는 ‘전국오프라인매장’ 정보를 참고하시어 해당 매장으로 문의하시면 좀 더 정확한 확인이 가능합니다.
+										</li>
+										<li class="bullet-text">
+											주문/배송/반품 및 AS 등 기타 문의는 1:1 상담문의(마이페이지>쇼핑수첩>나의상담)에 남겨주시기 바랍니다.<br>
+											(상품 자체에 대한 문의가 아닌 주문/배송/반품 및 AS 등의 기타문의를 작성하실 경우 나의상담 메뉴로 글이 이동될 수 있습니다.)
+										</li>
+									</ul>
+								</div>
+								<!-- Q&A 탭 -->
+								<div class="tab-qna">
+									<div class="border-line-box">
+										<!-- 글이 없을 때 -->
+										<div class="flex-box" style="display: none;">
+											<p class="no-data-text">작성된 Q&A가 없습니다.</p>
+										</div>
+										<!-- Q&A 글 목록 -->
+										<table>
+											<tr>
+												<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+											</tr>
+											<!-- 글 목록 -->
+											<c:if test="${qATotCnt > 0 }">
+												<c:forEach var="qABoard" items="${qAList }">
+													<tr>
+														<td>${startNum }</td>
+														<td>
+															<a href='qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage}'>
+																${qABoard.q_title}
+															</a>
+														</td>
+														<td>${qABoard.mem_id}</td>
+														<td>${qABoard.q_date }</td>
+														<td>${qABoard.q_views }</td>
+													</tr>
+													<c:set var="startNum" value="${startNum - 1}"/>
+												</c:forEach>
+											</c:if>
+										</table>
+										
+										<!-- 나중에 수정 -->
+										<div style="text-align: center;">
+											<c:if test="${startPage > blockSize }">
+												<a href='qnaBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+											</c:if>
+											<c:forEach var="i" begin="${startPage}" end="${endPage}">
+												<a href='qnaBoard.do?pageNum=${i}'>[${i}]</a>
+											</c:forEach>
+											<c:if test="${endPage < pageCnt }">
+												<a href='qnaBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+											</c:if>
+										</div>	
+										<!-- <ul class="fold-box-list">
+											<li class="fold-box">
+												<div class="fold-box-header">
+													<div class="question-title">금요일 수거해갔어요.</div>
+													<div class="question-info">
+														<span class="question-type">h******9</span>
+														<span class="question-date">2022.03.21</span>
+														<span class="answer-status complete">답변완료</span>
+													</div>
+												</div>
+												<div class="fold-box-contents">
+													<div class="question-box-detail">
+														<div class="question-desc">
+															금요일 수거해갔어요. 신속하게 환불 처리 부탁드립니다.
+														</div> 
+													</div>
+													<div class="answer-box">
+														<p class="desc">  아이콘?
+														안녕하세요 고객님.<br><br>
+				
+														먼저 ABC 마트를 이용해주셔서 감사합니다.<br><br>
+														
+														해당 공간은 상품 문의만을 전담하는 공간으로,<br>
+														그 외 문의는 고객센터(1588-9667)를 이용해 주시면 감사하겠습니다.<br><br>
+														
+														더 나은 서비스 제공을 위해 항상 노력하는 ABC 마트가 되겠습니다.<br>
+														감사합니다.
+														</p>
+													</div>
+												</div>
+											</li>
+										</ul> -->
+										<!-- 페이징 -->
+										<div class="pagination-wrap" id="product-review-pagination">
+											<div>
+												<ol class="pagination-list">
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num selected">1</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">2</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">3</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">4</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">5</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">6</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">7</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">8</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">9</button>
+													</li>
+													<li class="pagination-item">
+														<button type="button" class="btn-page btn-page-num">10</button>
+													</li>
+												</ol>
+											</div>
+											<div class="btn-wrap text-right">
+												<a href="qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+						</div>	
+					</div>
+				</div>
+			   	<%-- <div class="qna_board">
+					<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
+				</div>	 --%>
 			   				
 			</div>
 			<div class="big_product_main_4">
-			
-			 	 			<!--예림님이 배송/교환/반품/AS 여기다가 작성  -->
-			 	 				
+				<!--예림님이 배송/교환/반품/AS 여기다가 작성  -->
+			 	<div class="etc_notice">
+					<jsp:include page="../board/etcNotice.jsp"></jsp:include>
+				</div>				
 			</div>
 		</div>
 	</div>
-	
-			<div class="review_board">
-				<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
-		    </div>
-   
-	   		<div class="qna_board">
-				<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
-			</div>
-	
 	
 	<div id="footer">
         <jsp:include page="../main/footer.jsp"></jsp:include>
@@ -1118,6 +1572,20 @@
 	
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script type="text/javascript">
+
+/* 상품 리뷰 게시판 */
+$(function() {
+	$(".big_product_main_2").click(function() {
+		location.href="../board/reviewBoard.do?product_id=${product_id}";
+	})
+});
+
+/* 상품 Q&A 게시판 */
+$(function() {
+	$(".big_product_main_3").click(function() {
+		location.href="../board/qnaBoard.do?product_id=${product_id}";
+	})
+});
 
 // 상품정보,상품후기,상품Q&A,AS안내 show/hide하는 로직
 $(document).ready(function(){
