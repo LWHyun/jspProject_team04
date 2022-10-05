@@ -364,7 +364,7 @@
 		targetTotal.innerHTML = result + "원"
 	}
 	
-	
+	// 단건 [상품 삭제] 함수
 	function delItem(prod_id, size_num) {
 		
 		if(!confirm("상품을 삭제하시겠습니까?")){
@@ -375,7 +375,7 @@
 			}
 	}
 	
-	
+	// [바로구매] 함수
 	function goDirectOrder(prod_id, size_num) {
 		
 		let cnt = document.getElementById("cnt"+prod_id+"_"+size_num).value
@@ -385,57 +385,43 @@
 		
 	}
 	
-	
+	// [선택삭제] 함수
   	function delChkItem() {
   		
-  		let target = $("input[name='rowCheck']:checked");
-  		var chkCnt = target.length;
+  		let target = $("input[name='rowCheck']:checked"); // rowCheck라는 name의 선택된 checkbox를 target배열로 지정
+  		let chkCnt = target.length;			// chkCnt는 target의 길이
   		if(chkCnt == 0){
   			alert("선택된 상품이 없습니다.")
-  			return false;
+  			return false;	// 선택된 상품이 없는데 삭제를 눌렀을 경우 함수 종료
   		}
   		
   		if(!confirm("선택한 상품을 삭제하시겠습니까?")){
 			alert("상품 삭제가 취소되었습니다.");
-			return false;
+			return false;	// 취소를 눌렀을 경우 함수 종료
 		}
   		
-  		var chkStr = '';
+ 
+  		// [확인] 눌렀을 경우
+  		// 가지고 와야하는 값이 2개(product_id, size_num)여서 rowcheck의 value에 ,를 사용하여 두 값을 넣어둠
+  		// 두개의 값을 가져갈 때 가능한 방법 : 배열로 가져가거나 / String으로 가져가서 ,를 후에 제거하기 
+  		// 두번째 방법 선택
+  		let chkStr = '';	
   		for( let i=0; i<chkCnt ; i++) {
-  			
-  			chkStr += $(target).eq(i).val()
-  			if( i != chkCnt-1 ) {
-  				chkStr += ',';
+  			// 선택된 checkbox의 수만큼 value를 가져가야하므로 for문 사용
+  			chkStr += $(target).eq(i).val()		// target 배열의 .eq(i) : 인덱스 번호에 따른 .val() : value값을 chkStr에 넣음 
+  			if( i != chkCnt-1 ) {	// 체크된 value를 모두 가져오고 마지막 값이 ,로 끝나지 않기 위해 -1
+  				chkStr += ',';		// ,로 가져온 값들을 구분 짓기 위해 
   			}
   			
   		}
   		
-  		
 		console.log(chkStr);
-
 		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkStr='+chkStr
+		// String 상태가 된 chkStr을 가지고 체크된 Basket 상품을 삭제하는 서비스로 이동
 		 		
 	 
   	}
- 	/* function delChkItem() {
-		
-		
-			var chkList = new Array();
-		 	<c:forEach items="${basketList }" var="list" >	
-		    	chkList.push("${basketList}.chk${item.product_id }_${item.size_num}");
-			</c:forEach>
-
-			for (var i=0; i<chkList.length;){
-				alert("list->"+ i + " :  "+ list[i++]);
-			}
-			
-			return list;
-			
-			location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do'
-			
-		
-	}  */
-	
+ 	
 </script>
 </body>
 </html>
