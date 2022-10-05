@@ -19,7 +19,7 @@ public class QAContentService implements CommandProcess {
 		System.out.println("QAContentService Start ... ");
 		
 		// 1. q_id, pageNum
-		int q_id = Integer.parseInt(request.getParameter("p_id"));
+		int q_id = Integer.parseInt(request.getParameter("q_id"));
 		String pageNum = request.getParameter("pageNum");
 		
 		System.out.println("QAContentService q_id => "+q_id);
@@ -40,7 +40,7 @@ public class QAContentService implements CommandProcess {
 			request.setAttribute("qABoard", qABoard);
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("QAContentService Exception->"+e.getMessage());
 		}
 		
 		return "qnaContent.jsp";
