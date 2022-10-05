@@ -102,6 +102,7 @@ public class PageHandler {
 	public void setShowNext(boolean showNext) {
 		this.showNext = showNext;
 	}
+	
 
 	@Override
 	public String toString() {

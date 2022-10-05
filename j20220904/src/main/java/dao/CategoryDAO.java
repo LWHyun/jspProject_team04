@@ -145,57 +145,132 @@ public class CategoryDAO {
 		return list;
 	}
 	//필터기능 -->아직 안됨
-	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size) throws SQLException {
+	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		String sql = "select * from product where brand='";
-		String sql1 = "select * from product p, product_size ps where p.product_id = ps.product_id and \"size\"=";
+		String sql = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path from product p join product_image i on p.product_id = i.product_id where p.brand=\'";
+		//size가 없는 필터
+		String sql1 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where ps.pd_size=? and p.gender=?";
+		String sql2 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where p.brand=\'";
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		for(int i=0; i<brandArray.length;i++) {
-			sql+=brandArray[i]+"'";
-			System.out.println(sql);
-			if(i<brandArray.length-1) {
-				sql+=" or brand='";
-			}
-		}
-		
+		PreparedStatement pstmt = null;
+		String sqlResult="";
 		try {
-			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while(rs.next()) {
-				Product_ImgSrcDTO productDTO = new Product_ImgSrcDTO();
-				productDTO.setProduct_id(rs.getInt("product_id"));
-				productDTO.setBrand(rs.getString("brand"));
-				productDTO.setEng_name(rs.getString("eng_name"));
-				productDTO.setKor_name(rs.getString("kor_name"));
-				productDTO.setGender(rs.getInt("gender"));
-				productDTO.setPrice(rs.getInt("price"));
-				productDTO.setColor(rs.getString("color"));
-				productDTO.setRegdate(rs.getDate("regdate"));
-				productDTO.setCa_code(rs.getInt("ca_code"));
-				list.add(productDTO);
+			if(size == null||size.equals("")) {
+				for(int i=0; i<brandArray.length;i++) {
+					sql+=brandArray[i]+"\'";
+					System.out.println(sql);
+					if(gender ==null) {
+						sql+="and p.ca_code = \'"+ca_code+"\'";
+					}else if (ca_code == null) {
+						sql+="and p.gender = "+gender;
+					}
+					if(i<brandArray.length-1) {
+						sql+=" or p.brand='";
+					}
+					
+				}
+				
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {
+					Product_ImgSrcDTO product = new Product_ImgSrcDTO();
+					product.setProduct_id(rs.getInt("product_id"));
+					product.setBrand(rs.getString("brand"));
+					product.setEng_name(rs.getString("eng_name"));
+					product.setKor_name(rs.getString("kor_name"));
+					product.setGender(rs.getInt("gender"));
+					product.setPrice(rs.getInt("price"));
+					product.setColor(rs.getString("color"));
+					product.setRegdate(rs.getDate("regdate"));
+					product.setCa_code(rs.getInt("ca_code"));
+					product.setS_file_path(rs.getString("s_file_path"));
+					product.setL_file_path(rs.getString("l_file_path"));
+					list.add(product);
+				}
+				sqlResult = sql;
+			}else if(brandArray==null) {
+				conn=getConnection();
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, size);
+				pstmt.setString(2, gender);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Product_ImgSrcDTO product = new Product_ImgSrcDTO();
+					product.setProduct_id(rs.getInt("product_id"));
+					product.setBrand(rs.getString("brand"));
+					product.setEng_name(rs.getString("eng_name"));
+					product.setKor_name(rs.getString("kor_name"));
+					product.setGender(rs.getInt("gender"));
+					product.setPrice(rs.getInt("price"));
+					product.setColor(rs.getString("color"));
+					product.setRegdate(rs.getDate("regdate"));
+					product.setCa_code(rs.getInt("ca_code"));
+					product.setS_file_path(rs.getString("s_file_path"));
+					product.setL_file_path(rs.getString("l_file_path"));
+					product.setSize_num(rs.getInt("size_num"));
+					product.setPd_size(rs.getInt("pd_size"));
+					product.setStock(rs.getInt("stock"));
+					list.add(product);
+				}
+				sqlResult = sql1;
+				
+			}else {
+				for(int i=0; i<brandArray.length;i++) {
+					sql2+=brandArray[i]+"\'";
+					System.out.println(sql2);
+					if(gender ==null) {
+						sql2+=" and p.ca_code = \'"+ca_code+"\'";
+					}else if (ca_code == null) {
+						sql2+=" and p.gender = "+gender;
+					}
+					sql2+=" and ps.pd_size="+size;
+					if(i<brandArray.length-1) {
+						sql2+=" or p.brand='";
+					}
+					
+				}
+				
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql2);
+				
+				while(rs.next()) {
+					Product_ImgSrcDTO product = new Product_ImgSrcDTO();
+					product.setProduct_id(rs.getInt("product_id"));
+					product.setBrand(rs.getString("brand"));
+					product.setEng_name(rs.getString("eng_name"));
+					product.setKor_name(rs.getString("kor_name"));
+					product.setGender(rs.getInt("gender"));
+					product.setPrice(rs.getInt("price"));
+					product.setColor(rs.getString("color"));
+					product.setRegdate(rs.getDate("regdate"));
+					product.setCa_code(rs.getInt("ca_code"));
+					product.setS_file_path(rs.getString("s_file_path"));
+					product.setL_file_path(rs.getString("l_file_path"));
+					list.add(product);
+				}
+				sqlResult = sql2;
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}finally {
-			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(rs != null)rs.close();
 			if(stmt != null)stmt.close();
 			if(conn != null)conn.close();
+			
 		}
 		
 		
 		
+		System.out.println("CategoryDAO Filter sql-->"+sqlResult);
 		
-		System.out.println("result1->"+sql);
-		/*
-		 * if(sizeArray.length >0) { sql+=" and "; for(int i=0; i<sizeArray.length;i++)
-		 * { sql1 } }
-		 */
-		System.out.println("result2->"+sql);
-		
+	
 		
 		return list;
 		

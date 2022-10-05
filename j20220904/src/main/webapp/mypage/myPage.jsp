@@ -194,7 +194,7 @@ $(function() {
 	}
 	
 	// 찜한 상품이 있을 때 없을 때 display:none 처리
-	var listCnt = Number(${requestScope.ph.totalCnt});
+	var listCnt = Number(${requestScope.likeProCnt});
 	if(listCnt == 0) {
 		$('.mypage-no-data').css('display', '');
 		$('.col-list-wrap').css('display', 'none');
