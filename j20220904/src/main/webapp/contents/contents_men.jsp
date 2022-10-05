@@ -964,14 +964,15 @@
 								<button type="button" id="${list[4].pd_size }" value="${list[4].pd_size }">${list[4].pd_size }</button>				
 							</div>
 						</div>
-						<form id="sizeForm"> 
+						<form id="sizeForm" action="${pageContext.request.contextPath}/orders/ordersDirectProduct.do"> 
 							<input type="hidden" name="product_id" value="${product_id }">
 							<input type="hidden" name="mem_id" value="${mem_id }">
 							<input type="hidden" name="brand" value="${list[0].brand }">
 							<input type="hidden" name="eng_name" value="${list[0].eng_name }">
 							<input type="hidden" name="kor_name" value="${list[0].kor_name }">
 							<input type="hidden" name="gender" value="${list[0].gender }">
-							<input type="hidden" name="price" value="${list[0].price }">
+							<input type="hidden" name="price" value="${list[0].price }">	
+							<input type="hidden" name="s_file_path" value="${list[0].s_file_path }">	
 							<%-- 
 							<input type="hidden" name="size_num" value="${list[0].size_num }">
 							<input type="hidden" name="stock" value="${list[0].stock }"> 
@@ -983,7 +984,7 @@
 							
 							</div>
 						</div>
-						</form>
+						
 						<div class="style_total">
 							<div class="style_total_left">
 								총 결제금액
@@ -997,9 +998,10 @@
 								<button type="button" id="myshopping1" value="장바구니">장바구니</button>
 							</div>
 							<div class="style_myshopping_right">
-								<button type="button"  id="myshopping2" value="바로구매">바로구매</button>
+								<button type="submit"  id="myshopping2" value="바로구매">바로구매</button>
 							</div>			
 						</div>
+						</form>
 					</div>
 					
 				</div>
@@ -1590,14 +1592,29 @@ $(document).ready(function(){
 		});
 		
 		/* 바로구매 alert */
-		
+		/* 
 		$(function() {
-			$("#myshopping2").click(function() {
-				confirm('바로 구매하시겠습니까?');
-				location.href="https://www.daum.net"; /* 바로구매창 이동 */
-			});
-		});
-   
+			$(document).on('click','#myshopping2' ,function() {
+				
+				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
+					alert('옵션을 선택해주세요');
+				}else{
+								$.ajax({
+									
+									url: '${pageContext.request.contextPath}/orders/ordersDirectProduct.do',
+									type: 'get',
+									data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
+									dataType: 'text',
+									success : location.href='http://localhost:8181/orders/ordersDirectProduct.do',
+									error: function(err){
+										console.log(err);
+									}
+								});	
+								
+				};
+			});	
+		}); */
+			
 </script>
 
 </body>

@@ -89,7 +89,7 @@ private static OrdersInfoDAO instance;
 	
 	
 	// product 정보 가져오는 메소드
-	public OrdersInfoDTO selectProductInfo(OrdersInfoDTO ordersDTO) {
+	public OrdersInfoDTO selectProductInfo(OrdersInfoDTO ordersInfoDTO) {
 		
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
@@ -109,22 +109,22 @@ private static OrdersInfoDAO instance;
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, ordersDTO.getProduct_id());
-			pstmt.setInt(2, ordersDTO.getSize_num());
+			pstmt.setInt(1, ordersInfoDTO.getProduct_id());
+			pstmt.setInt(2, ordersInfoDTO.getSize_num());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				
-				ordersDTO.setProduct_id(rs.getInt("product_id"));
-				ordersDTO.setBrand(rs.getString("brand"));
-				ordersDTO.setEng_name(rs.getString("eng_name"));
-				ordersDTO.setKor_name(rs.getString("kor_name"));
-				ordersDTO.setGender(rs.getInt("gender"));
-				ordersDTO.setPrice(rs.getInt("price"));
-				ordersDTO.setColor(rs.getString("color"));
-				ordersDTO.setS_file_path(rs.getString("s_file_path"));
-				ordersDTO.setSize_num(rs.getInt("size_num"));
-				ordersDTO.setPd_size(rs.getInt("pd_size"));
+				ordersInfoDTO.setProduct_id(rs.getInt("product_id"));
+				ordersInfoDTO.setBrand(rs.getString("brand"));
+				ordersInfoDTO.setEng_name(rs.getString("eng_name"));
+				ordersInfoDTO.setKor_name(rs.getString("kor_name"));
+				ordersInfoDTO.setGender(rs.getInt("gender"));
+				ordersInfoDTO.setPrice(rs.getInt("price"));
+				ordersInfoDTO.setColor(rs.getString("color"));
+				ordersInfoDTO.setS_file_path(rs.getString("s_file_path"));
+				ordersInfoDTO.setSize_num(rs.getInt("size_num"));
+				ordersInfoDTO.setPd_size(rs.getInt("pd_size"));
 				
 			}
 			
@@ -134,10 +134,10 @@ private static OrdersInfoDAO instance;
 			close(conn, pstmt, rs);
 		}
 
-		return ordersDTO;
+		return ordersInfoDTO;
 	}
 	
-	
+
 	
 	private void close(AutoCloseable... ac) {
 		try {
