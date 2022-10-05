@@ -179,7 +179,7 @@ function sample6_execDaumPostcode() {
 					<!-- 장바구니에서 넘어왔을 때 -->
 					<table class="order-body">
 					
-						<c:forEach var="item" items="${basketList }" varStatus="status">
+						<c:forEach var="item" items="${pdDirectArr }" varStatus="status">
 								<tr id="tr${item.product_id }_${item.size_num }">
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
@@ -389,9 +389,9 @@ function sample6_execDaumPostcode() {
 			$("#memChkBox").change(function(){
 				if($("#memChkBox").is(":checked")){
 
-				$('#buyername').val('${ordersDTO.mem_name}');
-				$('#buyerphone').val('${ordersDTO.mem_tel}');
-				$('#buyermail').val('${ordersDTO.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
+				$('#buyername').val('${members.mem_name}');
+				$('#buyerphone').val('${members.mem_tel}');
+				$('#buyermail').val('${members.mem_email1}'+'@'+'${members.mem_email2}');
 				
 			} else {
 				
@@ -406,10 +406,6 @@ function sample6_execDaumPostcode() {
 		});
 	
 	
-	
-	
-
-
 
 </script>
 </html>
