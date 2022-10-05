@@ -522,7 +522,7 @@ public class ProductDAO {
 									+ "FROM(SELECT p.product_id, p.brand, p.kor_name, p.price, ps.pd_size, ps.stock\r\n"
 									+ "FROM product p, product_size ps\r\n"
 									+ "WHERE p.product_id = ps.product_id\r\n"
-									+ "ORDER BY brand, pd_size) a) "
+									+ "ORDER BY product_id, pd_size) a) "
 					+ "WHERE rn BETWEEN ? AND ?";
 
 		try {
@@ -589,7 +589,7 @@ public class ProductDAO {
    }
    
    
-   // [관리자] PRODUCT 테이블에서 상품코드, 사이즈 선택하기
+   // [관리자] 상품코드, 사이즈 정보 가져오기
    public Product_ImgSrcDTO select(int product_id, int pd_size) throws SQLException {
       Connection conn = null;
       Statement stmt = null;
@@ -624,5 +624,18 @@ public class ProductDAO {
       }
       return product;
    }
+
+   
+   // [관리자 - 상품관리] 상품 가격, 재고 수정 메소드 
+	public Product_ImgSrcDTO update(int price, int stock) {
+
+		String sql = "UPDATE product_size\r\n"
+				+ "SET pd_size = ?,\r\n"
+				+ "    stock = ?  \r\n"
+				+ "WHERE product_id = ?\r\n"
+				+ "AND pd_size = ?";
+		
+		return null;
+	}
    
 }
