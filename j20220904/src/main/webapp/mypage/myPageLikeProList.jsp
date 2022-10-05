@@ -81,7 +81,8 @@
     <div class="tab-content">
         <div class="col-list-wrap" >
             <ul class="col-list prod-list col-4">
-            	<!-- 체크 박스 넘버 -->
+            	<!-- 동적 처리 부분 -->
+            	<%-- <!-- 체크 박스 넘버 -->
             	<c:set var="chkNum" value="0"/>
                 <c:forEach var="likeProDTO" items="${likeProList }">
                     <li class="col-list-item prod-item no-util">
@@ -105,7 +106,7 @@
                             </div>
                         </a>
                     </li>
-                </c:forEach>
+                </c:forEach> --%>
             </ul>
         </div><!-- col-list-wrap -->
 	
@@ -124,8 +125,9 @@
 	    <!-- 페이징 처리부분 -->
 	    <div id="mypage-product-interest-pagination" class="pagination-wrap">
 	    	<div>	
+	    		<!-- 동적 처리 부분 -->
 	    		<ol class="pagination-list">
-	    			<c:if test="${ph.showPrev == true }">		
+	    			<%-- <c:if test="${ph.showPrev == true }">		
 		    			<li class="pagination-item showPrev">
 		    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${ph.startPage-1}">&lt;</a>
 		    			</li>
@@ -152,7 +154,7 @@
 	    				<li class="pagination-item showNext">
 		    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${ph.endPage+1}">&gt;</a>
 		    			</li>	
-	    			</c:if>
+	    			</c:if> --%>
    				</ol>
 			</div>
 		</div>
@@ -172,12 +174,101 @@ $(function() {
 			alert(JSON.stringify(data));
 			
 			// for문
+			
+			// 체크 박스 넘버
+			let chkNum = 0;
 			$.each(data.list, function(index, items) {
 				console.log(index, items.kor_name, items.gender, items.price, items.product_id, items.mem_id, 
 						items.s_file_path, items.brand, items.like_pro_date);
-				
-				
-			});
+
+				// ul 태그
+				$('.col-list.prod-list.col-4').append($('<li/>', {
+												class : 'col-list-item prod-item no-util'
+												}).append($('<span/>', {
+													class : 'ui-chk chk-prod'
+													}).append($('<input>', {
+														id : 'chk-prod-'+(++chkNum),
+														class : 'chk-prod-box',
+														type : 'checkbox',
+														name : 'prodChecked',
+														value : items.product_id
+													})).append($('<label/>', {
+														for : 'chk-prod-'+chkNum
+													}))
+												).append($('<a/>', {
+													href : '${pageContext.request.contextPath }/contents/contents_men.do?product_id='+items.product_id+'&gender='+items.gender,
+													class : 'prod-link'		
+													}).append($('<div/>', {
+														class : 'img-wrap'
+														}).append($('<img>', {
+															src : items.s_file_path,
+															alt : items.kor_name,
+															class : 'recent-product-image'
+														}))
+													 ).append($('<div/>', {
+														 class : 'prod-info-wrap'
+														 }).append($('<span/>', {
+															 class : 'prod-brand',
+															 text : items.brand
+														 })).append($('<span/>', {
+															 class : 'prod-name',
+															 text : items.kor_name
+														 })).append($('<span/>', {
+															 class : 'prod-price',
+															 text : items.price
+														 })))
+															
+								)// li 의 append
+				)// ul의 append
+			});// $.each
+			
+			
+			// 페이징 처리
+			if(data.ph.showPrev == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showPrev'
+										}).append($('<a/>', {
+											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+data.ph.startPage-1,
+											text : '<'
+										})))
+			}
+			
+			for(let i = Number(data.ph.startPage); i < Number(data.ph.endPage); i++) {
+				if(data.curPage == i) {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<a/>', {
+											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+i
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num selected',
+												text : i
+											}))))
+				} else {
+					$('.pagination-list').append($('<li/>', {
+						class : 'pagination-item',
+						name : 'li_page'
+										}).append($('<a/>', {
+											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+i
+											}).append($('<button/>', {
+												type : 'button',
+												class : 'btn-page btn-page-num',
+												text : i
+											}))))
+				}
+			} // for 문
+			
+			if(data.ph.showNext == 'true') {
+				/* ol 부분 */
+				$('.pagination-list').append($('<li/>', {
+					class : 'pagination-item showNext'
+										}).append($('<a/>', {
+											href : '${pageContext.request.contextPath }/mypage/jsonLikeProList.do?curPage='+data.ph.endPage+1,
+											text : '>'
+										})))
+			}
 		},
 		error : function(err) {
 			console.log(err);
@@ -194,15 +285,7 @@ $(function() {
 			$('.chk-prod-box').prop('checked', false);
 		}
 	}); */
-	$(document).on('click', '#chk-list-all', function() {
-		let checked = $(this).is(':checked');
-		
-		if(checked) {
-			$('.chk-prod-box').prop('checked', true);
-		} else {
-			$('.chk-prod-box').prop('checked', false);
-		}
-	});
+	
 	
 	// chk-prod-box
 	// 개별 선택 / 해제
@@ -215,52 +298,65 @@ $(function() {
 		
 		$('#chk-list-all').prop('checked', is_checked);
 	}); */
-	$(document).on('click', '.chk-prod-box', function() {
-		let is_checked = true;
-		
-		$('.chk-prod-box').each(function() {
-			is_checked = is_checked && $(this).is(':checked');
-		});	
-		
-		$('#chk-list-all').prop('checked', is_checked);
-	});
+	
 	
 	// 찜 삭제 버튼
-	$(document).on('click','#deleteLikeBtn', function() {
-		var queryString = "";
-		$('.chk-prod-box:checked').each(function(index) {
-			let is_checked = $(this);
-			
-			if(index == $('.chk-prod-box:checked').length-1) {
-				queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value');
-			} else {
-				queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value')+"&";
-			}
-		});	
-		
-		if(confirm('선택하신 제품을 삭제하시겠습니까?')) {
-			$.ajax({
-				url : '${pageContext.request.contextPath}/mypage/deleteLike.do',
-				type : 'post',
-				data : queryString,
-				dataType : 'text',
-				success : function(data) {
-					if(data != '0') {
-						alert('삭제되었습니다.');
-						location.href="${pageContext.request.contextPath}/mypage/likeProList.do"
-					} else {
-						alert('삭제에 실패했습니다. 다시 시도해주세요.');
-					}
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-		}
-	});
+	
 	/* $('#deleteLikeBtn').click(function() {
 		
 	}); */
 });
 
+$(document).on('click', '#chk-list-all', function() {
+	let checked = $(this).is(':checked');
+	
+	if(checked) {
+		$('.chk-prod-box').prop('checked', true);
+	} else {
+		$('.chk-prod-box').prop('checked', false);
+	}
+});
+
+$(document).on('click', '.chk-prod-box', function() {
+	let is_checked = true;
+	
+	$('.chk-prod-box').each(function() {
+		is_checked = is_checked && $(this).is(':checked');
+	});	
+	
+	$('#chk-list-all').prop('checked', is_checked);
+});
+
+$(document).on('click','#deleteLikeBtn', function() {
+	var queryString = "";
+	$('.chk-prod-box:checked').each(function(index) {
+		let is_checked = $(this);
+		
+		if(index == $('.chk-prod-box:checked').length-1) {
+			queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value');
+		} else {
+			queryString += $(is_checked).attr('name')+"="+$(is_checked).attr('value')+"&";
+		}
+	});	
+	
+	if(confirm('선택하신 제품을 삭제하시겠습니까?')) {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/mypage/deleteLike.do',
+			type : 'post',
+			data : queryString,
+			dataType : 'text',
+			success : function(data) {
+				if(data != '0') {
+					alert('삭제되었습니다.');
+					location.href="${pageContext.request.contextPath}/mypage/likeProList.do"
+				} else {
+					alert('삭제에 실패했습니다. 다시 시도해주세요.');
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+	}
+});
 </script>
