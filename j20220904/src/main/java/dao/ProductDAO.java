@@ -23,6 +23,7 @@ import dto.ProductDTO;
 import dto.Product_ImgDTO;
 import dto.Product_ImgSrcDTO;
 import dto.Product_Like_ProDTO;
+import dto.Product_SizeDTO;
 
 
 public class ProductDAO {
@@ -503,44 +504,47 @@ public class ProductDAO {
    }
    
    
-   
    // [관리자] 상품목록 한 페이지 데이터 가져오기
-   public List<ProductDTO> productList(int startRow, int endRow) throws SQLException {
-      
-      List<ProductDTO> list = new ArrayList<ProductDTO>();
-      
-      Connection conn = null;   
-      PreparedStatement pstmt= null;
-      ResultSet rs = null;
+   // 상품코드 | 브랜드 | 한국 이름 | 가격 | 사이즈 | 재고
+	public List<Product_ImgSrcDTO> productList(int startRow, int endRow) throws SQLException {
+		
+		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 
-      // 가져올 정보 : 제품코드 | 브랜드 | 한글이름 | 가격 | 색상 | 카테고리 코드
-      // SELECT UNIQUE(product_id), brand, kor_name, price, ca_code FROM product
-      String sql = "SELECT * FROM (SELECT rownum rn, a.* "
-            + "                FROM(select UNIQUE(product_id), brand, kor_name, gender, price, color, ca_code from product order by brand) a)"
-            + "     WHERE rn BETWEEN ? AND ?";
-            
-         try {   
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, startRow);
-            pstmt.setInt(2, endRow);
-            
-            rs = pstmt.executeQuery();
-            
-            while(rs.next()) {
-               
-               ProductDTO pro = new ProductDTO();
-            
-               pro.setProduct_id(rs.getInt("product_id"));
-               pro.setBrand(rs.getString("brand"));
-               pro.setKor_name(rs.getString("kor_name"));
-               pro.setGender(rs.getInt("gender"));
-               pro.setPrice(rs.getLong("price"));
-               pro.setColor(rs.getString("color"));
-               pro.setCa_code(rs.getLong("ca_code"));
-                              
-               list.add(pro); 
-            }
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet  rs = null;
+
+		// SELECT p.product_id, p.brand, p.kor_name, p.price, ps.pd_size, ps.stock
+		// FROM product p, product_size ps
+		// WHERE p.product_id = ps.product_id
+		// ORDER BY p.brand, ps.pd_size;
+		String sql = "SELECT * FROM (SELECT rownum rn, a.* "
+									+ "FROM(SELECT p.product_id, p.brand, p.kor_name, p.price, ps.pd_size, ps.stock\r\n"
+									+ "FROM product p, product_size ps\r\n"
+									+ "WHERE p.product_id = ps.product_id\r\n"
+									+ "ORDER BY brand, pd_size) a) "
+					+ "WHERE rn BETWEEN ? AND ?";
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Product_ImgSrcDTO product_ImgSrcDTO = new Product_ImgSrcDTO();
+
+				product_ImgSrcDTO.setProduct_id(rs.getInt("product_id"));
+				product_ImgSrcDTO.setBrand(rs.getString("brand"));
+				product_ImgSrcDTO.setKor_name(rs.getString("kor_name"));
+				product_ImgSrcDTO.setPrice(rs.getInt("price"));
+				product_ImgSrcDTO.setPd_size(rs.getInt("pd_size"));
+				product_ImgSrcDTO.setStock(rs.getInt("stock"));
+
+				list.add(product_ImgSrcDTO);
+			}
       } catch(SQLException e) {
          e.printStackTrace();
       } finally {
@@ -551,55 +555,28 @@ public class ProductDAO {
          return list;
    }
 
-   
-   // [관리자] PRODUCT 테이블에서 상품 선택하기
-   public ProductDTO select(int product_id) throws SQLException {
-      Connection conn = null;
-      Statement stmt = null;
-      ResultSet rs = null;
-      
-      String sql = "SELECT * FROM product WHERE product_id=" + product_id;
-      
-      ProductDTO product = new ProductDTO();
-      
-      try {
-         conn = getConnection();
-         stmt = conn.createStatement();
-         rs   = stmt.executeQuery(sql);
-         
-         if(rs.next()) {
-            product.setProduct_id(rs.getInt("product_id"));
-            product.setBrand(rs.getString("brand"));
-            product.setEng_name(rs.getString("eng_name"));
-            product.setKor_name(rs.getString("kor_name"));
-            product.setGender(rs.getInt("gender"));
-            product.setPrice(rs.getInt("price"));
-            product.setColor(rs.getString("color"));
-            product.setRegdate(rs.getDate("regdate"));
-            product.setCa_code(rs.getInt("ca_code"));
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         if (rs !=null)    rs.close();
-         if (stmt != null) stmt.close();
-         if (conn !=null)  conn.close();
-      }
-      return product;
-   }
 
    // [관리자] 상품 삭제 메소드
-   public int delete(int product_id) throws SQLException {
+   public int delete(int product_id, int product_size) throws SQLException {
       Connection conn = null;
       PreparedStatement pstmt = null;
       int result = 0;
       
-      String sql = "DELETE FROM product WHERE product_id=?";
+      String sql = "DELETE\r\n"
+      		+ "FROM product_size pd\r\n"
+      		+ "WHERE EXISTS\r\n"
+      		+ "(\r\n"
+      		+ "    SELECT 1\r\n"
+      		+ "    FROM product p\r\n"
+      		+ "    WHERE pd.product_id = ?\r\n"
+      		+ "    AND pd.pd_size = ?\r\n"
+      		+ ")";
       
       try {
          conn = getConnection();
          pstmt = conn.prepareStatement(sql);
          pstmt.setInt(1, product_id);
+         pstmt.setInt(2, product_size);
          result = pstmt.executeUpdate();
          
       } catch (Exception e) {
@@ -611,6 +588,41 @@ public class ProductDAO {
       return result;
    }
    
-
+   
+   // [관리자] PRODUCT 테이블에서 상품코드, 사이즈 선택하기
+   public Product_ImgSrcDTO select(int product_id, int pd_size) throws SQLException {
+      Connection conn = null;
+      Statement stmt = null;
+      ResultSet rs = null;
+      
+      String sql = "SELECT p.product_id, p.brand, p.kor_name, p.price, ps.pd_size, ps.stock\r\n"
+      		+ "FROM product p, product_size ps\r\n"
+      		+ "WHERE p.product_id = ps.product_id\r\n"
+      		+ "AND p.product_id =" + product_id + " AND ps.pd_size="+ pd_size;
+      
+      Product_ImgSrcDTO product = new Product_ImgSrcDTO();
+      
+      try {
+         conn = getConnection();
+         stmt = conn.createStatement();
+         rs   = stmt.executeQuery(sql);
+         
+         if(rs.next()) {
+            product.setProduct_id(rs.getInt("product_id"));
+            product.setBrand(rs.getString("brand"));
+            product.setKor_name(rs.getString("kor_name"));
+            product.setPrice(rs.getInt("price"));
+            product.setPd_size(rs.getInt("pd_size"));
+            product.setStock(rs.getInt("stock"));
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      } finally {
+         if (rs !=null)    rs.close();
+         if (stmt != null) stmt.close();
+         if (conn !=null)  conn.close();
+      }
+      return product;
+   }
    
 }

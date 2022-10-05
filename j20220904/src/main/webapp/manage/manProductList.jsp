@@ -8,18 +8,43 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-	$(document).ready(function () {
-		$('#delBtn').click(function() {
-			if($("input[type=radio]").on("click", function(e) {
-				// e.target 	  : 선택된 타깃
-				// e.target.value : 선택된 타깃의 value 값
-				// e.target.name  : 선택된 타깃의 네임
-				alert(e.target.value);
-				location.href = 'manProductDelete.do?product_id=' + e.target.value;
-			}))
+$(function() {
+	$(".deleteBtn").click(function(){
 			
+			var str = "";
+			var tdArr = new Array();
+			var deleteBtn = $(this);
+			
+			var tr = deleteBtn.parent().parent();
+			var td = tr.children();
+			
+			console.log("클릭한 Row의 모든 데이터 : " + tr.text());
+			
+			var no1 = td.eq(0).text();	//  product_id
+			var no2 = td.eq(4).text();	// 	pd_size
+			
+			alert("사이즈 " + no2 +"의 " + no1 + "를 삭제합니다");
+			
+			location.href='manProductDeletePro.do?product_id='+no1+'&pd_size='+no2;
 		})
+});
+
+$(function() {
+	$('.updateBtn').click(function() {
+		
+		var str = "";
+		var tdArr = new Array();
+		var updateBtn = $(this);
+		
+		var tr = updateBtn.parent().parent();
+		var td = tr.children();
+		
+		console.log("클릭한 Row의 모든 데이터 : " + tr.text());
+		
+		var no = td.eq(0).text();
 	})
+});
+	
 </script>
 <title>상품관리</title>
 </head>
@@ -58,38 +83,38 @@
 						<div class="border-line-box fold-box-list-wrap">
 							<span style="position: fixed; right: 2%; bottom: 103%;">  
 								<input type="button" value="상품 등록" onclick="location.href='manProductRegister.do'">
-								<button name="button" id="delBtn" onclick="location.href='manProductDelete.do?product_id=${product.product_id}'">상품 삭제</button>
 							</span>
 						
 							<div class="tbl-wrap tbl-col notice-list">
 								<table style="table-layout:fixed">
-									<!-- Row 1 : 선택 | 제품코드 | 브랜드 | 한글 이름 | 가격 | 색상 | 카테고리 코드 */ -->
+									<!-- Row 1 : 제품코드 | 브랜드 | 한국 이름 | 가격 | 사이즈 | 재고 */ -->
 									<thead>
 										<tr>
-											<th>선택</th>
 											<th>제품코드</th>
 											<th>브랜드</th>
 											<th width="200px">한글이름</th>
 											<th>가격</th>
-											<th width="70px">색상</th>
-											<th width="80px">카테고리<br>코드</th>
+											<th width="70px">사이즈</th>
+											<th width="80px">재고</th>
+											<th>기타</th>
 										</tr>
 									</thead>
 
 									<!-- Row2~ : 찐 공지사항 목록 -->
 									<tbody id="productList" style="vertical-align: center;">
 										<c:if test="${totCnt > 0}">
-											<c:forEach var="product" items="${productList}">
+											<c:forEach var="product_ImgSrcDTO" items="${productList}">
 												<tr>
+													<td>${product_ImgSrcDTO.product_id}</td>
+													<td>${product_ImgSrcDTO.brand}</td>
+													<td>${product_ImgSrcDTO.kor_name}</td>
+													<td><input type="number" min="0" max="100" value="${product_ImgSrcDTO.price}" style="width:60px;"></td>
+													<td>${product_ImgSrcDTO.pd_size}</td>
+													<td><input type="number" min="0" max="999" value="${product_ImgSrcDTO.stock}" style="width:60px;"></td>
 													<td>
-														<input type="radio" name="toDelete" value="${product.product_id}">
+														<input type="button" class="updateBtn" value="수정">
+														<input type="button" class="deleteBtn" value="삭제" onclick="location.href='manProductDelete.do?product_id=${product_ImgSrcDTO.product_id}&pd_size=${product_ImgSrcDTO.pd_size }&pageNum=${pageNum }'">
 													</td>
-													<td>${product.product_id}</td>
-													<td>${product.brand}</td>
-													<td>${product.kor_name}</td>
-													<td>${product.price}</td>
-													<td>${product.color}</td>
-													<td>${product.ca_code}</td>
 												</tr>
 
 												<c:set var="startNum" value="${startNum - 1}"></c:set>

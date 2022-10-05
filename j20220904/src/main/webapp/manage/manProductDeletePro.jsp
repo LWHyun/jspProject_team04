@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
 	alert("삭제 완료");
-	location.href = "manProductList.do?pageNum=${pageNum}";
+	location.href = "manProductList.do";
 </script>
 </body>
 </html>
