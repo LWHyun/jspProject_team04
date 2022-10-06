@@ -42,7 +42,7 @@
 								border-bottom: 1px solid black;	
 							}
 					
-	.order-user, .ship-info, .order-agree {
+	.order-user, .ship-info, .agree-info {
 		font-size: 18px;
 		font-weight: bold;
 		margin-bottom : 10px;
@@ -58,37 +58,73 @@
 		margin-bottom : 15px;
 	}
 	
-	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td{
+	.order-ship {
+		margin-bottom : 15px;
+	}
+	
+	
+	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td .tbl-agree td{
 			padding : 20px;
 			vertical-align: middle;
 			
 		}
 		
-	.tbl-ship {
+	.tbl-ship, .tbl-agree {
 		margin-top : 15px;
 	}
 		
 	
-	ul {
+	.all_ul {
 		list-style: none;
 		
 	}
 	
-	li {
+	.all_li {
 		float : left;
 		margin-right: 30px;
 	}
 	
-	.tbl-form, .tbl-ship, .agree-box {
+	.choose_li{
+		float : left;
+		margin-top : 17px;
+		margin-right : 10px;
+	}
+	
+	.ship-req {
+		margin-top: 20px;
+		margin-bottom : 20px;
+	}
+	
+	#receiver-name, #receiver-phone {
+		margin-top : 17px;
+	}
+	
+	.tbl-form, .tbl-ship, .tbl-agree {
 			border-top : 2px solid black;
 			border-bottom: 1px solid #E6E6E6;
 	} 
 	
+	.agree_info {
+		margin-top: 10px;
+	}
+	
+	.agree_title {
+		vertical-align: middle;
+		padding : 20px;
+	}
+	
+	.agree_contents {
+		padding : 20px;
+		/* display : none; */
+	}
+	/* .forWrite { display : none;} */
+	
+	
 	.order-payment-box {
 	position: sticky;
-	top : 500px;
+	top : 700px;
     width: 400px;
-    margin-right : 100px;
+    margin-right : 300px;
     margin-top : 30px;
     float : right;
     padding: 26px;
@@ -97,7 +133,7 @@
     right: 0;
     z-index: 1
 	}
-	
+	/* 
 	summary {
     cursor: pointer;
      list-style: none;
@@ -108,9 +144,7 @@
   summary::-webkit-details-marker {
     display: none;
   }
-  
-	
-	
+   */
 	
 </style>
 <script type="text/javascript">
@@ -169,6 +203,7 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
+	<form action="" method="">
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
@@ -176,7 +211,7 @@ function sample6_execDaumPostcode() {
  			</div>
  			
  			<div class="order-basket">
-					<!-- 장바구니에서 넘어왔을 때 -->
+					<!-- 장바구니에서 전체 주문하기로 넘어왔을 때 -->
 					<table class="order-body">
 					
 						<c:forEach var="item" items="${basketList }" varStatus="status">
@@ -207,11 +242,11 @@ function sample6_execDaumPostcode() {
 						
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
-							<ul>
+							<ul class="all_ul">
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="">
+								<li><input type="button" value="결제하기" onclick="requestPay()">
 							</ul>
 						</div>
 						
@@ -227,7 +262,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -237,7 +272,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -247,7 +282,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -267,12 +302,13 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
-											<ul>
-												<li>
+											<ul class="all_ul">
+												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
-												<li>
-													<input type="radio" name="choose-one" id="new-addr"> 신규 입력
+												
+												<li class="choose_li">
+													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -284,7 +320,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-name"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -294,7 +330,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -305,53 +341,63 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
 											<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="address" name="address" placeholder="주소"><br>
-											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+											<input type="text" id="address" name="address" placeholder="주소" required><br>
+											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
 										
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="ship-req">
 											배송시 요청사항
 									</th>
 									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											<select class="message">
+										<div class="ship-req" style="width: 500px;">
+											<select class="message" id="selectMessage" name="msgList">
 												<option value="security">부재 시 경비실에 맡겨주세요</option>
 												<option value="door">부재 시 문 앞에 놓아주세요</option>
 												<option value="call">배송 전에 연락 주세요</option>
 												<option value="direct">직접 수령하겠습니다</option>
 												<option value="write">직접 입력</option>
 											</select><br><br>
-											<input type="text" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요">
+											
+											<div class="forWrite">
+												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+											</div>
+											
 										</div>
 									</td>
 								</tr>
 							</table>
 						</div>
-							<details>
-								  <summary>주문 동의</summary>
-								  <p><input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의"><span class="must">[필수]</span>주문 내역에 대한 동의</p>
-							</details>
+						
+							<div>
+								<span class="agree-info">주문동의</span>
+								<table class="tbl-agree" id="agree">
+									<tr>
+										<td class="agree_title" id="ag_title" > 주문 내역에 대한 동의</td>
+									</tr>
+									<tr>
+										<td class="agree_contents" id="ag_ct"> <input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의" required><span class="must">[필수]</span>주문 내역에 대한 동의</p></td>
+									</tr>
+								</table>
+							
+							</div>
 						
 					
 					</div>	 <!-- orderinfo div 끝 -->			
-				
-
-
-
-
-
-
-
 				</div>
+				</form>
+	<div id="footer">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+  	</div>
 				
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
 
@@ -386,9 +432,9 @@ function sample6_execDaumPostcode() {
 			$("#memChkBox").change(function(){
 				if($("#memChkBox").is(":checked")){
 
-				$('#buyername').val('${ordersDTO.mem_name}');
-				$('#buyerphone').val('${ordersDTO.mem_tel}');
-				$('#buyermail').val('${ordersDTO.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
+				$('#buyername').val('${members.mem_name}');
+				$('#buyerphone').val('${members.mem_tel}');
+				$('#buyermail').val('${members.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
 				
 			} else {
 				
@@ -432,7 +478,105 @@ function sample6_execDaumPostcode() {
 	           });
 	           
 	        });
-	
+		
+		$('#selectMessage').change(function(){
+			let value = $('#selectMessage option:selected').val();
+			if (value = 'write') {
+				$('#forWrite').attr("disabled", false);
+			} else {
+				$('#security').attr("disabled", true);
+			}
+			
+		});
+		
+		/* var sum=0;
+	     <c:forEach var="item" items="${basketList }">
+	        sum += ${item.price}
+	     </c:forEach> */
+	     
+	        function requestPay() {
+	        var IMP = window.IMP; // 생략가능
+	        IMP.init('imp26451542');
+	        // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	        IMP.request_pay({
+	            //pg: 'inicis', // version 1.1.0부터 지원.
+	            pg: 'html5_inicis',
+	            /*
+	            'kakao':카카오페이,
+	            html5_inicis':이니시스(웹표준결제)
+	            'nice':나이스페이
+	            'jtnet':제이티넷
+	            'uplus':LG유플러스
+	            'danal':다날
+	            'payco':페이코
+	            'syrup':시럽페이
+	            'paypal':페이팔
+	            */
+	            pay_method: 'card',
+	            /*
+	            'samsung':삼성페이,
+	            'card':신용카드,
+	            'trans':실시간계좌이체,
+	            'vbank':가상계좌,
+	            'phone':휴대폰소액결제
+	            */
+	            merchant_uid: 'merchant_' + new Date().getTime(),
+	            /*
+	            merchant_uid에 경우
+	            https://docs.iamport.kr/implementation/payment
+	            위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+	            참고하세요.
+	            나중에 포스팅 해볼게요.
+	            */
+	            name: '주문명:결제테스트',
+	            //결제창에서 보여질 이름
+	            amount: 1000,
+	            //가격
+	            buyer_email: 'abcMartek@siot.do',
+	            buyer_name: '김성현', //구매자 이름
+	            buyer_tel: '010-2878-7531',
+	            buyer_addr: '서울특별시 강남구 삼성동',
+	            buyer_postcode: '123-456',
+	            /*
+	            모바일 결제시,
+	            결제가 끝나고 랜딩되는 URL을 지정
+	            (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+	            */
+	        }, function (rsp) {
+	            console.log(rsp);
+	            // if (rsp.success) {
+	               $.ajax({
+	                  url: "${pageContext.request.contextPath}/contents/insertOrdList.do", //가맹점 서버
+	                    method: "POST",
+	                    /*headers: { "Content-Type": "application/text" },*/
+	                    data: {
+	                        imp_uid: rsp.imp_uid,
+	                        merchant_uid: rsp.merchant_uid,
+	                        amount : rsp.paid_amount,
+	                        buyer_name : rsp.buyer_name
+	                        //기타 필요한 데이터가 있으면 추가 전달
+	                    },
+	                    dataType: 'text',
+	                    success: function(data){
+	                       //var msg1 = '결제가 완료되었습니다.';
+	                        //msg1 += '고유ID : ' + rsp.imp_uid;
+	                        //msg1 += '상점 거래ID : ' + rsp.merchant_uid;
+	                        //msg1 += '결제 금액 : ' + rsp.paid_amount;
+	                        //msg1 += '구매자 이름 :' + rsp.buyer_name;
+	                        //msg += '카드 승인번호 : ' + rsp.apply_num;
+	                        //msg1 += '구매자'+ rsp.buyer_name + '님의';
+	                        alert('구매자 '+rsp.buyer_name + '님의 결제가 완료되었습니다.');
+	                        location.href="http://localhost:8181/j20220904/";
+	                      },
+	                      error: function(err){
+	                         var msg2 = '결제에 실패하였습니다.';
+	                         alert(msg2);
+	                      }
+	                      
+	                  });
+	        })
+	    };
 
 </script>
 </html>

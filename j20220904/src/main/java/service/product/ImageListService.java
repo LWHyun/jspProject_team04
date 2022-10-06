@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dto.ProductDTO;
-import dto.Product_ImgDTO;
+
 import dto.Product_ImgSrcDTO;
 import dto.QABoardDTO;
+import dto.ReviewBoardDTO;
 import dao.LikeProDAO;
 import dao.ProductDAO;
 import dao.QABoardDAO;
+import dao.ReviewBoardDAO;
 
 public class ImageListService implements CommandProcess {
 
@@ -32,18 +33,32 @@ public class ImageListService implements CommandProcess {
 		String toURI = request.getRequestURI();
 		toURI = toURI+"?product_id="+product_id+"&gender="+gender;
 		
-		// Dao랑 Service 연결
-		QABoardDAO qbd = QABoardDAO.getInstance();
+		
+		
 		
 		try {
+			// Dao랑 Service 연결
+			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
+			QABoardDAO qbd = QABoardDAO.getInstance();
 			ProductDAO productDAO = ProductDAO.getInstance();
 			LikeProDAO likeProDAO = LikeProDAO.getInstance();
 			
 			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
 			int rbTotCnt = qbd.getTotalRBCnt(); // 리뷰게시판 총 개수
 			
+			// 리뷰 페이징
+			String pageNum1 = request.getParameter("pageNum1");
+			if (pageNum1 == null || pageNum1.equals("")) {
+				pageNum1 = "1";
+			}
+			int currentPage1 = Integer.parseInt(pageNum1);
+			int pageSize1 = 10, blockSize1 = 10;
+			int startRow1 = (currentPage1 - 1) * pageSize1 + 1;
+			int endRow1 = startRow1 + pageSize1 - 1;
+			int startNum1 = rbTotCnt - startRow1 + 1;
 			
-			String pageNum2 = request.getParameter("pageNum");
+			// Q&A 페이징
+			String pageNum2 = request.getParameter("pageNum2");
 			if (pageNum2 == null || pageNum2.equals("")) {
 				pageNum2 = "1";
 			}
@@ -58,15 +73,22 @@ public class ImageListService implements CommandProcess {
 			
 			List<Product_ImgSrcDTO> list =  productDAO.selectImg(product_id, gender);
 			// Board 조회
+			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow1, endRow1);
 			List<QABoardDTO> qAList = qbd.qABoardList(startRow2, endRow2);
 			int likeCnt = likeProDAO.proLikeProCnt(mem_id,product_id);
 			
-			int pageCnt = (int)Math.ceil((double)qATotCnt/pageSize2);
+			int pageCnt1 = (int)Math.ceil((double)rbTotCnt/pageSize1);
+			int pageCnt2 = (int)Math.ceil((double)qATotCnt/pageSize2);
 			
-			int startPage = (int)(currentPage2 - 1) / blockSize2 * blockSize2 + 1;
-			int endPage = startPage + blockSize2 - 1;
+			int startPage1 = (int)(currentPage1 - 1) / blockSize1 * blockSize1 + 1;
+			int endPage1 = startPage1 + blockSize1 - 1;
 			// 공갈 Page 방지
-			if (endPage > pageCnt) endPage = pageCnt;
+			if (endPage1 > pageCnt1) endPage1 = pageCnt1;
+			
+			int startPage2 = (int)(currentPage2 - 1) / blockSize2 * blockSize2 + 1;
+			int endPage2 = startPage2 + blockSize2 - 1;
+			// 공갈 Page 방지
+			if (endPage2 > pageCnt2) endPage2 = pageCnt2;
 			
 			request.setAttribute("product_id",product_id);
 			request.setAttribute("gender",gender);
@@ -75,16 +97,29 @@ public class ImageListService implements CommandProcess {
 			request.setAttribute("toURI",toURI);
 			request.setAttribute("likeCnt",likeCnt);
 			
+			
+			
+			
 			request.setAttribute("qATotCnt", qATotCnt);
 			request.setAttribute("rbTotCnt", rbTotCnt);
-			request.setAttribute("pageNum", pageNum2);
-			request.setAttribute("currentPage", currentPage2);
-			request.setAttribute("startNum", startNum2);
+			// 리뷰
+			request.setAttribute("pageNum1", pageNum1);
+			request.setAttribute("currentPage1", currentPage1);
+			request.setAttribute("startNum1", startNum1);
+			request.setAttribute("reviewList", reviewList);	// ***
+			request.setAttribute("blockSize1", blockSize1);
+			request.setAttribute("pageCnt1", pageCnt1);
+			request.setAttribute("startPage1", startPage1);
+			request.setAttribute("endPage1", endPage1);
+			// Q&A
+			request.setAttribute("pageNum2", pageNum2);
+			request.setAttribute("currentPage2", currentPage2);
+			request.setAttribute("startNum2", startNum2);
 			request.setAttribute("qAList", qAList);	// ***
 			request.setAttribute("blockSize", blockSize2);
-			request.setAttribute("pageCnt", pageCnt);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
+			request.setAttribute("pageCnt2", pageCnt2);
+			request.setAttribute("startPage2", startPage2);
+			request.setAttribute("endPage2", endPage2);
 			
 			
 			

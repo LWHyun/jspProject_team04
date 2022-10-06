@@ -66,7 +66,6 @@ public class NoticeDAO {
 				notice.setNotice_title(rs.getString("notice_title"));
 				notice.setNotice_date(rs.getDate("notice_date"));
 				notice.setNotice_content(rs.getString("notice_content"));
-				//notice.setNotice_type(rs.getInt("notice_type"));
 				
 				list.add(notice);
 			}
