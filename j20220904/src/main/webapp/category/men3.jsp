@@ -141,9 +141,9 @@
 		});
 	});
 	
-	
+	//찜하기기능
 	$(function () {
-		var num = 0;
+		var num =$('.like_img').val();
 
 		var imageName = ["heart1", "heart0"];
 		$(".like_img").click(function() {
@@ -157,14 +157,17 @@
 					data: {
 							'product_id' : product_id,
 							'mem_id' :  '${sessionScope.mem_id}'
+							
 					      },
 						
 					dataType: 'text',
 					success : function(data){
+						console.log('data='+data);
 						if(data == '1') {	
 							alert('찜한 상품이 삭제되었습니다');
-						}else{
-							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 						}
 					},
 					error: function(err){
@@ -184,10 +187,13 @@
 						  },
 					dataType: 'text',
 					success : function(data){
+						console.log('data='+data);
 						if(data == '1') {
 							alert('찜한 상품이 등록되었습니다');
-						}else{
-							location.href="${pageContext.request.contextPath}/member/loginForm.do";
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 						}
 					},
 					error: function(err){
@@ -198,7 +204,7 @@
 			
 				}
 			
-			$(this).attr("src","/j20220904/img/contexts/"+ imageName[num]+".png");
+			$(this).attr("src","../img/contexts/"+ imageName[num]+".png");
 		});
 	});	
 	
@@ -218,7 +224,6 @@
 	        });
 			console.log(size);
 			console.log(brandArray);
-			console.log(${ca_code})
 			$.ajax({
 				url : '${pageContext.request.contextPath}/category/findFilter.do',
 				data : {'brandArray' : brandArray,
@@ -233,10 +238,28 @@
 				}
 			});	
 		}
-	}
+	};
+	
+	//필터 초기화 버튼 누를시 동작
+	$(function() {
+		$('#btn_reset').click(function() {
+			location.reload();
+		})
+	});
 	
 	
+/* 	$(function() {
+		var mem_id = 
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/likeList.do',
+			dataType : 'text',
+			success : function(data) {
+				
+			}
+		});
+	}); */
 	
+
 </script>
 </head>
 <body>
@@ -301,7 +324,15 @@
 				</a>
 				<hr>
 				<div class="pro_buycontent">
-					<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+					<c:choose>
+						<c:when test="${list.like_product_id > 0 }">
+							<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart0.png" ><!-- onclick="like()" -->
+						</c:when>
+						<c:otherwise>
+							<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+						</c:otherwise>
+					</c:choose>
+					 
 					<button type="button" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>

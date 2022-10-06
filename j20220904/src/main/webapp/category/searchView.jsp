@@ -200,30 +200,60 @@
 		}else{
 			var ca_code = 0;
 			var brandArray = [];
-			var ca_code = ${ca_code}
+			var searchBar = '${searchBar}';
+			var ca_code ='${ca_code}';
+			
+			
+			
 			var size = $('input[name="radio_size"]:checked').val();
 			$('input[name="chkbox_brand"]:checked').each(function(){//체크된 리스트 저장
 	            brandArray.push($(this).val());
 	        });
 			console.log(size);
 			console.log(brandArray);
-			
-			$.ajax({
-				url : '${pageContext.request.contextPath}/category/findFilter.do',
-				data : {'brandArray' : brandArray,
-						'size' : size,
-						'ca_code' : ca_code},
-				traditional : true,
-				dataType : 'html',
-				success : function(data) {
-					console.log(data);
-					alert(data);
-					$('.pro_inner').html(data);
+				if(searchBar ==""){
+					$.ajax({
+						url : '${pageContext.request.contextPath}/category/findFilter.do',
+						data : {'brandArray' : brandArray,
+								'size' : size,
+								'ca_code' : ca_code},
+						traditional : true,
+						dataType : 'html',
+						success : function(data) {
+							console.log(data);
+							alert(data);
+							$('.pro_inner').html(data);
+						}
+					});	
+				}else if(ca_code ==""){
+					$.ajax({
+						url : '${pageContext.request.contextPath}/category/findFilter.do',
+						data : {'brandArray' : brandArray,
+								'size' : size,
+								'searchBar' : searchBar},
+						traditional : true,
+						dataType : 'html',
+						success : function(data) {
+							console.log(data);
+							alert(data);
+							$('.pro_inner').html(data);
+						}
+					});	
 				}
-			});	
+				
+				
+			
+			
+				
 		}
 	}
 	
+	//필터 초기화 버튼 누를시 동작
+	$(function() {
+		$('#btn_reset').click(function() {
+			location.reload();
+		})
+	});
 	
 </script>
 </head>
@@ -288,11 +318,18 @@
 					<img alt="상품이미지" src="${list.s_file_path }" class="pro_img"><br>
 					<span class="pro_brand">${list.brand }</span><br>
 					<span class="pro_model">${list.kor_name }</span><br>
-					<span class="pro_price">${list.price }</span><br>
+					<span class="pro_price">${list.price }</span><span>원</span><br>
 					</a>
 					<hr>
 					<div class="pro_buycontent">
-						<img class="like_img" alt="하트이미지" src="../img/contexts/heart1.png" onclick="like()">
+						<c:choose>
+							<c:when test="${list.like_product_id > 0 }">
+								<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart0.png" ><!-- onclick="like()" -->
+							</c:when>
+							<c:otherwise>
+								<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+							</c:otherwise>
+						</c:choose>
 						<button type="button" class="pro_buynow">바로구매</button>
 					</div>
 				</div>

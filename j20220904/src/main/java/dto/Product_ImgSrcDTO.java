@@ -21,8 +21,15 @@ public class Product_ImgSrcDTO {
 	private int pd_size;
 	
 	private String ca_name;
+	private int like_product_id;
 	
 	
+	public int getLike_product_id() {
+		return like_product_id;
+	}
+	public void setLike_product_id(int like_product_id) {
+		this.like_product_id = like_product_id;
+	}
 	public String getCa_name() {
 		return ca_name;
 	}
