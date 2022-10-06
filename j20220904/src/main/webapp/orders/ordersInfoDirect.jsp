@@ -244,7 +244,7 @@ function sample6_execDaumPostcode() {
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="">
+								<li><input type="submit" value="결제하기">
 							</ul>
 						</div>
 						
@@ -260,7 +260,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -270,7 +270,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -280,7 +280,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -318,7 +318,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-name"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -328,7 +328,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -339,10 +339,10 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
 											<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="address" name="address" placeholder="주소"><br>
-											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+											<input type="text" id="address" name="address" placeholder="주소" required><br>
+											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
 										
 									</td>
 								</tr>
