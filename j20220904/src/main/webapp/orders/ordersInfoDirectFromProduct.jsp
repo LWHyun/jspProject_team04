@@ -74,17 +74,18 @@
 	}
 		
 	
-	ul {
+	.all_ul {
 		list-style: none;
 		
 	}
 	
-	li {
+	.all_li {
 		float : left;
 		margin-right: 30px;
 	}
 	
 	.choose_li{
+		float : left;
 		margin-top : 17px;
 		margin-right : 10px;
 	}
@@ -214,7 +215,7 @@ function sample6_execDaumPostcode() {
  			
  			
  			<div class="order-basket">
-					<!-- 장바구니에서 넘어왔을 때 -->
+					<!-- 상품상세에서 넘어왔을 때 -->
 					
 					<table class="order-body">
 					
@@ -248,7 +249,7 @@ function sample6_execDaumPostcode() {
 								
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
-							<ul>
+							<ul class="all_ul">
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
@@ -307,7 +308,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
-											<ul>
+											<ul class="all_ul">
 												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>

@@ -6,6 +6,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.OrdersInfoDTO;
+
 public class OrdersDetailDAO {
 
 	
@@ -36,4 +38,17 @@ private static OrdersDetailDAO instance;
 		
 		return conn;
 	}
+	
+	
+	public OrdersInfoDTO insertDetail (OrdersInfoDTO ordersInfoDto) {
+		
+		
+		
+		
+		
+		return ordersInfoDto;
+		
+	}
+	
+	
 }
