@@ -52,7 +52,6 @@
 		list-style-type: none;
 		display: list-item;
     	font-size: 0;
-    	min-width: 
 	}
 	.swiper-slide {
 		flex-shrink: 0;
@@ -118,7 +117,7 @@
 		left: 0;
 		top: 0;
 		pointer-events: none;
-		opacitiy: 0;
+		opacity: 0;
 		z-index: -1000;
 	}
 	.best-brand-prod-wrap {
@@ -199,7 +198,7 @@
 	    overflow: hidden;
 	    height: 38px;
 	    max-height: 38px;
-	    line-height 19px;
+	    line-height: 19px;
 	    display: block;
 	    white-space: normal;
  	 }
@@ -215,7 +214,6 @@
 	.price-unit {
 		font-size: 14px;
 	}
-	
 </style>
 </head>
 <body>
@@ -249,6 +247,27 @@
 		</div>
 		<div class="best-brand-prod-wrap">
 			<ul class="col-list">
+			<c:forEach var="list" items="${list }" begin="1" end="4">
+				<li class="col-list-item prod-item">
+					<div class="prod-item-inner">
+						<a class="prod-link" id="#" href="contents/contents_men.do?product_id=${list.product_id }&gender=${list.gender}">
+							<div class="img-wrap">
+								<img class="img-box" alt="신발" src="${list.s_file_path }">
+							</div>
+							<div class="prod-info-wrap" id=#>
+								<div class="prod-info-wrap" id="#">
+									<span class="prod-brand">${ca_name }</span><br>
+									<span class="prod-name">${list.kor_name }</span><br> 
+									<span class="prod-price">
+										<span class="prod-cost">${list.price}</span>
+										<span class="price-unit">원</span>
+									</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			</c:forEach>
 				<li class="col-list-item prod-item">
 					<div class="prod-item-inner">
 						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
@@ -268,63 +287,7 @@
 						</a>
 					</div>
 				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
+		        
 			</ul>
 		
 		</div>
