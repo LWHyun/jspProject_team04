@@ -262,7 +262,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
+											 <input type="text" id="buyername" name="buyername" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -272,7 +272,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
+											 <input type="text" id="buyerphone" name="buyerphone"  required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -282,7 +282,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
+											 <input type="text" id="buyermail" name="buyermail" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -320,7 +320,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-name" required> <!-- placeholder -->
+											 <input type="text" id="receiver-name" name="receiver_name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -330,7 +330,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone" required> <!-- placeholder -->
+											 <input type="text" id="receiver-phone" name="receiver_phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
