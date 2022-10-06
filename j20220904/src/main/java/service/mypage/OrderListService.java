@@ -1,6 +1,7 @@
 package service.mypage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
 import dao.MemberDAO;
+import dto.MyPage_OrdersDTO;
 
 public class OrderListService implements CommandProcess {
 
@@ -39,10 +41,16 @@ public class OrderListService implements CommandProcess {
 		// 주문 갯수
 		int ordersCnt = memberDAO.ordersCnt(mem_id); 
 		
+		// 주문 정보 및 상세 정보
+		List<MyPage_OrdersDTO> ordersDTOlist = memberDAO.selectOrdersList(mem_id);
+		
+		System.out.println("list="+ordersDTOlist);
+		
 		request.setAttribute("active", "myOrder");
 		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("ordersCnt", ordersCnt);
+		request.setAttribute("ordersDTOlist", ordersDTOlist);
 		request.setAttribute("display", "/mypage/myPageOrdersList.jsp");
 		
 		return "/mypage/myPage.jsp";
