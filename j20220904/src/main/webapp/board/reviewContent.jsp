@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../css/boardCss/reviewContent.css">
 </head>
 <body>
-	
 	<!-- 헤더 -->
 	<div id="header">
 		<jsp:include page="../main/header.jsp"></jsp:include>
@@ -31,14 +30,11 @@
 						<pre>${reviewBoard.rb_content}</pre>
 					</div>
 					<!-- 이미지 넣을 예정 -->
-					<%-- <div class="answer-box">
-						<pre>${qABoard.q_answer}</pre>
-					</div> --%>
 				</div>
 				<div class="btn-wrap text-right">
-					<a href="#" class="btn btn-dialog">수정</a>
+					<a href="reviewUpdateForm.do?rb_id=${rb_id}" class="btn btn-dialog">수정</a>
 					<a href="#" class="btn btn-dialog">삭제</a>
-					<a href="reviewBoard.do?$pageNum=${pageNum}" class="btn btn-dialog">목록</a>
+					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
 		</div>

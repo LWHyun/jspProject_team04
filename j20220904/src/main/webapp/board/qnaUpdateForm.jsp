@@ -25,7 +25,7 @@
 						<input type="hidden" name="pageNum" value="${pageNum }">
 						<input type="hidden" name="q_date" value="${qABoard.q_date }">
 						<div class="flex-box board-view-head">
-							<span class="q-title"><input type="text" name="q_title" required="required" value="{qABoard.q_title }">${qABoard.q_title }</span>
+							<span class="q-title"><input type="text" name="q_title" required="required" value="${qABoard.q_title }"></span>
 							<span class="q-date">${qABoard.q_date}</span>
 							<span class="q-mem">${qABoard.mem_id}</span>
 						</div>

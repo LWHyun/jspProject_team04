@@ -1283,7 +1283,7 @@
 											</ol>
 										</div> -->
 										<div class="btn-wrap text-right">
-											<a href="reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
+											<a href="../board/reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
 									</div>
 									
@@ -1400,7 +1400,7 @@
 												</ol>
 											</div>  -->
 											<div class="btn-wrap text-right">
-												<a href="qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
+												<a href="../board/qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
 											</div>
 										</div>
 									</div>
