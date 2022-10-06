@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.PageHandler;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
@@ -40,9 +41,17 @@ public class OrderListService implements CommandProcess {
 		
 		// 주문 갯수
 		int ordersCnt = memberDAO.ordersCnt(mem_id); 
+		//System.out.println("ordersCnt="+ordersCnt);
+		// 페이징
+		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
+		//System.out.println("curPage="+curPage);
+		PageHandler ph = new PageHandler(curPage, 2, 2, ordersCnt);
+		
+		int startNum = (curPage-1)*ph.getPageSize()+1;
+		int endNum = startNum+ph.getPageSize()-1;
 		
 		// 주문 정보 및 상세 정보
-		List<MyPage_OrdersDTO> ordersDTOlist = memberDAO.selectOrdersList(mem_id);
+		List<MyPage_OrdersDTO> ordersDTOlist = memberDAO.selectOrdersList(mem_id, startNum, endNum);
 		
 		System.out.println("list="+ordersDTOlist);
 		
@@ -51,6 +60,8 @@ public class OrderListService implements CommandProcess {
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("ordersCnt", ordersCnt);
 		request.setAttribute("ordersDTOlist", ordersDTOlist);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("ph", ph);
 		request.setAttribute("display", "/mypage/myPageOrdersList.jsp");
 		
 		return "/mypage/myPage.jsp";

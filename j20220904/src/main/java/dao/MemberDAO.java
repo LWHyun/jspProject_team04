@@ -352,10 +352,16 @@ public class MemberDAO {
 	}
 	
 	// 주문 정보 및 주문 상세 정보 가져오는 메서드
-	public List<MyPage_OrdersDTO> selectOrdersList(String mem_id) {
+	public List<MyPage_OrdersDTO> selectOrdersList(String mem_id, int startNum, int endNum) {
+//		System.out.println(startNum + ", "+endNum);
 		Connection conn = getConnection();
 		
-		String sql = "select * from orders where mem_id = ? order by order_date desc";
+		String sql = "select * from \r\n"
+				+ "(select rownum rn , t.* from \r\n"
+				+ "(select * from orders where mem_id = ? order by order_date desc)t)\r\n"
+				+ "where rn >= ? and rn <= ?";
+//		String sql = "select * from orders where mem_id = ? order by order_date desc";
+		
 		String sql2 = "select od.order_id, od.size_num, od.product_id, od.cnt, od.order_price, ps.pd_size, p.gender,"
 				+ "p.brand, p.kor_name, pi.s_file_path "
 				+ "from orders_detail od "
@@ -371,11 +377,14 @@ public class MemberDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
 			
 			rs = pstmt.executeQuery();
 			
 			// MyPage_OrdersDTO 먼저 가져오기
 			if(rs.next()) {
+				System.out.println("rs바로 전");
 				do {
 					MyPage_OrdersDTO dto = new MyPage_OrdersDTO();
 					dto.setOrder_id(rs.getInt("order_id"));

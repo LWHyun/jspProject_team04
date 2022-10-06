@@ -98,7 +98,7 @@
 	                    <div class="border-line-box-header">
 	                        <h3 class="text-head2">최근 주문내역</h3>
 	                        <div class="btn-wrap">
-	                            <a href="${pageContext.request.contextPath }/mypage/mypage.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
+	                            <a href="${pageContext.request.contextPath }/mypage/orderList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
 	                        </div>
 	                    </div><!-- border-line-box-header -->
 	
@@ -127,7 +127,7 @@
 	
 	                        <div class="tab-content">
 	                            <div class="btn-wrap">
-	                                <a href="${pageContext.request.contextPath }/mypage/orderList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
+	                                <a href="${pageContext.request.contextPath }/mypage/likeProList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
 	                            </div>
 	                            
 	                            <div class="col-list-wrap" >

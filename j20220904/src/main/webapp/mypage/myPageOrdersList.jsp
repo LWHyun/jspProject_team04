@@ -129,25 +129,24 @@
     	<!-- 페이징 처리부분 -->
 	    <div id="mypage-product-interest-pagination" class="pagination-wrap">
 	    	<div>	
-	    		<!-- 동적 처리 부분 -->
 	    		<ol class="pagination-list">
-	    			<%-- <c:if test="${ph.showPrev == true }">		
+	    			<c:if test="${ph.showPrev == true }">		
 		    			<li class="pagination-item showPrev">
-		    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${ph.startPage-1}">&lt;</a>
+		    				<a href="${pageContext.request.contextPath }/mypage/orderList.do?curPage=${ph.startPage-1}">&lt;</a>
 		    			</li>
 	    			</c:if>
 	    			
 	    			<c:forEach var="i" begin="${ph.startPage }" end="${ph.endPage }">
 	    				<c:if test="${requestScope.curPage == i}">
 			    			<li class="pagination-item" name="li_page">			
-			    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${i }">
+			    				<a href="${pageContext.request.contextPath }/mypage/orderList.do?curPage=${i }">
 			    				<button type="button" class="btn-page btn-page-num selected">${i }</button>		
 			    				</a>
 		    				</li>	
 	    				</c:if>
 	    				<c:if test="${requestScope.curPage != i}">
 			    			<li class="pagination-item" name="li_page">	
-			    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${i }">		
+			    				<a href="${pageContext.request.contextPath }/mypage/orderList.do?curPage=${i }">		
 			    				<button type="button" class="btn-page btn-page-num">${i }</button>		
 			    				</a>
 		    				</li>
@@ -156,9 +155,9 @@
     				
     				<c:if test="${ph.showNext == true}">
 	    				<li class="pagination-item showNext">
-		    				<a href="${pageContext.request.contextPath }/mypage/likeProList.do?curPage=${ph.endPage+1}">&gt;</a>
+		    				<a href="${pageContext.request.contextPath }/mypage/orderList.do?curPage=${ph.endPage+1}">&gt;</a>
 		    			</li>	
-	    			</c:if> --%>
+	    			</c:if>
    				</ol>
 			</div>
 		</div><!-- pagination-wrap -->
