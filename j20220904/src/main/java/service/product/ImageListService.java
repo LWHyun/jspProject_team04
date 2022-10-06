@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dto.ProductDTO;
-import dto.Product_ImgDTO;
+
 import dto.Product_ImgSrcDTO;
 import dao.LikeProDAO;
 import dao.ProductDAO;

@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.CategoryDTO;
+import dto.LikeProDTO;
 import dto.ProductDTO;
 import dto.Product_ImgSrcDTO;
 import dto.Recent_SearchClickDTO;
@@ -104,19 +105,26 @@ public class CategoryDAO {
 		return list;
 	}
 	//성별탭으로 검색 ->뿌려주기
-	public List<Product_ImgSrcDTO> selectSearch(int gender) throws SQLException {
+	public List<Product_ImgSrcDTO> selectSearch(int gender, String mem_id) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and p.gender=?";
+		String sql = "";
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+			sql = "select p.*, pi.*, NVL(l.product_id,0) from product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l where p.product_id=pi.product_id and  p.gender=? and  p.product_id = l.product_id(+)";
+			System.out.println("memID SQL->"+sql);
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, gender);
+			rs=pstmt.executeQuery();
+		
+		
 		
 			try {
-				conn = getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, gender);
-				rs=pstmt.executeQuery();
+				
 				while(rs.next()) {
 					Product_ImgSrcDTO pis = new Product_ImgSrcDTO();
 					pis.setProduct_id(rs.getInt("product_id"));
@@ -130,6 +138,7 @@ public class CategoryDAO {
 					pis.setCa_code(rs.getInt("ca_code"));
 					pis.setS_file_path(rs.getString("s_file_path"));
 					pis.setL_file_path(rs.getString("l_file_path"));
+					pis.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 					list.add(pis);
 			} 
 			
@@ -145,23 +154,33 @@ public class CategoryDAO {
 		return list;
 	}
 	//필터기능
-	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code, String searchBar) throws SQLException {
+	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code, String searchBar, String mem_id) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		//브랜드만 있을때
-		String sql = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path from product p join product_image i on p.product_id = i.product_id where p.brand=\'";
-		//size가 없는 필터
-		String sql1 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where ps.pd_size=";
+		//브랜드만 있을때 --하위 카테고리용
+		String sql = "select p.*,i.*,NVL(l.product_id,0) from product p , product_image i, (SELECT * FROM like_pro WHERE mem_id =\'";
+		sql += mem_id+"\') l where p.product_id = l.product_id(+) and p.product_id = i.product_id and p.brand=\'";
+		//size만 있을때 --하위카테고리용
+		String sql1 = "select p.*,i.*,ps.*,NVL(l.product_id,0) from product p,product_image i, product_size ps, (SELECT * FROM like_pro WHERE mem_id =\'";
+		sql1 += mem_id+"\') l  where p.product_id = i.product_id and ps.product_id = i.product_id and  p.product_id = l.product_id(+) and ps.pd_size=";
 		//size랑 브랜드 모두 있을때
-		String sql2 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where p.brand=\'";
+		String sql2 = "select p.*,i.*,ps.*,NVL(l.product_id,0) from product p LEFT OUTER JOIN (SELECT * FROM like_pro WHERE mem_id ='";
+		sql2 += mem_id+"\') l ON p.product_id = l.product_id join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id where p.brand=\'";
 		//사이즈가 있는 거 ->상위카테고리용
-		String sql3 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path,ps.size_num,ps.pd_size,ps.stock from product p join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id join (SELECT * FROM category WHERE  ca_code_ref=";
-		//사이즈가 들어가면 아래 ->상위카테고리용
-		String sql4 = "select p.product_id, p.brand,p.eng_name,p.kor_name,p.gender,p.price,p.color,p.regdate,p.ca_code,i.s_file_path,i.l_file_path from product p join product_image i on p.product_id = i.product_id join (SELECT * FROM category WHERE  ca_code_ref=";
+		String sql3 = "select p.*,i.*,ps.*,NVL(l.product_id,0) from product p left outer join (SELECT * FROM like_pro WHERE mem_id ='";
+		sql3 += mem_id+"\') l on p.product_id = l.product_id join product_image i on p.product_id = i.product_id join product_size ps on ps.product_id = i.product_id join (SELECT * FROM category WHERE  ca_code_ref=";
+		//사이즈가 없는거 아래 ->상위카테고리용
+		String sql4 = "select p.*,i.*,NVL(l.product_id,0) from product p left outer join (SELECT * FROM like_pro WHERE mem_id =\'";
+		sql4 += mem_id+"\') l on p.product_id = l.product_id join product_image i on p.product_id = i.product_id join (SELECT * FROM category WHERE ca_code_ref=";
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		System.out.println("CategoryDAO searchBar-->"+searchBar);
 		System.out.println("CategoryDAO ca_code-->"+ca_code);
+		
+		
+		
+		
+		
 		
 		String sqlResult="";
 		try {
@@ -238,6 +257,7 @@ public class CategoryDAO {
 					product.setCa_code(rs.getInt("ca_code"));
 					product.setS_file_path(rs.getString("s_file_path"));
 					product.setL_file_path(rs.getString("l_file_path"));
+					product.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 					list.add(product);
 				}
 				sqlResult = sql;
@@ -246,8 +266,7 @@ public class CategoryDAO {
 				if(ca_code !=null) {
 					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
 						System.out.println("여기냐1?");
-						sql1 = sql3+ca_code+") c on c.ca_code=p.ca_code where ps.pd_size=";
-						sql1 += size;
+						sql1 = sql3+ca_code+") c on c.ca_code=p.ca_code where ps.pd_size="+size;
 						System.out.println("CategoryDAO sql1전 ->"+sql1);
 						if(gender !=null) {
 							sql1+=" and p.gender = "+gender;
@@ -259,7 +278,7 @@ public class CategoryDAO {
 					}
 					else{
 						System.out.println("여기냐?2");
-						sql1 += size;
+						sql1 += size+ " and p.ca_code="+ca_code;
 						if(gender !=null) {
 							sql1+=" and p.gender = "+gender;
 						}else if (searchBar != null) {
@@ -302,6 +321,7 @@ public class CategoryDAO {
 					product.setSize_num(rs.getInt("size_num"));
 					product.setPd_size(rs.getInt("pd_size"));
 					product.setStock(rs.getInt("stock"));
+					product.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 					list.add(product);
 				}
 				sqlResult = sql1;
@@ -379,6 +399,7 @@ public class CategoryDAO {
 					product.setCa_code(rs.getInt("ca_code"));
 					product.setS_file_path(rs.getString("s_file_path"));
 					product.setL_file_path(rs.getString("l_file_path"));
+					product.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 					list.add(product);
 				}
 				sqlResult = sql2;
@@ -395,6 +416,8 @@ public class CategoryDAO {
 		return list;
 
 	}
+	
+	
 	//인기검색어테이블에 검색어가 있는지 확인
 	public int select(String searchWord) throws SQLException {
 		String sql = "select sc_word from searchclick where sc_word=Upper(?)";
@@ -505,9 +528,7 @@ public class CategoryDAO {
 	}
 	//카테고리탭에 마우스 올렸을때 카테고리 메뉴 찾는 부분
 	public List<CategoryDTO> selectCategory(String result) throws SQLException {
-		String sql= "SELECT ca_code,LPAD(\' \',(LEVEL-1)*2) || ca_name\r\n"
-				+ "FROM category\r\n"
-				+ "START WITH ca_name = \'"+result+"\' CONNECT BY PRIOR ca_code=ca_code_ref order by ca_code asc";
+		String sql= "SELECT ca_code,ca_name FROM category START WITH ca_name = \'"+result+"\' CONNECT BY PRIOR ca_code=ca_code_ref order by ca_code asc";
 		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
 		
 		Connection conn = null;
@@ -542,15 +563,17 @@ public class CategoryDAO {
 		return list;
 	}
 	//카테고리 코드별 정렬
-	public List<Product_ImgSrcDTO> selectCodeSearch(String ca_code) throws SQLException {
-		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and ca_code=?";
+	public List<Product_ImgSrcDTO> selectCodeSearch(String ca_code, String mem_id) throws SQLException {
+		String sql = "select p.*,pi.*,NVL(l.product_id,0) from product p, product_image pi, (SELECT * FROM like_pro WHERE mem_id =?) l where p.product_id=pi.product_id and p.product_id = l.product_id(+) and ca_code=?";
 		if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
-			sql = "select *\r\n"
-					+ "from     product p\r\n"
-					+ "   ,    product_image pi \r\n"
-					+ "    ,   (SELECT * FROM category WHERE  ca_code_ref=?) c\r\n"
+			sql = "select p.*,pi.*,NVL(l.product_id,0)\r\n"
+					+ "from     product p,\r\n"
+					+ "        product_image pi,\r\n"
+					+ "        (SELECT * FROM like_pro WHERE mem_id =?) l,\r\n"
+					+ "        (SELECT * FROM category WHERE ca_code_ref=?) c\r\n"
 					+ "where p.ca_code = c.ca_code\r\n"
-					+ "and  p.product_id=pi.product_id";
+					+ "and  p.product_id=pi.product_id \r\n"
+					+ "and p.product_id = l.product_id(+)\r\n";
 		}
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 		Connection conn = null;
@@ -563,7 +586,8 @@ public class CategoryDAO {
 		try {
 			conn = getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, ca_code);
+			pstmt.setString(1, mem_id);
+			pstmt.setString(2, ca_code);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Product_ImgSrcDTO pd = new Product_ImgSrcDTO();
@@ -580,6 +604,7 @@ public class CategoryDAO {
 				pd.setCa_code(rs.getInt("ca_code"));
 				pd.setS_file_path(rs.getString("s_file_path"));
 				pd.setL_file_path(rs.getString("l_file_path"));
+				pd.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 				list.add(pd);
 				
 				
@@ -711,6 +736,35 @@ public class CategoryDAO {
 			if(conn != null)conn.close();
 		}
 		return result;
+	}
+	public List<LikeProDTO> selectLikeList(String mem_id) throws SQLException {
+		List<LikeProDTO> likeList = new ArrayList<LikeProDTO>();
+		String sql = "select product_id from like_pro where mem_id=?";
+		Connection conn =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				LikeProDTO lp = new LikeProDTO();
+				lp.setProduct_id(rs.getString(1));
+				likeList.add(lp);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs !=null)rs.close();
+			if(pstmt != null)pstmt.close();
+			if(conn != null)conn.close();
+		}
+		
+		return likeList;
 	}
 	
 	

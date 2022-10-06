@@ -24,13 +24,16 @@ public class SearchViewService implements CommandProcess {
 		String ca_code = request.getParameter("ca_code");
 		HttpSession session = request.getSession();
 		String searchWord = (String) session.getAttribute("searchWord");
+		String mem_id = (String) session.getAttribute("mem_id");
+		System.out.println(mem_id);
+		
 		CategoryDAO cd = CategoryDAO.getInstance();
 		System.out.println("searchViewService "+searchWord);
 		int result = 0;
 		//카테고리 코드가 있으면 아래 실행
 		if(ca_code != null) {
 				try {
-					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code);
+					List<Product_ImgSrcDTO> list = cd.selectCodeSearch(ca_code,mem_id);
 					System.out.println("SearchViewService list.size()-->"+list.size());
 
 					request.setAttribute("list", list);
@@ -38,6 +41,7 @@ public class SearchViewService implements CommandProcess {
 					request.setAttribute("ca_name", codeName);
 					request.setAttribute("ca_code", ca_code);
 					request.setAttribute("searchBar", searchBar);
+					
 					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
