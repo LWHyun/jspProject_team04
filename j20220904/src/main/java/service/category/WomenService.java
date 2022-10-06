@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.CategoryDAO;
@@ -25,11 +26,14 @@ public class WomenService implements CommandProcess {
 		}else {
 			result ="여성용";
 		}
+		HttpSession session = request.getSession();
+		String mem_id = (String) session.getAttribute("mem_id");
+		System.out.println(mem_id);
 		
 		CategoryDAO cd = CategoryDAO.getInstance();
 		
 		try {
-			List<Product_ImgSrcDTO> list = cd.selectSearch(gender);
+			List<Product_ImgSrcDTO> list = cd.selectSearch(gender,mem_id);
 			request.setAttribute("result", result);
 			request.setAttribute("list", list);
 			

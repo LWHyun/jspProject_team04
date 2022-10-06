@@ -177,6 +177,30 @@ public class QABoardDAO {
 			if (conn != null) conn.close();
 		}
 	}
+	// 게시물 수정 -> 되는진 모르겠음
+	public int update(QABoardDTO qABoard) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		int result = 0;	
+		String sql="UPDATE qa_board SET q_title=?, q_content=?, q_date=sysdate WHERE q_id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qABoard.getQ_title());
+			pstmt.setString(2, qABoard.getQ_content());
+			pstmt.setInt(3, qABoard.getQ_id());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
+	}
 	
 	
 	private void close(AutoCloseable... ac) {

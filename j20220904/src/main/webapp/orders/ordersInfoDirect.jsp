@@ -42,7 +42,7 @@
 								border-bottom: 1px solid black;	
 							}
 					
-	.order-user, .ship-info, .order-agree {
+	.order-user, .ship-info, .agree-info {
 		font-size: 18px;
 		font-weight: bold;
 		margin-bottom : 10px;
@@ -58,37 +58,73 @@
 		margin-bottom : 15px;
 	}
 	
-	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td{
+	.order-ship {
+		margin-bottom : 15px;
+	}
+	
+	
+	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td .tbl-agree td{
 			padding : 20px;
 			vertical-align: middle;
 			
 		}
 		
-	.tbl-ship {
+	.tbl-ship, .tbl-agree {
 		margin-top : 15px;
 	}
 		
 	
-	ul {
+	.all_ul {
 		list-style: none;
 		
 	}
 	
-	li {
+	.all_li {
 		float : left;
 		margin-right: 30px;
 	}
 	
-	.tbl-form, .tbl-ship, .agree-box {
+	.choose_li{
+		float : left;
+		margin-top : 17px;
+		margin-right : 10px;
+	}
+	
+	.ship-req {
+		margin-top: 20px;
+		margin-bottom : 20px;
+	}
+	
+	#receiver-name, #receiver-phone {
+		margin-top : 17px;
+	}
+	
+	.tbl-form, .tbl-ship, .tbl-agree {
 			border-top : 2px solid black;
 			border-bottom: 1px solid #E6E6E6;
 	} 
 	
+	.agree_info {
+		margin-top: 10px;
+	}
+	
+	.agree_title {
+		vertical-align: middle;
+		padding : 20px;
+	}
+	
+	.agree_contents {
+		padding : 20px;
+		/* display : none; */
+	}
+	/* .forWrite { display : none;} */
+	
+	
 	.order-payment-box {
 	position: sticky;
-	top : 500px;
+	top : 700px;
     width: 400px;
-    margin-right : 100px;
+    margin-right : 300px;
     margin-top : 30px;
     float : right;
     padding: 26px;
@@ -97,7 +133,7 @@
     right: 0;
     z-index: 1
 	}
-	
+	/* 
 	summary {
     cursor: pointer;
      list-style: none;
@@ -108,9 +144,7 @@
   summary::-webkit-details-marker {
     display: none;
   }
-  
-	
-	
+   */
 	
 </style>
 <script type="text/javascript">
@@ -169,6 +203,7 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
+	<form action="" method="">
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
@@ -206,11 +241,11 @@ function sample6_execDaumPostcode() {
 						
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
-							<ul>
+							<ul class="all_ul">
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="">
+								<li><input type="submit" value="결제하기">
 							</ul>
 						</div>
 						
@@ -226,7 +261,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -236,7 +271,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -246,7 +281,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -266,12 +301,13 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
-											<ul>
-												<li>
+											<ul class="all_ul">
+												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
-												<li>
-													<input type="radio" name="choose-one" id="new-addr"> 신규 입력
+												
+												<li class="choose_li">
+													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -283,7 +319,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-name"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -293,7 +329,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver-phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -304,46 +340,92 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
 											<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="address" name="address" placeholder="주소"><br>
-											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+											<input type="text" id="address" name="address" placeholder="주소" required><br>
+											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
 										
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="ship-req">
 											배송시 요청사항
 									</th>
 									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											<select class="message">
+										<div class="ship-req" style="width: 500px;">
+											<select class="message" id="selectMessage" name="msgList">
 												<option value="security">부재 시 경비실에 맡겨주세요</option>
 												<option value="door">부재 시 문 앞에 놓아주세요</option>
 												<option value="call">배송 전에 연락 주세요</option>
 												<option value="direct">직접 수령하겠습니다</option>
 												<option value="write">직접 입력</option>
 											</select><br><br>
-											<input type="text" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요">
+											
+											<div class="forWrite">
+												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+											</div>
+											
 										</div>
 									</td>
 								</tr>
 							</table>
 						</div>
-							<details>
-								  <summary>주문 동의</summary>
-								  <p><input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의"><span class="must">[필수]</span>주문 내역에 대한 동의</p>
-							</details>
 						
+							<div>
+								<span class="agree-info">주문동의</span>
+								<table class="tbl-agree" id="agree">
+									<tr>
+										<td class="agree_title" id="ag_title" > 주문 내역에 대한 동의</td>
+									</tr>
+									<tr>
+										<td class="agree_contents" id="ag_ct"> <input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의" required><span class="must">[필수]</span>주문 내역에 대한 동의</p></td>
+									</tr>
+								</table>
+							
+							</div>
 					
 					</div>	 <!-- orderinfo div 끝 -->			
 				</div>
+			</form>
+				
+	<div id="footer">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+  	</div>
 				
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
+	
+
+// 화면 로딩될때 가격 계산도 해줘
+	$(function(){
+		calcTotal()
+	})
+	
+	
+	
+	function calcTotal() {
+	
+		// 모든 소계를 가져와야함
+		let targetSumArr = document.getElementsByClassName("sumProduct")
+		
+		// 모든 소계 합산
+		let result = 0;
+		for ( let i = 0 ; i < targetSumArr.length ; i++){
+			let str = targetSumArr[i].innerHTML
+			result += parseInt(str.substring(0,str.length-1))
+		}
+		// 합산 가격 반영
+		
+		let totalArr = document.getElementsByClassName("totalArr")
+		for (let i = 0; i < totalArr.length; i++){
+			totalArr[i].innerHTML = result+"원"
+		}
+	 	
+	}
+
 
 	// 체크박스 이벤트리스너
 	$(document).ready(function(){
@@ -395,6 +477,17 @@ function sample6_execDaumPostcode() {
            });
            
         });
+	
+	
+	$('#selectMessage').change(function(){
+		let value = $('#selectMessage option:selected').val();
+		if (value = 'write') {
+			$('#forWrite').attr("disabled", false);
+		} else {
+			$('#security').attr("disabled", true);
+		}
+		
+	});
 	
 	
 </script>

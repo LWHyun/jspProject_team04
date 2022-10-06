@@ -268,6 +268,9 @@
 		</div>
 	</div>
 	
+	<div id="footer">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+  	</div>
 	
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">

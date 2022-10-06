@@ -47,7 +47,7 @@ public class OrdersPageService implements CommandProcess {
 		 * System.out.println("DAO selectMemInfo mem_email2->"+ordersDTO.getMem_email2());
 		 */
 			
-		request.setAttribute("ordersDTO", ordersDTO);	
+		request.setAttribute("members", ordersDTO);	
 		
 		//***
 
