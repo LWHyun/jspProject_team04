@@ -112,11 +112,6 @@ public class ReviewBoardDAO {
 				reviewBoard.setRb_id(rs.getInt("rb_id"));
 				reviewBoard.setMem_id(rs.getString("mem_id"));
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
-				reviewBoard.setRb_total(rs.getInt("rb_total"));
-				reviewBoard.setRb_size(rs.getInt("rb_size"));
-				reviewBoard.setRb_color(rs.getInt("rb_color"));
-				reviewBoard.setRb_wide(rs.getInt("rb_wide"));
-				reviewBoard.setRb_instep(rs.getInt("rb_instep"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
 				reviewBoard.setRb_img(rs.getString("rb_img"));
@@ -151,11 +146,6 @@ public class ReviewBoardDAO {
 				reviewBoard.setRb_id(rs.getInt("rb_id"));
 				reviewBoard.setMem_id(rs.getString("mem_id"));
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
-				reviewBoard.setRb_total(rs.getInt("rb_total"));
-				reviewBoard.setRb_size(rs.getInt("rb_size"));
-				reviewBoard.setRb_color(rs.getInt("rb_color"));
-				reviewBoard.setRb_wide(rs.getInt("rb_wide"));
-				reviewBoard.setRb_instep(rs.getInt("rb_instep"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
 				reviewBoard.setRb_img(rs.getString("rb_img"));
