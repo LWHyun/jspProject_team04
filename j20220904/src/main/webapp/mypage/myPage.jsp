@@ -105,8 +105,14 @@
 	                    <div class="border-line-box order-status-wrap">
 	                        <div class="order-list-box">
 	                            <ul class="order-list">
-	                                <li><a href="#" class="val" id="standByCnt">0</a><span class="order-type">입금대기</span></li>
-	                                <li><a href="#" class="val" id="completeCnt">0</a><span class="order-type">결제완료</span></li>
+	                            	<c:forEach var="orderStatus" items="${requestScope.orderStatusList }">
+	                            		<c:if test="${orderStatus.order_status == 0}">
+	                            			<li><a href="#" class="val" id="standByCnt">${orderStatus.cnt }</a><span class="order-type">입금대기</span></li>
+	                            		</c:if>
+	                            		<c:if test="${orderStatus.order_status == 1}">
+	                            			<li><a href="#" class="val" id="completeCnt">${orderStatus.cnt }</a><span class="order-type">결제완료</span></li>
+	                            		</c:if>
+	                            	</c:forEach>
 	                                <!-- <li><a href="#" class="val" id="productPreparationCnt">0</a><span class="order-type">상품준비중</span></li>
 	                                <li><a href="#" class="val" id="dlvyingPickupReadyCnt">0</a><span class="order-type">배송중/픽업준비완료</span></li>
 	                                <li><a href="#" class="val" id="dlvyFinishCnt">0</a><span class="order-type">배송/수령완료</span></li> -->

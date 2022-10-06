@@ -13,6 +13,7 @@ import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
 import dao.MemberDAO;
+import dto.MyPage_Order_statusDTO;
 import dto.MyPage_OrdersDTO;
 
 public class OrderListService implements CommandProcess {
@@ -42,6 +43,10 @@ public class OrderListService implements CommandProcess {
 		// 주문 갯수
 		int ordersCnt = memberDAO.ordersCnt(mem_id); 
 		//System.out.println("ordersCnt="+ordersCnt);
+		
+		// orders status 갯수
+		List<MyPage_Order_statusDTO> orderStatusList = memberDAO.orderStatusCnt(mem_id);
+		
 		// 페이징
 		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
 		//System.out.println("curPage="+curPage);
@@ -59,6 +64,7 @@ public class OrderListService implements CommandProcess {
 		request.setAttribute("likeProCnt", likeProCnt);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("ordersCnt", ordersCnt);
+		request.setAttribute("orderStatusList", orderStatusList);
 		request.setAttribute("ordersDTOlist", ordersDTOlist);
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("ph", ph);

@@ -13,8 +13,14 @@
 <div class="border-line-box order-status-wrap">
     <div class="order-list-box">
         <ul class="order-list">
-            <li><a href="#" class="val" id="standByCnt">0</a><span class="order-type">입금대기</span></li>
-            <li><a href="#" class="val" id="completeCnt">0</a><span class="order-type">결제완료</span></li>
+            <c:forEach var="orderStatus" items="${requestScope.orderStatusList }">
+           		<c:if test="${orderStatus.order_status == 0}">
+           			<li><a href="#" class="val" id="standByCnt">${orderStatus.cnt }</a><span class="order-type">입금대기</span></li>
+           		</c:if>
+           		<c:if test="${orderStatus.order_status == 1}">
+           			<li><a href="#" class="val" id="completeCnt">${orderStatus.cnt }</a><span class="order-type">결제완료</span></li>
+           		</c:if>
+          	</c:forEach>
             <!-- <li><a href="#" class="val" id="productPreparationCnt">0</a><span class="order-type">상품준비중</span></li>
             <li><a href="#" class="val" id="dlvyingPickupReadyCnt">0</a><span class="order-type">배송중/픽업준비완료</span></li>
             <li><a href="#" class="val" id="dlvyFinishCnt">0</a><span class="order-type">배송/수령완료</span></li> -->
@@ -47,6 +53,11 @@
     		<input type="hidden" name="ordersCnt" value="${requestScope.ordersCnt}">
     		<!-- 각각의 주문 정보 -->
     		<c:forEach var="ordersDTO" items="${requestScope.ordersDTOlist }">
+    			<!-- 전체 가격 계산 -->
+    			<c:set var="totalSum" value="0"/>
+    			<c:forEach var="tmp" items="${ordersDTO.list }">
+    				<c:set var="totalSum" value="${totalSum+tmp.order_price }"/>
+    			</c:forEach>
 	    		<div class="tbl-wrap tbl-col tbl-prod">
 	    			<div class="tbl-header order">
 	    				<div class="customer-action-info">
@@ -62,10 +73,11 @@
 	    				<div class="right-box">
 	    					<div class="prod-price">
 	    						<span class="price-text">총 결제금액</span>
-								<span class="val">258,000</span>
+								<span class="val">${totalSum }</span>
 								<span class="unit">원</span>
 	    					</div>
-	    					<button type="button" class="btn btn-sm" name="orderCancelAllYn">전체 주문취소</button>
+	    					<!-- <button type="button" class="btn btn-sm" name="orderCancelAllYn">전체 주문취소</button> -->
+	    					<input type="hidden" name="orderStatus" value="${ordersDTO.order_status }">
 	    				</div>
 	    			</div><!-- tbl-header order -->
 	    			
@@ -115,7 +127,8 @@
 										</span>
 									</td><!-- 입금 대기 td -->
 									<td>
-										<button type="button" class="btn btn-sm btn-line" name="orderCancel">주문 취소</button>
+										<!-- <button type="button" class="btn btn-sm btn-line" name="orderCancel">주문 취소</button> -->
+										<input type="hidden" name="orderStatus" value="${ordersDTO.order_status }">
 									</td><!-- 주문 취소 버튼 td -->
 								</tr>
 							</tbody>
@@ -186,5 +199,33 @@ $(function() {
 			'line-height' : ''
 		});
 	}
+	
+	// 전체 주문 취소
+	$('button[name="orderCancelAllYn"]').click(function() {
+		let status = $(this).next().val();
+		console.log(status);
+		
+		if(status == 1) {
+			alert("입금이 완료되어 취소하실 수 없습니다.");
+		} else if(status == 0) {
+			if(confirm("정말로 취소하시겠습니까?")) {
+				
+			}
+		}
+	});
+	
+	// 주문 취소
+	$('button[name="orderCancel"]').click(function() {
+		let status = $(this).next().val();
+		console.log(status);
+		
+		if(status == 1) {
+			alert("입금이 완료되어 취소하실 수 없습니다.");
+		} else if(status == 0) {
+			if(confirm("정말로 취소하시겠습니까?")) {
+				
+			}
+		}
+	});
 });
 </script>

@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.MemberDTO;
+import dto.MyPage_Order_statusDTO;
 import dto.MyPage_OrdersDTO;
 import dto.MyPage_OrdersDetailDTO;
 import dto.MyPage_QABoardDTO;
@@ -437,6 +438,44 @@ public class MemberDAO {
 				close(rs, pstmt);
 			}
 			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	// 각각의 order status 갯수 가져오는 메서드
+	public List<MyPage_Order_statusDTO> orderStatusCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select order_status, count(order_status) cnt from orders \r\n"
+				+ "where mem_id = ?\r\n"
+				+ "group by order_status\r\n"
+				+ "order by order_status asc";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<MyPage_Order_statusDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				do {
+					MyPage_Order_statusDTO dto = new MyPage_Order_statusDTO();
+					dto.setOrder_status(rs.getInt("order_status"));
+					dto.setCnt(rs.getInt("cnt"));
+					
+					list.add(dto);
+				} while(rs.next());
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
