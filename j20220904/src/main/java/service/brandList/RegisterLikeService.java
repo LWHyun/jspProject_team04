@@ -22,7 +22,7 @@ public class RegisterLikeService implements CommandProcess {
 		String mem_id = (String) session.getAttribute("mem_id");
 
 		int result = 0;
-
+		System.out.println("mem_id + " + mem_id);
 //		System.out.println(product_id + "asdasd1234");
 
 		if (mem_id != null || mem_id != "") {
@@ -31,12 +31,13 @@ public class RegisterLikeService implements CommandProcess {
 				request.setAttribute("product_id", product_id);
 				request.setAttribute("mem_id", mem_id);
 				request.setAttribute("result", result);
+				System.out.println("ajax service = " + result);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		}
 		System.out.println("ajax return = " + result);
-		return String.valueOf(result);
+		return "ajaxajax.jsp";
 	}
 
 }

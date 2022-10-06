@@ -438,6 +438,7 @@ label {
 				data: sandData,
 				dataType: 'text',
 				success: function (data) {
+					console.log(data);
 					if (data == "1") {
 						alert('찜한상품에 담겼습니다.');
 					} else {
