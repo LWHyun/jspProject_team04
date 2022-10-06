@@ -430,8 +430,10 @@ label {
 				$(this).css("background-position", "0 -44px");
 				alert("찜은 갈비찜");
 				var sandData = "product_id=" + $(this).attr('id');
+				
+				
 			 $.ajax({
-				url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
+				url: '${pageContext.request.contextPath}/contents/registerLike.do',
 				type: 'get',
 				data: sandData,
 				dataType: 'text',
@@ -445,36 +447,23 @@ label {
 				
 				}
 			});
+			 
+			 <%-- $.ajax({
+				url: "<%=context%>/contents/removeLike.do",
+				type: "get",
+				data: sendData,
+				success: function (data) {
+					if (data == "1") {
+						alert ("찜한상품이 해제되었습니다.");
+					} else {
+						alert("error");
+						location.href = "<%=context%>/member/loginForm.do";
+					}
+				}
+			 }); --%>
 		});
 	});
 	
-	/* $(function () {
-		
-		$(document).on("click","#like-btn",function () {
-				console.log(ㅌㅌㅌㅌㅌ);
-				$.ajax({
-					url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
-					type: 'get',
-					data: {'product_id': ${product_id}, 'mem_id': ${mem_id}	},
-					dataType: 'text',
-					success: function (data) {
-						if (data == '1') {
-							alert('찜한상품에 담겼습니다.');
-						} else {
-							alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-							location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-						}
-					},
-					error: function (err) {
-						console.log(찜 에러);
-					}
-				});
-				
-			$(this).css("background-position", "0 -44px");
-		});
-	});  */
-	
-			
 	
 		/* $(".btn-buy-now").click(function () {
 			location.href="#"
