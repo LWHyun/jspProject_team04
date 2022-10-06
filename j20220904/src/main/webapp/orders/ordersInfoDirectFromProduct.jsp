@@ -215,7 +215,7 @@ function sample6_execDaumPostcode() {
  			
  			
  			<div class="order-basket">
-					<!-- 장바구니에서 넘어왔을 때 -->
+					<!-- 상품상세에서 넘어왔을 때 -->
 					
 					<table class="order-body">
 					
