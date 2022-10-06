@@ -179,6 +179,31 @@ public class ReviewBoardDAO {
 		}
 	}
 	
+	// 게시물 수정 -> 되는진 모르겠음
+	public int update(ReviewBoardDTO reviewBoard) throws SQLException {
+		Connection conn = null;	
+		PreparedStatement pstmt= null; 
+		int result = 0;	
+		String sql="UPDATE review_board SET rb_title=?, rb_content=?, rb_date=sysdate  WHERE rb_id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewBoard.getRb_title());
+			pstmt.setString(2, reviewBoard.getRb_content());
+			pstmt.setInt(3, reviewBoard.getRb_id());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(Exception e) {	
+			System.out.println(e.getMessage()); 
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
+	}
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
