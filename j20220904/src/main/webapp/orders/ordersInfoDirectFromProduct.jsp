@@ -42,7 +42,7 @@
 								border-bottom: 1px solid black;	
 							}
 					
-	.order-user, .ship-info, .order-agree {
+	.order-user, .ship-info, .agree-info {
 		font-size: 18px;
 		font-weight: bold;
 		margin-bottom : 10px;
@@ -58,13 +58,18 @@
 		margin-bottom : 15px;
 	}
 	
-	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td{
+	.order-ship {
+		margin-bottom : 15px;
+	}
+	
+	
+	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td .tbl-agree td{
 			padding : 20px;
 			vertical-align: middle;
 			
 		}
 		
-	.tbl-ship {
+	.tbl-ship, .tbl-agree {
 		margin-top : 15px;
 	}
 		
@@ -79,16 +84,46 @@
 		margin-right: 30px;
 	}
 	
-	.tbl-form, .tbl-ship, .agree-box {
+	.choose_li{
+		margin-top : 17px;
+		margin-right : 10px;
+	}
+	
+	.ship-req {
+		margin-top: 20px;
+		margin-bottom : 20px;
+	}
+	
+	#receiver-name, #receiver-phone {
+		margin-top : 17px;
+	}
+	
+	.tbl-form, .tbl-ship, .tbl-agree {
 			border-top : 2px solid black;
 			border-bottom: 1px solid #E6E6E6;
 	} 
 	
+	.agree_info {
+		margin-top: 10px;
+	}
+	
+	.agree_title {
+		vertical-align: middle;
+		padding : 20px;
+	}
+	
+	.agree_contents {
+		padding : 20px;
+		/* display : none; */
+	}
+	/* .forWrite { display : none;} */
+	
+	
 	.order-payment-box {
 	position: sticky;
-	top : 500px;
+	top : 700px;
     width: 400px;
-    margin-right : 100px;
+    margin-right : 300px;
     margin-top : 30px;
     float : right;
     padding: 26px;
@@ -97,7 +132,7 @@
     right: 0;
     z-index: 1
 	}
-	
+	/* 
 	summary {
     cursor: pointer;
      list-style: none;
@@ -108,7 +143,7 @@
   summary::-webkit-details-marker {
     display: none;
   }
-  
+   */
 	
 	
 	
@@ -162,6 +197,7 @@ function sample6_execDaumPostcode() {
     }).open();
      
 }
+
 </script>
 </head>
 <body>
@@ -169,14 +205,17 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
+	<form action="" method="">
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
  				<input type="button" value="주문정보수정" class="basketbtn" onclick="history.back();">
  			</div>
  			
+ 			
  			<div class="order-basket">
 					<!-- 장바구니에서 넘어왔을 때 -->
+					
 					<table class="order-body">
 					
 						<c:forEach var="item" items="${pdDirectArr }" varStatus="status">
@@ -205,18 +244,19 @@ function sample6_execDaumPostcode() {
 				
 				<div class="order-info">
 						
+				<div class="order-form">
+								
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
 							<ul>
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="">
+								<li><input type="submit" value="결제하기">
 							</ul>
 						</div>
-						
-						
-				<div class="order-form">
+				
+				
 						<span class="order-user">주문 고객정보</span>
 						<label><input type="checkbox" id="memChkBox"> 회원 정보와 동일</label>
 						<table class="tbl-form">
@@ -227,7 +267,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -237,7 +277,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -247,7 +287,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value=""> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -268,11 +308,11 @@ function sample6_execDaumPostcode() {
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
 											<ul>
-												<li>
+												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
 												
-												<li>
+												<li class="choose_li">
 													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
 											</ul>
@@ -305,51 +345,57 @@ function sample6_execDaumPostcode() {
 											주소
 									</th>
 									<td>
-										
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호">
-											<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="address" name="address" placeholder="주소"><br>
-											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-										
+										<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
+										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+										<input type="text" id="address" name="address" placeholder="주소" required><br>
+										<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="ship-req">
 											배송시 요청사항
 									</th>
 									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											<select class="message" id="selectMessage">
+										<div class="ship-req" style="width: 500px;">
+											<select class="message" id="selectMessage" name="msgList">
 												<option value="security">부재 시 경비실에 맡겨주세요</option>
 												<option value="door">부재 시 문 앞에 놓아주세요</option>
 												<option value="call">배송 전에 연락 주세요</option>
 												<option value="direct">직접 수령하겠습니다</option>
 												<option value="write">직접 입력</option>
 											</select><br><br>
+											
 											<div class="forWrite">
-											<input type="text" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요">
+												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
 											</div>
+											
 										</div>
 									</td>
 								</tr>
 							</table>
 						</div>
-							<details>
-								  <summary>주문 동의</summary>
-								  <p><input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의"><span class="must">[필수]</span>주문 내역에 대한 동의</p>
-							</details>
+							
+							<div>
+								<span class="agree-info">주문동의</span>
+								<table class="tbl-agree" id="agree">
+									<tr>
+										<td class="agree_title" id="ag_title" > 주문 내역에 대한 동의</td>
+									</tr>
+									<tr>
+										<td class="agree_contents" id="ag_ct"> <input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의" required><span class="must">[필수]</span>주문 내역에 대한 동의</p></td>
+									</tr>
+								</table>
+							
+							</div>
 						
-					
 					</div>	 <!-- orderinfo div 끝 -->			
-				
-
-
-
-
-
-
-
 				</div>
+				</form>
+				
+				<div id="footer">
+   				   <jsp:include page="../main/footer.jsp"></jsp:include>
+  				</div>
+				
 				
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -385,21 +431,7 @@ function sample6_execDaumPostcode() {
 	 	
 	}
 	
-	
-	$(document).ready(function() {
-		  $('#selectMessage').change(function() {
-		    let result = $('#selectMessage option:selected').val();
-		    if (result == 'write') {
-		      $('.forWrite').show();
-		    } else {
-		      $('.forWrite').hide();
-		    }
-		  }); 
-		}); 
 
-	
-	
-	
 	$(document).ready(function(){
 		$("#memChkBox").change(function(){
 			if($("#memChkBox").is(":checked")){
@@ -449,6 +481,39 @@ function sample6_execDaumPostcode() {
      });
      
   });
+	
+	$('#selectMessage').change(function(){
+		let value = $('#selectMessage option:selected').val();
+		if (value = 'write') {
+			$('#forWrite').attr("disabled", false);
+		} else {
+			$('#security').attr("disabled", true);
+		}
+		
+	});
+	
+
+	
+	
+	/* $(function(){
+		$('#agree tr').hide();
+		$('#agree').find('.agree_title').parent().show();
+		
+		$('#agree.agree_title').parent().click(function(){
+			$('#agree tr').hide();
+			$('#agree').find('.agree_title').parent().show();
+			
+			var tr = $('#agree tr');
+			var rindex = $(this).parent().children().index(this);
+			for(var i = rindex; i < rindex + 2 ; i++){
+				$(tr[i]).show();
+			}
+			
+		});
+	
+	}); */
+	
+	
 		
 </script>
 </html>

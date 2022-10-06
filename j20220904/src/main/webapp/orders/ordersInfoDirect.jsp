@@ -42,7 +42,7 @@
 								border-bottom: 1px solid black;	
 							}
 					
-	.order-user, .ship-info, .order-agree {
+	.order-user, .ship-info, .agree-info {
 		font-size: 18px;
 		font-weight: bold;
 		margin-bottom : 10px;
@@ -58,13 +58,18 @@
 		margin-bottom : 15px;
 	}
 	
-	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td{
+	.order-ship {
+		margin-bottom : 15px;
+	}
+	
+	
+	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td .tbl-agree td{
 			padding : 20px;
 			vertical-align: middle;
 			
 		}
 		
-	.tbl-ship {
+	.tbl-ship, .tbl-agree {
 		margin-top : 15px;
 	}
 		
@@ -79,16 +84,46 @@
 		margin-right: 30px;
 	}
 	
-	.tbl-form, .tbl-ship, .agree-box {
+	.choose_li{
+		margin-top : 17px;
+		margin-right : 10px;
+	}
+	
+	.ship-req {
+		margin-top: 20px;
+		margin-bottom : 20px;
+	}
+	
+	#receiver-name, #receiver-phone {
+		margin-top : 17px;
+	}
+	
+	.tbl-form, .tbl-ship, .tbl-agree {
 			border-top : 2px solid black;
 			border-bottom: 1px solid #E6E6E6;
 	} 
 	
+	.agree_info {
+		margin-top: 10px;
+	}
+	
+	.agree_title {
+		vertical-align: middle;
+		padding : 20px;
+	}
+	
+	.agree_contents {
+		padding : 20px;
+		/* display : none; */
+	}
+	/* .forWrite { display : none;} */
+	
+	
 	.order-payment-box {
 	position: sticky;
-	top : 500px;
+	top : 700px;
     width: 400px;
-    margin-right : 100px;
+    margin-right : 300px;
     margin-top : 30px;
     float : right;
     padding: 26px;
@@ -97,7 +132,7 @@
     right: 0;
     z-index: 1
 	}
-	
+	/* 
 	summary {
     cursor: pointer;
      list-style: none;
@@ -108,9 +143,7 @@
   summary::-webkit-details-marker {
     display: none;
   }
-  
-	
-	
+   */
 	
 </style>
 <script type="text/javascript">
@@ -169,6 +202,7 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
+	<form action="" method="">
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
@@ -267,11 +301,12 @@ function sample6_execDaumPostcode() {
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
 											<ul>
-												<li>
+												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
-												<li>
-													<input type="radio" name="choose-one" id="new-addr"> 신규 입력
+												
+												<li class="choose_li">
+													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -312,32 +347,49 @@ function sample6_execDaumPostcode() {
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="ship-req">
 											배송시 요청사항
 									</th>
 									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											<select class="message">
+										<div class="ship-req" style="width: 500px;">
+											<select class="message" id="selectMessage" name="msgList">
 												<option value="security">부재 시 경비실에 맡겨주세요</option>
 												<option value="door">부재 시 문 앞에 놓아주세요</option>
 												<option value="call">배송 전에 연락 주세요</option>
 												<option value="direct">직접 수령하겠습니다</option>
 												<option value="write">직접 입력</option>
 											</select><br><br>
-											<input type="text" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요">
+											
+											<div class="forWrite">
+												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+											</div>
+											
 										</div>
 									</td>
 								</tr>
 							</table>
 						</div>
-							<details>
-								  <summary>주문 동의</summary>
-								  <p><input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의"><span class="must">[필수]</span>주문 내역에 대한 동의</p>
-							</details>
 						
+							<div>
+								<span class="agree-info">주문동의</span>
+								<table class="tbl-agree" id="agree">
+									<tr>
+										<td class="agree_title" id="ag_title" > 주문 내역에 대한 동의</td>
+									</tr>
+									<tr>
+										<td class="agree_contents" id="ag_ct"> <input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의" required><span class="must">[필수]</span>주문 내역에 대한 동의</p></td>
+									</tr>
+								</table>
+							
+							</div>
 					
 					</div>	 <!-- orderinfo div 끝 -->			
 				</div>
+			</form>
+				
+	<div id="footer">
+		<jsp:include page="../main/footer.jsp"></jsp:include>
+  	</div>
 				
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -395,6 +447,17 @@ function sample6_execDaumPostcode() {
            });
            
         });
+	
+	
+	$('#selectMessage').change(function(){
+		let value = $('#selectMessage option:selected').val();
+		if (value = 'write') {
+			$('#forWrite').attr("disabled", false);
+		} else {
+			$('#security').attr("disabled", true);
+		}
+		
+	});
 	
 	
 </script>
