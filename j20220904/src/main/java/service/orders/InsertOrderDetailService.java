@@ -18,6 +18,12 @@ public class InsertOrderDetailService implements CommandProcess {
 		int size_num = Integer.parseInt(request.getParameter("size_num"));
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
+		String order_name = request.getParameter("buyername");
+		String order_phone = request.getParameter("buyerphone");
+		String order_email = request.getParameter("buyermail");
+		String take_name = request.getParameter("receiver_name");
+		String take_phone = request.getParameter("receiver_phone");
+		
 		
 		
 		return null;

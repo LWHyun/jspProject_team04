@@ -19,7 +19,7 @@ public class OrdersDTO {
 		private Date order_date;
 		private int order_status; // 0 , 1
 		
-		// MyPage_OrdersDetailDTO 리스트
+		// OrdersDetailDTO 리스트
 		private List<OrdersDetailDTO> list;
 		
 		public OrdersDTO() {}
