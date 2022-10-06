@@ -25,8 +25,8 @@
 						<input type="hidden" name="pageNum" value="${pageNum }">
 						<input type="hidden" name="rb_date" value="${reviewBoard.rb_date }">
 						<div class="flex-box board-view-head">
-							<span class="rb-title"><input type="text" name="rb_title" required="required" value="{reviewBoard.rb_title }">${reviewBoard.rb_title }</span>
-							<span class="rb-date">${reviewBoard.q_date}</span>
+							<span class="rb-title"><input type="text" name="rb_title" required="required" value="${reviewBoard.rb_title }"></span>
+							<span class="rb-date">${reviewBoard.rb_date}</span>
 							<span class="rb-mem">${reviewBoard.mem_id}</span>
 						</div>
 						<div class="board-view-cont">
