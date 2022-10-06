@@ -28,8 +28,6 @@ public class ManProductDeleteService implements CommandProcess {
 			Product_ImgSrcDTO product = pd.select(product_id, pd_size);
 			
 			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("product_id", product_id);
-			request.setAttribute("pd_size", pd_size);
 			request.setAttribute("product", product);
 		
 		} catch (Exception e) {

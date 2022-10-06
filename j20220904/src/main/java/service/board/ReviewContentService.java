@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
-import dao.QABoardDAO;
 import dao.ReviewBoardDAO;
-import dto.QABoardDTO;
 import dto.ReviewBoardDTO;
 
 public class ReviewContentService implements CommandProcess {
@@ -23,6 +21,9 @@ public class ReviewContentService implements CommandProcess {
 		// 1. rb_id, pageNum
 		int rb_id = Integer.parseInt(request.getParameter("rb_id"));
 		String pageNum = request.getParameter("pageNum");
+		
+		System.out.println("ReviewContentService rb_id => "+rb_id);
+		System.out.println("ReviewContentService pageNum => "+pageNum);
 		
 		try {
 			// 2. ReviewBoardDAO rbd Instance

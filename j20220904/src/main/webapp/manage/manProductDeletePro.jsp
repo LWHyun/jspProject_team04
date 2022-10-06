@@ -9,7 +9,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	alert("삭제 완료");
+	alert("수정 완료");
 	location.href = "manProductList.do";
 </script>
 </body>

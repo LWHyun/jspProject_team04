@@ -12,7 +12,9 @@ import bean.PageHandler;
 import control.CommandProcess;
 import dao.BasketDAO;
 import dao.LikeProDAO;
+import dao.MemberDAO;
 import dto.LikeProDTO;
+import dto.MyPage_Order_statusDTO;
 
 public class MypageService implements CommandProcess {
 
@@ -31,10 +33,14 @@ public class MypageService implements CommandProcess {
 		//DB
 		BasketDAO basketDAO = BasketDAO.getInstance();
 		LikeProDAO likeProDAO = LikeProDAO.getInstance();
+		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		// 장바구니 , 찜 갯수
 		int basketCnt = basketDAO.memBasketCnt(mem_id);
 		int likeProCnt = likeProDAO.memLikeProCnt(mem_id);
+		
+		// orders status 갯수
+		List<MyPage_Order_statusDTO> orderStatusList = memberDAO.orderStatusCnt(mem_id);
 		
 		// 찜 상품 가져오기 (마이페이지에서는 4개만 가져옴)
 		int startRow = 1;
@@ -44,6 +50,7 @@ public class MypageService implements CommandProcess {
 		List<LikeProDTO> likeProList = likeProDAO.selectLikeProList(mem_id, startRow, endRow);
 		System.out.println(likeProList);
 		
+		request.setAttribute("orderStatusList", orderStatusList);
 		request.setAttribute("likeProList", likeProList);
 		request.setAttribute("basketCnt", basketCnt);
 		request.setAttribute("likeProCnt", likeProCnt);

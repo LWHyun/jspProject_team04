@@ -7,8 +7,6 @@ public class QABoardDTO {
 	private String mem_id;
 	private int product_id;
 	
-	// 비밀글인지 아닌지로만 변경할지 고민
-	private String q_passwd;
 	private String q_title;
 	private String q_content;
 	private Date q_date;
@@ -32,12 +30,6 @@ public class QABoardDTO {
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
-	}
-	public String getQ_passwd() {
-		return q_passwd;
-	}
-	public void setQ_passwd(String q_passwd) {
-		this.q_passwd = q_passwd;
 	}
 	public String getQ_title() {
 		return q_title;

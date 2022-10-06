@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 Q&amp;A</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="../css/boardCss/qnaContent.css">
 </head>
@@ -34,9 +34,9 @@
 					</div>
 				</div>
 				<div class="btn-wrap text-right">
-					<a href="#" class="btn btn-dialog">수정</a>
+					<a href="qnaUpdateForm.do?q_id=${q_id}" class="btn btn-dialog">수정</a>
 					<a href="#" class="btn btn-dialog">삭제</a>
-					<a href="qnaBoard.do?$pageNum=${pageNum}" class="btn btn-dialog">목록</a>
+					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
 		</div>

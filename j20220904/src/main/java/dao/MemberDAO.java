@@ -12,6 +12,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.MemberDTO;
+import dto.MyPage_Order_statusDTO;
+import dto.MyPage_OrdersDTO;
+import dto.MyPage_OrdersDetailDTO;
 import dto.MyPage_QABoardDTO;
 
 public class MemberDAO {
@@ -270,7 +273,7 @@ public class MemberDAO {
 		
 		String sql = "select * from (select rownum rn, t.* from (select p.kor_name,p.gender, q.* from QA_Board q "
 				+ "join Product p on q.product_id = p.product_id "
-				+ "where mem_id = ? order by q.q_id desc)t) "
+				+ "where mem_id = ? order by q.q_date desc, q.q_id desc)t) "
 				+ "where rn >= ? and rn <= ?";
 		
 		PreparedStatement pstmt = null;
@@ -301,7 +304,6 @@ public class MemberDAO {
 					dto.setProduct_id(rs.getInt("product_id"));
 					dto.setKor_name(rs.getString("kor_name"));
 					dto.setGender(rs.getInt("gender"));;
-					dto.setQ_passwd(rs.getString("q_passwd"));
 					dto.setQ_title(rs.getString("q_title"));
 					dto.setQ_content(rs.getString("q_content"));
 					dto.setQ_date(new Date(rs.getDate("q_date").getTime()));
@@ -313,6 +315,167 @@ public class MemberDAO {
 				} while(rs.next());
 			}
 			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	// 회원의 주문 갯수 가져오는 메서드
+	public int ordersCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select count(*) from orders where mem_id =?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int ordersCnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				ordersCnt = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return ordersCnt;
+	}
+	
+	// 주문 정보 및 주문 상세 정보 가져오는 메서드
+	public List<MyPage_OrdersDTO> selectOrdersList(String mem_id, int startNum, int endNum) {
+//		System.out.println(startNum + ", "+endNum);
+		Connection conn = getConnection();
+		
+		String sql = "select * from \r\n"
+				+ "(select rownum rn , t.* from \r\n"
+				+ "(select * from orders where mem_id = ? order by order_date desc)t)\r\n"
+				+ "where rn >= ? and rn <= ?";
+//		String sql = "select * from orders where mem_id = ? order by order_date desc";
+		
+		String sql2 = "select od.order_id, od.size_num, od.product_id, od.cnt, od.order_price, ps.pd_size, p.gender,"
+				+ "p.brand, p.kor_name, pi.s_file_path "
+				+ "from orders_detail od "
+				+ "join product_size ps on od.size_num = ps.size_num and od.product_id = ps.product_id "
+				+ "join product p on od.product_id = p.product_id "
+				+ "join product_image pi on od.product_id = pi.product_id "
+				+ "where od.order_id = ? ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<MyPage_OrdersDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
+			
+			rs = pstmt.executeQuery();
+			
+			// MyPage_OrdersDTO 먼저 가져오기
+			if(rs.next()) {
+				System.out.println("rs바로 전");
+				do {
+					MyPage_OrdersDTO dto = new MyPage_OrdersDTO();
+					dto.setOrder_id(rs.getInt("order_id"));
+					dto.setMem_id(rs.getString("mem_id"));
+					dto.setOrder_name(rs.getString("order_name"));
+					dto.setOrder_phone(rs.getString("order_phone"));
+					dto.setOrder_email(rs.getString("order_email"));
+					dto.setTake_name(rs.getString("take_name"));
+					dto.setTake_phone(rs.getString("take_phone"));
+					dto.setTake_add(rs.getString("take_add"));
+					dto.setOrder_msg(rs.getString("order_msg"));
+					dto.setOrder_date(new Date(rs.getDate("order_date").getTime()));
+					dto.setOrder_status(rs.getInt("order_status"));
+					dto.setList(new ArrayList<MyPage_OrdersDetailDTO>());
+					
+					list.add(dto);
+				} while(rs.next());
+			}
+			
+			close(rs, pstmt);
+			
+			// MyPage_OrdersDetailDTO 가져와서 MyPage_OrdersDTO의 List<MyPage_OrdersDetailDTO> list 에 넣기
+			for(MyPage_OrdersDTO dto : list) {
+				pstmt = conn.prepareStatement(sql2);
+				
+				List<MyPage_OrdersDetailDTO> tmp = dto.getList();
+				System.out.println("dto.getOrder_id()="+dto.getOrder_id());
+				pstmt.setInt(1, dto.getOrder_id());
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					do {
+						MyPage_OrdersDetailDTO odDTO = new MyPage_OrdersDetailDTO();
+						odDTO.setOrder_id(rs.getInt("order_id"));
+						odDTO.setSize_num(rs.getInt("size_num"));
+						odDTO.setProduct_id(rs.getInt("product_id"));
+						odDTO.setCnt(rs.getInt("cnt"));
+						odDTO.setOrder_price(rs.getInt("order_price"));
+						odDTO.setPd_size(rs.getInt("pd_size"));
+						odDTO.setGender(rs.getInt("gender"));
+						odDTO.setBrand(rs.getString("brand"));
+						odDTO.setKor_name(rs.getString("kor_name"));
+						odDTO.setS_file_path(rs.getString("s_file_path"));
+						
+						tmp.add(odDTO);
+					}while(rs.next());
+				}
+				
+				close(rs, pstmt);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	// 각각의 order status 갯수 가져오는 메서드
+	public List<MyPage_Order_statusDTO> orderStatusCnt(String mem_id) {
+		Connection conn = getConnection();
+		
+		String sql = "select order_status, count(order_status) cnt from orders \r\n"
+				+ "where mem_id = ?\r\n"
+				+ "group by order_status\r\n"
+				+ "order by order_status asc";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<MyPage_Order_statusDTO> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				do {
+					MyPage_Order_statusDTO dto = new MyPage_Order_statusDTO();
+					dto.setOrder_status(rs.getInt("order_status"));
+					dto.setCnt(rs.getInt("cnt"));
+					
+					list.add(dto);
+				} while(rs.next());
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
