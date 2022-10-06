@@ -44,8 +44,10 @@
 						<div style="margin-left: 25%; margin-top: 50px; line-height: 20px;">
 							<form action="manProductUpdatePro.do" method="post">
 							 	<input type="hidden" name="pageNum" value="${pageNum }">
-							 	<input type="hidden" name="product_id" value="${product.product_id }">
-							 	<input type="hidden" name="pd_size" value="${product.pd_size }">
+							 	<input type="hidden" name="product_id" value="${product_id }">
+							 	<input type="hidden" name="pd_size" value="${pd_size }">
+							 	<input type="hidden" name="price" value="${price }">
+							 	<input type="hidden" name="stock" value="${stock }">
 								
 								<h2 style="margin-bottom: 20px;">상품 정보 수정을 원하시면 <br>아래 칸에 '수정'을 입력해주세요.</h2>
 								<input type="text" required="required" placeholder="수정"><p><br>
