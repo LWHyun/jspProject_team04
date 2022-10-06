@@ -356,9 +356,6 @@ label {
 	 .btn-prod-favorite:hover {
 	  background-position: 0 -22px;
 	}
-	/* .btn-prod-favorite:focus {
-	  background-position: 0 -44px;
-	} */
 	.btn-prod-cart:hover {
 	  background-position: -48px -22px;
 	}
@@ -420,61 +417,7 @@ label {
 <%
 	String context = request.getContextPath();
 %>
-
 </head>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-
-	$(function(){
-			$(document).on("click", ".btn-prod-favorite", function () {
-				$(this).css("background-position", "0 -44px");
-				alert("찜은 갈비찜");
-				var sandData = "product_id=" + $(this).attr('id');
-				
-				
-			 $.ajax({
-				url: '${pageContext.request.contextPath}/contents/registerLike.do',
-				type: 'get',
-				data: sandData,
-				dataType: 'text',
-				success: function (data) {
-					console.log(data);
-					if (data == "1") {
-						alert('찜한상품에 담겼습니다.');
-					} else {
-						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-					}
-				
-				}
-			});
-			 
-			 <%-- $.ajax({
-				url: "<%=context%>/contents/removeLike.do",
-				type: "get",
-				data: sendData,
-				success: function (data) {
-					if (data == "1") {
-						alert ("찜한상품이 해제되었습니다.");
-					} else {
-						alert("error");
-						location.href = "<%=context%>/member/loginForm.do";
-					}
-				}
-			 }); --%>
-		});
-	});
-	
-	
-		/* $(".btn-buy-now").click(function () {
-			location.href="#"
-		});
-	
-		$(".fold-box-header").click( function () {
-			$(".ip-filter-list col1").slideToggle();
-		}) */
-		
-</script>
 <body>
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
@@ -767,7 +710,7 @@ label {
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
 									<div class="util-btn-wrap">																			
-										<button type="button" id="${list.product_id }" class="btn-prod-favorite">즐겨찾기</button>
+										<button type="button" id="like" class="btn-prod-favorite">즐겨찾기</button>
 										<!-- <button type="button" class="btn-prod-cart">장바구니 담기</button> -->			<!-- 장바구니에 상품코드 저장 -->
 									</div>
 									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
@@ -797,7 +740,59 @@ label {
 	</div> --%>
 	
 </div> <!-- contents-wrap 끝--> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
 
+	$(function(){
+			$(document).on("click", ".btn-prod-favorite", function () {
+				alert("찜은 갈비찜");
+				var sandData = "product_id=" + $(this).attr('id');
+				
+				
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/contents/registerLike.do',
+				type: 'get',
+				data: sandData,
+				dataType: 'text',
+				success: function (data) {
+					console.log(data);
+					if (data == "1") {
+						alert('찜한상품에 담겼습니다.');
+						$('.btn-prod-favorite').css("background-position", "0 -44px");
+					} else {
+						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					}
+				
+				}
+			});
+			 
+			 <%-- $.ajax({
+				url: "<%=context%>/contents/removeLike.do",
+				type: "get",
+				data: sendData,
+				success: function (data) {
+					if (data == "1") {
+						alert ("찜한상품이 해제되었습니다.");
+					} else {
+						alert("error");
+						location.href = "<%=context%>/member/loginForm.do";
+					}
+				}
+			 }); --%>
+		});
+	});
+	
+	
+		/* $(".btn-buy-now").click(function () {
+			location.href="#"
+		});
+	
+		$(".fold-box-header").click( function () {
+			$(".ip-filter-list col1").slideToggle();
+		}) */
+		
+</script>
 
 </body>
 </html>

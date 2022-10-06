@@ -11,7 +11,7 @@ import control.CommandProcess;
 import dao.BrandListDAO;
 import dto.Product_ImgSrcDTO;
 
-public class SectionShowService implements CommandProcess {
+public class ShowSectionService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
