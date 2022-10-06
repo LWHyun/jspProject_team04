@@ -34,6 +34,7 @@ td {
 	<div>
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
+	
 	<div class="order-comp">
 	<h1>주문완료</h1>
 	<div class="buycomp">
@@ -68,6 +69,10 @@ td {
 		</tr>
 	</table>
 	</div>
+	</div>
+	
+	<div>
+		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>
