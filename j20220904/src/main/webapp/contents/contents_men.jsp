@@ -1092,25 +1092,6 @@
 				<div id="content">
 					<div id="productReview" class="top-wrap">
 						<div class="inner">
-							<!-- 메뉴 탭 list -->
-							<%-- <ul class="tabs">
-								<li class="tab-item">
-									<a href="#" class="tab-link">상품정보</a>
-								</li>
-								<li class="tab-item ui-tabs-active">
-									<a href="../board/reviewBoard.do" class="tab-link" id="review-btn">상품후기
-										<span class="num">(${rbTotCnt })</span>
-									</a>
-								</li>
-								<li class="tab-item">
-									<a href="../board/qnaBoard.do" class="tab-link" id="qna-btn">상품 Q&amp;A
-										<span class="num">(${qATotCnt})</span>
-									</a>
-								</li>
-								<li class="tab-item">
-									<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
-								</li>
-							</ul> --%>
 							<!-- 상품 후기 안내사항 -->
 							<div class="tab-content">
 								<ul class="bullet-text-list">
@@ -1240,9 +1221,9 @@
 										<c:if test="${rbTotCnt > 0 }">
 											<c:forEach var="reviewBoard" items="${reviewList }">
 												<tr>
-													<td>${startNum }</td>
+													<td>${startNum1 }</td>
 													<td>
-														<a href="reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage}">
+														<a href="../board/reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1256,87 +1237,18 @@
 									
 									<!-- 나중에 수정 -->
 									<div style="text-align: center;">
-										<c:if test="${startPage > blockSize }">
-											<a href='reviewBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+										<c:if test="${startPage1 > blockSize1 }">
+											<a href='reviewBoard.do?pageNum=${startPage1-blockSize1}'>[이전]</a>
 										</c:if>
-										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
 											<a href='reviewBoard.do?pageNum=${i}'>[${i}]</a>
 										</c:forEach>
-										<c:if test="${endPage < pageCnt }">
-											<a href='reviewBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+										<c:if test="${endPage1 < pageCnt1 }">
+											<a href='reviewBoard.do?pageNum=${startPage1+blockSize1}'>[다음]</a>
 										</c:if>
 									</div>	
-									<!--<ul class="fold-box-list">
-										게시글 1개
-										<li class="fold-box">
-											<div class="fold-box-header">
-												<div class="review-box">
-													별점 표시 나중에 구현
-													<div class="rating-wrap">
-														<div class="star-rating"></div>
-														<ul class="rating-list">
-															<li>
-																<span class="rating-type">사이즈</span>
-																<span class="desc">정 사이즈</span>
-															</li>
-															<li>
-																<span class="rating-type">색상</span>
-																<span class="desc">화면과 같음</span>
-															</li>
-															<li>
-																<span class="rating-type">발볼</span>
-																<span class="desc">적당함</span>
-															</li>
-															<li>
-																<span class="rating-type">발등</span>
-																<span class="desc">적당함</span>
-															</li>
-														</ul>
-													
-													</div>
-																							<p class="review-text">1 신발이 너무 예뻐요.</p>
-													<div class="id-date-text">
-														<span class="id-text">0*******a</span>
-														<span class="date-text">2022.09.02 13:53:47</span>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="fold-box">
-											<div class="fold-box-header">
-												<div class="review-box">
-													<div class="rating-wrap">
-														<ul class="rating-list">
-															<li>
-																<span class="rating-type">사이즈</span>
-																<span class="desc">정 사이즈</span>
-															</li>
-															<li>
-																<span class="rating-type">색상</span>
-																<span class="desc">화면과 같음</span>
-															</li>
-															<li>
-																<span class="rating-type">발볼</span>
-																<span class="desc">적당함</span>
-															</li>
-															<li>
-																<span class="rating-type">발등</span>
-																<span class="desc">적당함</span>
-															</li>
-														</ul>
-													</div>
-													<p class="review-text">2 신발이 너무 예뻐요.</p>
-													<div class="id-date-text">
-														<span class="id-text">0*******a</span>
-														<span class="date-text">2022.09.02 13:53:47</span>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul> -->
-									<!-- 페이징 -->
 									<div class="pagination-wrap" id="product-review-pagination">
-										<div>
+										<!-- <div>
 											<ol class="pagination-list">
 												<li class="pagination-item">
 													<button type="button" class="btn-page btn-page-num selected">1</button>
@@ -1369,7 +1281,7 @@
 													<button type="button" class="btn-page btn-page-num">10</button>
 												</li>
 											</ol>
-										</div>
+										</div> -->
 										<div class="btn-wrap text-right">
 											<a href="reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
@@ -1393,24 +1305,6 @@
 						<div class="inner">
 							<!-- Q&A 부분 -->
 							<div class="qnaBox">
-								<%-- <ul class="tabs">
-									<li class="tab-item">
-										<a href="#" class="tab-link">상품정보</a>
-									</li>
-									<li class="tab-item">
-										<a href="../board/reviewBoard.do" class="tab-link" id="review-btn">상품후기
-											<span class="num">(${rbTotCnt })</span>
-										</a>
-									</li>
-									<li class="tab-item ui-tabs-active">
-										<a href="../board/qnaBoard.do" class="tab-link" id="qna-btn">상품 Q&amp;A
-											<span class="num">(${qATotCnt})</span>
-										</a>
-									</li>
-									<li class="tab-item">
-										<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
-									</li>
-								</ul> --%>
 								<div class="tab-content">
 									<ul class="bullet-text-list">
 										<li class="bullet-text">
@@ -1441,9 +1335,9 @@
 											<c:if test="${qATotCnt > 0 }">
 												<c:forEach var="qABoard" items="${qAList }">
 													<tr>
-														<td>${startNum }</td>
+														<td>${startNum2 }</td>
 														<td>
-															<a href='qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage}'>
+															<a href='../board/qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
 																${qABoard.q_title}
 															</a>
 														</td>
@@ -1451,58 +1345,27 @@
 														<td>${qABoard.q_date }</td>
 														<td>${qABoard.q_views }</td>
 													</tr>
-													<c:set var="startNum" value="${startNum - 1}"/>
+													<c:set var="startNum2" value="${startNum2 - 1}"/>
 												</c:forEach>
 											</c:if>
 										</table>
 										
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
-											<c:if test="${startPage > blockSize }">
-												<a href='qnaBoard.do?pageNum=${startPage-blockSize}'>[이전]</a>
+											<c:if test="${startPage2 > blockSize2 }">
+												<a href='qnaBoard.do?pageNum2=${startPage2-blockSize2}'>[이전]</a>
 											</c:if>
-											<c:forEach var="i" begin="${startPage}" end="${endPage}">
-												<a href='qnaBoard.do?pageNum=${i}'>[${i}]</a>
+											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
+												<a href='qnaBoard?pageNum2=${i}'>[${i}]</a>
 											</c:forEach>
-											<c:if test="${endPage < pageCnt }">
-												<a href='qnaBoard.do?pageNum=${startPage+blockSize}'>[다음]</a>
+											<c:if test="${endPage2 < pageCnt2 }">
+												<a href='qnaBoard?pageNum2=${startPage2+blockSize2}'>[다음]</a>
 											</c:if>
 										</div>	
-										<!-- <ul class="fold-box-list">
-											<li class="fold-box">
-												<div class="fold-box-header">
-													<div class="question-title">금요일 수거해갔어요.</div>
-													<div class="question-info">
-														<span class="question-type">h******9</span>
-														<span class="question-date">2022.03.21</span>
-														<span class="answer-status complete">답변완료</span>
-													</div>
-												</div>
-												<div class="fold-box-contents">
-													<div class="question-box-detail">
-														<div class="question-desc">
-															금요일 수거해갔어요. 신속하게 환불 처리 부탁드립니다.
-														</div> 
-													</div>
-													<div class="answer-box">
-														<p class="desc">  아이콘?
-														안녕하세요 고객님.<br><br>
-				
-														먼저 ABC 마트를 이용해주셔서 감사합니다.<br><br>
-														
-														해당 공간은 상품 문의만을 전담하는 공간으로,<br>
-														그 외 문의는 고객센터(1588-9667)를 이용해 주시면 감사하겠습니다.<br><br>
-														
-														더 나은 서비스 제공을 위해 항상 노력하는 ABC 마트가 되겠습니다.<br>
-														감사합니다.
-														</p>
-													</div>
-												</div>
-											</li>
-										</ul> -->
-										<!-- 페이징 -->
+									
+										
 										<div class="pagination-wrap" id="product-review-pagination">
-											<div>
+											<!-- <div>
 												<ol class="pagination-list">
 													<li class="pagination-item">
 														<button type="button" class="btn-page btn-page-num selected">1</button>
@@ -1535,7 +1398,7 @@
 														<button type="button" class="btn-page btn-page-num">10</button>
 													</li>
 												</ol>
-											</div>
+											</div>  -->
 											<div class="btn-wrap text-right">
 												<a href="qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
 											</div>
@@ -1573,19 +1436,6 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script type="text/javascript">
 
-/* 상품 리뷰 게시판 */
-$(function() {
-	$(".big_product_main_2").click(function() {
-		location.href="../board/reviewBoard.do?product_id=${product_id}";
-	})
-});
-
-/* 상품 Q&A 게시판 */
-$(function() {
-	$(".big_product_main_3").click(function() {
-		location.href="../board/qnaBoard.do?product_id=${product_id}";
-	})
-});
 
 // 상품정보,상품후기,상품Q&A,AS안내 show/hide하는 로직
 $(document).ready(function(){
