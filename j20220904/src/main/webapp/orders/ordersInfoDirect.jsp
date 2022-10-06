@@ -74,17 +74,18 @@
 	}
 		
 	
-	ul {
+	.all_ul {
 		list-style: none;
 		
 	}
 	
-	li {
+	.all_li {
 		float : left;
 		margin-right: 30px;
 	}
 	
 	.choose_li{
+		float : left;
 		margin-top : 17px;
 		margin-right : 10px;
 	}
@@ -240,7 +241,7 @@ function sample6_execDaumPostcode() {
 						
 						<div class="order-payment-box" id="orderPaymentBox">
 							<h4>결제 정보 </h4><br><br>
-							<ul>
+							<ul class="all_ul">
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
@@ -300,7 +301,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
-											<ul>
+											<ul class="all_ul">
 												<li class="choose_li">
 											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
 												</li>
@@ -396,6 +397,35 @@ function sample6_execDaumPostcode() {
 <script src="${pageContext.request.contextPath }/js/memberJs/daumAPI.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
+	
+
+// 화면 로딩될때 가격 계산도 해줘
+	$(function(){
+		calcTotal()
+	})
+	
+	
+	
+	function calcTotal() {
+	
+		// 모든 소계를 가져와야함
+		let targetSumArr = document.getElementsByClassName("sumProduct")
+		
+		// 모든 소계 합산
+		let result = 0;
+		for ( let i = 0 ; i < targetSumArr.length ; i++){
+			let str = targetSumArr[i].innerHTML
+			result += parseInt(str.substring(0,str.length-1))
+		}
+		// 합산 가격 반영
+		
+		let totalArr = document.getElementsByClassName("totalArr")
+		for (let i = 0; i < totalArr.length; i++){
+			totalArr[i].innerHTML = result+"원"
+		}
+	 	
+	}
+
 
 	// 체크박스 이벤트리스너
 	$(document).ready(function(){
