@@ -18,6 +18,8 @@ public class QAUpdateFormService implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("QAUpdateFormService Start..."); 
 		//로그인 여부 확인
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		int gender = Integer.parseInt(request.getParameter("gender"));
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
 	
@@ -39,6 +41,8 @@ public class QAUpdateFormService implements CommandProcess {
 			
 			/* request.setAttribute("pageNum2", pageNum2); */		
 			request.setAttribute("qABoard", qABoard);
+			request.setAttribute("product_id",product_id);
+			request.setAttribute("gender",gender);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

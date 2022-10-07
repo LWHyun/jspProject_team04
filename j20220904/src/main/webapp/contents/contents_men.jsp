@@ -1153,7 +1153,7 @@
 												<tr>
 													<td>${startNum1 }</td>
 													<td>
-														<a href="../board/reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
+														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1267,7 +1267,7 @@
 													<tr>
 														<td>${startNum2 }</td>
 														<td>
-															<a href='../board/qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
+															<a href='../board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
 																${qABoard.q_title}
 															</a>
 														</td>
