@@ -1064,18 +1064,19 @@
 	
 	
 	<!-- 상품큰 사진 -->
+	<input type="hidden"  id="gubun_tab" value="${show}">
 	<div class="big_product">
 		<div class="big_product_a">
-			<div class="big_product_1">
+			<div class="big_product_1" id="big_product_1">
 				상품정보
 			</div>
-			<div class="big_product_2">
+			<div class="big_product_2" id="big_product_2">
 				상품후기
 			</div>
-			<div class="big_product_3">
+			<div class="big_product_3" id="big_product_3">
 				상품Q&A
 			</div>
-			<div class="big_product_4">
+			<div class="big_product_4" id="big_product_4">
 				배송/교환/반품/AS안내
 			</div>
 		</div> 
@@ -1153,7 +1154,7 @@
 												<tr>
 													<td>${startNum1 }</td>
 													<td>
-														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
+														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1391,7 +1392,23 @@ $(document).ready(function(){
 	});
 
 
+$(function(){
+    if($("#gubun_tab").val() == 'review'){
+       $('.big_product_main_1').hide();
+       $('.big_product_main_2').show();
+      
+    }
+    
+});   
 
+ $(function(){
+    if($("#gubun_tab").val() == 'qna'){
+       $('.big_product_main_1').hide();
+       $('.big_product_main_3').show();
+       
+    }
+    
+ });
 
 //성별 체크해서 나타나게하는 로직
 	$(function(){

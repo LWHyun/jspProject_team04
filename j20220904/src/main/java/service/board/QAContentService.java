@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.QABoardDAO;
@@ -25,6 +26,8 @@ public class QAContentService implements CommandProcess {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		
+		
+		
 		System.out.println("QAContentService q_id => "+q_id);
 		System.out.println("QAContentService pageNum => "+pageNum);
 		try {
@@ -32,8 +35,11 @@ public class QAContentService implements CommandProcess {
 			QABoardDAO qbd = QABoardDAO.getInstance();
 			
 			// 3. p_id의 q_views 증가 (조회수 증가)
-			qbd.readCount(q_id);
-			
+			HttpSession session = request.getSession();
+	        if(session.getAttribute("memHit") != null) {
+	        qbd.readCount(q_id);
+	        session.removeAttribute("memHit");
+	        }
 			// 4. QABoardDTO qABoard = qbd.select(q_id);
 			QABoardDTO qABoard = qbd.select(q_id);
 			

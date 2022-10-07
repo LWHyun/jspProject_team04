@@ -27,13 +27,15 @@ public class ImageListService implements CommandProcess {
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
-		
+		String show = request.getParameter("show");
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
 		String toURI = request.getRequestURI();
 		toURI = toURI+"?product_id="+product_id+"&gender="+gender;
 		
-		
+		//새로고침 방지 
+	      
+	    session.setAttribute("memHit","0");  //뒤에 값은 아무거나 넣어도 상관없다
 		
 		
 		try {
@@ -121,6 +123,7 @@ public class ImageListService implements CommandProcess {
 			request.setAttribute("startPage2", startPage2);
 			request.setAttribute("endPage2", endPage2);
 			
+			request.setAttribute("show", show);
 			
 			
 			

@@ -17,9 +17,11 @@ public class QAUpdateFormService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("QAUpdateFormService Start..."); 
-		//로그인 여부 확인
+		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
+		
+		//로그인 여부 확인
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
 	
