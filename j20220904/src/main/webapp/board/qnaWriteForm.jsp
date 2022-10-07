@@ -21,7 +21,7 @@
 					<h3 class="text-head2">상품 Q&amp;A 작성</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="qnaWritePro.do?pageNum=${pageNum}" method="post">
+					<form action="${pageContext.request.contextPath}/board/qnaWritePro.do?product_id=${product_id}&gender=${gender}" method="post">
 						<input type="hidden" name="q_id" value="${q_id}">
 						<input type="hidden" name="mem_id" value="${mem_id }">
 						<input type="hidden" name="product_id" value="${product_id }">
@@ -38,7 +38,7 @@
 						<div class="btn-wrap text-right">
 							<input class="btn btn-dialog" type="submit" value="확인">
 							<input class="btn btn-dialog" type="reset" value="모두 지우기">
-							<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
+							<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3" class="btn btn-dialog">목록</a>
 						</div>
 					</form>
 				</div>
