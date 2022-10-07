@@ -20,9 +20,10 @@
 					<h3 class="text-head2">상품 리뷰 수정</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="reviewUpdatePro.do" method="post">
+					<form action="${pageContext.request.contextPath }/board/reviewUpdatePro.do?product_id=${product_id}&gender=${gender}" method="post">
+						<input type="hidden" name="rb_id" value="${reviewBoard.rb_id }">
 						<input type="hidden" name="product_id" value="${reviewBoard.product_id }" >
-						<input type="hidden" name="pageNum" value="${pageNum }">
+						<%-- <input type="hidden" name="pageNum" value="${pageNum }"> --%>
 						<input type="hidden" name="rb_date" value="${reviewBoard.rb_date }">
 						<div class="flex-box board-view-head">
 							<span class="rb-title"><input type="text" name="rb_title" required="required" value="${reviewBoard.rb_title }"></span>
@@ -37,14 +38,9 @@
 						<div class="btn-wrap text-right">
 							<input class="btn btn-dialog" type="submit" value="확인">
 							<input class="btn btn-dialog" type="reset" value="취소">
+							<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=review#big_product_2" class="btn btn-dialog">목록</a>
 						</div>
 					</form>
-				</div>
-				
-				<div class="btn-wrap text-right">
-					<a href="#" class="btn btn-dialog">수정</a>
-					<a href="#" class="btn btn-dialog">삭제</a>
-					<a href="reviewBoard.do?$pageNum=${pageNum}" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
 		</div>

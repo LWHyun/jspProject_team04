@@ -68,7 +68,9 @@
     line-height: 24px;
     border-bottom: 1px solid #e5e5e5;
 }
-.btn-wrap.text-right a {
+.btn-wrap.text-right a,
+.btn-wrap.text-right input[type=submit],
+.btn-wrap.text-right input[type=reset] {
 	position: relative;
 	color: #fff;
 	min-width: 70px;
@@ -84,3 +86,4 @@
 	float: right;
 	text-decoration: none;
 }
+

@@ -628,16 +628,44 @@ public class ProductDAO {
    }
 
    
-   // [관리자 - 상품관리] 상품 가격, 재고 수정 메소드 
-	public Product_ImgSrcDTO update(int price, int stock) {
-
-		String sql = "UPDATE product_size\r\n"
-				+ "SET pd_size = ?,\r\n"
-				+ "    stock = ?  \r\n"
-				+ "WHERE product_id = ?\r\n"
-				+ "AND pd_size = ?";
+	// [관리자 - 상품관리] 상품 가격(TBL product), 재고(TBL product_size) 수정 메소드 
+	public int update(Product_ImgSrcDTO productImgDTO) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
 		
-		return null;
+		String sql1 = "UPDATE product SET price=? WHERE product_id=?";
+		String sql2 = "UPDATE product_size SET stock=? WHERE product_id=? AND pd_size=?";
+		
+		try {
+			// sql1 실행
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setLong(1, productImgDTO.getPrice());
+			pstmt.setInt(2, productImgDTO.getProduct_id());
+			
+			result1 = pstmt.executeUpdate();
+			System.out.println("ProductDAO update result1->"+result1);
+			pstmt.close();
+			
+			// sql2 실행
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, productImgDTO.getStock());
+			pstmt.setInt(2, productImgDTO.getProduct_id());
+			pstmt.setInt(3, productImgDTO.getPd_size());
+			
+			result2 = pstmt.executeUpdate();
+			System.out.println("ProductDAO update result2->"+result2);
+		
+		} catch (Exception e) {
+			System.out.println("ProductDAO update e.getMessage->"+e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null)  conn.close();
+		}
+	
+		return result2;
 	}
-   
 }

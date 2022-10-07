@@ -1064,18 +1064,19 @@
 	
 	
 	<!-- 상품큰 사진 -->
+	<input type="hidden"  id="gubun_tab" value="${show}">
 	<div class="big_product">
 		<div class="big_product_a">
-			<div class="big_product_1">
+			<div class="big_product_1" id="big_product_1">
 				상품정보
 			</div>
-			<div class="big_product_2">
+			<div class="big_product_2" id="big_product_2">
 				상품후기
 			</div>
-			<div class="big_product_3">
+			<div class="big_product_3" id="big_product_3">
 				상품Q&A
 			</div>
-			<div class="big_product_4">
+			<div class="big_product_4" id="big_product_4">
 				배송/교환/반품/AS안내
 			</div>
 		</div> 
@@ -1094,7 +1095,7 @@
 						<div class="inner">
 							<!-- 상품 후기 안내사항 -->
 							<div class="tab-content">
-								<ul class="bullet-text-list">
+								<ul class="bullet-text-list" >
 									<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
 										<br>(동영상 후기는 mp4 형식의 파일만 해당됩니다.)
 									</li>
@@ -1127,77 +1128,7 @@
 									</li>
 								</ul>
 							</div>
-							<!-- 평균 별점 및 리뷰 -->
-							<div class="review-gray-box">
-								<div class="rating-box">
-									<div class="tit_type1">상품만족도</div>
-									<div class="tit_type2">
-										95
-										<span class="unit">%</span>
-									</div>
-									<div class="tit_type3">
-										<div class="rating-container">
-											<div class="rating-stars">
-												<span class="empty-stars">
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-												</span>
-												<span class="filled-stars" style="width: 100%; display: none;">
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-												</span>
-											</div>
-										</div>
-										<span class="num">5</span>
-									</div>
-								</div>
-								<div class="review-text-contents">
-									<div class="left-box">
-										<div class="review-category-list-wrap">
-											<ul class="review-category-list">
-												<li class="category-item" id="">
-													<div class="category">사이즈</div>
-													<div class="text" id="">정 사이즈</div>
-													<div class="percent">
-														81
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">색상</div>
-													<div class="text" id="">화면과 같음</div>
-													<div class="percent">
-														89
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">발볼</div>
-													<div class="text" id="">적당함</div>
-													<div class="percent">
-														77
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">발등</div>
-													<div class="text" id="">적당함</div>
-													<div class="percent">
-														84
-														<span class="unit">%</span>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							<!-- 리뷰 모아보기 -->
 							<div class="tab-review">
 								<!-- 리뷰 개수 -->
@@ -1223,7 +1154,7 @@
 												<tr>
 													<td>${startNum1 }</td>
 													<td>
-														<a href="../board/reviewContent.do?rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
+														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1238,13 +1169,13 @@
 									<!-- 나중에 수정 -->
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-											<a href='reviewBoard.do?pageNum=${startPage1-blockSize1}'>[이전]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-											<a href='reviewBoard.do?pageNum=${i}'>[${i}]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}'>[${i}]</a>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-											<a href='reviewBoard.do?pageNum=${startPage1+blockSize1}'>[다음]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1283,7 +1214,7 @@
 											</ol>
 										</div> -->
 										<div class="btn-wrap text-right">
-											<a href="../board/reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
+											<a href="" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
 									</div>
 									
@@ -1337,7 +1268,7 @@
 													<tr>
 														<td>${startNum2 }</td>
 														<td>
-															<a href='../board/qnaContent.do?q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
+															<a href='../board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
 																${qABoard.q_title}
 															</a>
 														</td>
@@ -1353,13 +1284,13 @@
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
 											<c:if test="${startPage2 > blockSize2 }">
-												<a href='qnaBoard.do?pageNum2=${startPage2-blockSize2}'>[이전]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-												<a href='qnaBoard?pageNum2=${i}'>[${i}]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}'>[${i}]</a>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
-												<a href='qnaBoard?pageNum2=${startPage2+blockSize2}'>[다음]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}'>[다음]</a>
 											</c:if>
 										</div>	
 									
@@ -1400,7 +1331,7 @@
 												</ol>
 											</div>  -->
 											<div class="btn-wrap text-right">
-												<a href="../board/qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
+												<a href="${pageContext.request.contextPath}/board/qnaWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">Q&A 작성</a>
 											</div>
 										</div>
 									</div>
@@ -1461,7 +1392,23 @@ $(document).ready(function(){
 	});
 
 
+$(function(){
+    if($("#gubun_tab").val() == 'review'){
+       $('.big_product_main_1').hide();
+       $('.big_product_main_2').show();
+      
+    }
+    
+});   
 
+ $(function(){
+    if($("#gubun_tab").val() == 'qna'){
+       $('.big_product_main_1').hide();
+       $('.big_product_main_3').show();
+       
+    }
+    
+ });
 
 //성별 체크해서 나타나게하는 로직
 	$(function(){

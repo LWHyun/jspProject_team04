@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("수정 완료 !");
-			location.href="qnaBoard.do?pageNum=${pageNum}";
+			location.href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

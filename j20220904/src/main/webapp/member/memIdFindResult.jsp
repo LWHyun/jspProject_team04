@@ -81,11 +81,13 @@
 $(function() {
 	$('#popLoginBtn').click(function() {
 		$('#findForm').attr('action', '${pageContext.request.contextPath}/member/loginForm.do');
+		$('#findForm').attr('method', 'post');
 		$('#findForm').submit();
 	});
 	
 	$('#popPwSearchBtn').click(function() {
 		$('#findForm').attr('action', '${pageContext.request.contextPath}/member/memPwdFindForm.do');
+		$('#findForm').attr('method', 'post');
 		$('#findForm').submit();
 	});
 });

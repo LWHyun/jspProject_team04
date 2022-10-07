@@ -105,6 +105,10 @@
 	                    <div class="border-line-box order-status-wrap">
 	                        <div class="order-list-box">
 	                            <ul class="order-list">
+	                            	<c:if test="${empty requestScope.orderStatusList}">
+	                            		<li><a href="#" class="val" id="standByCnt">0</a><span class="order-type">입금대기</span></li>
+	                            		<li><a href="#" class="val" id="completeCnt">0</a><span class="order-type">결제완료</span></li>
+	                            	</c:if>
 	                            	<c:forEach var="orderStatus" items="${requestScope.orderStatusList }">
 	                            		<c:if test="${orderStatus.order_status == 0}">
 	                            			<li><a href="#" class="val" id="standByCnt">${orderStatus.cnt }</a><span class="order-type">입금대기</span></li>

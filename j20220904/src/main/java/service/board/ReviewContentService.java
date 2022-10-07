@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.ReviewBoardDAO;
@@ -22,6 +23,9 @@ public class ReviewContentService implements CommandProcess {
 		int rb_id = Integer.parseInt(request.getParameter("rb_id"));
 		String pageNum = request.getParameter("pageNum");
 		
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		int gender = Integer.parseInt(request.getParameter("gender"));
+		
 		System.out.println("ReviewContentService rb_id => "+rb_id);
 		System.out.println("ReviewContentService pageNum => "+pageNum);
 		
@@ -30,7 +34,11 @@ public class ReviewContentService implements CommandProcess {
 			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
 			
 			// 3. p_id의 q_views 증가 (조회수 증가)
-			rbd.readCount(rb_id);
+			HttpSession session = request.getSession();
+	         if(session.getAttribute("memHit") != null) {
+	         rbd.readCount(rb_id);
+	         session.removeAttribute("memHit");
+	         }
 			
 			// 4. ReviewBoardDTO reviewBoard = rbd.select(rb_id);
 			ReviewBoardDTO reviewBoard = rbd.select(rb_id);
@@ -39,6 +47,8 @@ public class ReviewContentService implements CommandProcess {
 			request.setAttribute("rb_id", rb_id);			
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("reviewBoard", reviewBoard);
+			request.setAttribute("product_id", product_id);
+			request.setAttribute("gender", gender);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
