@@ -203,6 +203,18 @@ public class QABoardDAO {
 	}
 	
 	
+	public int insert(QABoardDTO qABoard) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		String sql1  = "SELECT NVL(max(q_id), 0) FROM notice";
+		String sql  = "INSERT INTO qa_board VALUES(?,?,sysdate,?)";
+		
+		return result;
+	}
+	
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
@@ -214,6 +226,8 @@ public class QABoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 }

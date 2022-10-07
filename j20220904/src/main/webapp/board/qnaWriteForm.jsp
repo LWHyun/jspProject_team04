@@ -23,7 +23,8 @@
 				<div class="aside-contents" align="center">
 					<form action="qnaWritePro.do?pageNum=${pageNum}" method="post">
 						<input type="hidden" name="q_id" value="${q_id}">
-						
+						<input type="hidden" name="mem_id" value="${mem_id }">
+						<input type="hidden" name="product_id" value="${product_id }">
 						<div class="flex-box board-view-head">
 							<span class="q-title"><input type="text" name="q_title" required="required" value="제목을 입력하세요"></span>
 						</div>

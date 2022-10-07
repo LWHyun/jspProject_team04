@@ -1238,13 +1238,13 @@
 									<!-- 나중에 수정 -->
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-											<a href='reviewBoard.do?pageNum=${startPage1-blockSize1}'>[이전]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-											<a href='reviewBoard.do?pageNum=${i}'>[${i}]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}'>[${i}]</a>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-											<a href='reviewBoard.do?pageNum=${startPage1+blockSize1}'>[다음]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1353,13 +1353,13 @@
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
 											<c:if test="${startPage2 > blockSize2 }">
-												<a href='qnaBoard.do?pageNum2=${startPage2-blockSize2}'>[이전]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-												<a href='qnaBoard?pageNum2=${i}'>[${i}]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}'>[${i}]</a>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
-												<a href='qnaBoard?pageNum2=${startPage2+blockSize2}'>[다음]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}'>[다음]</a>
 											</c:if>
 										</div>	
 									
