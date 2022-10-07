@@ -1214,7 +1214,7 @@
 											</ol>
 										</div> -->
 										<div class="btn-wrap text-right">
-											<a href="../board/reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
+											<a href="" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
 									</div>
 									
@@ -1331,7 +1331,7 @@
 												</ol>
 											</div>  -->
 											<div class="btn-wrap text-right">
-												<a href="../board/qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
+												<a href="${pageContext.request.contextPath}/board/qnaWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">Q&A 작성</a>
 											</div>
 										</div>
 									</div>
