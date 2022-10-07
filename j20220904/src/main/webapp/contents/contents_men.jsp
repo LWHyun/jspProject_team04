@@ -1094,7 +1094,7 @@
 						<div class="inner">
 							<!-- 상품 후기 안내사항 -->
 							<div class="tab-content">
-								<ul class="bullet-text-list">
+								<ul class="bullet-text-list" >
 									<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
 										<br>(동영상 후기는 mp4 형식의 파일만 해당됩니다.)
 									</li>

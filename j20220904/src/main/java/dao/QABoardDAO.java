@@ -173,12 +173,58 @@ public class QABoardDAO {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
+			close(pstmt, conn);
 		}
 	}
+	
+	// 게시물 작성
+	public int insert(QABoardDTO qABoard) throws SQLException {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		
+		String sql1  = "SELECT NVL(max(q_id), 0) FROM qa_board";
+		String sql  = "INSERT INTO qa_board VALUES(?,?,?,?,?,sysdate,?,?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			// 새로 작성된 글의 q_id : 마지막 글의 q_id + 1
+			int newQId = rs.getInt(1)+ 1;
+			rs.close();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, newQId);
+			pstmt.setString(2, qABoard.getMem_id());
+			pstmt.setInt(3, qABoard.getProduct_id());
+			pstmt.setString(4, qABoard.getQ_title());
+			pstmt.setString(5, qABoard.getQ_content());
+			pstmt.setInt(6, qABoard.getQ_views());
+			pstmt.setString(7, qABoard.getQ_answer());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(pstmt , conn);
+		}
+		
+		return result;
+	}
+	
+	
+	
 	// 게시물 수정 -> 되는진 모르겠음
 	public int update(QABoardDTO qABoard) throws SQLException {
+		
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 
 		int result = 0;	
@@ -191,28 +237,19 @@ public class QABoardDAO {
 			pstmt.setString(2, qABoard.getQ_content());
 			pstmt.setInt(3, qABoard.getQ_id());
 			
+			
+			
 			result = pstmt.executeUpdate();
 			
 		} catch(Exception e) {	
 			System.out.println(e.getMessage()); 
 		} finally {
-			if (pstmt != null) pstmt.close();
-			if (conn !=null)   conn.close();
+			close(pstmt, conn);
 		}
 		return result;
 	}
 	
-	
-	public int insert(QABoardDTO qABoard) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int result = 0;
-		ResultSet rs = null;
-		String sql1  = "SELECT NVL(max(q_id), 0) FROM notice";
-		String sql  = "INSERT INTO qa_board VALUES(?,?,sysdate,?)";
-		
-		return result;
-	}
+
 	
 	// 삭제
 	public int delete(int q_id) throws SQLException {
@@ -231,8 +268,7 @@ public class QABoardDAO {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			if (pstmt != null) pstmt.close();
-			if (conn !=null)   conn.close();
+			close(pstmt, conn);
 		}
 		return result;
 	}

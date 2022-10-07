@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
 import dao.QABoardDAO;
@@ -17,6 +18,9 @@ public class QAWriteProService implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("QAWriteProService Start...");
 		
+		HttpSession session = request.getSession();
+		String mem_id = (String) session.getAttribute("mem_id");
+		
 		try {
 			request.setCharacterEncoding("utf-8"); 
 	        String pageNum = request.getParameter("pageNum");
@@ -24,8 +28,10 @@ public class QAWriteProService implements CommandProcess {
 	        
 	        QABoardDTO qABoard = new QABoardDTO();
 	        qABoard.setQ_id(Integer.parseInt(request.getParameter("q_id")));
-	        qABoard.setMem_id(request.getParameter("mem_id"));
+	        qABoard.setMem_id(mem_id);
+	        qABoard.setProduct_id(Integer.parseInt(request.getParameter("product_id")));	        
 	        qABoard.setQ_title(request.getParameter("q_title"));
+	        qABoard.setQ_content(request.getParameter("q_content"));
 	        
 	        QABoardDAO qbd = QABoardDAO.getInstance();
 	        int result = qbd.insert(qABoard);
@@ -38,7 +44,7 @@ public class QAWriteProService implements CommandProcess {
 		} catch (Exception e) {
 			
 		}
-		return null;
+		return "qnaWritePro.jsp";
 	}
 
 }

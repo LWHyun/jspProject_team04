@@ -37,14 +37,9 @@
 						<div class="btn-wrap text-right">
 							<input class="btn btn-dialog" type="submit" value="확인">
 							<input class="btn btn-dialog" type="reset" value="취소">
+							<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 						</div>
 					</form>
-				</div>
-				
-				<div class="btn-wrap text-right">
-					<a href="#" class="btn btn-dialog">수정</a>
-					<a href="#" class="btn btn-dialog">삭제</a>
-					<a href="reviewBoard.do?$pageNum=${pageNum}" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
 		</div>

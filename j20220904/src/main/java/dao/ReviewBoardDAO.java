@@ -178,7 +178,50 @@ public class ReviewBoardDAO {
 			if (conn != null) conn.close();
 		}
 	}
+
 	
+	// 게시물 작성
+	public int insert(ReviewBoardDTO reviewBoard) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		
+		String sql1  = "SELECT NVL(max(rb_id), 0) FROM review_board";
+		String sql  = "INSERT INTO review_board VALUES(?,?,?,?,?,?,sysdate,?)";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			// 새로 작성된 글의 rb_id : 마지막 글의 rb_id + 1
+			int newRbId = rs.getInt(1)+ 1;
+			rs.close();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, newRbId);
+			pstmt.setString(2, reviewBoard.getMem_id());
+			pstmt.setInt(3, reviewBoard.getProduct_id());
+			pstmt.setString(4, reviewBoard.getRb_title());
+			pstmt.setString(5, reviewBoard.getRb_content());
+			pstmt.setString(6, reviewBoard.getRb_img());
+			pstmt.setInt(7, reviewBoard.getRb_views());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(pstmt , conn);
+		}
+		
+		return result;
+	}
 	// 게시물 수정 -> 되는진 모르겠음
 	public int update(ReviewBoardDTO reviewBoard) throws SQLException {
 		Connection conn = null;	
@@ -205,9 +248,26 @@ public class ReviewBoardDAO {
 	}
 	
 	// 삭제
-	public int delete(int rb_id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int rb_id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "DELETE FROM review_board WHERE rb_id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rb_id);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
 	}
 	
 	private void close(AutoCloseable... ac) {
@@ -221,6 +281,8 @@ public class ReviewBoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 
