@@ -15,25 +15,6 @@
 		<div class="top-wrap">
 			<div class="inner">
 				<div class="noticeBox">
-					<!-- 기타 공지사항 -->
-					<%-- <ul class="tabs">
-						<li class="tab-item">
-							<a href="#" class="tab-link">상품정보</a>
-						</li>
-						<li class="tab-item">
-							<a href="../board/reviewBoard.do" class="tab-link" id="review-btn">상품후기
-								<span class="num">(${rbTotCnt })</span>
-							</a>
-						</li>
-						<li class="tab-item">
-							<a href="../board/qnaBoard.do" class="tab-link" id="qna-btn">상품 Q&amp;A
-								<span class="num">(${qATotCnt})</span>
-							</a>
-						</li>
-						<li class="tab-item ui-tabs-active">
-							<a href="#" class="tab-link">배송/교환/반품/AS안내</a>
-						</li>
-					</ul> --%>
 					<div class="tab-content">
 						<ul class="bullet-text-list">
 							<li class="bullet-text">

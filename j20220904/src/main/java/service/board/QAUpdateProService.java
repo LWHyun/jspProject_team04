@@ -36,6 +36,7 @@ public class QAUpdateProService implements CommandProcess {
 		toURI = toURI+"?product_id="+product_id+"&gender="+gender;
 		try {
 			System.out.println("try시작");
+			
 			QABoardDTO qABoard = new QABoardDTO();
 			
 			qABoard.setQ_id(Integer.parseInt(request.getParameter("q_id")));
