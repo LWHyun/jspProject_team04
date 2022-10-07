@@ -172,7 +172,7 @@ $(function() {
 
     // 이메일 인증 번호 확인
     $('#authEmail').on('blur', function() {
-        if($('#authEmail').val() != $('#authEmailCheck').val()) {
+        if($('#authEmail').val() == '' || $('#authEmail').val() != $('#authEmailCheck').val()) {
             $('#Val_emailDiv').css({
                 'display' : '',
                 'color' : 'red'
