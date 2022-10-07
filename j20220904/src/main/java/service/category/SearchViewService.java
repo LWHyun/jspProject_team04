@@ -51,7 +51,7 @@ public class SearchViewService implements CommandProcess {
 			
 		}else {//카테고리 탭으로 누른게 아니고 검색탭에 검색어 입력시 아래실행
 			try {
-				List<Product_ImgSrcDTO> list = cd.selectSearch(searchBar);
+				List<Product_ImgSrcDTO> list = cd.selectWordSearch(searchBar,mem_id);
 				request.setAttribute("searchBar", searchBar);
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);

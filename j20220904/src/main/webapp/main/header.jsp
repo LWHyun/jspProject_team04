@@ -278,7 +278,7 @@ function goSearch() {
 		$('.cate_select').css('display', 'flex');
 	});
 	
-	//여성탭 올렸을때 카테고리 메뉴 나오는 부분
+	//여성탭 클릭했을때 카테고리 메뉴 나오는 부분
 	$('.gnbMenuWrap > ul > #li_women').click(function() {
 		
 		$.ajax({
@@ -310,9 +310,6 @@ function goSearch() {
 		$('.cate_select').css('display', 'flex');
 	});
 
-/* $('.gnbMenuWrap > ul > li').mouseout(function() {
-	$('.cate_select').css('display', 'none');
-}); */
 //카테고리 메뉴 닫기
 $('#close').click(function() {
 	$('.cate_select').css('display', 'none');

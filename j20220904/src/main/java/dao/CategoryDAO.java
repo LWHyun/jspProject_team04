@@ -61,9 +61,10 @@ public class CategoryDAO {
 	
 	
 	//검색하기
-	public List<Product_ImgSrcDTO> selectSearch(String searchBar) throws SQLException {
+	public List<Product_ImgSrcDTO> selectWordSearch(String searchBar, String mem_id) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		String sql = "select * from product p, product_image pi where p.product_id=pi.product_id and pi.product_id in"
+		String sql = "select p.*,pi.*,NVL(l.product_id,0) from product p, product_image pi,(SELECT * FROM like_pro WHERE mem_id =\'"+mem_id+"\')l where p.product_id = l.product_id(+) and"
+				+ " p.product_id=pi.product_id and pi.product_id in"
 				+ "(select product_id from product where brand like Upper('%"+searchBar+"%') or "
 						+ "ENG_NAME like '%"+searchBar+"%' or KOR_NAME like '%"+searchBar+"%')";
 		Connection conn = null;
@@ -88,6 +89,7 @@ public class CategoryDAO {
 					pis.setCa_code(rs.getInt("ca_code"));
 					pis.setS_file_path(rs.getString("s_file_path"));
 					pis.setL_file_path(rs.getString("l_file_path"));
+					pis.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
 					list.add(pis);
 			} 
 			
@@ -494,7 +496,7 @@ public class CategoryDAO {
 		return insertResult;
 	}
 	//인기검색어 출력해서 뿌려주는 부분
-	public List<SearchClickDTO> select() throws SQLException {
+	public List<SearchClickDTO> selectMostClick() throws SQLException {
 		String sql = "select sc_word, sc_count from searchclick order by sc_count desc";
 		Connection conn = null;
 		Statement stmt = null;

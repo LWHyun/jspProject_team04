@@ -10,8 +10,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script type="text/javascript" src="../js/jquery.js"></script>
-<%@include file="indexEx2.jsp" %>
+<jsp:include page="../main/header.jsp"></jsp:include>
 <style type="text/css">
+	.wrapper{
+		height : 1800px;
+		width : 100%;
+		position: relative;
+	}
 	a{
 		color: black;
 		text-decoration: none;
@@ -88,7 +93,6 @@
 	
 	.filter{
 		width: 270px;
-		height: 680px; 
    		margin-top: 30px; 
    		border: 1px solid #A6A6A6; 
    		display: inline-block;
@@ -141,15 +145,17 @@
 	
 	
 	$(function () {
-		var num = 0;
-		var imageName = ["heart1", "heart0"];
+		
+		var imageName = ["heart0","heart1"];
 		
 		$(".like_img").click(function() {
-			var product_id = $(this).attr('alt');
+			var num =$(this).attr('alt');
+			var product_id = $(this).attr('id');
+			console.log(num);
 			console.log(product_id);
 			if(num == 1) {
-				num=0;
-				
+				//num=0;
+				$(this).attr('alt','0');
 				$.ajax({
 					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
 					type: 'get',
@@ -160,7 +166,13 @@
 						
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 삭제되었습니다');
+						console.log('data='+data);
+						if(data == '1') {	
+							alert('찜한 상품이 삭제되었습니다');
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
+						}
 					},
 					error: function(err){
 						console.log(err);
@@ -168,8 +180,8 @@
 				});	
 				
 			}else 	     {
-				num++;
-				
+				//num++;
+				$(this).attr('alt','1');
 				$.ajax({
 					url: '${pageContext.request.contextPath}/contents/insertLike.do',
 					type: 'get',
@@ -179,7 +191,14 @@
 						  },
 					dataType: 'text',
 					success : function(data){
-						alert('찜한 상품이 등록되었습니다');
+						console.log('data='+data);
+						if(data == '1') {
+							alert('찜한 상품이 등록되었습니다');
+						}else {
+							alert('로그인후 찜한 상품을 담을수 있습니다');
+							
+							location.href="${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
+						}
 					},
 					error: function(err){
 						console.log(err);
@@ -258,7 +277,7 @@
 </script>
 </head>
 <body>
-
+<div class="wrapper">
 	<div class="cate_name">
 		<c:if test="${result ==0 }">
 			<h1 class="nameResult">${searchBar } 을(를) 검색한 결과</h1><br>
@@ -322,14 +341,14 @@
 					</a>
 					<hr>
 					<div class="pro_buycontent">
-						<c:choose>
-							<c:when test="${list.like_product_id > 0 }">
-								<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart0.png" ><!-- onclick="like()" -->
-							</c:when>
-							<c:otherwise>
-								<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
-							</c:otherwise>
-						</c:choose>
+					<c:choose>
+						<c:when test="${list.like_product_id > 0 }">
+							<img class="like_img" alt="1"   src="../img/contexts/heart0.png" id="${list.product_id }">
+						</c:when>
+						<c:otherwise>
+							<img class="like_img" alt="0"  src="../img/contexts/heart1.png" id="${list.product_id }">
+						</c:otherwise>
+					</c:choose>
 						<button type="button" class="pro_buynow">바로구매</button>
 					</div>
 				</div>
@@ -339,8 +358,8 @@
 		</ul>
 	</div>
 	
-
-	
+</div>
+<jsp:include page="../main/footer.jsp"></jsp:include>
 	
 </body>
 </html>

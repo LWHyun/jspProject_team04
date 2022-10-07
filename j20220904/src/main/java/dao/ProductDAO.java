@@ -130,7 +130,9 @@ public class ProductDAO {
             }
       }catch(SQLException e) {
          e.printStackTrace();
-      }
+      }finally {
+		close(rs,pstmt,conn);
+	}
       
       
          return list;
