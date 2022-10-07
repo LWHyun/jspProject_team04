@@ -33,7 +33,7 @@
 				</div>
 				<div class="btn-wrap text-right">
 					<a href="reviewUpdateForm.do?rb_id=${rb_id}" class="btn btn-dialog">수정</a>
-					<a href="#" class="btn btn-dialog">삭제</a>
+					<a href="../board/reviewDeleteForm.do?$rb_id=${rb_id}&pageNum=${pageNum}" class="btn btn-dialog">삭제</a>
 					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 				</div>
 			</div>

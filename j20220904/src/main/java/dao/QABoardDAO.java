@@ -214,6 +214,28 @@ public class QABoardDAO {
 		return result;
 	}
 	
+	// 삭제
+	public int delete(int q_id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "DELETE FROM qa_board WHERE q_id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, q_id);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null) pstmt.close();
+			if (conn !=null)   conn.close();
+		}
+		return result;
+	}
 	
 	private void close(AutoCloseable... ac) {
 		try {
@@ -226,6 +248,8 @@ public class QABoardDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	
 

@@ -204,6 +204,12 @@ public class ReviewBoardDAO {
 		return result;
 	}
 	
+	// 삭제
+	public int delete(int rb_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {
@@ -215,6 +221,8 @@ public class ReviewBoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	
 
