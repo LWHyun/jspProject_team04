@@ -20,9 +20,10 @@
 					<h3 class="text-head2">상품 리뷰 수정</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="reviewUpdatePro.do" method="post">
+					<form action="${pageContext.request.contextPath }/board/reviewUpdatePro.doproduct_id=${product_id}&gender=${gender}" method="post">
+						<input type="hidden" name="rb_id" value="${reviewBoard.rb_id }">
 						<input type="hidden" name="product_id" value="${reviewBoard.product_id }" >
-						<input type="hidden" name="pageNum" value="${pageNum }">
+						<%-- <input type="hidden" name="pageNum" value="${pageNum }"> --%>
 						<input type="hidden" name="rb_date" value="${reviewBoard.rb_date }">
 						<div class="flex-box board-view-head">
 							<span class="rb-title"><input type="text" name="rb_title" required="required" value="${reviewBoard.rb_title }"></span>

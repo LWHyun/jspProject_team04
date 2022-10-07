@@ -37,7 +37,7 @@
 				<div class="btn-wrap text-right">
 					<a href="qnaUpdateForm.do?q_id=${q_id}&product_id=${product_id}&gender=${gender}" class="btn btn-dialog">수정</a>
 					<a href="../board/qnaDeleteForm.do?q_id=${q_id}&pageNum=${pageNum}" class="btn btn-dialog">삭제</a>
-					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
+					<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
 		</div>
