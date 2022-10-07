@@ -162,6 +162,15 @@ public class OrdersDTO {
 		public void setList(List<OrdersDetailDTO> list) {
 			this.list = list;
 		}
+
+
+		@Override
+		public String toString() {
+			return "OrdersDTO [order_id=" + order_id + ", mem_id=" + mem_id + ", order_name=" + order_name
+					+ ", order_phone=" + order_phone + ", order_email=" + order_email + ", take_name=" + take_name
+					+ ", take_phone=" + take_phone + ", take_add=" + take_add + ", order_msg=" + order_msg
+					+ ", order_date=" + order_date + ", order_status=" + order_status + ", list=" + list + "]";
+		}
 		
 		
 }

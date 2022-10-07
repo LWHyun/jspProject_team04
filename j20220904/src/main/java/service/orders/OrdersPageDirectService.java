@@ -18,7 +18,7 @@ public class OrdersPageDirectService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// 장바구니 -> 바로구매 / 제품 상세 -> 바로구매 둘 다 가능한 서비스
+		// 장바구니 -> 바로구매 서비스
 			
 		// 오류 체크 기점 확인용
 		System.out.println("OrdersPageDirectService start...");
