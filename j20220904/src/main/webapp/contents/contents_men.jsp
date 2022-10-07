@@ -1127,77 +1127,7 @@
 									</li>
 								</ul>
 							</div>
-							<!-- 평균 별점 및 리뷰 -->
-							<div class="review-gray-box">
-								<div class="rating-box">
-									<div class="tit_type1">상품만족도</div>
-									<div class="tit_type2">
-										95
-										<span class="unit">%</span>
-									</div>
-									<div class="tit_type3">
-										<div class="rating-container">
-											<div class="rating-stars">
-												<span class="empty-stars">
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-													<span class="material-symbols-outlined" id="empty-star">star</span>
-												</span>
-												<span class="filled-stars" style="width: 100%; display: none;">
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-													<span class="material-symbols-outlined" id="filled-star">star</span>
-												</span>
-											</div>
-										</div>
-										<span class="num">5</span>
-									</div>
-								</div>
-								<div class="review-text-contents">
-									<div class="left-box">
-										<div class="review-category-list-wrap">
-											<ul class="review-category-list">
-												<li class="category-item" id="">
-													<div class="category">사이즈</div>
-													<div class="text" id="">정 사이즈</div>
-													<div class="percent">
-														81
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">색상</div>
-													<div class="text" id="">화면과 같음</div>
-													<div class="percent">
-														89
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">발볼</div>
-													<div class="text" id="">적당함</div>
-													<div class="percent">
-														77
-														<span class="unit">%</span>
-													</div>
-												</li>
-												<li class="category-item" id="">
-													<div class="category">발등</div>
-													<div class="text" id="">적당함</div>
-													<div class="percent">
-														84
-														<span class="unit">%</span>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							<!-- 리뷰 모아보기 -->
 							<div class="tab-review">
 								<!-- 리뷰 개수 -->

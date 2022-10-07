@@ -35,7 +35,7 @@
 				</div>
 				<div class="btn-wrap text-right">
 					<a href="qnaUpdateForm.do?q_id=${q_id}" class="btn btn-dialog">수정</a>
-					<a href="qnaDeleteForm.do?q_id=${q_id}" class="btn btn-dialog">삭제</a>
+					<a href="../board/qnaDeleteForm.do?q_id=${q_id}&pageNum=${pageNum}" class="btn btn-dialog">삭제</a>
 					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
