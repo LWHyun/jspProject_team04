@@ -558,11 +558,17 @@ function sample6_execDaumPostcode() {
 	                    method: "POST",
 	                    /*headers: { "Content-Type": "application/text" },*/
 	                    data: {
-	                        imp_uid: rsp.imp_uid,
+	                       /*  imp_uid: rsp.imp_uid,
 	                        merchant_uid: rsp.merchant_uid,
 	                        amount : rsp.paid_amount,
-	                        buyer_name : rsp.buyer_name
+	                        buyer_name : rsp.buyer_name */
 	                        //기타 필요한 데이터가 있으면 추가 전달
+	                        
+	                        member_id :
+	                        buyer_name:
+	                       	
+	                        
+	                        
 	                    },
 	                    dataType: 'text',
 	                    success: function(data){
