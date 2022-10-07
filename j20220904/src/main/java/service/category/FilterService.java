@@ -20,7 +20,8 @@ public class FilterService implements CommandProcess {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
-		
+		request.setAttribute("toURI", request.getRequestURI());
+		System.out.println(mem_id);
 		String[] brandArray = request.getParameterValues("brandArray");
 		String size = request.getParameter("size");
 		String gender = request.getParameter("gender");

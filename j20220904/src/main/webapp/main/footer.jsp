@@ -8,9 +8,10 @@
 .footer-black {
 	margin-top: 100px;
 	padding: 20px 0px;
-	height: 350px;
+	height: 200px;
 	background-color: #FF0000;
 	display: block;
+	margin-top: 250px;
 }
 
 .footer-division-1 {

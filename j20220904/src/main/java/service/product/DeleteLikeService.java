@@ -20,7 +20,8 @@ public class DeleteLikeService implements CommandProcess {
 		
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String mem_id = request.getParameter("mem_id");
-	
+		System.out.println("delete product_id"+product_id);
+		System.out.println("delete mem_id"+mem_id);
 		ProductDAO productDAO = ProductDAO.getInstance();
 		int result = 0;
 		

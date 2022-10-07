@@ -23,7 +23,7 @@ public class SearchService implements CommandProcess {
 			CategoryDAO cd = CategoryDAO.getInstance();
 			try {
 				
-				List<SearchClickDTO> list = cd.select();
+				List<SearchClickDTO> list = cd.selectMostClick();
 				request.setAttribute("list", list);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
