@@ -143,22 +143,7 @@ private static OrdersInfoDAO instance;
 		return ordersInfoDTO;
 	}
 	
-	public List<OrdersDTO> insertOrdersList( ) {
-		
-		Connection conn = getConnection();
-		PreparedStatement pstmt = null;
-		
-		String sql1 = "INSERT INTO orders (order_id, mem_id, order_name, order_phone, order_email, take_name, take_phone, take_add, order_msg, sysdate)"
-				+ "VALUES(?,?,?,?,?,?,?,?,?)";
-		
-		
-		return null;
-		
-		
-		
-	}
-	
-	
+
 	private void close(AutoCloseable... ac) {
 		try {
 			for(AutoCloseable a : ac) {

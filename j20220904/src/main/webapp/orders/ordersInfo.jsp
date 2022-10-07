@@ -203,18 +203,23 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
-	<form action="" method="">
+	<form>
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
  				<input type="button" value="주문정보수정" class="basketbtn" onclick="history.back();">
  			</div>
  			
+ 			
  			<div class="order-basket">
 					<!-- 장바구니에서 전체 주문하기로 넘어왔을 때 -->
 					<table class="order-body">
 					
 						<c:forEach var="item" items="${basketList }" varStatus="status">
+								<input type="hidden" value="${item.product_id }" name="product_id">
+								<input type="hidden" value="${item.size_num }" name="size_num">
+								<input type="hidden" value="${item.cnt }" name="cnt">
+								
 								<tr id="tr${item.product_id }_${item.size_num }">
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
@@ -222,7 +227,7 @@ function sample6_execDaumPostcode() {
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
 										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
 									
-									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
+									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct"><input type="hidden" name="order_price" value="${item.price * item.cnt }">${item.price * item.cnt }원</td>
 								</tr>
 						</c:forEach>
 						
@@ -246,7 +251,8 @@ function sample6_execDaumPostcode() {
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="requestPay()">
+								
+								<li><input type="submit" value="결제하기" onclick="requestPay()">
 							</ul>
 						</div>
 						
@@ -389,6 +395,7 @@ function sample6_execDaumPostcode() {
 					</div>	 <!-- orderinfo div 끝 -->			
 				</div>
 				</form>
+	
 	<div id="footer">
 		<jsp:include page="../main/footer.jsp"></jsp:include>
   	</div>
@@ -434,7 +441,7 @@ function sample6_execDaumPostcode() {
 
 				$('#buyername').val('${members.mem_name}');
 				$('#buyerphone').val('${members.mem_tel}');
-				$('#buyermail').val('${members.mem_email1}'+'@'+'${ordersDTO.mem_email2}');
+				$('#buyermail').val('${members.mem_email1}'+'@'+'${members.mem_email2}');
 				
 			} else {
 				
@@ -547,7 +554,7 @@ function sample6_execDaumPostcode() {
 	            console.log(rsp);
 	            // if (rsp.success) {
 	               $.ajax({
-	                  url: "${pageContext.request.contextPath}/contents/insertOrdList.do", //가맹점 서버
+	                  url: "${pageContext.request.contextPath}/orders/insertOrdList.do", //가맹점 서버
 	                    method: "POST",
 	                    /*headers: { "Content-Type": "application/text" },*/
 	                    data: {

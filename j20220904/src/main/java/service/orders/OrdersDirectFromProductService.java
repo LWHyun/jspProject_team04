@@ -33,6 +33,8 @@ public class OrdersDirectFromProductService implements CommandProcess {
 			
 		}
 				
+		//상품 상세 -> 바로구매 서비스
+		
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String[] size_num = request.getParameterValues("size_num");
 		String[] cnt = request.getParameterValues("number");
