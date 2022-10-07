@@ -20,22 +20,22 @@
 					<h3 class="text-head2">상품 Q&amp;A</h3>
 				</div>
 				
-				<div class="flex-box board-view-head">
-					<span class="q-title">${qABoard.q_title }</span>
-					<span class="q-date">${qABoard.q_date}</span>
-					<span class="q-mem">${qABoard.mem_id}</span>
-				</div>
 				<div class="board-view-cont">
 					<div class="question-box">
-						<pre>${qABoard.q_content}</pre>
-					</div>
-					<div class="answer-box">
-						<pre>${qABoard.q_answer}</pre>
+						<form action="qnaDeletePro.do" method="post">
+							<input type="hidden" name="pageNum" value="${pageNum }">
+							<input type="hidden" name="q_id" value="${q_id }">
+							
+							<h2 style="margin-bottom: 20px;">글 삭제를 원하시면 <br>아래 칸에 삭제를 입력해주세요.</h2>
+							<input type="text" required="required" placeholder="삭제"><p><br>
+							<input type="submit" value="확인">
+							<button onclick="javascript:history.back();">취소</button>
+						</form>
 					</div>
 				</div>
 				<div class="btn-wrap text-right">
 					<a href="qnaUpdateForm.do?q_id=${q_id}" class="btn btn-dialog">수정</a>
-					<a href="qnaDeleteForm.do?q_id=${q_id}" class="btn btn-dialog">삭제</a>
+					<a href="#" class="btn btn-dialog">삭제</a>
 					<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
