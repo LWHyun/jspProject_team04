@@ -28,12 +28,16 @@ public class QAUpdateFormService implements CommandProcess {
 		}
 		try {
 			int q_id = Integer.parseInt(request.getParameter("q_id"));
-			String pageNum = request.getParameter("pageNum");
+			/* String pageNum2 = request.getParameter("pageNum2"); */
+			
+			System.out.println("QAUpdateFormService q_id => " + q_id);
+			/* System.out.println("QAUpdateFormService pageNum => " + pageNum2); */
 			
 			QABoardDAO qbd = QABoardDAO.getInstance();
+			
 			QABoardDTO qABoard = qbd.select(q_id);
 			
-			request.setAttribute("pageNum", pageNum);			
+			/* request.setAttribute("pageNum2", pageNum2); */		
 			request.setAttribute("qABoard", qABoard);
 		} catch (Exception e) {
 			e.printStackTrace();
