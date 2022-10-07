@@ -31,10 +31,10 @@ public class EmailCheck {
 		String code = String.valueOf((int)(Math.random()*888888)+111111);
 		
 		//사용자에게 보낼 메시지
-		String subject = "[이거4조] 이메일 인증 인증번호 안내 드립니다.";
+		String subject = "[신사몰] 이메일 인증 인증번호 안내 드립니다.";
 		String content = "<div style=\"width: 750px; margin: 0 auto; line-height: 1; color: #000; font-family:'맑은고딕', 'MalgunGothic', 'Malgun Gothic', Dotum;\">"
 				+"<div style=\"min-height: 422px; padding: 68px 34px 79px; border: 1px solid #999; \">\r\n"
-				+ "			<h2 style=\"margin: 0; padding: 0; font-size: 28px; color: #000; font-weight: bold; line-height:1; letter-spacing: -2.8px;\">[이거4조] 이메일 인증 인증번호 안내 드립니다.</h2>\r\n"
+				+ "			<h2 style=\"margin: 0; padding: 0; font-size: 28px; color: #000; font-weight: bold; line-height:1; letter-spacing: -2.8px;\">[신사몰] 이메일 인증 인증번호 안내 드립니다.</h2>\r\n"
 				+ "			<p style=\"padding:0; margin: 31px 0 0; font-size: 15px; line-height:25px; letter-spacing: -1.5px;\">\r\n"
 				+ "				고객님의 소중한 개인정보보호를 위하여 이메일 인증을 진행 합니다. <br>\r\n"
 				+ "				아래 인증번호를 <span style=\"font-weight: bold;\">인증번호란에 입력하고 ‘확인’ 버튼을 클릭하시면 인증이 완료</span>됩니다.\r\n"
