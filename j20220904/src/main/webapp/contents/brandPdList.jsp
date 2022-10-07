@@ -203,7 +203,7 @@ strong+p {
   font-size: 15px;
   padding-right: 33px;
 }
-.fold-box-header:brfoe {
+.fold-box-header::before {
   content: '';
   position: absolute;
   display: inline-block;
@@ -213,7 +213,7 @@ strong+p {
   right: 10px;
   top: 32px;
 }
-.fold-box-header:after {
+.fold-box-header::after {
   content: '';
   position: absolute;
   display: inline-block;
@@ -293,7 +293,7 @@ label {
 		margin-right: 10px;
 		margin-top: 10px;
 	}
-	.product-list>.product-box:nth-child(3) {
+	.product-list>.product-box:nth-child(4) {
 		margin-right: 5px;
 	}
 	.prod-wrap:hover {
@@ -341,7 +341,7 @@ label {
 		text-align: center;
 		line-height: 42px;
 	}
-	.btn-prod-cart, .btn-prod-favorite {
+	.btn-prod-favorite {
 		position: relative;
 		width: 24px;
 		height: 22px;
@@ -352,16 +352,10 @@ label {
 		border: none;
 		flex-basis: 24px;
 		background-color: white;
+		cursor: 
 	}
 	 .btn-prod-favorite:hover {
 	  background-position: 0 -22px;
-	}
-	.btn-prod-cart:hover {
-	  background-position: -48px -22px;
-	}
-	.btn-prod-cart {
-		background-position: -48px 0;
-		margin-left: 17px;
 	}
 	.btn-buy-now {
 		width: 150px;
@@ -593,12 +587,12 @@ label {
 		          <div class="fold-box-header" id="genderSearchCount">카테고리</div>				<!-- 카테고리: 운동화, 구두 -->
 		          <div class="fold-box-contents">
 		            <ul class="ip-filter-list col1">
-		              <li class="smart-search-option" data-code="1" data-name="운동화">
+		              <li class="smart-search-option" data-name="운동화">
 		                <span class="ui-chk type-line">
 		                <input id="1" name="category" type="checkbox"><label for="1">운동화</label>
 		                </span>
 		              </li>
-		              <li class="smart-search-option" data-code="0" data-name="구두">
+		              <li class="smart-search-option" data-name="구두">
 		                <input id="0" name="category" type="checkbox"><label for="0">구두</label>
 		              </li>
 		            </ul>
@@ -710,7 +704,7 @@ label {
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
 									<div class="util-btn-wrap">																			
-										<button type="button" id="like" class="btn-prod-favorite">즐겨찾기</button>
+										<button type="button" id="${list.product_id }" class="btn-prod-favorite">즐겨찾기</button>
 										<!-- <button type="button" class="btn-prod-cart">장바구니 담기</button> -->			<!-- 장바구니에 상품코드 저장 -->
 									</div>
 									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
@@ -744,10 +738,14 @@ label {
 <script type="text/javascript">
 
 	$(function(){
-			$(document).on("click", ".btn-prod-favorite", function () {
-				alert("찜은 갈비찜");
+
+		$(document).on("click", ".btn-prod-favorite", function () {
+			
 				var sandData = "product_id=" + $(this).attr('id');
-				
+											// $(.btn-prod-favorite) 태그의 id를 가져와라
+				var product_id = $(this).attr('id');
+				/* alert( $('.btn-prod-favorite').css("background-position")); */
+			if(	$('.btn-prod-favorite').css("background-position") == "0px -22px"){
 				
 			 $.ajax({
 				url: '${pageContext.request.contextPath}/contents/registerLike.do',
@@ -758,36 +756,38 @@ label {
 					console.log(data);
 					if (data == "1") {
 						alert('찜한상품에 담겼습니다.');
-						$('.btn-prod-favorite').css("background-position", "0 -44px");
-					} else {
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+					} else if (data == "-1") {
 						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
 						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-					}
-				
+					} else // (data == "0")
+						alert('이미 찜한상품입니다.');
 				}
 			});
 			 
-			 <%-- $.ajax({
-				url: "<%=context%>/contents/removeLike.do",
-				type: "get",
-				data: sendData,
+			} else {
+				alert('찜 삭제 ajax');
+			 $.ajax({
+				url: '<%=context%>/contents/removeLike.do',
+				type: 'get',
+				data: "product_id=" + $(this).attr('id'),
 				success: function (data) {
 					if (data == "1") {
 						alert ("찜한상품이 해제되었습니다.");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 0");
+						
 					} else {
 						alert("error");
 						location.href = "<%=context%>/member/loginForm.do";
+						$(this).hover("background-position", "0 -22px");
 					}
 				}
-			 }); --%>
+			 });
+			}
 		});
 	});
 	
-	
-		/* $(".btn-buy-now").click(function () {
-			location.href="#"
-		});
-	
+		/*
 		$(".fold-box-header").click( function () {
 			$(".ip-filter-list col1").slideToggle();
 		}) */

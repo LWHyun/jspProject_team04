@@ -16,25 +16,19 @@ public class ShowSectionService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-BrandListDAO bld = BrandListDAO.getInstance();
-		
-		int ca_code = Integer.parseInt(request.getParameter("ca_code"));
-		
+		BrandListDAO bld = BrandListDAO.getInstance();
+		System.out.println("ShowSectionService start..");
 		
 		try {
-			String ca_name = bld.selectBrandName(ca_code);
-			List<Product_ImgSrcDTO> list = bld.productList(ca_code);
-			System.out.println("탔음?");
-			System.out.println("list" + list);
-			System.out.println(ca_name);
+			List<Product_ImgSrcDTO> list = bld.sectionList();
+			System.out.println("탔음 list" + list);
 
-			request.setAttribute("ca_name", ca_name);
 			request.setAttribute("list", list);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "section.jsp";
+		return "/contents/sectionAjax.jsp";
 	}
 
 }

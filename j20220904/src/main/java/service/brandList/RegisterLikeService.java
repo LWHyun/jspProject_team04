@@ -22,10 +22,15 @@ public class RegisterLikeService implements CommandProcess {
 		String mem_id = (String) session.getAttribute("mem_id");
 
 		int result = 0;
+		if (mem_id == null) {
+			result = -1;
+			System.out.println("로그인 안됨" + result);
+			request.setAttribute("result", result);
+			return "ajaxajax.jsp";
+		} 
 		System.out.println("mem_id + " + mem_id);
-//		System.out.println(product_id + "asdasd1234");
-
-		if (mem_id != null || mem_id != "") {
+		System.out.println(product_id + "asdasd1234");
+		
 			try {
 				result = bld.registerLike(Integer.parseInt(product_id), mem_id);
 				request.setAttribute("product_id", product_id);
@@ -35,7 +40,6 @@ public class RegisterLikeService implements CommandProcess {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-		}
 		System.out.println("ajax return = " + result);
 		return "ajaxajax.jsp";
 	}
