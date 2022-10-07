@@ -3,11 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.MyPage_OrdersDTO;
+import dto.OrdersDTO;
 import dto.OrdersInfoDTO;
 
 public class OrdersInfoDAO {
@@ -140,7 +143,21 @@ private static OrdersInfoDAO instance;
 		return ordersInfoDTO;
 	}
 	
-
+	public List<OrdersDTO> insertOrdersList( ) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql1 = "INSERT INTO orders (order_id, mem_id, order_name, order_phone, order_email, take_name, take_phone, take_add, order_msg, sysdate)"
+				+ "VALUES(?,?,?,?,?,?,?,?,?)";
+		
+		
+		return null;
+		
+		
+		
+	}
+	
 	
 	private void close(AutoCloseable... ac) {
 		try {

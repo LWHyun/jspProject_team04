@@ -13,7 +13,14 @@
 				</a>
 				<hr>
 				<div class="pro_buycontent">
-					<img class="like_img" alt="${filterList.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+					<c:choose>
+						<c:when test="${filterList.like_product_id > 0 }">
+							<img class="like_img" alt="${filterList.product_id }"  src="../img/contexts/heart0.png" ><!-- onclick="like()" -->
+						</c:when>
+						<c:otherwise>
+							<img class="like_img" alt="${filterList.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+						</c:otherwise>
+					</c:choose>
 					<button type="button" class="pro_buynow">바로구매</button>
 					<input type="hidden" name="">
 				</div>

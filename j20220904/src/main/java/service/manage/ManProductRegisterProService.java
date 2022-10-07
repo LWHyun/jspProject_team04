@@ -69,15 +69,15 @@ public class ManProductRegisterProService implements CommandProcess {
 			
 			
 			// DB
-			ProductDAO pd = ProductDAO.getInstance();
-			Product_ImgDAO pi = Product_ImgDAO.getInstance();
-			
-			int prodResult = pd.insert(product);
-			
-			
-			request.setAttribute("product_id", pd.getProduct_id());
-			request.setAttribute("prodResult", prodResult);
-			request.setAttribute("pageNum", pageNum);
+//			ProductDAO pd = ProductDAO.getInstance();
+//			Product_ImgDAO pi = Product_ImgDAO.getInstance();
+//			
+//			int prodResult = pd.insert(product);
+//			
+//			
+//			request.setAttribute("product_id", pd.getProduct_id());
+//			request.setAttribute("prodResult", prodResult);
+//			request.setAttribute("pageNum", pageNum);
 			
 			} catch (Exception e) {
 				e.printStackTrace();

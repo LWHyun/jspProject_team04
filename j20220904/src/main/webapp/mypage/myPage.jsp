@@ -46,7 +46,7 @@
                             <span class="mypage-lnb-title">쇼핑수첩</span>
                             <ol>
                             	<li class="mypage-lnb-item">
-                                    <a href="#">최근 주문내역</a>
+                                    <a href="${pageContext.request.contextPath }/mypage/orderList.do" id="myOrder">최근 주문내역</a>
                                 </li>
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/likeProList.do" id="mylike">찜한상품</a>
@@ -98,15 +98,25 @@
 	                    <div class="border-line-box-header">
 	                        <h3 class="text-head2">최근 주문내역</h3>
 	                        <div class="btn-wrap">
-	                            <button type="button" class="btn-txt-arr" id="moreOrder">더보기</button>
+	                            <a href="${pageContext.request.contextPath }/mypage/orderList.do"><button type="button" class="btn-txt-arr" id="moreOrder">더보기</button></a>
 	                        </div>
 	                    </div><!-- border-line-box-header -->
 	
 	                    <div class="border-line-box order-status-wrap">
 	                        <div class="order-list-box">
 	                            <ul class="order-list">
-	                                <li><a href="#" class="val" id="standByCnt">0</a><span class="order-type">입금대기</span></li>
-	                                <li><a href="#" class="val" id="completeCnt">0</a><span class="order-type">결제완료</span></li>
+	                            	<c:if test="${empty requestScope.orderStatusList}">
+	                            		<li><a href="#" class="val" id="standByCnt">0</a><span class="order-type">입금대기</span></li>
+	                            		<li><a href="#" class="val" id="completeCnt">0</a><span class="order-type">결제완료</span></li>
+	                            	</c:if>
+	                            	<c:forEach var="orderStatus" items="${requestScope.orderStatusList }">
+	                            		<c:if test="${orderStatus.order_status == 0}">
+	                            			<li><a href="#" class="val" id="standByCnt">${orderStatus.cnt }</a><span class="order-type">입금대기</span></li>
+	                            		</c:if>
+	                            		<c:if test="${orderStatus.order_status == 1}">
+	                            			<li><a href="#" class="val" id="completeCnt">${orderStatus.cnt }</a><span class="order-type">결제완료</span></li>
+	                            		</c:if>
+	                            	</c:forEach>
 	                                <!-- <li><a href="#" class="val" id="productPreparationCnt">0</a><span class="order-type">상품준비중</span></li>
 	                                <li><a href="#" class="val" id="dlvyingPickupReadyCnt">0</a><span class="order-type">배송중/픽업준비완료</span></li>
 	                                <li><a href="#" class="val" id="dlvyFinishCnt">0</a><span class="order-type">배송/수령완료</span></li> -->
@@ -191,6 +201,8 @@ $(function() {
 		$('#mylike').addClass('active');
 	} else if(active == 'myQA') {
 		$('#myQA').addClass('active');
+	} else if(active == 'myOrder') {
+		$('#myOrder').addClass('active');
 	}
 	
 	// 찜한 상품이 있을 때 없을 때 display:none 처리
@@ -198,15 +210,10 @@ $(function() {
 	if(listCnt == 0) {
 		$('.mypage-no-data').css('display', '');
 		$('.col-list-wrap').css('display', 'none');
-		$('.qna-list').css('display', 'none');
 	} else {
 		$('.mypage-no-data').css('display', 'none');
 		$('.col-list-wrap').css('display', '');
-		$('.qna-list').css('display', '');
 	}
-	
-	
-	
 });
 
 //찜한 상품 mouseover / out 처리

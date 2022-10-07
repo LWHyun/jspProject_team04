@@ -41,27 +41,20 @@
 			var tr = updateBtn.parent().parent();
 			var td = tr.children();
 			
-			var product_id = td.eq(0).text();
-			var pd_size    = td.eq(4).text();
+			var product_id = td.eq(0).text();	// product_id
+			var pd_size    = td.eq(4).text();	// pd_size
 			
 			var price = $("#tbl tbody tr td input").eq(0).val();	//  price
 			var stock = $("#tbl tbody tr td input").eq(1).val();	// 	stock
 				
-			alert("상품 " + product_id + " (사이즈 : " + pd_size + ") / " + "가격(" + price +")과 수량(" + stock + ")를 수정합니다~~");
+			alert("상품 " + product_id + " (사이즈 : " + pd_size + ") / " + "가격(" + price +")과 수량(" + stock + ")를 수정합니다");
 			
 			location.href='manProductUpdate.do?product_id='+product_id+'&pd_size='+pd_size+'&price='+price+'&stock='+stock;
 		})
 	});
 	
 	
-	/* 가격, 재고 값 변할 때마다 alert 하게 */
-	$( document ).ready( function() {
-	    $( '#price, #stock' ).change( function() {
-	      var price = $( '#price' ).val();
-	      var stock = $( '#stock' ).val();
-	      alert(price + " / " + stock);
-	    } )
-	  } );
+
 	
 </script>
 <title>상품관리</title>
@@ -126,9 +119,9 @@
 													<td>${product_ImgSrcDTO.product_id}</td>
 													<td>${product_ImgSrcDTO.brand}</td>
 													<td>${product_ImgSrcDTO.kor_name}</td>
-													<td><input type="number" id="price" min="0" value="${product_ImgSrcDTO.price}" style="width:60px;"></td>
+													<td><input type="number" id="price" name="price" min="0" value="${product_ImgSrcDTO.price}" style="width:60px;"></td>
 													<td>${product_ImgSrcDTO.pd_size}</td>
-													<td><input type="number" id="stock" min="0" max="999" value="${product_ImgSrcDTO.stock}" style="width:60px;"></td>
+													<td><input type="number" id="stock" name="stock" min="0" max="999" value="${product_ImgSrcDTO.stock}" style="width:60px;"></td>
 													<td>
 														<input type="button" class="updateBtn" id="updateBtn" value="수정">
 														<input type="button" class="deleteBtn" id="deleteBtn" value="삭제" onclick="location.href='manProductDelete.do?product_id=${product_ImgSrcDTO.product_id}&pd_size=${product_ImgSrcDTO.pd_size }&pageNum=${pageNum }'">
