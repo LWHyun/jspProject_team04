@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
 	alert("수정 완료 !");
-//	location.href="manProductList.do";
+	location.href="manProductList.do";
 </script>
 </body>
 </html>

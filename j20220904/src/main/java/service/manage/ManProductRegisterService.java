@@ -18,7 +18,7 @@ public class ManProductRegisterService implements CommandProcess {
 		
 		try {
 			// 신규 상품 등록
-			int product_id = 0;
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
 			String pageNum = request.getParameter("pageNum");
 			
 			if(pageNum == null) pageNum = "1";

@@ -17,8 +17,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import control.CommandProcess;
 import dao.ProductDAO;
-import dto.ProductDTO;
-import dto.Product_ImgDTO;
 import dto.Product_ImgSrcDTO;
 
 public class ManProductRegisterProService implements CommandProcess {
@@ -38,51 +36,73 @@ public class ManProductRegisterProService implements CommandProcess {
 		// 업로드 될 파일의 최대 사이즈 (10메가)
 		int maxSize = 10 * 1024 * 1024;
 		
-		// 파일이 업로드될 실제 tomcat 폴더 경로 (WebContent 기준)
-		String realPath = request.getRealPath("../upload");
-		System.out.println("realPath -> " + realPath);
+		// 실제 파일 저장 경로
+		String savePath = request.getSession().getServletContext().getRealPath("../img/product_images");
+		System.out.println("savePath -> " + savePath);
 
 		try {
-			multi = new MultipartRequest(request, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+			multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+			Enumeration en = multi.getFileNames();
 			
-
-		
 			// 서버에 저장된 파일 이름
-			String filename = multi.getFilesystemName("filename");
+			String serverSaveFileName = "";
 			
-			// 파라미터 받는 값들, request -> multi로 대체
-			// DTO 작업
-			ProductDTO productDTO = new ProductDTO();
-			productDTO.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
-			productDTO.setBrand(multi.getParameter("brand"));
-			productDTO.setEng_name(multi.getParameter("eng_name"));
-			productDTO.setKor_name(multi.getParameter("kor_name"));
-			productDTO.setGender(Integer.parseInt(multi.getParameter("gender")));
-			productDTO.setPrice(Integer.parseInt(multi.getParameter("price")));
-			productDTO.setColor(multi.getParameter("color"));
-			productDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
+			while(en.hasMoreElements()) {
+				// input 태그의 속성이 file인 태그의 name 속성값 : 파라미터명
+				String paraName = (String)en.nextElement();
+				
+				// 서버에 저장된 파일명
+				serverSaveFileName = multi.getFilesystemName(paraName);	
+				
+				//전송 전 원래의 파일명
+				String original = multi.getOriginalFileName(paraName);
+				
+				// 전송된 파일의 내용 타입
+				String type = multi.getContentType(paraName);
+				
+				// 전송된 파일 속성이 file인 태그의 name 속성값을 이용해 파일 객체 생성
+				File file = multi.getFile(paraName);
+				 
+				System.out.println("savePath > " + savePath);
+				System.out.println("실제 파일명 : paraName > " + paraName);
+				System.out.println("저장된 파일명 : serverSaveFileName > " + serverSaveFileName);
+				System.out.println("파일타입 : " + type);
 			
+				// 서버에 저장된 파일명
+				String filename = multi.getFilesystemName("filename");
+				
+				// 파라미터 받는 값들, request -> multi로 대체
+				// 제품코드 | 브랜드 | 영어이름 | 한글이름 | 성별 | 가격 | 색상 | 카테고리 코드
+				// 상품 대표 이미지 등록 | 상품 상세 이미지 등록
+				Product_ImgSrcDTO productImgSrcDTO = new Product_ImgSrcDTO();
+				
+				productImgSrcDTO.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
+				productImgSrcDTO.setBrand(multi.getParameter("brand"));
+				productImgSrcDTO.setEng_name(multi.getParameter("eng_name"));
+				productImgSrcDTO.setKor_name(multi.getParameter("kor_name"));
+				productImgSrcDTO.setGender(Integer.parseInt(multi.getParameter("gender")));
+				productImgSrcDTO.setPrice(Long.parseLong(multi.getParameter("price")));
+				productImgSrcDTO.setColor(multi.getParameter("color"));
+				productImgSrcDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
+				
+				productImgSrcDTO.setPro_image_id(Integer.parseInt(multi.getParameter("pro_image_id")));
+				productImgSrcDTO.setL_file_path(multi.getParameter("l_file_path"));
+				productImgSrcDTO.setS_file_path(multi.getParameter("s_file_path"));
+				
+				
+				ProductDAO pd = ProductDAO.getInstance();
+				int result = pd.registerProduct(productImgSrcDTO);
 			
-			Product_ImgDTO imgDTO = new Product_ImgDTO();
-			imgDTO.setProduct_id(Integer.parseInt(multi.getParameter("product_id")));
-			
-			
-			
-			// DB
-//			ProductDAO pd = ProductDAO.getInstance();
-//			Product_ImgDAO pi = Product_ImgDAO.getInstance();
-//			
-//			int prodResult = pd.insert(product);
-//			
-//			
-//			request.setAttribute("product_id", pd.getProduct_id());
-//			request.setAttribute("prodResult", prodResult);
-//			request.setAttribute("pageNum", pageNum);
-			
-			} catch (Exception e) {
-				e.printStackTrace();
+				
+				request.setAttribute("product_id", productImgSrcDTO.getProduct_id());
+				request.setAttribute("pro_image_id", productImgSrcDTO.getPro_image_id());
+				request.setAttribute("result", result);
+				request.setAttribute("pageNum", pageNum);
 			}
-			return "manProductRegisterPro.jsp";
+		} catch (Exception e) {
+				System.out.println("ManProductRegisterProService e.getMessage() -> " + e.getMessage());
+		}
+		
+		return "manProductRegisterPro.jsp";
 	}
-
 }
