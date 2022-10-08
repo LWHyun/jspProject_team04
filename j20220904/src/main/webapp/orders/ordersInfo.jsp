@@ -95,7 +95,7 @@
 		margin-bottom : 20px;
 	}
 	
-	#receiver-name, #receiver-phone {
+	#receiver_name, #receiver_phone {
 		margin-top : 17px;
 	}
 	
@@ -203,7 +203,7 @@ function sample6_execDaumPostcode() {
 		<jsp:include page="../main/header.jsp"></jsp:include>
 	</div>
 	
-	<form>
+	<form id="ordersForm">
 	<div class="order-wrap">
  		<span class="order-title">주문정보</span>
  			<div class="go-back-basket">
@@ -216,9 +216,10 @@ function sample6_execDaumPostcode() {
 					<table class="order-body">
 					
 						<c:forEach var="item" items="${basketList }" varStatus="status">
-								<input type="hidden" value="${item.product_id }" name="product_id">
-								<input type="hidden" value="${item.size_num }" name="size_num">
-								<input type="hidden" value="${item.cnt }" name="cnt">
+								<input type="hidden" value="${item.product_id }" id="product_id" name="product_id">
+								<input type="hidden" value="${item.size_num }" id="size_num" name="size_num">
+								<input type="hidden" value="${item.cnt }" id="cnt" name="cnt">
+								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
 								
 								<tr id="tr${item.product_id }_${item.size_num }">
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
@@ -227,7 +228,7 @@ function sample6_execDaumPostcode() {
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
 										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
 									
-									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct"><input type="hidden" name="order_price" value="${item.price * item.cnt }">${item.price * item.cnt }원</td>
+									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
 						</c:forEach>
 						
@@ -252,7 +253,7 @@ function sample6_execDaumPostcode() {
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
 								
-								<li><input type="submit" value="결제하기" onclick="requestPay()">
+								<li><input type="button" value="결제하기" onclick="requestPay()">
 							</ul>
 						</div>
 						
@@ -326,7 +327,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" id="receiver-name" name="receiver_name" required> <!-- placeholder -->
+											 <input type="text" id="receiver_name" name="receiver_name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -336,7 +337,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" id="receiver-phone" name="receiver_phone" required> <!-- placeholder -->
+											 <input type="text" id="receiver_phone" name="receiver_phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -461,8 +462,8 @@ function sample6_execDaumPostcode() {
 	        $("#origin-addr").change(function(){
 	           if($("#origin-addr").is(":checked")){
 
-	           $('#receiver-name').val('${members.mem_name}');
-	           $('#receiver-phone').val('${members.mem_tel}');
+	           $('#receiver_name').val('${members.mem_name}');
+	           $('#receiver_phone').val('${members.mem_tel}');
 	           $('#postcode').val('${members.mem_zipcode}');
 	           $('#address').val('${members.mem_addr1}');
 	           $('#detailAddress').val('${members.mem_addr2}');
@@ -474,8 +475,8 @@ function sample6_execDaumPostcode() {
 	       $("#new-addr").change(function(){
 	       	  if($("#new-addr").is(":checked")){
 	      	 
-	           $('#receiver-name').val(null);
-	           $('#receiver-phone').val(null);
+	           $('#receiver_name').val(null);
+	           $('#receiver_phone').val(null);
 	           $('#postcode').val(null);
 	           $('#address').val(null);
 	           $('#detailAddress').val(null);
@@ -503,7 +504,7 @@ function sample6_execDaumPostcode() {
 	     
 	        function requestPay() {
 	        var IMP = window.IMP; // 생략가능
-	        IMP.init('imp26451542');
+	        IMP.init('imp71553354');
 	        // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	        IMP.request_pay({
@@ -538,12 +539,12 @@ function sample6_execDaumPostcode() {
 	            */
 	            name: '주문명:결제테스트',
 	            //결제창에서 보여질 이름
-	            amount: 1000,
+	            amount: 100,
 	            //가격
 	            buyer_email: 'abcMartek@siot.do',
-	            buyer_name: '김성현', //구매자 이름
-	            buyer_tel: '010-2878-7531',
-	            buyer_addr: '서울특별시 강남구 삼성동',
+	            buyer_name: '이우현', //구매자 이름
+	            buyer_tel: '010-7586-5945',
+	            buyer_addr: '경기도 의정부시 신곡동',
 	            buyer_postcode: '123-456',
 	            /*
 	            모바일 결제시,
@@ -557,19 +558,7 @@ function sample6_execDaumPostcode() {
 	                  url: "${pageContext.request.contextPath}/orders/insertOrdList.do", //가맹점 서버
 	                    method: "POST",
 	                    /*headers: { "Content-Type": "application/text" },*/
-	                    data: {
-	                       /*  imp_uid: rsp.imp_uid,
-	                        merchant_uid: rsp.merchant_uid,
-	                        amount : rsp.paid_amount,
-	                        buyer_name : rsp.buyer_name */
-	                        //기타 필요한 데이터가 있으면 추가 전달
-	                        
-	                        member_id :
-	                        buyer_name:
-	                       	
-	                        
-	                        
-	                    },
+	                    data: $('#ordersForm').serialize(),
 	                    dataType: 'text',
 	                    success: function(data){
 	                       //var msg1 = '결제가 완료되었습니다.';
@@ -579,8 +568,8 @@ function sample6_execDaumPostcode() {
 	                        //msg1 += '구매자 이름 :' + rsp.buyer_name;
 	                        //msg += '카드 승인번호 : ' + rsp.apply_num;
 	                        //msg1 += '구매자'+ rsp.buyer_name + '님의';
-	                        alert('구매자 '+rsp.buyer_name + '님의 결제가 완료되었습니다.');
-	                        location.href="http://localhost:8181/j20220904/";
+	                        alert('구매자 '+ rsp.buyer_name + '님의 결제가 완료되었습니다.');
+	                        location.href="${pageContext.request.contextPath}/orders/orderComplete";
 	                      },
 	                      error: function(err){
 	                         var msg2 = '결제에 실패하였습니다.';
