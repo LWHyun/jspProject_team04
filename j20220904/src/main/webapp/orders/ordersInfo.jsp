@@ -553,7 +553,7 @@ function sample6_execDaumPostcode() {
 	            */
 	        }, function (rsp) {
 	            console.log(rsp);
-	            // if (rsp.success) {
+	             if (rsp.success) {
 	               $.ajax({
 	                  url: "${pageContext.request.contextPath}/orders/insertOrdList.do", //가맹점 서버
 	                    method: "POST",
@@ -577,6 +577,10 @@ function sample6_execDaumPostcode() {
 	                      }
 	                      
 	                  });
+	             } else if(rsp.fail) {
+	            	 alert('결제에 실패하였습니다.');
+	            	 
+	             }
 	        })
 	    };
 
