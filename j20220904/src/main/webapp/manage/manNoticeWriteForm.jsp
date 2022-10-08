@@ -12,6 +12,7 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 		table-layout: fixed;
+		transform: translate(166px, 67px);
 	}
 	
 	span {
@@ -55,7 +56,8 @@
 	/* 중앙화면 */
 	.aside-contents {
 		margin-top: -140px;
-		width: calc(95% - 162px);
+    	width: calc(95% - 162px);
+    	transform: translate(111px, 32px);
 	}
 	
 	.text-head2.eng, .text-head2 .eng {
@@ -177,13 +179,13 @@
 		font-family: "Montserrat", "Noto Sans KR", sans-serif;
 	}
 	
-	td {
+/* 	td {
 		border: 1px solid grey;
 		border-collapse: collapse;
 		width: 180px;
 		height: 40px;
 		padding: 10px;
-	}
+	} */
 	
 	.text-head2 {
 		color: #000;
@@ -262,6 +264,8 @@
 </style>
 </head>
 <body>
+</head>
+<body>
 
 	<!-- 헤더 -->
 	<div id="header">
@@ -285,7 +289,7 @@
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
 							<li class="customer-lnb-item eng"><a href="manNoticeList.do" class="active">공지사항 관리</a></li>
-							<li class="customer-lnb-item"><a href="manProductManage.do">상품관리</a></li>
+							<li class="customer-lnb-item"><a href="manProductList.do">상품관리</a></li>
 							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
@@ -294,25 +298,29 @@
 					<div class="aside-contents" align="center">
 						<h3 class="text-head2 eng">공지사항 등록</h3>
 						
-						<form action="manNoticeWritePro.do?pageNum=${pageNum}" method="post">
-						<input type="hidden" name="notice_code" value="${notice_code}">
+						<form action="manNoticeWritePro.do?pageNum=1" method="post">
+						<input type="hidden" name="notice_code" value="0">
 							
-						<table>
-							<tr>
-								<td>제목</td>
-								<td>
-								<c:if test="${notice_code == 0}">
-									<input type="text" name="notice_title" required="required">
-								</c:if></td>
+						<table style="text-align: left;border: 1px solid black;transform: translate(100px, 40px);width: 55%;">
+							<tbody style="border: 1px solid black;">
+								<tr style="border: 1px solid black;">
+									<td style="width: 2%;text-align: center;padding: 10px 10px 10px 10px;border: 1px solid black; vertical-align: middle;">제목</td>
+								<td style="width: 25%;vertical-align: middle;">
+									<input type="text" name="notice_title" required="required" style="width: 386px;height: 30px;margin: 10px 10px 10px 10px;">
+								</td>
 							</tr>
-							<tr>
-								<td>내용</td>
-								<td><textarea rows="10" cols="30" name="notice_content" required="required"></textarea></td>
+							<tr style="border: 1px solid black;">
+								<td style="text-align: center;padding: 10px 10px 30px 10px; vertical-align:middle;border: 1px solid black;">내용</td>
+								<td style="width: 99px; padding: 10px 10px 10px 10px;">
+									<textarea rows="10" cols="50" name="notice_content" required="required" style="padding: 10px 10px 10px 10px;"></textarea>
+								</td>
 							</tr>
-						</table>
+						</tbody></table>
 						
-						<input type="submit" value="확인">
-						<input type="reset" value="모두 지우기">
+						<div style="transform: translate(114px, 81px);margin-top: 10px;margin-bottom: 179px;">
+							<input type="submit" value="확인">
+							<input type="reset" value="모두 지우기">
+						</div>
 						</form>
 					</div>
 				</div>

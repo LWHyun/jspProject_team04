@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <style>
-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-	table-layout: fixed;
-}
-
 span {
 	font: bold;
 }
@@ -55,64 +48,14 @@ span {
 /* 중앙화면 */
 .aside-contents {
 	margin-top: -140px;
-	width: calc(95% - 162px);
+	width: calc(31% - 162px);
 }
 
 .text-head2.eng, .text-head2 .eng {
 	font-family: "Montserrat", sans-serif;
 	letter-spacing: 0;
+	
 }
-
-body .tab-wrap.multi-line {
-	font-size: 14px;
-}
-
-.tbl-search-wrap+.tbl-prod-wrap, .tbl-search-wrap+.tab-wrap {
-	margin-top: 40px;
-}
-
-body .tab-wrap {
-	margin: 0 auto;
-	padding: 46px;
-}
-
-body .tab-wrap.multi-line .tabs {
-	padding: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	display: -webkit-flex;
-	-webkit-box-pack: start;
-	-ms-flex-pack: start;
-	justify-content: flex-start;
-	-ms-flex-wrap: wrap;
-	/* flex-wrap: wrap; */
-	-webkit-transform: translateX(1px);
-	transform: translateX(138px);
-}
-
-body .tab-wrap .tabs {
-	margin-bottom: -25px;
-}
-
-body .tab-wrap.multi-line .tabs .tab-item {
-	color: #666;
-	height: 20px;
-	margin: 0 0 0 -1px;
-	padding: 20px 0;
-	border: 1px solid #d5d5d5;
-	flex-grow: 0;
-	flex-shrink: 1;
-	flex-basis: calc(100% - 1px);
-	-webkit-flex: 0 1 calc(99%/ 5 + 1px);
-	font-size: 20px;
-	letter-spacing: -1.35px;
-	-webkit-transition: all .23s ease-out;
-	transition: all 0.23s ease-out;
-}
-
 
 .wrap .contents-wrap .contents-aside .aside-contents {
     width: calc(100% - 220px);
@@ -169,22 +112,12 @@ a {
 	color: black;
 }
 
-table {
-	border: 1px solid grey;
-	border-collapse: collapse;
-	margin-bottom: 30px;
-	text-align: center;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-td {
-	border: 1px solid grey;
-	border-collapse: collapse;
-	width: 180px;
-	height: 40px;
-	padding: 10px;
-}
-
+tr {
+	padding: 10px 10px 10px 10px;
+    border: 1px solid grey;
+    height: 10px;
+ }
+ 
 .text-head2 {
 	color: #000;
 	font-family: "Montserrat", "Noto Sans KR", sans-serif;
@@ -194,69 +127,14 @@ td {
 	transform: translateX(138px);
 }
 
-.text-head2.eng, .text-head2 .eng {
+.text-head2.eng{
 	font-family: "Montserrat", sans-serif;
 	letter-spacing: 18px;
+	transform: translate(595px, 23px);
 }
 
 li.product-manage {
 	margin: 6px 0 0 10px;
-}
-
-/* =================================== */
-/* 공지사항 목록 css */
-.tbl-wrap.tbl-col {
-	text-align: center;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
-
-.border-line-box-header+.tbl-wrap, .border-line-box-header+.tbl-prod-wrap
-	{
-	margin-top: 14px;
-}
-
-.tbl-wrap.tbl-col table thead tr:last-child th {
-	border-bottom: 1px solid #b5b5b5;
-}
-
-.tbl-col.notice-list table thead tr th {
-	height: 50px;
-}
-
-.tbl-wrap.tbl-col table thead tr th {
-	height: 21px;
-	color: #666;
-	padding: 9px 20px;
-	border-top: 0px solid #000;
-	font-weight: 500;
-	line-height: 21px;
-	letter-spacing: -.7px;
-}
-
-.tbl-col.notice-list table tbody {
-	border-color: #d5d5d5;
-}
-
-.tbl-wrap.tbl-col table tbody {
-	border-bottom: 1px solid #b5b5b5;
-}
-
-.tbl-wrap.tbl-col table tbody tr:first-child td {
-	border-top: none;
-}
-
-.tbl-col.notice-list table tbody tr td {
-	padding: 19px 10px 16px;
-}
-
-.tbl-wrap.tbl-col table tbody tr td {
-	color: #000;
-	height: 9px;
-	padding: 13px 10px;
-	border-top: 1px solid #e5e5e5;
-	line-height: 20px;
-	font-size: 15px;
-	letter-spacing: -.75px;
 }
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
@@ -292,59 +170,81 @@ li.product-manage {
 					<div class="aside-contents" align="center">
 						<h3 class="text-head2 eng">상품 등록</h3>
 						
-						<form action="manProductRegisterPro.do?pageNum=${pageNum}" method="post" enctype="multipart/form-data">
+						<form action="manProductRegisterPro.do?pageNum=${pageNum}" method="post" enctype="multipart/form-data" style="transform: translate(350px, 10px);">
 						
-						<table style="margin-top: 50px; margin-left:20%;">
+						<table style="margin-top: 50px; margin-bottom: 30px; border: 1px solid grey; width: 500px; transform: translate(80px);">
 							<tr>
-								<td style="width:80px;"> 제품코드</td>
-								<td> <input type="text" name="product_id" required="required"></td>
-							</tr>
-							<tr>
-								<td> 브랜드 </td>
-								<td>
-									<!-- 나중에 시간되면 select 타입으로 바꾸기 -->
-									<input type="text" name="brand" required="required">
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">상품 대표 이미지 등록</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" >
+									<input type="file" name="l_file_path" required="required">
 								</td>
 							</tr>
 							<tr>
-								<td>영어이름</td>
-								<td> <input type="text" name="eng_name" required="required"></td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">상품 상세 이미지 등록</td>
+								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="file" name="s_file_path" required="required">
+								</td>
+							</tr>
+							
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 제품코드</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="text" name="product_id" required="required">
+								</td>
 							</tr>
 							<tr>
-								<td>한글이름</td>
-								<td> <input type="text" name="kor_name" required="required"></td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<!-- 값 어떻게 받아올지... 수상...  -->
+									<input type="hidden" name="brand" required="required">
+										<select name="brand" form="myForm" required="required">
+											<option value="adidas">ADIDAS</option>
+											<option value="birkenstock">BIRKENSTOCK</option>
+											<option value="converse">CONVERSE</option>
+											<option value="dr_martens">DR.MARTENS</option>
+											<option value="fila">FILA</option>
+											<option value="lacoste">LACOSTE</option>
+											<option value="nike">NIKE</option>
+										</select>
+								</td>
 							</tr>
 							<tr>
-								<td>성별</td>
-								<td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">영어이름</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" > <input type="text" name="eng_name" required="required"></td>
+							</tr>
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">한글이름</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" > <input type="text" name="kor_name" required="required"></td>
+							</tr>
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">성별</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" >
 									<input type="radio" name="gender" value="0">남자
 									<input type="radio" name="gender" value="1">여자
 								</td>
 							</tr>
 							<tr>
-								<td>가격</td>
-								<td><input type="text" name="price" required="required"></td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">가격</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="text" name="price" required="required">
+								</td>
 							</tr>
 							<tr>
-								<td>색상</td>
-								<td><input type="text" name="color" required="required"></td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">색상</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="text" name="color" required="required">
+								</td>
 							</tr>
 							<tr>
-								<td>카테고리 코드</td>
-								<td><input type="text" name="ca_code" required="required"></td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">카테고리 코드</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="text" name="ca_code" required="required">
+								</td>
 							</tr>
-							<tr>
-								<td>상품 대표 이미지 등록</td>
-								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
-								<td><input type="file" name="filename" required="required"></td>
-							</tr>
-							<tr>
-								<td>상품 상세 이미지 등록</td>
-								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
-								<td><input type="file" name="filename" required="required"></td>
-							</tr>
+
 						</table>
-						<div style="margin-left:250px; margin-top:15px;">
+						<div style="transform: translate(231px, 13px); margin-top:15px;">
 							<input type="submit" value="확인">
 							<input type="reset" value="취소">
 						</div>

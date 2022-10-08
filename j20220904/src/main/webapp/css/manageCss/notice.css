@@ -46,8 +46,9 @@ span {
 
 /* 중앙화면 */
 .aside-contents {
-	margin-top: -140px;
-	width: calc(95% - 162px);
+    margin-top: -118px;
+    width: calc(88% - 162px);
+	transform: translateX(115px);
 }
 
 .text-head2.eng, .text-head2 .eng {
@@ -249,4 +250,11 @@ li.product-manage {
 	line-height: 20px;
 	font-size: 15px;
 	letter-spacing: -.75px;
+}
+.board-view-wrap .board-view-head .text-date {
+    color: #666;
+    transform: translateX(480px);
+    font-family: "Montserrat",sans-serif;
+    font-size: 15px;
+    line-height: 19px;
 }

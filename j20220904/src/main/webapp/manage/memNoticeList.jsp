@@ -55,8 +55,9 @@ span {
 
 /* 중앙화면 */
 .aside-contents {
-	margin-top: -140px;
-	width: calc(95% - 162px);
+	margin-top: -118px;
+    width: calc(80% - 162px);
+    transform: translate(152px, 41px);
 }
 
 .text-head2.eng, .text-head2 .eng {
