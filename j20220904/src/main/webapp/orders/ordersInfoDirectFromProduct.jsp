@@ -216,16 +216,16 @@ function sample6_execDaumPostcode() {
  			
  			<div class="order-basket">
  				
-					<!-- 상품상세에서 넘어왔을 때 -->
+					<!-- 상품상세, 카테고리 화면에서 넘어왔을 때 -->
 					
 					<table class="order-body">
-					
 						<c:forEach var="item" items="${pdDirectArr }" varStatus="status">
-								<input type="hidden" value="${item.product_id }" id="product_id" name="product_id">
-								<input type="hidden" value="${item.size_num }" id="size_num" name="size_num">
-								<input type="hidden" value="${item.cnt }" id="cnt" name="cnt">
-								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
-								<input type="hidden" name="order_price" id="order_price" value="${ordersDTO.price * ordersDTO.cnt }">
+							
+							<input type="hidden" value="${item.product_id }" id="product_id" name="product_id">
+							<input type="hidden" value="${item.size_num }" id="size_num" name="size_num">
+							<input type="hidden" value="${item.cnt }" id="cnt" name="cnt">
+							<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
+							
 								<tr id="tr${item.product_id }_${item.size_num }">
 									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
 									
@@ -235,17 +235,18 @@ function sample6_execDaumPostcode() {
 									
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
+
 						</c:forEach>
-						
 					</table>
  			</div>	
- 				<div class="price-cal">
-						<table class="cal-tbl">
-							<tr><td>결제 예정 금액</td></tr>
-							<tr><td class="totalArr">원</td></tr>
-						</table>
-					</div>
-				</div>
+ 			
+			<div class="price-cal">
+				<table class="cal-tbl">
+					<tr><td>결제 예정 금액</td></tr>
+					<tr><td class="totalArr">원</td></tr>
+				</table>
+			</div>
+	</div> <!-- order-wrap div 끝 -->
 				
 				<!-- 여기부터 주문 정보 디테일 -->
 				
@@ -270,7 +271,7 @@ function sample6_execDaumPostcode() {
 							<tbody>
 								<tr>
 									<th class="buyer-name">
-											이름
+										이름
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
@@ -280,7 +281,7 @@ function sample6_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th class="buyer-phone">
-											휴대폰번호
+										휴대폰번호
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
@@ -290,7 +291,7 @@ function sample6_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th class="buyer-email">
-											이메일
+										이메일
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
@@ -307,10 +308,11 @@ function sample6_execDaumPostcode() {
 									<col style="width: 165px;">
 									<col>
 								</colgroup>
+								
 								<tbody>
 								<tr>
 									<th>
-											배송지 선택
+										배송지 선택
 									</th>
 									<td>
 										<div class="choose-wrap" style="width: 500px;">
@@ -338,18 +340,18 @@ function sample6_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th>
-											휴대폰번호
+										휴대폰번호
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone"> <!-- placeholder -->
+											<input type="text" required="required" id="receiver-phone"> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
 								
 								<tr>
 									<th>
-											주소
+										주소
 									</th>
 									<td>
 										<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
@@ -488,17 +490,18 @@ function sample6_execDaumPostcode() {
   
      });
      
-  });
-	
-	$('#selectMessage').change(function(){
-		let value = $('#selectMessage option:selected').val();
-		if (value = 'write') {
-			$('#forWrite').attr("disabled", false);
-		} else {
-			$('#security').attr("disabled", true);
-		}
-		
-	});
+     $('#selectMessage').change(function(){
+ 		let value = $('#selectMessage option:selected').val();
+ 		console.log(value);
+ 		if (value == 'write') {
+ 			$('#forWrite').attr("disabled", false);
+ 		} else {
+ 			$('#forWrite').attr("disabled", true);
+ 		}
+ 		
+ 	});
+ 	
+      });
 	
 
 	function requestPay() {
@@ -568,7 +571,7 @@ function sample6_execDaumPostcode() {
                         //msg += '카드 승인번호 : ' + rsp.apply_num;
                         //msg1 += '구매자'+ rsp.buyer_name + '님의';
                         alert('구매자 '+ rsp.buyer_name + '님의 결제가 완료되었습니다.');
-                        location.href="${pageContext.request.contextPath}/orders/orderComplete";
+                        location.href="${pageContext.request.contextPath}/orders/goToOrderComplete.do";
                       },
                       error: function(err){
                          var msg2 = '결제에 실패하였습니다.';

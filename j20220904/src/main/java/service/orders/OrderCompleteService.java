@@ -13,8 +13,9 @@ public class OrderCompleteService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return "/orders/orderComplete.jsp";
 	}
 
 }

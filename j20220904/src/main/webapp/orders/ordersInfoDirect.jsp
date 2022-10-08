@@ -483,18 +483,18 @@ function sample6_execDaumPostcode() {
         
            });
            
+       $('#selectMessage').change(function(){
+   		let value = $('#selectMessage option:selected').val();
+   		console.log(value);
+   		if (value == 'write') {
+   			$('#forWrite').attr("disabled", false);
+   		} else {
+   			$('#forWrite').attr("disabled", true);
+   		}
+   		
+   	});
+   	
         });
-	
-	
-	$('#selectMessage').change(function(){
-		let value = $('#selectMessage option:selected').val();
-		if (value = 'write') {
-			$('#forWrite').attr("disabled", false);
-		} else {
-			$('#security').attr("disabled", true);
-		}
-		
-	});
 	
 	
 	function requestPay() {
@@ -564,7 +564,7 @@ function sample6_execDaumPostcode() {
                         //msg += '카드 승인번호 : ' + rsp.apply_num;
                         //msg1 += '구매자'+ rsp.buyer_name + '님의';
                         alert('구매자 '+ rsp.buyer_name + '님의 결제가 완료되었습니다.');
-                        location.href="${pageContext.request.contextPath}/orders/orderComplete";
+                        location.href="${pageContext.request.contextPath}/orders/goToOrderComplete.do";
                       },
                       error: function(err){
                          var msg2 = '결제에 실패하였습니다.';
