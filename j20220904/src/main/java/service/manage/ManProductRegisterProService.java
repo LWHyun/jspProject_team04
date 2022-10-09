@@ -71,8 +71,8 @@ public class ManProductRegisterProService implements CommandProcess {
 				// 서버에 저장된 파일명
 				String filename = multi.getFilesystemName("filename");
 				
+				
 				// 파라미터 받는 값들, request -> multi로 대체
-				// 제품코드 | 브랜드 | 영어이름 | 한글이름 | 성별 | 가격 | 색상 | 카테고리 코드
 				// 상품 대표 이미지 등록 | 상품 상세 이미지 등록
 				Product_ImgSrcDTO productImgSrcDTO = new Product_ImgSrcDTO();
 				
@@ -88,6 +88,10 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setPro_image_id(Integer.parseInt(multi.getParameter("pro_image_id")));
 				productImgSrcDTO.setL_file_path(multi.getParameter("l_file_path"));
 				productImgSrcDTO.setS_file_path(multi.getParameter("s_file_path"));
+				
+				productImgSrcDTO.setSize_num(Integer.parseInt(multi.getParameter("size_num")));
+				productImgSrcDTO.setPd_size(Integer.parseInt(multi.getParameter("pd_size")));
+				productImgSrcDTO.setStock(Integer.parseInt(multi.getParameter("stock")));
 				
 				
 				ProductDAO pd = ProductDAO.getInstance();
