@@ -32,42 +32,29 @@ public class InsertOrderDetailService implements CommandProcess {
 		//로그인이 안되어있으면 로그인 페이지로 이동
 		if ( mem_id == null ) {
 			return "/member/memLoginForm.jsp";
-			
 		}
 		
-		
-		String order_name = request.getParameter("buyername");
-		String order_phone = request.getParameter("buyerphone");
-		String order_email = request.getParameter("buyermail");
-		String take_name = request.getParameter("receiver_name");
-		String take_phone = request.getParameter("receiver_phone");
+		String order_name 	= request.getParameter("buyername");
+		String order_phone 	= request.getParameter("buyerphone");
+		String order_email 	= request.getParameter("buyermail");
+		String take_name 	= request.getParameter("receiver_name");
+		String take_phone 	= request.getParameter("receiver_phone");
 		String take_zipcode = request.getParameter("postcode");
-		String take_addr1 = request.getParameter("address");
-		String take_addr2 = request.getParameter("detailAddress");
-		
+		String take_addr1 	= request.getParameter("address");
+		String take_addr2 	= request.getParameter("detailAddress");
+		String msg_list		= request.getParameter("msg_list");
+		String forWrite		= request.getParameter("forWrite");
 
 		System.out.println("InsertOrderDetailService product_id Before ...");
-		String[] product_id= request.getParameterValues("product_id");
-//		System.out.println("InsertOrderDetailService product_id.length->"+product_id.length);
-//     	System.out.println("InsertOrderDetailService product_id[0]->"+product_id[0]);
-		String[] size_num = request.getParameterValues("size_num");
-		String[] cnt = request.getParameterValues("cnt");
-		String[] order_price = request.getParameterValues("order_price");
-//		System.out.println("product_id="+Arrays.toString(product_id));
-//		System.out.println("size_num="+Arrays.toString(size_num));
-//		System.out.println("cnt="+Arrays.toString(cnt));
-//		System.out.println("order_price="+Arrays.toString(order_price));
+		String[] product_id 	= request.getParameterValues("product_id");
+		String[] size_num 		= request.getParameterValues("size_num");
+		String[] cnt 			= request.getParameterValues("cnt");
+		String[] order_price 	= request.getParameterValues("order_price");
+
 		List<OrdersDetailDTO> toOrdersArr = new ArrayList<>();
-//		
-		
-		
-		
-//		String take_add = request.getParameter("take_add");
-//		String order_msg = request.getParameter("msgList");
 		
 		OrdersDAO ordersDAO = OrdersDAO.getInstance();
 		OrdersDTO ordersDTO = new OrdersDTO();
-		
 		
 		ordersDTO.setMem_id(mem_id);
 		ordersDTO.setOrder_name(order_name);
@@ -78,7 +65,12 @@ public class InsertOrderDetailService implements CommandProcess {
 		ordersDTO.setTake_zipcode(take_zipcode);
 		ordersDTO.setTake_addr1(take_addr1);
 		ordersDTO.setTake_addr2(take_addr2);
-//		ordersDTO.setOrder_msg(order_msg);
+		
+		if(msg_list.equals("write")) {
+			ordersDTO.setOrder_msg(forWrite);
+		} else {
+			ordersDTO.setOrder_msg(msg_list);
+		}
 		
 		for(int i = 0; i < size_num.length; i++) {
 		
@@ -90,13 +82,16 @@ public class InsertOrderDetailService implements CommandProcess {
 			odDTO.setOrder_price(Integer.parseInt(order_price[i]));
 			
 			toOrdersArr.add(odDTO);
-		 
+			
 		}
 		
 		ordersDTO.setList(toOrdersArr);
 		System.out.println(toOrdersArr);
 		ordersDAO.insertOrderDetail(ordersDTO);
-		
+		// 장바구니에서 구매한 상품 삭제
+		//ordersDAO.deleteBasket(toOrdersArr);
+		// product_size테이블에 있는 stock값 변경
+		//ordersDAO.updateStock(toOrdersArr);
 		
 		return "/orders/orderComplete.jsp";
 	}

@@ -99,6 +99,9 @@ private static OrdersDAO instance;
 		
 	}
 	
+	public OrdersDTO deleteBasket(OrdersDTO ordersDTO) {
+		return null;
+	}
 	
 	private void close(AutoCloseable... ac) {
 		try {

@@ -231,7 +231,6 @@ function sample6_execDaumPostcode() {
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
 						</c:forEach>
-						
 					</table>
  			</div>	
  				<div class="price-cal">
@@ -370,7 +369,7 @@ function sample6_execDaumPostcode() {
 											</select><br><br>
 											
 											<div class="forWrite">
-												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+												<input type="text" id="forWrite" name="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
 											</div>
 											
 										</div>
