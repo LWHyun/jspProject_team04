@@ -51,8 +51,8 @@ private static OrdersDAO instance;
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql1 = "INSERT INTO orders (order_id, mem_id, order_name, order_phone, take_name, take_phone, order_date, order_status) "
-				+ "VALUES (seq_orders.NEXTVAL, ?, ?, ?, ?, ?, sysdate, 1)";
+		String sql1 = "INSERT INTO orders (order_id, mem_id, order_name, order_phone, order_email, take_name, take_phone, take_zipcode, take_addr1, take_addr2, order_date, order_status) "
+				+ "VALUES (seq_orders.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 1)";
 		
 		String sql2 = "INSERT INTO orders_detail (order_id, size_num, product_id, cnt, order_price)"
 				+ "VALUES (seq_orders.CURRVAL, ?, ?, ?, ?)";
@@ -63,8 +63,12 @@ private static OrdersDAO instance;
 				pstmt.setString(1, ordersDTO.getMem_id());
 				pstmt.setString(2, ordersDTO.getOrder_name());
 				pstmt.setString(3, ordersDTO.getOrder_phone());
-				pstmt.setString(4, ordersDTO.getTake_name());
-				pstmt.setString(5, ordersDTO.getTake_phone());
+				pstmt.setString(4, ordersDTO.getOrder_email());
+				pstmt.setString(5, ordersDTO.getTake_name());
+				pstmt.setString(6, ordersDTO.getTake_phone());
+				pstmt.setString(7, ordersDTO.getTake_zipcode());
+				pstmt.setString(8, ordersDTO.getTake_addr1());
+				pstmt.setString(9, ordersDTO.getTake_addr2());
 				
 				pstmt.executeUpdate();
 				pstmt.close();

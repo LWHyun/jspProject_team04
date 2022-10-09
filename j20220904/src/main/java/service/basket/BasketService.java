@@ -36,7 +36,7 @@ public class BasketService implements CommandProcess {
 		
 		// 장바구니 값을 저장
 		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
-		// 장바구니 페이지 이동
+		request.setAttribute("likeProList", basketDAO.selectLikeProList(mem_id));		// 장바구니 페이지 이동
 		
 		
 		return "/basket/basket.jsp";

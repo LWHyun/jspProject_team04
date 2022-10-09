@@ -35,24 +35,33 @@ public class InsertOrderDetailService implements CommandProcess {
 			
 		}
 		
-		System.out.println("InsertOrderDetailService product_id Before ...");
-		String[] product_id= request.getParameterValues("product_id");
-		System.out.println("InsertOrderDetailService product_id.length->"+product_id.length);
-     	System.out.println("InsertOrderDetailService product_id[0]->"+product_id[0]);
-		String[] size_num = request.getParameterValues("size_num");
-		String[] cnt = request.getParameterValues("cnt");
-		String[] order_price = request.getParameterValues("order_price");
-		System.out.println("product_id="+Arrays.toString(product_id));
-		System.out.println("size_num="+Arrays.toString(size_num));
-		System.out.println("cnt="+Arrays.toString(cnt));
-		System.out.println("order_price="+Arrays.toString(order_price));
-		List<OrdersDetailDTO> toOrdersArr = new ArrayList<>();
-//		
+		
 		String order_name = request.getParameter("buyername");
 		String order_phone = request.getParameter("buyerphone");
 		String order_email = request.getParameter("buyermail");
 		String take_name = request.getParameter("receiver_name");
 		String take_phone = request.getParameter("receiver_phone");
+		String take_zipcode = request.getParameter("postcode");
+		String take_addr1 = request.getParameter("address");
+		String take_addr2 = request.getParameter("detailAddress");
+		
+
+		System.out.println("InsertOrderDetailService product_id Before ...");
+		String[] product_id= request.getParameterValues("product_id");
+//		System.out.println("InsertOrderDetailService product_id.length->"+product_id.length);
+//     	System.out.println("InsertOrderDetailService product_id[0]->"+product_id[0]);
+		String[] size_num = request.getParameterValues("size_num");
+		String[] cnt = request.getParameterValues("cnt");
+		String[] order_price = request.getParameterValues("order_price");
+//		System.out.println("product_id="+Arrays.toString(product_id));
+//		System.out.println("size_num="+Arrays.toString(size_num));
+//		System.out.println("cnt="+Arrays.toString(cnt));
+//		System.out.println("order_price="+Arrays.toString(order_price));
+		List<OrdersDetailDTO> toOrdersArr = new ArrayList<>();
+//		
+		
+		
+		
 //		String take_add = request.getParameter("take_add");
 //		String order_msg = request.getParameter("msgList");
 		
@@ -66,9 +75,11 @@ public class InsertOrderDetailService implements CommandProcess {
 		ordersDTO.setOrder_email(order_email);
 		ordersDTO.setTake_name(take_name);
 		ordersDTO.setTake_phone(take_phone);
-//		ordersDTO.setTake_add(take_add);
+		ordersDTO.setTake_zipcode(take_zipcode);
+		ordersDTO.setTake_addr1(take_addr1);
+		ordersDTO.setTake_addr2(take_addr2);
 //		ordersDTO.setOrder_msg(order_msg);
-//		
+		
 		for(int i = 0; i < size_num.length; i++) {
 		
 			OrdersDetailDTO odDTO = new OrdersDetailDTO();

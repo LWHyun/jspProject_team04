@@ -240,30 +240,21 @@
 	</div> <!-- basket-content 끝 -->
 		
 		<div class="basket-view">
+		<c:choose>
+			<c:when test="${not empty likeProList }">
+	      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
+	      			<table class="likeTbl">
+						<tr>
+							<td><img src="${like.s_file_path }" width="230px"><br><br>
+							${like.brand }<br>
+							${like.kor_name }<br>
+							${like.price }</td>
+						</tr>		      			
+	      			</table>
+	     		 </c:forEach>
+			</c:when>
+		</c:choose>
 		
-		<!-- tab 관련 html코드 -->
-			<div class="tabs">
-			  <div class="tab-2">
-			    <label for="tab2-1">최근 본 상품</label> <!-- 첫번째 탭 이름 -->
-			    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-			    <div class="image-box">
-			      <h4>최근 본 상품 이미지</h4>
-			      <c:if test="">
-			      	<div class="image-null">
-			      		<h3>최근 본 상품이 없습니다</h3>
-			      	</div>
-			      </c:if>
-			    </div>
-			  </div>
-			  <div class="tab-2">
-			    <label for="tab2-2">내가 찜한 상품</label> <!-- 두번째 탭 이름 -->
-			    <input id="tab2-2" name="tabs-two" type="radio">
-			    <div>
-			      <h4>찜한 상품 이미지</h4>
-			    </div>
-			  </div>
-			</div>
-		<!-- tab 관련 html코드 끝-->
 		
 		</div>
 	</div>
