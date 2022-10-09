@@ -20,7 +20,16 @@ public class BasketDTO {
 	private int pd_size;
 	
 	//
+	private String like_pro_date;
 	
+	
+	
+	public String getLike_pro_date() {
+		return like_pro_date;
+	}
+	public void setLike_pro_date(String like_pro_date) {
+		this.like_pro_date = like_pro_date;
+	}
 	public int getPd_size() {
 		return pd_size;
 	}

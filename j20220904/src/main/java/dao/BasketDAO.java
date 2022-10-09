@@ -165,6 +165,55 @@ public class BasketDAO {
 	}
 	
 	
+	public List<BasketDTO> selectLikeProList(String mem_id) {
+		
+		List<BasketDTO> list = new ArrayList<BasketDTO>();
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT l.product_id, l.mem_id, l.like_pro_date, p.brand, p.kor_name, p.price, pi.s_file_path\r\n"
+				+ "FROM like_pro l\r\n"
+				+ "JOIN product p\r\n"
+				+ "ON l.product_id = p.product_id\r\n"
+				+ "JOIN product_image pi\r\n"
+				+ "ON p.product_id = pi.product_id\r\n"
+				+ "WHERE l.mem_id = ?\r\n"
+				+ "ORDER BY l.like_pro_date";
+		
+		try {
+			
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mem_id);
+			
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					
+					BasketDTO basketDTO = new BasketDTO();
+					
+					basketDTO.setProduct_id(rs.getInt("product_id"));
+					basketDTO.setMem_id(rs.getString("mem_id"));
+					basketDTO.setLike_pro_date(rs.getString("like_pro_date"));
+					basketDTO.setBrand(rs.getString("brand"));
+					basketDTO.setKor_name(rs.getString("kor_name"));
+					basketDTO.setPrice(rs.getInt("price"));
+					basketDTO.setS_file_path(rs.getString("s_file_path"));
+					
+					list.add(basketDTO);
+				}
+			
+		} catch (Exception e) {
+			System.out.println("basketDAO selectLikeProList error"+ e.getMessage());
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		
+		
+		return list;
+	}
+	
 	//상세페이지에서 장바구니수량 있나 없나 비교하는 메서드
 	public List<BasketProDTO> compareBasketList(String mem_id) {
 		
