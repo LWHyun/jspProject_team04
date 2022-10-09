@@ -130,9 +130,7 @@ public class ProductDAO {
             }
       }catch(SQLException e) {
          e.printStackTrace();
-      }finally {
-		close(rs,pstmt,conn);
-	}
+      }
       
       
          return list;
@@ -667,5 +665,30 @@ public class ProductDAO {
 		}
 	
 		return result2;
+	}
+
+	public int registerProduct(Product_ImgSrcDTO productImgSrcDTO) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		String sql = "INSERT ";
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(result, sql);
+			/* SQL문 작성해야 함. . . */
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("registerProduct 메소드 | e.getMessage() -> " + e.getMessage());
+		} finally {
+			if(pstmt != null) pstmt.close();
+			if(conn != null)  conn.close();
+		}
+		return result;
 	}
 }

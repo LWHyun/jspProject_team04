@@ -13,6 +13,7 @@ public class Product_ImgSrcDTO {
 	private Date regdate; //등록일
 	private long ca_code; // 카테고리 코드
 	
+	private int pro_image_id;	// 제품 이미지 코드
 	private String s_file_path; //제품 이미지 작은사진 경로
 	private String l_file_path; //제품 이미지 큰사진 경로
 	
@@ -89,6 +90,13 @@ public class Product_ImgSrcDTO {
 	}
 	public void setCa_code(long ca_code) {
 		this.ca_code = ca_code;
+	}
+	
+	public int getPro_image_id() {
+		return pro_image_id;
+	}
+	public void setPro_image_id(int pro_image_id) {
+		this.pro_image_id = pro_image_id;
 	}
 	public String getS_file_path() {
 		return s_file_path;

@@ -133,9 +133,6 @@ tr {
 	transform: translate(595px, 23px);
 }
 
-li.product-manage {
-	margin: 6px 0 0 10px;
-}
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <body>
