@@ -42,8 +42,8 @@ public class InsertOrderDetailService implements CommandProcess {
 		String take_zipcode = request.getParameter("postcode");
 		String take_addr1 	= request.getParameter("address");
 		String take_addr2 	= request.getParameter("detailAddress");
-		String msg_list		= request.getParameter("msg_list");
-		String forWrite		= request.getParameter("forWrite");
+//		String msg_list		= request.getParameter("msg_list");
+//		String forWrite		= request.getParameter("forWrite");
 
 		System.out.println("InsertOrderDetailService product_id Before ...");
 		String[] product_id 	= request.getParameterValues("product_id");
@@ -66,11 +66,11 @@ public class InsertOrderDetailService implements CommandProcess {
 		ordersDTO.setTake_addr1(take_addr1);
 		ordersDTO.setTake_addr2(take_addr2);
 		
-		if(msg_list.equals("write")) {
-			ordersDTO.setOrder_msg(forWrite);
-		} else {
-			ordersDTO.setOrder_msg(msg_list);
-		}
+//		if(msg_list.equals("write")) {
+//			ordersDTO.setOrder_msg(forWrite);
+//		} else {
+//			ordersDTO.setOrder_msg(msg_list);
+//		}
 		
 		for(int i = 0; i < size_num.length; i++) {
 		
@@ -89,9 +89,10 @@ public class InsertOrderDetailService implements CommandProcess {
 		System.out.println(toOrdersArr);
 		ordersDAO.insertOrderDetail(ordersDTO);
 		// 장바구니에서 구매한 상품 삭제
-		//ordersDAO.deleteBasket(toOrdersArr);
+		System.out.println("deleteBasket before");
+		ordersDAO.deleteBasket(ordersDTO);
 		// product_size테이블에 있는 stock값 변경
-		//ordersDAO.updateStock(toOrdersArr);
+		ordersDAO.updateStock(ordersDTO);
 		
 		return "/orders/orderComplete.jsp";
 	}

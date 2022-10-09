@@ -164,7 +164,7 @@ public class BasketDAO {
 		
 	}
 	
-	
+	// 장바구니에 찜한 목록 불러오는 메소드
 	public List<BasketDTO> selectLikeProList(String mem_id) {
 		
 		List<BasketDTO> list = new ArrayList<BasketDTO>();
