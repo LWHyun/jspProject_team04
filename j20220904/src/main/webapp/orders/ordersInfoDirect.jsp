@@ -95,7 +95,7 @@
 		margin-bottom : 20px;
 	}
 	
-	#receiver-name, #receiver-phone {
+	#receiver_name, #receiver_phone {
 		margin-top : 17px;
 	}
 	
@@ -267,7 +267,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" value="" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -277,7 +277,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" value="" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -287,7 +287,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" value="" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -313,7 +313,7 @@ function sample6_execDaumPostcode() {
 												</li>
 												
 												<li class="choose_li">
-													<input type="radio" name="choose-one" id="new-addr" > 신규 입력
+													<input type="radio" name="choose-one" id="new-addr" checked="checked"> 신규 입력
 												</li>
 											</ul>
 										</div>
@@ -325,7 +325,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-name" required> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver_name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -335,7 +335,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver-phone" required> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver_phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -381,10 +381,10 @@ function sample6_execDaumPostcode() {
 								<span class="agree-info">주문동의</span>
 								<table class="tbl-agree" id="agree">
 									<tr>
-										<td class="agree_title" id="ag_title" > 주문 내역에 대한 동의</td>
+										<td class="agree_title" id="ag_title" > <input type="checkbox" name="checkAgree" id="checkAgree" value="주문 내역에 대한 동의" required> <span class="must">[필수]</span> 주문 내역에 대한 동의</td>
 									</tr>
 									<tr>
-										<td class="agree_contents" id="ag_ct"> <input type="checkbox" name="checkAgree" value="주문 내역에 대한 동의" required><span class="must">[필수]</span>주문 내역에 대한 동의</p></td>
+										<td class="agree_contents" id="ag_ct"> 주문하는 상품, 가격, 배송정보, 할인내역 등을 최종 확인 하였으며, 구매에 동의합니다. (전자상거래법 제 8조 제2항)</p></td>
 									</tr>
 								</table>
 							
@@ -460,8 +460,8 @@ function sample6_execDaumPostcode() {
         $("#origin-addr").change(function(){
            if($("#origin-addr").is(":checked")){
 
-           $('#receiver-name').val('${members.mem_name}');
-           $('#receiver-phone').val('${members.mem_tel}');
+           $('#receiver_name').val('${members.mem_name}');
+           $('#receiver_phone').val('${members.mem_tel}');
            $('#postcode').val('${members.mem_zipcode}');
            $('#address').val('${members.mem_addr1}');
            $('#detailAddress').val('${members.mem_addr2}');
@@ -473,8 +473,8 @@ function sample6_execDaumPostcode() {
        $("#new-addr").change(function(){
        	  if($("#new-addr").is(":checked")){
       	 
-           $('#receiver-name').val(null);
-           $('#receiver-phone').val(null);
+           $('#receiver_name').val(null);
+           $('#receiver_phone').val(null);
            $('#postcode').val(null);
            $('#address').val(null);
            $('#detailAddress').val(null);
@@ -497,8 +497,77 @@ function sample6_execDaumPostcode() {
         });
 	
 	
+	function valid() {
+	   	 
+	   	 console.log(111);
+	   	 
+	   	 if(!$('#buyername').val()){
+	   	 	alert('주문고객 정보 - 이름을 입력해주세요');
+	   	 	$('#buyername').focus();
+	    		return false;
+	    	}
+	    	
+	  		if(!$('#buyerphone').val()){
+	       	alert('주문고객 정보 - 휴대폰 번호를 입력해주세요');
+	      	 	$('#buyerphone').focus();
+	       	return false;
+	       }
+	   	 
+	    	if(!$('#buyermail').val()){
+	    		alert('주문고객 정보 - 이메일을 입력해주세요');
+	   	 	$('#buyermail').focus();
+	    		return false;
+	    	}
+	    	
+	    
+	    	if(!$('#receiver_name').val()){
+	    		alert('배송 정보 - 이름을 입력해주세요');
+	   	 	$('#receiver_name').focus();
+	    		return false;
+	    	}
+	    	
+	    	if(!$('#receiver_phone').val()){
+	    		alert('배송 정보 - 휴대폰 번호를 입력해주세요');
+	   	 	$('#receiver_phone').focus();
+	    		return false;
+	    	}
+	    	
+	    	if(!$('#postcode').val()){
+	    		alert('배송 정보 - 우편번호를 입력해주세요');
+	   	 	$('#postcode').focus();
+	    		return false;
+	    	}
+	    	
+	    	if(!$('#address').val()){
+	    		alert('배송 정보 - 주소를 입력해주세요');
+	   	 	$('#address').focus();
+	    		return false;
+	    	}
+	    	
+	    	if(!$('#detailAddress').val()){
+	    		alert('배송 정보 - 상세주소를 입력해주세요');
+	   	 	$('#detailAddress').focus();
+	    		return false;
+	    	}
+	    	
+	    	if(!$('#checkAgree').is(':checked')){
+	    		alert('주문내역에 대한 동의가 필요합니다.');
+	   	 	$('#checkAgree').focus();
+	    		return false;
+	    	}
+	    	
+	    	return true;
+	   	 
+	    }
+	
+	
 	function requestPay() {
-        var IMP = window.IMP; // 생략가능
+		
+		if(!valid()) {
+	   		return false;
+	   	}
+		
+        //var IMP = window.IMP; // 생략가능
         IMP.init('imp71553354');
         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드

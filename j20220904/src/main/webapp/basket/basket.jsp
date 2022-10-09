@@ -243,7 +243,7 @@
 		<c:choose>
 			<c:when test="${not empty likeProList }">
 	      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
-	      			<table>
+	      			<table class="likeTbl">
 						<tr>
 							<td><img src="${like.s_file_path }" width="230px"><br><br>
 							${like.brand }<br>

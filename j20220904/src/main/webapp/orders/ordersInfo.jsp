@@ -565,7 +565,6 @@ function sample6_execDaumPostcode() {
      	
      	return true;
     	 
-    	 
      }
    	 
      
