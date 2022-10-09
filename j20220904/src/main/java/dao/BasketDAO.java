@@ -180,7 +180,7 @@ public class BasketDAO {
 				+ "JOIN product_image pi\r\n"
 				+ "ON p.product_id = pi.product_id\r\n"
 				+ "WHERE l.mem_id = ?\r\n"
-				+ "ORDER BY l.like_pro_date";
+				+ "ORDER BY l.like_pro_date DESC";
 		
 		try {
 			

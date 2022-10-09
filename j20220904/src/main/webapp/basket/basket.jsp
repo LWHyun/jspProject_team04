@@ -242,16 +242,16 @@
 		<div class="basket-view">
 		<c:choose>
 			<c:when test="${not empty likeProList }">
-	      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
 	      			<table class="likeTbl">
 						<tr>
-							<td><img src="${like.s_file_path }" width="230px"><br><br>
-							${like.brand }<br>
-							${like.kor_name }<br>
-							${like.price }</td>
+				      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
+								<td><img src="${like.s_file_path }" width="230px"><br><br>
+								${like.brand }<br>
+								${like.kor_name }<br>
+								${like.price }</td>
+				     		 </c:forEach>
 						</tr>		      			
 	      			</table>
-	     		 </c:forEach>
 			</c:when>
 		</c:choose>
 		
