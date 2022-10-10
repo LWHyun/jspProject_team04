@@ -1154,7 +1154,7 @@
 												<tr>
 													<td>${startNum1 }</td>
 													<td>
-														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
+														<a href='${pageContext.request.contextPath}/board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}'>
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1162,6 +1162,7 @@
 													<td>${reviewBoard.rb_date }</td>
 													<td>${reviewBoard.rb_views }</td>
 												</tr>
+												<c:set var="startNum1" value="${startNum1 - 1}"/>
 											</c:forEach>
 										</c:if>
 									</table>
@@ -1214,7 +1215,7 @@
 											</ol>
 										</div> -->
 										<div class="btn-wrap text-right">
-											<a href="" class="btn btn-dialog">상품 후기 작성</a>
+											<a href="${pageContext.request.contextPath}/board/reviewWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
 									</div>
 									
@@ -1268,7 +1269,7 @@
 													<tr>
 														<td>${startNum2 }</td>
 														<td>
-															<a href='../board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
+															<a href='${pageContext.request.contextPath}/board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
 																${qABoard.q_title}
 															</a>
 														</td>
@@ -1300,33 +1301,6 @@
 												<ol class="pagination-list">
 													<li class="pagination-item">
 														<button type="button" class="btn-page btn-page-num selected">1</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">2</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">3</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">4</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">5</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">6</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">7</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">8</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">9</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">10</button>
 													</li>
 												</ol>
 											</div>  -->

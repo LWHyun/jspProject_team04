@@ -222,7 +222,7 @@ public class ReviewBoardDAO {
 		
 		return result;
 	}
-	// 게시물 수정 -> 되는진 모르겠음
+	
 	public int update(ReviewBoardDTO reviewBoard) throws SQLException {
 		Connection conn = null;	
 		PreparedStatement pstmt= null; 

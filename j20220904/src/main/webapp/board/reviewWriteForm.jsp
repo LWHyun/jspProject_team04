@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 리뷰 작성</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="../css/boardCss/reviewContent.css">
 </head>
@@ -20,9 +20,10 @@
 					<h3 class="text-head2">상품 리뷰 작성</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="reviewWritePro.do?pageNum=${pageNum}" method="post">
+					<form action="${pageContext.request.contextPath}/board/reviewWritePro.do?product_id=${product_id}&gender=${gender}" method="post">
 						<input type="hidden" name="rb_id" value="${rb_id}">
-						
+						<input type="hidden" name="mem_id" value="${mem_id }">
+						<input type="hidden" name="product_id" value="${product_id }">
 						<div class="flex-box board-view-head">
 							<span class="rb-title"><input type="text" name="rb_title" required="required" placeholder="제목을 입력하세요"></span>
 						</div>
