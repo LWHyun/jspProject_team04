@@ -27,11 +27,12 @@ public class ManProductUpdateService implements CommandProcess {
 			int pd_size = Integer.parseInt(request.getParameter("pd_size"));
 			long price =  Long.parseLong(request.getParameter("price"));
 			int  stock = Integer.parseInt(request.getParameter("stock"));
+			String pageNum = request.getParameter("pageNum");
+			
 			System.out.println("ManProductUpdateService product_id->"+product_id);
 			System.out.println("ManProductUpdateService pd_size->"+pd_size);
 			System.out.println("ManProductUpdateService price->"+price);
 			System.out.println("ManProductUpdateService stock->"+stock);
-			String pageNum = request.getParameter("pageNum");
 			
 			request.setAttribute("pageNum",    pageNum);
 			request.setAttribute("product_id", product_id);
