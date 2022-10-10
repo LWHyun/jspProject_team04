@@ -28,6 +28,13 @@
 		margin-top: 20px;
 		
 	}
+	.breadcrumb-wrap img{
+		width: 30px;
+		height: 30px;
+		
+	}
+	
+	
 
 	.breadcrumb-wrap li {
 	 float:left; 
@@ -649,11 +656,12 @@
 	
 		width: 260px;
 		height: 50px;
-		margin-top: 70px;
+		margin: 70px 0 50px 0;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
 		text-decoration-line: none;
+		
 
 	}
 	.big_product_1:hover	{
@@ -667,11 +675,11 @@
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 70px;
+		margin: 70px 0 50px 0;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
-		
+		margin-bottom: 50px;
 		
 	}
 	.big_product_2:hover	{
@@ -683,11 +691,11 @@
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 70px;
+		margin: 70px 0 50px 0;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
-		
+		margin-bottom: 50px;
 	}
 	
 	
@@ -701,10 +709,11 @@
 		
 		width: 260px;
 		height: 50px;
-		margin-top: 70px;
+		margin: 70px 0 50px 0;
 		text-align: center;
 		line-height: 50px;
 		display: inline-block;
+		margin-bottom: 50px;
 		
 	}
 	.big_product_4:hover	{
@@ -724,10 +733,12 @@
 	}
 	
 	
+	
 	/*용규님 CSS  */
 	.head-product-wrap {
 		width: 1200px;
 		margin: 0 auto;
+		margin-bottom: 20px;
 	}
 	.text-head {
 		margin: 53px 0 0;
@@ -800,9 +811,10 @@
 	<div class="contents-width">
 		<div class="breadcrumb-wrap" id="prdtCtgrCrumb">
 			<ul>
-				<li>HOME ></li>
-				<li id="genderChk"></li>
-				<li>신발 ></li>
+				<li><a href="http://localhost:8181/j20220904/"><img src="/j20220904/img/contexts/home.png"></a></li>
+				<!-- 
+				<li id="genderChk"><a href="http://localhost:8181/j20220904/category/men3.do?gender=0#"></a></li>
+				<li>신발 </li>
 				<li> 
 				<select name="category"> 
 				<option selected="selected"><a herf="#">운동화</a></option>
@@ -816,7 +828,7 @@
 				<option><a herf="#">캔버스화</option>
 				<option><a herf="#">슬립온</option>
 				</select>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<div class="contents-inner product-detail-wrap">
@@ -842,7 +854,7 @@
 						<img src="" class="small"> 
 					</div>  -->
 					
-					<div class="image_big_left_Product_satisfaction">
+					<!-- <div class="image_big_left_Product_satisfaction">
 						<div class="image_big_left_Product_satisfaction_left">
 							<div class="image_big_left_Product_satisfaction_left_1">상품만족도</div><p>
 							<div class="image_big_left_Product_satisfaction_left_2">97%</div><p>
@@ -866,7 +878,7 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>	
 					
 				
@@ -968,7 +980,7 @@
 								<button type="button" id="${list[4].pd_size }" value="${list[4].pd_size }">${list[4].pd_size }</button>				
 							</div>
 						</div>
-						<form id="sizeForm" action="${pageContext.request.contextPath}/orders/ordersDirectProduct.do"> 
+						<form id="sizeForm" > 
 							<input type="hidden" name="product_id" value="${product_id }">
 							<input type="hidden" name="mem_id" value="${mem_id }">
 							<input type="hidden" name="brand" value="${list[0].brand }">
@@ -1002,7 +1014,7 @@
 								<button type="button" id="myshopping1" value="장바구니">장바구니</button>
 							</div>
 							<div class="style_myshopping_right">
-								<button type="submit"  id="myshopping2" value="바로구매">바로구매</button>
+								<button type="button"  id="myshopping2" value="바로구매">바로구매</button>
 							</div>			
 						</div>
 						</form>
@@ -1169,13 +1181,13 @@
 									<!-- 나중에 수정 -->
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}'>[${i}]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1284,13 +1296,13 @@
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
 											<c:if test="${startPage2 > blockSize2 }">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}'>[이전]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_2'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}'>[${i}]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_2'>[${i}]</a>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}'>[다음]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}&show=qna#big_product_2'>[다음]</a>
 											</c:if>
 										</div>	
 									
@@ -1857,28 +1869,17 @@ $(function(){
 		});
 		
 		/* 바로구매 alert */
-		/* 
 		$(function() {
 			$(document).on('click','#myshopping2' ,function() {
 				
 				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
 					alert('옵션을 선택해주세요');
 				}else{
-								$.ajax({
-									
-									url: '${pageContext.request.contextPath}/orders/ordersDirectProduct.do',
-									type: 'get',
-									data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
-									dataType: 'text',
-									success : location.href='http://localhost:8181/orders/ordersDirectProduct.do',
-									error: function(err){
-										console.log(err);
-									}
-								});	
-								
-				};
+					$('#sizeForm').attr("action","${pageContext.request.contextPath}/orders/ordersDirectProduct.do");
+					$('#sizeForm').submit();
+				}
 			});	
-		}); */
+		}); 
 			
 </script>
 
