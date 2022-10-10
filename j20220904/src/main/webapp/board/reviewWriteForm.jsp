@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 리뷰 작성</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="../css/boardCss/reviewContent.css">
 </head>
@@ -20,11 +20,14 @@
 					<h3 class="text-head2">상품 리뷰 작성</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="reviewWritePro.do?pageNum=${pageNum}" method="post">
+					<form action="${pageContext.request.contextPath}/board/reviewWritePro.do?product_id=${product_id}&gender=${gender}" method="post">
 						<input type="hidden" name="rb_id" value="${rb_id}">
-						
+						<input type="hidden" name="mem_id" value="${mem_id }">
+						<input type="hidden" name="product_id" value="${product_id }">
 						<div class="flex-box board-view-head">
 							<span class="rb-title"><input type="text" name="rb_title" required="required" placeholder="제목을 입력하세요"></span>
+							<span class="rb-date">${reviewBoard.q_date}</span>
+							<span class="rb-mem">${qABoard.mem_id}</span>
 						</div>
 						<div class="board-view-cont">
 							<div class="question-box">
@@ -34,7 +37,7 @@
 						<div class="btn-wrap text-right">
 							<input class="btn btn-dialog" type="submit" value="확인">
 							<input class="btn btn-dialog" type="reset" value="모두 지우기">
-							<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
+							<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=review#big_product_2" class="btn btn-dialog">목록</a>
 						</div>
 					</form>
 				</div>

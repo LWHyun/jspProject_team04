@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
+import dao.QABoardDAO;
+import dto.QABoardDTO;
 
 public class QAWriteFormService implements CommandProcess {
 
@@ -16,6 +18,9 @@ public class QAWriteFormService implements CommandProcess {
 			throws ServletException, IOException {
 		
 		System.out.println("QAWriteFormService Start...");
+		
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		int gender = Integer.parseInt(request.getParameter("gender"));
 		
 		//로그인 여부 확인
 		HttpSession session = request.getSession();
@@ -28,19 +33,22 @@ public class QAWriteFormService implements CommandProcess {
 		}
 		try {
 			// 신규글 
-			int num = 0;
+			int q_id = 0;
 			String pageNum = request.getParameter("pageNum");
+			
 			
 			if (pageNum == null) pageNum = "1";
 			
-			request.setAttribute("num", num);
+			request.setAttribute("q_id", q_id);
 			request.setAttribute("pageNum", pageNum);		
+			request.setAttribute("product_id",product_id);
+			request.setAttribute("gender",gender);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		return "qnaWriteForm.jsp";
+		return "/board/qnaWriteForm.jsp";
 	}
 
 }

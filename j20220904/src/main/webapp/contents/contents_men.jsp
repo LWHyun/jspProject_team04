@@ -1166,7 +1166,7 @@
 												<tr>
 													<td>${startNum1 }</td>
 													<td>
-														<a href="../board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}">
+														<a href='${pageContext.request.contextPath}/board/reviewContent.do?product_id=${product_id}&gender=${gender}&rb_id=${reviewBoard.rb_id}&pageNum=${currentPage1}'>
 															${reviewBoard.rb_title}
 														</a>
 													</td>
@@ -1174,20 +1174,33 @@
 													<td>${reviewBoard.rb_date }</td>
 													<td>${reviewBoard.rb_views }</td>
 												</tr>
+												<c:set var="startNum1" value="${startNum1 - 1}"/>
 											</c:forEach>
 										</c:if>
 									</table>
 									
-									<!-- 나중에 수정 -->
+									
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
+<<<<<<< HEAD
 											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
+=======
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
+>>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
+<<<<<<< HEAD
 											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+=======
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+>>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
+<<<<<<< HEAD
 											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
+=======
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
+>>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1226,7 +1239,7 @@
 											</ol>
 										</div> -->
 										<div class="btn-wrap text-right">
-											<a href="../board/reviewWriteForm.jsp" class="btn btn-dialog">상품 후기 작성</a>
+											<a href="${pageContext.request.contextPath}/board/reviewWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
 									</div>
 									
@@ -1280,7 +1293,7 @@
 													<tr>
 														<td>${startNum2 }</td>
 														<td>
-															<a href='../board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
+															<a href='${pageContext.request.contextPath}/board/qnaContent.do?product_id=${product_id}&gender=${gender}&q_id=${qABoard.q_id}&pageNum=${currentPage2}'>
 																${qABoard.q_title}
 															</a>
 														</td>
@@ -1299,7 +1312,11 @@
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_2'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
+<<<<<<< HEAD
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_2'>[${i}]</a>
+=======
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
+>>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}&show=qna#big_product_2'>[다음]</a>
@@ -1313,37 +1330,10 @@
 													<li class="pagination-item">
 														<button type="button" class="btn-page btn-page-num selected">1</button>
 													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">2</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">3</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">4</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">5</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">6</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">7</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">8</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">9</button>
-													</li>
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num">10</button>
-													</li>
 												</ol>
 											</div>  -->
 											<div class="btn-wrap text-right">
-												<a href="../board/qnaWriteForm.do" class="btn btn-dialog">Q&A 작성</a>
+												<a href="${pageContext.request.contextPath}/board/qnaWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">Q&A 작성</a>
 											</div>
 										</div>
 									</div>

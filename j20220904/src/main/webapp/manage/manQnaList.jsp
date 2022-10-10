@@ -7,12 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-	table-layout: fixed;
-}
 
 span {
 	font: bold;
@@ -32,7 +26,6 @@ span {
 /* 왼쪽 선택창 (공지사항, FAQ) */
 .wrap .contents-wrap .contents-aside .aside-wrap {
 	width: 220px;
-	padding-right: 60px;
 }
 
 .customer-wrap .customer-lnb {
@@ -115,13 +108,6 @@ a {
 	color: black;
 }
 
-table {
-	border: 1px solid grey;
-	border-collapse: collapse;
-	margin-bottom: 30px;
-	text-align: center;
-	font-family: "Montserrat", "Noto Sans KR", sans-serif;
-}
 
 td {
 	border: 1px solid grey;
@@ -237,7 +223,7 @@ li.product-manage {
 	});
 
  	/* 상품 수정 버튼 */
-	$(function() {
+/*	$(function() {
 		$(".updateBtn").click(function(){
 			
 			var str = "";
@@ -261,8 +247,60 @@ li.product-manage {
 			
 			location.href='manProductUpdate.do?product_id='+product_id+'&pd_size='+pd_size+'&price='+price+'&stock='+stock;
 		})
-	});
+	}); */
+	
+	
+	
+	// 해당 ID를 가진 값을 가져와 작업
+	function updateBtnClick(index) {
+		//alert('updateBtnClick click idx' + index);
+		
+		var selId1			= 'product_id' + index;
+		alert('updateBtnClick click selId1 -> ' + selId1);
+		
+		var selProduct_id 		= document.getElementById(eval("'"+selId1+"'"));
+		var selProduct_idValue	= "";
 
+		selProduct_idValue 		= selProduct_id.value;
+		alert('updateBtnClick click selProduct_id -> ' + selProduct_id);
+		
+		
+		var selId2			= 'pd_size' + index;
+		alert('updateBtnClick click selId2 -> ' + selId2);
+		
+		var selPd_size		= document.getElementById(eval("'"+selId2+"'"));
+		var selPd_sizeValue	= "";
+		
+		selPd_sizeValue		= selPd_size.value;
+		//alert('updateBtnClick click selStockValue -> ' + selStockValue);
+		
+		
+		
+		var selId3			= 'price' + index;
+		alert('updateBtnClick click selId3 -> ' + selId3);
+		
+		var selPrice 		= document.getElementById(eval("'"+selId3+"'"));
+		var selPriceValue	= "";
+
+		selPriceValue 		= selPrice.value;
+		alert('updateBtnClick click selPriceValue -> ' + selPriceValue);
+		
+		
+		var selId4			= 'stock' + index;
+		alert('updateBtnClick click selId4 -> ' + selId4);
+		
+		var selStock		= document.getElementById(eval("'"+selId4+"'"));
+		var selStockValue	= "";
+		
+		selStockValue		= selStock.value;
+		alert('updateBtnClick click selStockValue -> ' + selStockValue);
+		
+		
+		
+		location.href='manProductUpdate.do?product_id='+product_id+'&pd_size='+pd_size+'&price='+price+'&stock='+stock;
+		
+	}
+	
 	
 	
   	/* 가격, 재고 값 변할 때마다 alert 하게 */
@@ -300,58 +338,50 @@ li.product-manage {
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
 							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductList.do" class="active">상품관리</a></li>
-							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
+							<li class="customer-lnb-item"><a href="manProductList.do">상품관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manQnaList.do" class="active">Q&A 관리</a></li>
 						</ol>
 					</div>
 
 					<!-- 중앙 화면 : 상품 목록 -->
 					<div class="aside-contents" align="center">
-						<h3 class="text-head2 eng">상품관리</h3>
+						<h3 class="text-head2 eng">Q&A 관리</h3>
 						
 						<div class="border-line-box fold-box-list-wrap">
-							<span style="position: fixed; right: 2%; bottom: 103%;">  
-								<input type="button" value="상품 등록" onclick="location.href='manProductRegister.do'">
-							</span>
-						
 							<div class="tbl-wrap tbl-col notice-list">
 								<table style="table-layout:fixed" id="tbl">
-									<!-- Row 1 : 제품코드 | 브랜드 | 한국 이름 | 가격 | 사이즈 | 재고 */ -->
 									<thead>
 										<tr>
+											<th>번호</th>
 											<th>제품코드</th>
-											<th>브랜드</th>
-											<th width="200px">한글이름</th>
-											<th>가격</th>
-											<th width="70px">사이즈</th>
-											<th width="80px">재고</th>
-											<th>기타</th>
+											<th>제목</th>
+											<th width="200px">내용</th>
+											<th>작성일자</th>
+											<th width="70px">조회수</th>
+											<th width="80px">답변</th>
 										</tr>
 									</thead>
 
-									<!-- Row2 : 찐 상품 목록 -->
+									<!-- Row2 : 찐 Q&A 목록 -->
 									<tbody id="productList" style="vertical-align: center;">
-										<c:if test="${totCnt > 0}">
-											<c:forEach var="product_ImgSrcDTO" items="${productList}" varStatus="status">
+										<c:if test="${qATotCnt > 0}">
+											<c:forEach var="qABoard" items="${qAList}">
 												<tr>
-													<td id="product_id${status.index}">${product_ImgSrcDTO.product_id}</td>
-													<td>${product_ImgSrcDTO.brand}</td>
-													<td>${product_ImgSrcDTO.kor_name}</td>
-													<td><input type="number" name="price" min="0" id="price${status.index}" value="${product_ImgSrcDTO.price}" style="width:60px;"></td>
-													<td id="pd_size${status.index}">${product_ImgSrcDTO.pd_size}</td>
-													<td><input type="number" name="stock" min="0" id="stock${status.index}" max="999" value="${product_ImgSrcDTO.stock}" style="width:60px;"></td>
-													<td>
-														<input type="button" class="updateBtn" value="수정" onclick="updateBtnClick(${status.index})">
-														<input type="button" class="deleteBtn" id="deleteBtn" value="삭제" onclick="location.href='manProductDelete.do?product_id=${product_ImgSrcDTO.product_id}&pd_size=${product_ImgSrcDTO.pd_size }&pageNum=${pageNum }'">
-													</td>
+													<td>${startNum}</td>
+													<td id="product_id">${qABoard.product_id}</td>
+													<td>${qABoard.q_title}</td>
+													<td>${qABoard.q_content }</td>
+													<td>${qABoard.q_date}</td>
+													<td>${qABoard.q_views }</td>
+													<td>${qABoard.q_answer}</td>
 												</tr>
-
+												
 												<c:set var="startNum" value="${startNum - 1}"></c:set>
 											</c:forEach>
 										</c:if>
 
 										<c:if test="${totCnt == 0}">
-											<tr> 
+											<tr>
 												<td colspan="7">NO DATA</td>
 											</tr>
 										</c:if>
@@ -360,19 +390,17 @@ li.product-manage {
 							</div>
 
 							<!-- 페이징 -->
-							<div style="text-align: center; margin-top: 45px;">
-								<c:if test="${startPage > blockSize}">
-									<a href="manProductList.do?pageNum=${startPage - blockSize}">[이전]</a>
+							<div style="text-align: center; margin-top:45px;">
+								<c:if test="${startPage > blockSize }">
+									<a href='manQnaList.do?pageNum=${startPage-blockSize}'>[이전]</a>
 								</c:if>
-
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<a href="manProductList.do?pageNum=${i}">[${i}]</a>
+									<a href='manQnaList.do?pageNum=${i}'>[${i}]</a>
 								</c:forEach>
-
 								<c:if test="${endPage < pageCnt }">
-									<a href="manProductList.do?pageNum=${startPage + blockSize}">[다음]</a>
+									<a href='manQnaList.do?pageNum=${startPage+blockSize}'>[다음]</a>
 								</c:if>
-							</div>
+							</div>	
 						</div>
 					</div>
 				</div>

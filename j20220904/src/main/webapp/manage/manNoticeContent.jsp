@@ -44,10 +44,11 @@
 	
 	.board-view-wrap .board-view-head .text-date {
 	    color: #666;
-	    margin-left: 300px;
 	    font-family: "Montserrat",sans-serif;
 	    font-size: 15px;
 	    line-height: 19px;
+	    position:absolute;
+	    transform: translateX(680px);
 	}
 	.board-view-wrap .board-view-cont {
 	    padding: 40px 20px 50px 20px;
@@ -90,16 +91,13 @@
 	    border-top: none;
 	}
 	.tbl-col.notice-list table tbody tr td {
-	    padding: 19px 10px 16px;
+	    padding: 19px 11px 0px 10px;
 	}
 	.board-view-wrap .board-view-btm .tbl-wrap.tbl-col td.text-left {
 	    padding-left: 0;
 	}
 	.tbl-wrap.tbl-col table tbody tr:first-child td {
 	    border-top: none;
-	}
-	.tbl-col.notice-list table tbody tr td {
-	    padding: 19px 10px 16px;
 	}
 	.tbl-col.notice-list table tbody tr td a.notice-link {
 	    display: inline-block;
@@ -120,9 +118,9 @@
 	}
 	
 	.aside-contents {
-	    margin-top: -140px;
+	    margin-top: -118px;
 	    width: calc(81% - 174px);
-		transform: translateY(-1px);
+		transform: translateX(150px);
 	}
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -158,11 +156,11 @@
 	      <div class="aside-contents" align="center">
 	      		<h3 class="text-head2 eng">공지사항 관리</h3>
 	      
+      			<div style="transform: translate(480px, 40px);">
+					<input type="button" onclick="location.href='manNoticeUpdateForm.do?notice_code=${notice.notice_code}&pageNum=${pageNum}'" value="수정">
+					<input type="button" onclick="location.href='manNoticeDeleteForm.do?notice_code=${notice.notice_code}&pageNum=${pageNum}'" value="삭제">
+				</div>
 	      		<div class="board-view-wrap border-line-box">
-	      			<div >
-						<input type="button" onclick="location.href='manNoticeUpdateForm.do?notice_code=${notice.notice_code}&pageNum=${pageNum}'" value="수정">
-						<input type="button" onclick="location.href='manNoticeDeleteForm.do?notice_code=${notice.notice_code}&pageNum=${pageNum}'" value="삭제">
-					</div>
 	      			<div class="flex-box board-view-head">
 	      				<span class="view-tit">${notice.notice_title}</span>
 	      				<span class="text-date">${notice.notice_date}</span>
@@ -177,7 +175,7 @@
 			      				<colgroup>
 			      					<col style="width: 44px;">
 			      					<col>
-			      					<col style="width: 112px;">
+			      					<col style="width: 58px;">
 			      				</colgroup>
 			      				
 			      				<tbody>
@@ -211,7 +209,7 @@
 	      		</div>
 	      		
 	      		<!-- 목록 -->
-	      		<div style="margin-top:50px; margin-left:350px;">
+	      		<div style="margin-top:50px; transform: translateX(150px);">
 			    	<input type="button" value="목록"
 			    	onclick="location.href='manNoticeList.do?pageNum=${pageNum}'">
 	      		</div>

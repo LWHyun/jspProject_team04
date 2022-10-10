@@ -38,7 +38,7 @@
 						<div class="btn-wrap text-right">
 							<input class="btn btn-dialog" type="submit" value="확인">
 							<input class="btn btn-dialog" type="reset" value="취소">
-							<a href="javascript:history.back();" class="btn btn-dialog">목록</a>
+							<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=review#big_product_2" class="btn btn-dialog">목록</a>
 						</div>
 					</form>
 				</div>

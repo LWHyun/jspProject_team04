@@ -29,7 +29,7 @@
 							<h2 style="margin-bottom: 20px;">글 삭제를 원하시면 <br>아래 칸에 삭제를 입력해주세요.</h2>
 							<input type="text" required="required" placeholder="삭제"><p><br>
 							<input type="submit" value="확인">
-							<button onclick="javascript:history.back();">취소</button>
+							<button onclick="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3">취소</button>
 						</form>
 					</div>
 				</div>

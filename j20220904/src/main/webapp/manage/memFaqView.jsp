@@ -50,10 +50,10 @@
 	
 	/* 중앙화면 */
 	.aside-contents {
-	    margin-top: -140px;
+	    margin-top: -118px;
 	    width: calc(95% - 206px);
-	    transform: translateX(80px);
-	}
+	    transform: translate(59px, 42px);
+}
 	.text-head2.eng, .text-head2 .eng {
 	    font-family: "Montserrat",sans-serif;
 	    letter-spacing: 0;

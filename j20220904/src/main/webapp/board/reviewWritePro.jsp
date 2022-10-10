@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("작성 완료");  
-		location.href="reviewBoard.do?pageNum=${pageNum}";
+		location.href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=review#big_product_2";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">  

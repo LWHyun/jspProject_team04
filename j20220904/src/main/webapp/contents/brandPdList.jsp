@@ -203,7 +203,7 @@ strong+p {
   font-size: 15px;
   padding-right: 33px;
 }
-.fold-box-header:brfoe {
+.fold-box-header::before {
   content: '';
   position: absolute;
   display: inline-block;
@@ -213,7 +213,7 @@ strong+p {
   right: 10px;
   top: 32px;
 }
-.fold-box-header:after {
+.fold-box-header::after {
   content: '';
   position: absolute;
   display: inline-block;
@@ -293,7 +293,7 @@ label {
 		margin-right: 10px;
 		margin-top: 10px;
 	}
-	.product-list>.product-box:nth-child(3) {
+	.product-list>.product-box:nth-child(4) {
 		margin-right: 5px;
 	}
 	.prod-wrap:hover {
@@ -341,7 +341,7 @@ label {
 		text-align: center;
 		line-height: 42px;
 	}
-	.btn-prod-cart, .btn-prod-favorite {
+	.btn-prod-favorite {
 		position: relative;
 		width: 24px;
 		height: 22px;
@@ -352,19 +352,10 @@ label {
 		border: none;
 		flex-basis: 24px;
 		background-color: white;
+		cursor: 
 	}
 	 .btn-prod-favorite:hover {
 	  background-position: 0 -22px;
-	}
-	/* .btn-prod-favorite:focus {
-	  background-position: 0 -44px;
-	} */
-	.btn-prod-cart:hover {
-	  background-position: -48px -22px;
-	}
-	.btn-prod-cart {
-		background-position: -48px 0;
-		margin-left: 17px;
 	}
 	.btn-buy-now {
 		width: 150px;
@@ -420,71 +411,7 @@ label {
 <%
 	String context = request.getContextPath();
 %>
-
 </head>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-
-	$(function(){
-			$(document).on("click", ".btn-prod-favorite", function () {
-				$(this).css("background-position", "0 -44px");
-				alert("찜은 갈비찜");
-				var sandData = "product_id=" + $(this).attr('id');
-			 $.ajax({
-				url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
-				type: 'get',
-				data: sandData,
-				dataType: 'text',
-				success: function (data) {
-					if (data == "1") {
-						alert('찜한상품에 담겼습니다.');
-					} else {
-						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-					}
-				
-				}
-			});
-		});
-	});
-	
-	/* $(function () {
-		
-		$(document).on("click","#like-btn",function () {
-				console.log(ㅌㅌㅌㅌㅌ);
-				$.ajax({
-					url: '${pageContext.request.contextPath}/contents/RegisterLike.do',
-					type: 'get',
-					data: {'product_id': ${product_id}, 'mem_id': ${mem_id}	},
-					dataType: 'text',
-					success: function (data) {
-						if (data == '1') {
-							alert('찜한상품에 담겼습니다.');
-						} else {
-							alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-							location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-						}
-					},
-					error: function (err) {
-						console.log(찜 에러);
-					}
-				});
-				
-			$(this).css("background-position", "0 -44px");
-		});
-	});  */
-	
-			
-	
-		/* $(".btn-buy-now").click(function () {
-			location.href="#"
-		});
-	
-		$(".fold-box-header").click( function () {
-			$(".ip-filter-list col1").slideToggle();
-		}) */
-		
-</script>
 <body>
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
@@ -660,12 +587,12 @@ label {
 		          <div class="fold-box-header" id="genderSearchCount">카테고리</div>				<!-- 카테고리: 운동화, 구두 -->
 		          <div class="fold-box-contents">
 		            <ul class="ip-filter-list col1">
-		              <li class="smart-search-option" data-code="1" data-name="운동화">
+		              <li class="smart-search-option" data-name="운동화">
 		                <span class="ui-chk type-line">
 		                <input id="1" name="category" type="checkbox"><label for="1">운동화</label>
 		                </span>
 		              </li>
-		              <li class="smart-search-option" data-code="0" data-name="구두">
+		              <li class="smart-search-option" data-name="구두">
 		                <input id="0" name="category" type="checkbox"><label for="0">구두</label>
 		              </li>
 		            </ul>
@@ -807,7 +734,65 @@ label {
 	</div> --%>
 	
 </div> <!-- contents-wrap 끝--> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
 
+	$(function(){
+
+		$(document).on("click", ".btn-prod-favorite", function () {
+			
+				var sandData = "product_id=" + $(this).attr('id');
+											// $(.btn-prod-favorite) 태그의 id를 가져와라
+				var product_id = $(this).attr('id');
+				/* alert( $('.btn-prod-favorite').css("background-position")); */
+			if(	$('.btn-prod-favorite').css("background-position") == "0px -22px"){
+				
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/contents/registerLike.do',
+				type: 'get',
+				data: sandData,
+				dataType: 'text',
+				success: function (data) {
+					console.log(data);
+					if (data == "1") {
+						alert('찜한상품에 담겼습니다.');
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+					} else if (data == "-1") {
+						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					} else // (data == "0")
+						alert('이미 찜한상품입니다.');
+				}
+			});
+			 
+			} else {
+				alert('찜 삭제 ajax');
+			 $.ajax({
+				url: '<%=context%>/contents/removeLike.do',
+				type: 'get',
+				data: "product_id=" + $(this).attr('id'),
+				success: function (data) {
+					if (data == "1") {
+						alert ("찜한상품이 해제되었습니다.");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 0");
+						
+					} else {
+						alert("error");
+						location.href = "<%=context%>/member/loginForm.do";
+						$(this).hover("background-position", "0 -22px");
+					}
+				}
+			 });
+			}
+		});
+	});
+	
+		/*
+		$(".fold-box-header").click( function () {
+			$(".ip-filter-list col1").slideToggle();
+		}) */
+		
+</script>
 
 </body>
 </html>

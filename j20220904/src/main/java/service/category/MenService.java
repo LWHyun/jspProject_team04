@@ -46,6 +46,7 @@ public class MenService implements CommandProcess {
 			request.setAttribute("list", list);
 			
 			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

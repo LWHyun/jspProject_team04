@@ -21,7 +21,8 @@ public class InsertLikeService implements CommandProcess {
 		int product_id= Integer.parseInt(request.getParameter("product_id"));
 		String mem_id = request.getParameter("mem_id");
 		ProductDAO productDAO = ProductDAO.getInstance();
-		
+		System.out.println(product_id);
+		System.out.println(mem_id);
 		
 		
 		int result=0;

@@ -11,8 +11,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script type="text/javascript" src="../js/jquery.js"></script>
 
-<%@include file="indexEx2.jsp" %>
+<jsp:include page="../main/header.jsp"></jsp:include>
 <style type="text/css">
+	.wrapper{
+		height : 100%;
+		width : 100%;
+		position: relative;
+	}
+
 	a{
 		color: black;
 		text-decoration: none;
@@ -90,7 +96,6 @@
 	
 	.filter{
 		width: 270px;
-		height: 680px; 
    		margin-top: 30px; 
    		border: 1px solid #A6A6A6; 
    		display: inline-block;
@@ -122,42 +127,108 @@
 	#btn_search{
 		float:right;
 	}
+	
+	/* 모달부분 */
+	.modal{ 
+	  position:absolute; 
+	  width:100%; 
+	  height:100%; 
+	  background: rgba(0,0,0,0.8); 
+	  top:0; 
+	  left:0; 
+	  display:none;
+	}
+	
+	/* .modal_content{
+	  width:400px; 
+	  height:200px;
+	  background:#fff; 
+	  border-radius:10px;
+	  position:relative; 
+	  top:50%; left:50%;
+	  margin-top:-100px; 
+	  margin-left:-200px;
+	  text-align:center;
+	  box-sizing:border-box; 
+	  padding:74px 0;
+	  line-height:23px; 
+	  cursor:pointer;
+	} */
+	#modal_div_button{
+		width:400px; 
+		height:350px;
+		background:#fff; 
+		border-radius:10px;
+		position:relative; 
+		top:35%; left:50%;
+		margin-top:-100px; 
+		margin-left:-150px;
+		text-align:center;
+		box-sizing:border-box; 
+		padding:20px 0;
+		line-height:23px; 
+		cursor:pointer;
+	}
+	
+	#modalClose{
+		margin-top: 10px;
+	}
+	
 
 </style>
 <script type="text/javascript">
-	/* function like() {
-		$('.like_img').click(function() {
-			$(this).attr('src','../img/contexts/heart0.png');
-		});
-		$('.like_img').dblclick(function() {
-			$(this).attr('src','../img/contexts/heart1.png');
-		})
-	} */
-	
 	$(function() {
+		$('.pro_buynow').click(function() {
+			
+			var product_id = $(this).siblings('input[name="buyNow_product_id"]').val();
+			var gender = $(this).siblings('input[name="buyNow_gender"]').val();
+			console.log(product_id);
+			console.log(gender);
+			$.ajax({
+				url : '${pageContext.request.contextPath}/category/buyNow.do',
+				data : 
+					{product_id : product_id,
+						gender : gender}, 
+				dataType : 'html',
+				success : function(data) {
+					alert(data);
+					$('.modal_content').html(data);
+				}
+			});
+			
+			
+			$('.modal').fadeIn();
+		});
+		$('.modal #modalClose').click(function() {
+			$('.modal').fadeOut();
+		})
+	})
+	
+	/* $(function() {
 		$(".pro_buynow").click(function() {
 			confirm('바로 구매하시겠습니까?');
-			location.href="#"; /* 바로구매창 이동 */
+			location.href="#";
 		});
-	});
+	}); 
+	*/
 	
 	//찜하기기능
 	$(function () {
-		var num =$('.like_img').val();
-
-		var imageName = ["heart1", "heart0"];
+		var imageName = ["heart0","heart1"];
 		$(".like_img").click(function() {
-			var product_id = $(this).attr('alt');
+			var num =$(this).attr('alt');
+			var product_id = $(this).attr('id');
+			console.log(num);
+			console.log(product_id);
 			if(num == 1) {
-				num=0;
-				
+				//num=0;
+				$(this).attr('alt','0');
 				$.ajax({
 					url:  '${pageContext.request.contextPath}/contents/deleteLike.do',
 					type: 'get',
 					data: {
 							'product_id' : product_id,
 							'mem_id' :  '${sessionScope.mem_id}'
-							
 					      },
 						
 					dataType: 'text',
@@ -176,8 +247,8 @@
 				});	
 				
 			}else	    {
-				num++;
-				
+				//num++;
+				$(this).attr('alt','1');
 				$.ajax({
 					url: '${pageContext.request.contextPath}/contents/insertLike.do',
 					type: 'get',
@@ -264,7 +335,7 @@
 </head>
 <body>
 	
-
+<div class="wrapper">
 	<div class="cate_name">
 		<h1 id="nameResult">${result }</h1><br>
 		<hr>
@@ -276,6 +347,7 @@
 	<form action="#">
 	   	<div class="dropdown">
 	   		<span>브랜드</span>
+	   		<img src="/j20220904/img/contexts/product_button.png" style="float: right; margin-right: 10px; margin-top: 12px;">
 		   	<div class="dropdown_content">
 		   		<ul>
 		   			<li><input type="checkbox" name="chkbox_brand" value="ADIDAS"><label for="chkbox_brand">아디다스</label></li>
@@ -291,6 +363,7 @@
 	
 	   	<div class="dropdown">
 	   		<span>사이즈</span>
+	   		<img src="/j20220904/img/contexts/product_button.png" style="float: right; margin-right: 10px; margin-top: 12px;">
 		   	<div class="dropdown_content">
 		   		<ul>
 		   			<li><input type="radio" name="radio_size" value="220"><label for="chkbox_size">220</label></li>
@@ -326,26 +399,43 @@
 				<div class="pro_buycontent">
 					<c:choose>
 						<c:when test="${list.like_product_id > 0 }">
-							<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart0.png" ><!-- onclick="like()" -->
+							<img class="like_img" alt="1"   src="../img/contexts/heart0.png" id="${list.product_id }">
 						</c:when>
 						<c:otherwise>
-							<img class="like_img" alt="${list.product_id }"  src="../img/contexts/heart1.png" ><!-- onclick="like()" -->
+							<img class="like_img" alt="0"  src="../img/contexts/heart1.png" id="${list.product_id }">
 						</c:otherwise>
 					</c:choose>
-					 
 					<button type="button" class="pro_buynow">바로구매</button>
-					<input type="hidden" name="">
+					<input type="hidden" name="buyNow_product_id" id="buyNow_product_id" class="buyNow_product_id" value="${list.product_id }">
+					<input type="hidden" name="buyNow_gender" id="buyNow_gender" class="buyNow_gender" value="${list.gender }">
+					<div class="modal">
+					<div id="modal_div_button">
+						<div class="modal_div_inner">
+							<div class="modal_content" title="구매용 모달창">
+							
+							${list.product_id }
+							</div>
+						</div>
+						
+						<button id="modalClose" class="custom-btn btn-close">닫기</button>
+						</div>
+					</div>
 				</div>
-			
 			</div>
 			</li>
 		</c:forEach>
+		
 			
 		</ul>
 	</div>
 	
+</div>
+	
+
 
 	
 	
+<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
+
 </html>
