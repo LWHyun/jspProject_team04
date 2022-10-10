@@ -237,7 +237,7 @@ li.product-manage {
 	});
 
  	/* 상품 수정 버튼 */
-/*	$(function() {
+	$(function() {
 		$(".updateBtn").click(function(){
 			
 			var str = "";
@@ -261,60 +261,8 @@ li.product-manage {
 			
 			location.href='manProductUpdate.do?product_id='+product_id+'&pd_size='+pd_size+'&price='+price+'&stock='+stock;
 		})
-	}); */
-	
-	
-	
-	// 해당 ID를 가진 값을 가져와 작업
-	function updateBtnClick(index) {
-		//alert('updateBtnClick click idx' + index);
-		
-		var selId1			= 'product_id' + index;
-		alert('updateBtnClick click selId1 -> ' + selId1);
-		
-		var selProduct_id 		= document.getElementById(eval("'"+selId1+"'"));
-		var selProduct_idValue	= "";
+	});
 
-		selProduct_idValue 		= selProduct_id.value;
-		alert('updateBtnClick click selProduct_id -> ' + selProduct_id);
-		
-		
-		var selId2			= 'pd_size' + index;
-		alert('updateBtnClick click selId2 -> ' + selId2);
-		
-		var selPd_size		= document.getElementById(eval("'"+selId2+"'"));
-		var selPd_sizeValue	= "";
-		
-		selPd_sizeValue		= selPd_size.value;
-		//alert('updateBtnClick click selStockValue -> ' + selStockValue);
-		
-		
-		
-		var selId3			= 'price' + index;
-		alert('updateBtnClick click selId3 -> ' + selId3);
-		
-		var selPrice 		= document.getElementById(eval("'"+selId3+"'"));
-		var selPriceValue	= "";
-
-		selPriceValue 		= selPrice.value;
-		alert('updateBtnClick click selPriceValue -> ' + selPriceValue);
-		
-		
-		var selId4			= 'stock' + index;
-		alert('updateBtnClick click selId4 -> ' + selId4);
-		
-		var selStock		= document.getElementById(eval("'"+selId4+"'"));
-		var selStockValue	= "";
-		
-		selStockValue		= selStock.value;
-		alert('updateBtnClick click selStockValue -> ' + selStockValue);
-		
-		
-		
-		location.href='manProductUpdate.do?product_id='+product_id+'&pd_size='+pd_size+'&price='+price+'&stock='+stock;
-		
-	}
-	
 	
 	
   	/* 가격, 재고 값 변할 때마다 alert 하게 */
@@ -403,7 +351,7 @@ li.product-manage {
 										</c:if>
 
 										<c:if test="${totCnt == 0}">
-											<tr>
+											<tr> 
 												<td colspan="7">NO DATA</td>
 											</tr>
 										</c:if>
