@@ -1167,16 +1167,16 @@
 										</c:if>
 									</table>
 									
-									<!-- 나중에 수정 -->
+									
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}'>[${i}]</a>
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1288,7 +1288,7 @@
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}'>[${i}]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}'>[다음]</a>
