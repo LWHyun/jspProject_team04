@@ -52,7 +52,7 @@ public class QAWriteProService implements CommandProcess {
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);
 	        
-		     // Dao랑 Service 연결
+		    // Dao랑 Service 연결
 			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
 			
 			ProductDAO productDAO = ProductDAO.getInstance();

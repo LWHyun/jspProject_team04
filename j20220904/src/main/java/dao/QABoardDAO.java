@@ -220,9 +220,6 @@ public class QABoardDAO {
 		return result;
 	}
 	
-	
-	
-	// 게시물 수정 -> 되는진 모르겠음
 	public int update(QABoardDTO qABoard) throws SQLException {
 		
 		Connection conn = null;	
