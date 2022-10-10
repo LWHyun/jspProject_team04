@@ -253,6 +253,20 @@
 						</tr>		      			
 	      			</table>
 			</c:when>
+			<c:when test="${empty likeProList }">
+					<table class="likeTbl">
+						<tr>
+							<td>
+							내가 찜한 상품
+							</td>
+						</tr>
+						<tr>
+							<td>
+							찜한 목록이 없습니다.
+							</td>
+						</tr>
+					</table>
+			</c:when>
 		</c:choose>
 		
 		

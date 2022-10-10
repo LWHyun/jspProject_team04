@@ -69,6 +69,7 @@ private static OrdersDAO instance;
 				pstmt.setString(7, ordersDTO.getTake_zipcode());
 				pstmt.setString(8, ordersDTO.getTake_addr1());
 				pstmt.setString(9, ordersDTO.getTake_addr2());
+//				pstmt.setString(10, ordersDTO.getOrder_msg());
 				
 				pstmt.executeUpdate();
 				pstmt.close();
@@ -85,7 +86,6 @@ private static OrdersDAO instance;
 					pstmt.executeUpdate();
 				}
 				
-				
 				pstmt.close();
 				
 				
@@ -97,6 +97,71 @@ private static OrdersDAO instance;
 		
 		return ordersDTO;
 		
+	}
+	
+	// 구매한 상품이 장바구니에 존재할 때, 장바구니의 상품을 삭제하는 메소드
+	public OrdersDTO deleteBasket(OrdersDTO ordersDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM basket WHERE mem_id=? AND product_id=? AND size_num=?";
+		
+		try {
+			
+				List<OrdersDetailDTO> orderList = ordersDTO.getList();
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, ordersDTO.getMem_id());
+				
+				for (int i = 0; i < orderList.size(); i++) {
+					
+					pstmt.setInt(2, orderList.get(i).getProduct_id());
+					pstmt.setInt(3, orderList.get(i).getSize_num());
+					pstmt.executeUpdate();
+					
+				}
+				
+			
+		} catch (Exception e) {
+			System.out.println("OrdersDAO deleteBasket -> " + e.getMessage());
+		} finally {
+			close(conn, pstmt);
+		}
+		
+		return ordersDTO;
+	}
+	
+	
+	// 구매한 수량만큼 상품 재고량에서 감소시키는 메소드
+	public OrdersDTO updateStock(OrdersDTO ordersDTO) {
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE product_size SET stock = stock - ? WHERE product_id = ? AND size_num = ?";
+		
+		try {
+			
+			List<OrdersDetailDTO> stockList = ordersDTO.getList();
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i < stockList.size(); i++) {
+				
+				pstmt.setInt(1, stockList.get(i).getCnt());
+				pstmt.setInt(2, stockList.get(i).getProduct_id());
+				pstmt.setInt(3, stockList.get(i).getSize_num());
+				pstmt.executeUpdate();
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("OrdersDAO updateStock -> " +e.getMessage());
+		} finally {
+			close(conn, pstmt);
+		}
+		
+		return ordersDTO;
 	}
 	
 	
