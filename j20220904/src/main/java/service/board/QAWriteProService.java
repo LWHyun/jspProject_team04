@@ -34,8 +34,6 @@ public class QAWriteProService implements CommandProcess {
 		
 		try {
 			request.setCharacterEncoding("utf-8"); 
-	        String pageNum = request.getParameter("pageNum");
-	        System.out.println(pageNum);
 	        
 	        QABoardDTO qABoard = new QABoardDTO();
 	        
@@ -50,7 +48,6 @@ public class QAWriteProService implements CommandProcess {
 	        System.out.println("오니?");
 	        request.setAttribute("q_id", qABoard.getQ_id());
 	        request.setAttribute("result", result);
-	        request.setAttribute("pageNum", pageNum);
 	        
 		    // Dao랑 Service 연결
 			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();

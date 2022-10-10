@@ -34,8 +34,6 @@ public class ReviewWriteProService implements CommandProcess {
 		
 		try {
 			request.setCharacterEncoding("utf-8");
-			String pageNum = request.getParameter("pageNum");
-	        System.out.println("ReviewWriteProService + pageNum >" +pageNum);
 	        
 	        ReviewBoardDTO reviewBoard = new ReviewBoardDTO();
 	        
@@ -51,7 +49,6 @@ public class ReviewWriteProService implements CommandProcess {
 	        
 	        request.setAttribute("rb_id", reviewBoard.getRb_id());
 	        request.setAttribute("result", result);
-	        request.setAttribute("pageNum", pageNum);
 	        
 	        ProductDAO productDAO = ProductDAO.getInstance();
 			LikeProDAO likeProDAO = LikeProDAO.getInstance();

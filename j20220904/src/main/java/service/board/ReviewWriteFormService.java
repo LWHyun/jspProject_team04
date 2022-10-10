@@ -31,12 +31,12 @@ public class ReviewWriteFormService implements CommandProcess {
 		}
 		try {
 			// 신규글 
-			int num = 0;
+			int rb_id = 0;
 			String pageNum = request.getParameter("pageNum");
 			
 			if (pageNum == null) pageNum = "1";
 			
-			request.setAttribute("num", num);
+			request.setAttribute("rb_id", rb_id);
 			request.setAttribute("pageNum", pageNum);	
 			request.setAttribute("product_id",product_id);
 			request.setAttribute("gender",gender);

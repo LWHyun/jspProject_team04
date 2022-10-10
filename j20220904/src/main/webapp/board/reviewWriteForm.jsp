@@ -26,6 +26,8 @@
 						<input type="hidden" name="product_id" value="${product_id }">
 						<div class="flex-box board-view-head">
 							<span class="rb-title"><input type="text" name="rb_title" required="required" placeholder="제목을 입력하세요"></span>
+							<span class="rb-date">${reviewBoard.q_date}</span>
+							<span class="rb-mem">${qABoard.mem_id}</span>
 						</div>
 						<div class="board-view-cont">
 							<div class="question-box">
