@@ -267,7 +267,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" name="buyername" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -277,7 +277,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" name="buyerphone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -287,7 +287,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" name="buyermail" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -325,7 +325,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver_name" required> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver_name" name="receiver_name" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -335,7 +335,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver_phone" required> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver_phone" name="receiver_phone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -368,7 +368,7 @@ function sample6_execDaumPostcode() {
 											</select><br><br>
 											
 											<div class="forWrite">
-												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+												<input type="text" id="forWrite" name="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
 											</div>
 											
 										</div>
