@@ -573,6 +573,8 @@ function sample6_execDaumPostcode() {
 	   		return false;
 	   	}
 	 	
+	   	let buyer = $('#buyername').val();
+	   	
 	    //var IMP = window.IMP; // 생략가능
 	    IMP.init('imp71553354');
 	    // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -612,7 +614,7 @@ function sample6_execDaumPostcode() {
 	        amount: 100,
 	        //가격
 	        buyer_email: 'abcMartek@siot.do',
-	        buyer_name: '이우현', //구매자 이름
+	        buyer_name: buyer, //구매자 이름
 	        buyer_tel: '010-7586-5945',
 	        buyer_addr: '경기도 의정부시 신곡동',
 	        buyer_postcode: '123-456',
