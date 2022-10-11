@@ -135,6 +135,13 @@ tr {
 
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+	function ChangeBrand() {
+		var val_str = document.getElementById('select_brand');
+		
+		alert("브랜드 : " + val_str.options[val_str.selectedIndex].value);
+	}
+</script>
 <body>
 	<!-- 헤더 -->
 	<div id="header">
@@ -178,7 +185,6 @@ tr {
 							</tr>
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">상품 상세 이미지 등록</td>
-								<!-- name 뭐 넣어야할지 모르겠어서 수정해야 할 듯 -->
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
 									<input type="file" name="s_file_path" required="required">
 								</td>
@@ -193,16 +199,15 @@ tr {
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-									<!-- 값 어떻게 받아올지... 수상...  -->
 									<input type="hidden" name="brand" required="required">
-										<select name="brand" form="myForm" required="required">
-											<option value="adidas">ADIDAS</option>
-											<option value="birkenstock">BIRKENSTOCK</option>
-											<option value="converse">CONVERSE</option>
-											<option value="dr_martens">DR.MARTENS</option>
-											<option value="fila">FILA</option>
-											<option value="lacoste">LACOSTE</option>
-											<option value="nike">NIKE</option>
+										<select name="brand" id="select_brand" required="required" onchange="ChangeBrand()">
+											<option value="Adidas_images">ADIDAS</option>
+											<option value="Birkenstock_images">BIRKENSTOCK</option>
+											<option value="Converse_images">CONVERSE</option>
+											<option value="DrMartens_images">DR.MARTENS</option>
+											<option value="Fila_images">FILA</option>
+											<option value="Lacoste_images">LACOSTE</option>
+											<option value="Nike_images">NIKE</option>
 										</select>
 								</td>
 							</tr>
@@ -236,10 +241,24 @@ tr {
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">카테고리 코드</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-									<input type="text" name="ca_code" required="required">
+									<input type="number" name="ca_code" required="required">
 								</td>
 							</tr>
-
+							
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">사이즈</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="number" min="220" step="5" max="290" name="pd_size" required="required">
+								</td>
+							</tr>							
+							
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">재고</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="number" min="0" name="stock" required="required">
+								</td>
+							</tr>							
+							
 						</table>
 						<div style="transform: translate(231px, 13px); margin-top:15px;">
 							<input type="submit" value="확인">
