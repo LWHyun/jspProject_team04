@@ -26,9 +26,11 @@ public class OrdersDirectFromProductService implements CommandProcess {
 		// 로그인 여부 확인
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
-	
+		String toURI = request.getParameter("toURI") != null ? request.getParameter("toURI") : "";
 		//로그인이 안되어있으면 로그인 페이지로 이동
 		if ( mem_id == null ) {
+			request.setAttribute("toURI", toURI);
+			System.out.println("toURI="+toURI);;
 			return "/member/memLoginForm.jsp";
 			
 		}
