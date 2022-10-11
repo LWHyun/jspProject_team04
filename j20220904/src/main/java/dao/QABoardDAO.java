@@ -44,12 +44,12 @@ public class QABoardDAO {
 	}
 	
 	// Q&A 게시판 게시물 총 개수
-	public int getQATotalCnt() throws SQLException {
+	public int getQATotalCnt(int product_id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from qa_board";
+		String sql = "select count(*) from qa_board where product_id =" + product_id;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -63,12 +63,12 @@ public class QABoardDAO {
 		return tot;
 	}
 	// 리뷰 게시판 게시물 총 개수
-	public int getTotalRBCnt() throws SQLException {
+	public int getTotalRBCnt(int product_id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from review_board";
+		String sql = "select count(*) from review_board where product_id =" + product_id;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -83,7 +83,7 @@ public class QABoardDAO {
 	}
 	
 	// Q&A 목록 불러오기
-	public List<QABoardDTO> qABoardList(int startRow, int endRow) {
+	public List<QABoardDTO> qABoardList(int product_id,int startRow, int endRow) {
 		List<QABoardDTO> qAList = new ArrayList<QABoardDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -91,7 +91,7 @@ public class QABoardDAO {
 		
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from qa_board order by q_date desc) a ) "
+	 		    + "      From 	 (select * from qa_board where product_id=? order by q_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		
@@ -101,8 +101,9 @@ public class QABoardDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, product_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

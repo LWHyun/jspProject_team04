@@ -10,784 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
-<style type="text/css">
-	
-	
-	.contents-width	{
-		width: 1200px;
-		height: 800px;
-		margin: 0 auto;
-		
-		
-	}
-	
-	.breadcrumb-wrap {
-		border:1px solid white;
-		width: 1200px;
-		height: 60px;
-		margin-top: 20px;
-		
-	}
+<link rel="stylesheet" href="../css/productCss/productCss.css">
 
-	.breadcrumb-wrap li {
-	 float:left; 
-	 list-style: none;
-	}
-	
-	.contents-inner.product-detail-wrap	{
-		 margin-top: 20px;
-	}
-	
-	.image_big_left	{
-		
-		width: 580px;
-		float: left;
-	}
-	
-	.image_big_left_small 	{
-		border:1px solid white;
-		width: 100%;
-		
-	}
-	
-	.image_big_left_small div	{
-		display: inline-block;
-	}
-	
-	.image_big_left_small img	{
-		width: 100px;
-		height: 100px;
-		margin:5.5px;
-		
-	}
-	 .image_big_left_Product_satisfaction{
-		width: 580px;
-		
-	
-	}
-	
-	.image_big_left_Product_satisfaction_left{
-		border:1px solid white;
-		width: 260px;
-		height: 120px;
-		text-align: center;
-		
-		
-		
-	}
-	
-	.image_big_left_Product_satisfaction_left_1 {
-		height: 14px;
-		font-size: 14px;
-		color: gray;
-	}
-	.image_big_left_Product_satisfaction_left_2 {
-		height: 40px;
-		font-size: 40px;
-		color: red;
-		font-weight: bold;
-	}
-	
-	.image_big_left_Product_satisfaction_left_3{
-		display: inline-block;
-	}
-	
-	.image_big_left_Product_satisfaction_left_3 img{
-		width:15px;
-		height: 15px;
-	}
-	
-	.image_big_left_Product_satisfaction_right	{
-		border: 1px white solid;
-		width: 260px;
-		height: 120px;
-		
-	}
-	
-	.image_big_left_Product_satisfaction_right_1 {
-		display: inline-block;
-		margin-bottom: 50px;
-	}
-	.image_big_left_Product_satisfaction_right_1 li	{
-		    list-style: none;
-	}
-	
-	.image_big_left_Product_satisfaction_right_1 .label	{
-		width: 120px;
-		height: 15px;
-		display: inline-block;
-		color: gray;
-		
-	}
-	
-	.image_big_right{
-		border:1px solid white;
-		width: 580px;
-		float: right;
-	}
-	.ABC_MRRT{
-		background-color: #ee1c25;
-		font-size: 13px;
-		color:white;
-		margin-right: 8px;
-		float: left;
-	}
-	.detail_brandbox_like img {
-		width:27px;
-		height: 24px;
-		float: right;
-		margin-right: 50px;
-	}
-	
-	.small_image_div:hover	{
-		border:1px solid white;		
-	}
-	
-	.brand_name	{
-		font-weight: bold;
-		font-size: 20px;
-		margin: 15px 0 0 0;
-		height: 39px;
-	}
-	.product_name{
-		font-family: Montserrat, sans-serif;
-		font-size:15px;
-		line-height: 15px;
-		height: 22px;
-		margin: 6px 0 0 0;
-		color: #666666;
-	}
-	
-	.product_code	{
-		font-size:13px;
-		list-style: none;
-		margin: 16px 0 0 0;
-		color:#999999;
-	}
-	.detail_price	{
-		display: block;
-	}
-	
-	.detail_price ul {
-		display: inline-block;
-		list-style: none;
-	}
-	
-	.detail_price ul li	{
-		font-size: 30px;
-		color: red;
-		display: inline-block;
-	}
-	
-	
-		/* 모달 */
-	.modal--bg {
-	    position: absolute;
-	    height: 200px;
-	    width: 300px;
-	    background-color: white;
-	    margin: 0 0 0 10px;
-	    display: inline-block;
-	    align-items: top;
-	    justify-content: center;
-	}
-	
-	.visible {
-	    visibility: visible;
-	}
-	
-	.hidden {
-	    background-color: white;
-	    visibility: hidden;
-	}
-	.modal__text	{
-		width: 200px;
-		height: 100px;
-		font-size: 12px;
-		
-	}
-	
-	.modal__text .product_real_price {
-		font-size: 15px;
-		font-weight: bold;
-		color:red;
-	}
-	
-	/* 스타일컬러 */
-	.style_color	{
-		border: 1px solid white;
-		display: block;
-		width: 580px;
-		
-		font-family: sans-serif;
-	}
-	
-	.style_color_1	{
-		height: 50px;
-	 	display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 30px;
-	
-	}
-	
-	.style_color_left{
-		border:1px solid white;
-		display: inline-block;
-		width: 200px;
-		height: 50px;
-		font-size: 13px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		margin-top: 30px;
-	}
-	
-	.style_color_right{
-		border:1px solid white;
-		display: inline-block;
-		margin-right: 20px;
-		display: inline-block;
-		margin-top: 30px;
-	}
-	
-	.style_color_code_1	{
-		height: 50px;
-	 	display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 30px;
-		 
-	}
-	.style_color_code_left {
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-	 	margin-top: 30px;
-	 	
-	}
-	
-	.style_color_code_right	{
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-	 	margin-top: 30px;
-		display: inline-block;
-	}
-	/*  */
-	.style_delivery_left_1{
-		height: 50px;
-	 	display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 30px;
-	
-	}
-	
-	.style_delivery_left{
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-		margin-top: 10px;
-		display: inline-block;
-	}
-	
-	.style_delivery_right	{
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		margin-top: 30px;
-	}
-	
-	.style_delivery_down {
-	    height: 50px;
-	    display: flex;
-	    flex-direction: row-reverse;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-		margin-top: 30px;
-		
-		
-	}
-	.style_delivery_down_right{
-		margin-top: 30px;
-	}
-	
-	.style_size{
-	    height: 50px;
-	    display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-	
-	.style_size_left{
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		margin-top: 30px;
-	}
-	
-	.style_total{
-		height: 50px;
-	    display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    clear: both;
-	    margin-top: 30px;
-	}
-	
-	.style_total_left{
-		border:1px solid white;
-		display: inline-block;
-		text-align: center;
-		width: 350px;
-		height: 50px;
-		margin-top: 30px;
-	}
-	.style_total_right{
-		border:1px solid white;
-		width: 200px;
-		height: 50px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		font-size: 25px;
-		font-weight: bold;
-		color:red;
-		margin-left: 250px;
-		
-	}
-	
-	.style_myshopping	{
-		height: 60px;
-	    display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-
-	
-	.style_myshopping_left button	{
-		background-color: #a5a5a5;
-		width: 285px;
-		height: 60px;
-		color:white;
-		display: inline-block;
-		margin-top: 15px;
-		cursor: pointer;
-	}
-	
-	.style_myshopping_left button:hover{
-		background-color: #747474;
-	}
-	
-	.style_myshopping_right	button {
-		background-color: black;
-		width: 280px;
-		height: 60px;
-		color:white;
-		display: inline-block;
-		margin-top: 15px;
-		cursor: pointer;
-	}
-	
-	.append_product{
-		border:1px white solid;
-		width : 580px;
-		display: hidden;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    font-weight: bold;
-      
-	   
-	}
-	.e1{
-		border:1px white solid;
-		width : 580px;
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 10px;
-	}
-	
-	.append_list.div250	{
-		border:1px white solid;
-		display: inline-block;
-		width: 202px;
-		height: 20px;
-		text-align: center;
-		margin-top: 10px;
-		margin-left: 40; 
-		margin-right: auto;
-		
-	}
-	#X1 {
-		border:1px white solid;
-		display: inline-block;
-		text-align: center;
-		margin-right: 250px;
-		
-	}
-	
-	.e2{
-		border:1px white solid;
-		width : 580px;
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-	
-	.append_list.div260	{
-		border:1px white solid;
-		display: inline-block;
-		width: 202px;
-		height: 20px;
-		text-align: center;
-		margin-top: 10px;
-		margin-left: 40; 
-		margin-right: auto;
-		
-	}
-	#X2 {
-		border:1px white solid;
-		display: inline-block;
-		text-align: center;
-		margin-right: 250px;
-		
-	}
-	.e3{
-		border:1px white solid;
-		width : 580px;
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-	
-	.append_list.div270	{
-		border:1px white solid;
-		display: inline-block;
-		width: 202px;
-		height: 20px;
-		text-align: center;
-		margin-top: 10px;
-		margin-left: 40; 
-		margin-right: auto;
-		
-	}
-	#X3 {
-		border:1px white solid;
-		display: inline-block;
-		text-align: center;
-		margin-right: 250px;
-		
-	}
-	.e4{
-		border:1px white solid;
-		width : 580px;
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-	
-	.append_list.div280	{
-		border:1px white solid;
-		display: inline-block;
-		width: 202px;
-		height: 20px;
-		text-align: center;
-		margin-top: 10px;
-		margin-left: 40; 
-		margin-right: auto;
-		
-	}
-	#X4 {
-		border:1px white solid;
-		display: inline-block;
-		text-align: center;
-		margin-right: 250px;
-		
-	}
-	.e5{
-		border:1px white solid;
-		width : 580px;
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    margin-top: 30px;
-	}
-	
-	.append_list.div290	{
-		border:1px white solid;
-		display: inline-block;
-		width: 202px;
-		height: 20px;
-		text-align: center;
-		margin-top: 10px;
-		margin-left: 40; 
-		margin-right: auto;
-		
-	}
-	#X5 {
-		border:1px white solid;
-		display: inline-block;
-		text-align: center;
-		margin-right: 250px;
-		
-	}
-	
-	
-	.X	{
-		width: 10px;
-		height: 10px;
-		margin-left: 50px;
-		
-	}
-	
-	.X:hover {
-		cursor: pointer;
-		
-	}
-	
-	
-	
-	#number	{
-		border:1px solid white;
-		width: 200px;
-		height: 30px;
-		text-align: center;
-		line-height: 30px;
-		display: inline-block;
-		
-	}
-	
-	
-	/* 상품정보 큰 이미지 시작 */
-	
-	.big_product	{
-		width: 1200px;
-		margin-top: 30px;
-		margin: 0 auto;
-	}
-	
-	.big_product_a	{
-		margin: 0 auto;
-		height: 50px;
-	    display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    align-content: center;
-	    justify-content: space-between;
-	    align-items: center;
-	    clear: both;
-	    font-weight: bold;
-	    
-		
-	}
-	
-	.big_product_a a	{
-		text-decoration: none;
-		color:black;
-
-	}
-	
-	.big_product_1	{
-	
-		width: 260px;
-		height: 50px;
-		margin-top: 70px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		text-decoration-line: none;
-
-	}
-	.big_product_1:hover	{
-		cursor: pointer;
-		border-bottom: 3px solid black;
-		color:red;
-	}
-	
-	
-	.big_product_2	{
-		
-		width: 260px;
-		height: 50px;
-		margin-top: 70px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		
-		
-	}
-	.big_product_2:hover	{
-		cursor: pointer;
-		border-bottom: 3px solid black;
-		color:red;
-	}
-	.big_product_3	{
-		
-		width: 260px;
-		height: 50px;
-		margin-top: 70px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		
-	}
-	
-	
-	.big_product_3:hover	{
-		cursor: pointer;
-		border-bottom: 3px solid black;
-		color:red;
-	}
-	
-	.big_product_4	{
-		
-		width: 260px;
-		height: 50px;
-		margin-top: 70px;
-		text-align: center;
-		line-height: 50px;
-		display: inline-block;
-		
-	}
-	.big_product_4:hover	{
-		cursor: pointer;
-		border-bottom: 3px solid black;
-		color:red;
-	}
-	
-	.big_product_main_1	{
-		height: 3660px;
-		margin-top:60px;
-	}
-	.big_product_main_1_1	{
-		margin: 0 40px 0 180px;
-		width: 900px;
-		
-	}
-	
-	
-	/*용규님 CSS  */
-	.head-product-wrap {
-		width: 1200px;
-		margin: 0 auto;
-	}
-	.text-head {
-		margin: 53px 0 0;
-		color: #000;
-		font-size: 18px;
-		line-height: 30px;
-		font-weight: 500;
-		font-weight: bold;
-		letter-spacing: -.9px;
-	}
-	.border-line-box {
-		
-		margin-top: 0;
-		border-top: 2px solid #000;
-		border-bottom: 1px solid #666;
-	}
-	.border-line-box table tr th {
-		text-align: left;
-	}
-	tbody tr th {
-		color: #666;
-		vertical-align: middle;
-		padding: 17px 0 17px 20px;
-		display: table-cell;
-		font-weight: bold;
-		height: auto;
-		font-size: 13px;
-		letter-spacing: -.65px;
-	}
-	tbody tr td {
-		padding: 19px 0 18px;
-		line-height: 23px;
-		height: auto;
-		font-size: 13px;
-		letter-spacing: -.65px;
-		color: black;
-		text-align: left;
-		margin: 0;
-		border: 0;
-		font-style: normal;
-		display: table-cell;
-		vertical-align: inherit;
-	}
-	tbody tr+tr, tbody tr+tr td {
-		border-top: 1px solid #d5d5d5;
-	}
-	table {
-		width: 1200px;
-		border-collapse: collapse;
-		border-spacing: 0;
-		table-layout: fixed;
-		text-indent: initial;
-	}
-
-	
-	
-</style>
-<%
-	String context = request.getContextPath();
-%>
 </head>
 <body>
 	 
@@ -800,9 +24,10 @@
 	<div class="contents-width">
 		<div class="breadcrumb-wrap" id="prdtCtgrCrumb">
 			<ul>
-				<li>HOME ></li>
-				<li id="genderChk"></li>
-				<li>신발 ></li>
+				<li><a href="http://localhost:8181/j20220904/"><img src="/j20220904/img/contexts/home.png"></a></li>
+				<!-- 
+				<li id="genderChk"><a href="http://localhost:8181/j20220904/category/men3.do?gender=0#"></a></li>
+				<li>신발 </li>
 				<li> 
 				<select name="category"> 
 				<option selected="selected"><a herf="#">운동화</a></option>
@@ -816,7 +41,7 @@
 				<option><a herf="#">캔버스화</option>
 				<option><a herf="#">슬립온</option>
 				</select>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<div class="contents-inner product-detail-wrap">
@@ -842,7 +67,7 @@
 						<img src="" class="small"> 
 					</div>  -->
 					
-					<div class="image_big_left_Product_satisfaction">
+					<!-- <div class="image_big_left_Product_satisfaction">
 						<div class="image_big_left_Product_satisfaction_left">
 							<div class="image_big_left_Product_satisfaction_left_1">상품만족도</div><p>
 							<div class="image_big_left_Product_satisfaction_left_2">97%</div><p>
@@ -866,7 +91,7 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>	
 					
 				
@@ -968,7 +193,7 @@
 								<button type="button" id="${list[4].pd_size }" value="${list[4].pd_size }">${list[4].pd_size }</button>				
 							</div>
 						</div>
-						<form id="sizeForm" action="${pageContext.request.contextPath}/orders/ordersDirectProduct.do"> 
+						<form id="sizeForm" > 
 							<input type="hidden" name="product_id" value="${product_id }">
 							<input type="hidden" name="mem_id" value="${mem_id }">
 							<input type="hidden" name="brand" value="${list[0].brand }">
@@ -1002,7 +227,7 @@
 								<button type="button" id="myshopping1" value="장바구니">장바구니</button>
 							</div>
 							<div class="style_myshopping_right">
-								<button type="submit"  id="myshopping2" value="바로구매">바로구매</button>
+								<button type="button"  id="myshopping2" value="바로구매">바로구매</button>
 							</div>			
 						</div>
 						</form>
@@ -1170,13 +395,25 @@
 									
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
+
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
+
+<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
+ --%>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+
+<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+ --%>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
+
+											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
+<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
+ --%>
+
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1285,13 +522,17 @@
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
 											<c:if test="${startPage2 > blockSize2 }">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}'>[이전]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_3'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
+
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_2'>[${i}]</a>
+
+<%-- 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
+ --%>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}'>[다음]</a>
+												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}&show=qna#big_product_3'>[다음]</a>
 											</c:if>
 										</div>	
 									
@@ -1831,28 +1072,17 @@ $(function(){
 		});
 		
 		/* 바로구매 alert */
-		/* 
 		$(function() {
 			$(document).on('click','#myshopping2' ,function() {
 				
 				if(!$('.input1').val() && !$('.input2').val() && !$('.input3').val() && !$('.input4').val() &&  !$('.input5').val()){
 					alert('옵션을 선택해주세요');
 				}else{
-								$.ajax({
-									
-									url: '${pageContext.request.contextPath}/orders/ordersDirectProduct.do',
-									type: 'get',
-									data: $('#sizeForm').serialize(), //form안에 있는 data 다 전송
-									dataType: 'text',
-									success : location.href='http://localhost:8181/orders/ordersDirectProduct.do',
-									error: function(err){
-										console.log(err);
-									}
-								});	
-								
-				};
+					$('#sizeForm').attr("action","${pageContext.request.contextPath}/orders/ordersDirectProduct.do");
+					$('#sizeForm').submit();
+				}
 			});	
-		}); */
+		}); 
 			
 </script>
 

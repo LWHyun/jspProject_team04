@@ -143,8 +143,12 @@
 	.col-list .col-list-item {
 		flex-grow: 0;
 	    flex-shrink: 1;
-	    max-width: calc((100% - (20px * (4 - 1))) / 4);
+	    max-width: calc((100% - (20px * (4 - 1)))/4);
 	    margin-left: 20px;
+	    margin-top: 150px;
+	}
+	.col-list .col-list-item:nth-child(n+0):nth-child(-n+4) {
+		margin-top: 0;
 	}
 	.prod-item {
 		position: relative;
@@ -154,8 +158,8 @@
 	.prod-item .prod-item-inner {
 		display: block;
 		text-align: center;
-    	width: 285px;
-    	height: 285px;
+    	width: 270px;
+    	height: 270px;
 		padding-right: 10px;
 	}
 	.prod-item .prod-link {
@@ -195,6 +199,7 @@
 	    height: auto;
 	    max-height: none;
 	    line-height: 1.2;
+	    color: black;
     }
   	.prod-item .prod-info-wrap .prod-name {
 	    color: #666;
@@ -211,6 +216,7 @@
 		position: relative;
 		margin-top: 9px;
 		display: block;
+		color: black;
 	}
 	.prod-cost {
 		font-size: 19px;

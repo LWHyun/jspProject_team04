@@ -80,7 +80,7 @@
                 <div class="aside-contents">
                     <div class="member-grade-box">
                         <div class="grade-info-box">
-                            <span class="grade-info"><span>${sessionScope.mem_name }</span> 님은 <span class="bold">온라인 회원</span>입니다.</span>
+                            <span class="grade-info"><span>${sessionScope.mem_name }</span> 님은 <span class="bold">신사몰 회원</span>입니다.</span>
                         </div>
 
                         <div class="grade-box-contents shopinfo">

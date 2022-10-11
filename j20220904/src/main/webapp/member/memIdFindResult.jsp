@@ -38,10 +38,11 @@
                                     <c:forEach var="memberDTO" items="${list }">
 	                                    <div class="rdo-list-item">
 	                                        <span class="ui-rdo">
-	                                            <input id="rdoList0" name="mem_id" type="radio" value="${memberDTO.mem_id }">
+	                                            <%-- <input id="rdoList0" name="mem_id" type="radio" value="${memberDTO.mem_id }" readonly>
 	                                            <label for="rdoList0">
 	                                                ${memberDTO.mem_id }
-	                                            </label>
+	                                            </label> --%>
+	                                           <span id="rdoList0">${memberDTO.mem_id }</span>
 	                                        </span>
 	                                        
 	                                        <span class="rdo-option">

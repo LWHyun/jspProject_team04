@@ -4,7 +4,7 @@
 <%
 	String context = request.getContextPath();
 %>
-<c:forEach var="list" items="${list }"> 
+<c:forEach var="list" items="${list }" begin="0" end="8"> 
 	<li class="col-list-item prod-item">
 		<div class="prod-item-inner">
 			<a class="prod-link" href="<%=context %>/contents/contents_men.do?product_id=${list.product_id }&gender=${list.gender}">
@@ -24,3 +24,4 @@
 		</div>
 	</li>
 </c:forEach>
+<!-- https://image.a-rt.com/art/product/brand/202209/1662363690189.jpg -->

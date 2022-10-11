@@ -29,6 +29,7 @@ public class QAUpdateProService implements CommandProcess {
 		/* String pageNum2 = request.getParameter("pageNum2"); */
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
+		String show = request.getParameter("show");
 		
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
@@ -64,8 +65,8 @@ public class QAUpdateProService implements CommandProcess {
 			ProductDAO productDAO = ProductDAO.getInstance();
 			LikeProDAO likeProDAO = LikeProDAO.getInstance();
 			
-			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
-			int rbTotCnt = qbd.getTotalRBCnt(); // 리뷰게시판 총 개수
+			int qATotCnt = qbd.getQATotalCnt(product_id);	// Q&A 총 개수
+			int rbTotCnt = qbd.getTotalRBCnt(product_id); // 리뷰게시판 총 개수
 			
 			// 리뷰 페이징
 			String pageNum1 = request.getParameter("pageNum1");
@@ -94,8 +95,8 @@ public class QAUpdateProService implements CommandProcess {
 			
 			List<Product_ImgSrcDTO> list =  productDAO.selectImg(product_id, gender);
 			// Board 조회
-			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow1, endRow1);
-			List<QABoardDTO> qAList = qbd.qABoardList(startRow2, endRow2);
+			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(product_id,startRow1, endRow1);
+			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow2, endRow2);
 			int likeCnt = likeProDAO.proLikeProCnt(mem_id,product_id);
 			
 			int pageCnt1 = (int)Math.ceil((double)rbTotCnt/pageSize1);
@@ -141,6 +142,8 @@ public class QAUpdateProService implements CommandProcess {
 			request.setAttribute("pageCnt2", pageCnt2);
 			request.setAttribute("startPage2", startPage2);
 			request.setAttribute("endPage2", endPage2);
+			
+			request.setAttribute("show", show);
 			
 			
 			

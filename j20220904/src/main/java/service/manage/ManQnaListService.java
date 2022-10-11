@@ -21,8 +21,10 @@ public class ManQnaListService implements CommandProcess {
 		// Dao랑 Service 연결
 		QABoardDAO qbd = QABoardDAO.getInstance();
 		
+		
 		try {
-			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int qATotCnt = qbd.getQATotalCnt(product_id);	// Q&A 총 개수
 
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
@@ -35,7 +37,7 @@ public class ManQnaListService implements CommandProcess {
 			int startNum = qATotCnt - startRow + 1;
 			
 			// Board 조회
-			List<QABoardDTO> qAList = qbd.qABoardList(startRow, endRow);
+			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow, endRow);
 			
 			System.out.println("QAListService qAList totCnt=>"+qATotCnt);
 			System.out.println("QAListService qAList qAList.size()=>"+qAList.size());

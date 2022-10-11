@@ -43,33 +43,32 @@ public class ReviewBoardDAO {
 		return conn;
 	}
 	
-	// 리뷰 게시판 게시물 총 개수
-	public int getTotalRBCnt() throws SQLException {
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		int tot = 0;
-		String sql = "select count(*) from review_board";
-		try {
-			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) tot = rs.getInt(1);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			close(rs, stmt, conn);
-		}
-		return tot;
-	}
-	
 	// Q&A 게시판 게시물 총 개수
-	public int getQATotalCnt() throws SQLException {
+	public int getQATotalCnt(int product_id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from qa_board";
+		String sql = "select count(*) from qa_board where product_id =" + product_id;
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
+	// 리뷰 게시판 게시물 총 개수
+	public int getTotalRBCnt(int product_id) throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from review_board where product_id =" + product_id;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -83,7 +82,7 @@ public class ReviewBoardDAO {
 		return tot;
 	}
 	
-	public List<ReviewBoardDTO> reviewBoardList(int startRow, int endRow) {
+	public List<ReviewBoardDTO> reviewBoardList(int product_id,int startRow, int endRow) {
 		List<ReviewBoardDTO> reviewList = new ArrayList<ReviewBoardDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -91,7 +90,7 @@ public class ReviewBoardDAO {
 		
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from review_board order by rb_date desc) a ) "
+	 		    + "      From 	 (select * from review_board where product_id=? order by rb_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		System.out.println("DAO reviewBoardList sql->"+sql);
@@ -101,8 +100,9 @@ public class ReviewBoardDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, product_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -114,7 +114,6 @@ public class ReviewBoardDAO {
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
-				reviewBoard.setRb_img(rs.getString("rb_img"));
 				reviewBoard.setRb_date(rs.getDate("rb_date"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
 				reviewList.add(reviewBoard);
@@ -143,12 +142,12 @@ public class ReviewBoardDAO {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if(rs.next()) {
+				//System.out.println("rs내부");
 				reviewBoard.setRb_id(rs.getInt("rb_id"));
 				reviewBoard.setMem_id(rs.getString("mem_id"));
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
-				reviewBoard.setRb_img(rs.getString("rb_img"));
 				reviewBoard.setRb_date(rs.getDate("rb_date"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
 			}
@@ -189,7 +188,7 @@ public class ReviewBoardDAO {
 		ResultSet rs = null;
 		
 		String sql1  = "SELECT NVL(max(rb_id), 0) FROM review_board";
-		String sql  = "INSERT INTO review_board VALUES(?,?,?,?,?,?,sysdate,?)";
+		String sql  = "INSERT INTO review_board VALUES(?,?,?,?,?,sysdate,?)";
 		
 		try {
 			conn = getConnection();
@@ -209,9 +208,9 @@ public class ReviewBoardDAO {
 			pstmt.setInt(3, reviewBoard.getProduct_id());
 			pstmt.setString(4, reviewBoard.getRb_title());
 			pstmt.setString(5, reviewBoard.getRb_content());
-			pstmt.setString(6, reviewBoard.getRb_img());
-			pstmt.setInt(7, reviewBoard.getRb_views());
-			
+			//pstmt.setString(6, reviewBoard.getRb_img());
+			pstmt.setInt(6, 0);
+
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

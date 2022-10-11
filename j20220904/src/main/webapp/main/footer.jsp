@@ -58,7 +58,7 @@
 			<div class="footer-text">점심시간 : PM 12:30 ~ PM 13:30</div>
 		</div>
 		<div class="footer-division-2">
-			<div class="footer-text">회사명 : (주)이거4조 | 대표이사:홍성대 | 사업자등록번호:000-00-00000 | 호스팅사업자:(주)이거4조</div>
+			<div class="footer-text">회사명 : (주)신사몰 | 대표이사:이우현 | 사업자등록번호:000-00-00000 | 호스팅사업자:(주)신사몰</div>
 			<div class="footer-text">주소 : (00000) 서울특별시 신림구</div>
 			<div class="footer-text">개인정보관리책임자 : 김성현(930717v@naver.com)</div>
 			<div class="footer-link-company">
