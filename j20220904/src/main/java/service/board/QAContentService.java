@@ -19,13 +19,15 @@ public class QAContentService implements CommandProcess {
 		
 		System.out.println("QAContentService Start ... ");
 		
+		HttpSession session = request.getSession();
+		
 		// 1. q_id, pageNum
 		int q_id = Integer.parseInt(request.getParameter("q_id"));
 		String pageNum = request.getParameter("pageNum");
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
-		
+		String mem_id = (String) session.getAttribute("mem_id");
 		
 		
 		System.out.println("QAContentService q_id => "+q_id);
@@ -35,7 +37,6 @@ public class QAContentService implements CommandProcess {
 			QABoardDAO qbd = QABoardDAO.getInstance();
 			
 			// 3. p_id의 q_views 증가 (조회수 증가)
-			HttpSession session = request.getSession();
 	        if(session.getAttribute("memHit") != null) {
 	        qbd.readCount(q_id);
 	        session.removeAttribute("memHit");

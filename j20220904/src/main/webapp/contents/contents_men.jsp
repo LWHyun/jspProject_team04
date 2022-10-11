@@ -723,7 +723,6 @@
 	}
 	
 	.big_product_main_1	{
-		height: 3660px;
 		margin-top:60px;
 	}
 	.big_product_main_1_1	{
@@ -1182,25 +1181,13 @@
 									
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-<<<<<<< HEAD
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
-=======
 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
->>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-<<<<<<< HEAD
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
-=======
-											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
->>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_3'>[${i}]</a>
 										</c:forEach>
 										<c:if test="${endPage1 < pageCnt1 }">
-<<<<<<< HEAD
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
-=======
 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
->>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -1312,11 +1299,7 @@
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_2'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-<<<<<<< HEAD
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_2'>[${i}]</a>
-=======
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
->>>>>>> branch 'main' of https://github.com/sunghyun93/jspProject_team04.git
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}&show=qna#big_product_2'>[다음]</a>

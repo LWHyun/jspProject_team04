@@ -23,7 +23,7 @@ public class QAListService implements CommandProcess {
 		try {
 			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
 			int rbTotCnt = qbd.getTotalRBCnt(); // 리뷰게시판 총 개수
-
+			int product_id =Integer.parseInt(request.getParameter("product_id"));
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
 				pageNum = "1";
@@ -35,7 +35,7 @@ public class QAListService implements CommandProcess {
 			int startNum = qATotCnt - startRow + 1;
 			
 			// Board 조회
-			List<QABoardDTO> qAList = qbd.qABoardList(startRow, endRow);
+			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow, endRow);
 			
 			System.out.println("QAListService qAList totCnt=>"+qATotCnt);
 			System.out.println("QAListService qAList qAList.size()=>"+qAList.size());
@@ -65,7 +65,7 @@ public class QAListService implements CommandProcess {
 			// 어디서 에러났는지 잘 찾기 위해
 			System.out.println("ListAction e.getMessage() => " + e.getMessage());
 		}
-		return "../contents/contents_men.jsp";
+		return "/contents/contents_men.jsp";
 	}
 
 }

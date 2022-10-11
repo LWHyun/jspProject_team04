@@ -23,8 +23,10 @@ public class ReviewListService implements CommandProcess {
 		
 		
 		try {
+			
 			int rbTotCnt = rbd.getTotalRBCnt();	// 리뷰 총 개수
 			int qATotCnt = rbd.getQATotalCnt(); // Q&A 총 개수
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
 			System.out.println("ReviewListService totCnt->"+rbTotCnt);
 			
 			String pageNum = request.getParameter("pageNum");
@@ -38,7 +40,7 @@ public class ReviewListService implements CommandProcess {
 			int startNum = rbTotCnt - startRow + 1;
 			
 			// Board 조회
-			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow, endRow);
+			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(product_id,startRow, endRow);
 			
 				System.out.println("QAListService reviewList reviewList.size()=>"+reviewList.size());
 			for (ReviewBoardDTO reviewBoardDTO : reviewList) {
