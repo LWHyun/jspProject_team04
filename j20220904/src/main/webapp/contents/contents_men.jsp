@@ -194,6 +194,7 @@
 							</div>
 						</div>
 						<form id="sizeForm" > 
+							<input type="hidden" name="toURI" id="toURI" value="${toURI }">
 							<input type="hidden" name="product_id" value="${product_id }">
 							<input type="hidden" name="mem_id" value="${mem_id }">
 							<input type="hidden" name="brand" value="${list[0].brand }">
