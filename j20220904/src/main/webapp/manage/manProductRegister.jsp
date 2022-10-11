@@ -137,11 +137,11 @@ tr {
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
 	/* 브랜드 선 */
-	function ChangeBrand() {
+/* 	function ChangeBrand() {
 		var val_str = document.getElementById('select_brand');
 		
 		alert("브랜드 : " + val_str.options[val_str.selectedIndex].value);
-	}
+	} */
 	
 	
 	/* form 태그와 연결 스크립트 */
@@ -213,7 +213,21 @@ tr {
 									<input type="file" name="s_file_path" required="required">
 								</td>
 							</tr>
-							
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 저장 폴더 선택 </td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+             					<!-- <input type="hidden" name="brand" required="required"> -->
+								<select name="path_brand">
+									<option value="Adidas_images">ADIDAS</option>
+									<option value="Birkenstock_images">BIRKENSTOCK</option>
+									<option value="Converse_images">CONVERSE</option>
+									<option value="DrMartens_images">DR.MARTENS</option>
+									<option value="Fila_images" selected="selected">FILA</option>
+									<option value="Lacoste_images">LACOSTE</option>
+									<option value="Nike_images">NIKE</option>
+								</select>
+								</td>
+							</tr>
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 제품코드</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
@@ -223,8 +237,7 @@ tr {
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-
-             	<!-- <input type="hidden" name="brand" required="required"> -->
+            					<!-- <input type="hidden" name="brand" required="required"> -->
 										<select name="brand">
 											<option value="ADIDAS">ADIDAS</option>
 											<option value="BIRKENSTOCK">BIRKENSTOCK</option>
@@ -236,6 +249,9 @@ tr {
 										</select>
 								</td>
 							</tr>
+							
+							
+							
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 사이즈 등록</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
