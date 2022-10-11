@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="../css/boardCss/reviewBoard.css">
 <link rel="stylesheet" href="../css/productCss/productCss.css">
 
+<style type="text/css">
+	#currentPaging {
+		color:red;
+	}
+</style>
 </head>
 <body>
 	 
@@ -98,7 +103,7 @@
 			</div>
 			<div class="image_big_right">
 				<div class="detail_brandbox">
-					<span class="ABC_MRRT">ABC-MART</span>
+					<span class="ABC_MRRT">신사몰</span>
 						<div class="detail_brandbox_like">
 							<c:if test="${likeCnt == 0}">
 							<input type="hidden" class="heart" name="heart" value="0">
@@ -269,7 +274,7 @@
 				</tr>
 				<tr>
 					<th>A/S 책임자와 전화번호</th>
-					<td><span>ABC마트 A/S 담당자 : 080-701-7770</span></td>
+					<td><span>신사몰 A/S 담당자 : 080-701-7770</span></td>
 					<th>제조년월</th>
 					<td><span>상품별 입고시기에 따라 상이하여, 배송 받으신 제품의 라벨 참고 바랍니다.</span></td>
 				</tr>
@@ -395,25 +400,18 @@
 									
 									<div style="text-align: center;">
 										<c:if test="${startPage1 > blockSize1 }">
-
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
-
-<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}'>[이전]</a>
- --%>
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1-blockSize1}&show=review#big_product_2'>[이전]</a>
 										</c:if>
 										<c:forEach var="i" begin="${startPage1}" end="${endPage1}">
-
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
-
-<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
- --%>
-										</c:forEach>
+											<c:if test="${pageNum1 == i }">									
+												<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[<span id="currentPaging">${i}</span>]</a>
+											</c:if>
+											<c:if test="${pageNum1 != i }">									
+												<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${i}&show=review#big_product_2'>[${i}]</a>
+											</c:if>
+										</c:forEach>	
 										<c:if test="${endPage1 < pageCnt1 }">
-
-											<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
-<%-- 											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}'>[다음]</a>
- --%>
-
+											<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum1=${startPage1+blockSize1}&show=review#big_product_2'>[다음]</a>
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
@@ -522,14 +520,15 @@
 										<!-- 나중에 수정 -->
 										<div style="text-align: center;">
 											<c:if test="${startPage2 > blockSize2 }">
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_3'>[이전]</a>
+												<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2-blockSize2}&show=qna#big_product_3'>[이전]</a>
 											</c:if>
 											<c:forEach var="i" begin="${startPage2}" end="${endPage2}">
-
-												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_2'>[${i}]</a>
-
-<%-- 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
- --%>
+												<c:if test="${pageNum2 == i }">									
+													<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[<span id="currentPaging">${i}</span>]</a>
+												</c:if>
+												<c:if test="${pageNum2 != i }">									
+												<a href='${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${i}&show=qna#big_product_3'>[${i}]</a>
+												</c:if>
 											</c:forEach>
 											<c:if test="${endPage2 < pageCnt2 }">
 												<a href='contents_men.do?product_id=${product_id}&gender=${gender}&pageNum2=${startPage2+blockSize2}&show=qna#big_product_3'>[다음]</a>
