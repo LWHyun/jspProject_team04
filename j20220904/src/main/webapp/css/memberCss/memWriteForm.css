@@ -319,7 +319,10 @@ th.required:after {
 	background-color: black;
 	color:white;
 }
-
+#zipcodeBtn:hover {
+	background-color: black;
+	color:white;
+}
 /* valid div */
 #Val_nameDiv, #Val_idDiv, #Val_pwdDiv, #Val_pwdReDiv, #Val_emailDiv, #Val_telDiv, #Val_addrDiv {
 	font-size: 10pt;
