@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("등록 완료");
-		loaction.href = "manProductList.do";
+		alert("입력 완료 ^^");  
+		location.href="manProductList.do?pageNum=${pageNum}";
 	</script>
-
+</c:if>
 
 <%-- <c:if test="${result == 0}">
 	<script type="text/javascript">
