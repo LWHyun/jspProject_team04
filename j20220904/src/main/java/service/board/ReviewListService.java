@@ -20,13 +20,12 @@ public class ReviewListService implements CommandProcess {
 		
 		// Dao랑 Service 연결
 		ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
-		
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
 		try {
 			
-			int rbTotCnt = rbd.getTotalRBCnt();	// 리뷰 총 개수
-			int qATotCnt = rbd.getQATotalCnt(); // Q&A 총 개수
-			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int rbTotCnt = rbd.getTotalRBCnt(product_id);	// 리뷰 총 개수
+			int qATotCnt = rbd.getQATotalCnt(product_id); // Q&A 총 개수
 			System.out.println("ReviewListService totCnt->"+rbTotCnt);
 			
 			String pageNum = request.getParameter("pageNum");
