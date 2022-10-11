@@ -53,8 +53,8 @@ public class ReviewWriteProService implements CommandProcess {
 	        ProductDAO productDAO = ProductDAO.getInstance();
 			LikeProDAO likeProDAO = LikeProDAO.getInstance();
 			
-			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
-			int rbTotCnt = qbd.getTotalRBCnt(); // 리뷰게시판 총 개수
+			int qATotCnt = qbd.getQATotalCnt(product_id);	// Q&A 총 개수
+			int rbTotCnt = qbd.getTotalRBCnt(product_id); // 리뷰게시판 총 개수
 			
 			// 리뷰 페이징
 			String pageNum1 = request.getParameter("pageNum1");

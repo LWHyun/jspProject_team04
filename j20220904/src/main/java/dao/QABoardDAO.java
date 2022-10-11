@@ -44,12 +44,12 @@ public class QABoardDAO {
 	}
 	
 	// Q&A 게시판 게시물 총 개수
-	public int getQATotalCnt() throws SQLException {
+	public int getQATotalCnt(int product_id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from qa_board";
+		String sql = "select count(*) from qa_board where product_id =" + product_id;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -63,12 +63,12 @@ public class QABoardDAO {
 		return tot;
 	}
 	// 리뷰 게시판 게시물 총 개수
-	public int getTotalRBCnt() throws SQLException {
+	public int getTotalRBCnt(int product_id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from review_board";
+		String sql = "select count(*) from review_board where product_id =" + product_id;
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();

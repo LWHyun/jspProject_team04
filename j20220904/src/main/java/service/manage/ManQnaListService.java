@@ -21,9 +21,11 @@ public class ManQnaListService implements CommandProcess {
 		// Dao랑 Service 연결
 		QABoardDAO qbd = QABoardDAO.getInstance();
 		
+		
 		try {
-			int qATotCnt = qbd.getQATotalCnt();	// Q&A 총 개수
 			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int qATotCnt = qbd.getQATotalCnt(product_id);	// Q&A 총 개수
+
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
 				pageNum = "1";
