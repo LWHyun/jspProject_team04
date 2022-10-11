@@ -67,6 +67,9 @@
                                     <a href="${pageContext.request.contextPath }/mypage/checkUpdateForm.do" id="updateTag">개인정보 수정</a>
                                 </li>
                                 <li class="mypage-lnb-item">
+                                    <a href="${pageContext.request.contextPath }/mypage/snsConnForm.do" id="snsTag">sns연결설정</a>
+                                </li>
+                                <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/checkDeleteForm.do" id="deleteTag">회원 탈퇴</a>
                                 </li>
                             </ol>
@@ -203,6 +206,8 @@ $(function() {
 		$('#myQA').addClass('active');
 	} else if(active == 'myOrder') {
 		$('#myOrder').addClass('active');
+	} else if(active == 'sns') {
+		$('#snsTag').addClass('active');
 	}
 	
 	// 찜한 상품이 있을 때 없을 때 display:none 처리
