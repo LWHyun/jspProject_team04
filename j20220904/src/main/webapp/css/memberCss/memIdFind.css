@@ -87,6 +87,10 @@ a {
     margin-left: 10px;
     height:44px;
 }
+#emailBtn:hover {
+	background-color: black;
+	color : white;
+}
 
 /* 이메일 인증 div */
 .login-input-authEmail {

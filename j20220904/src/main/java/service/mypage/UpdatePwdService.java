@@ -44,6 +44,9 @@ public class UpdatePwdService implements CommandProcess {
 		// 다르면 수정
 		if(result == 1) {
 			memberDAO.updatePwd(mem_id, mem_pwd);
+			// 로그인 끊기
+			session.removeAttribute("mem_id");
+			session.removeAttribute("mem_name");
 		}
 		
 		request.setAttribute("result", result);
