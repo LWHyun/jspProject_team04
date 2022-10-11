@@ -14,6 +14,7 @@
 		location.href="manProductList.do?pageNum=${pageNum}";
 	</script>
 </c:if>
+
 <%-- <c:if test="${result == 0}">
 	<script type="text/javascript">
 		alert("오류가 발생했습니다. 다시 작성해주세욥");
