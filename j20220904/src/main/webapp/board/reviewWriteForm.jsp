@@ -20,7 +20,7 @@
 					<h3 class="text-head2">상품 리뷰 작성</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="${pageContext.request.contextPath}/board/reviewWritePro.do?product_id=${product_id}&gender=${gender}" method="post">
+					<form action="${pageContext.request.contextPath}/board/reviewWritePro.do?product_id=${product_id}&gender=${gender}&show=review#big_product_2" method="post">
 						<input type="hidden" name="rb_id" value="${rb_id}">
 						<input type="hidden" name="mem_id" value="${mem_id }">
 						<input type="hidden" name="product_id" value="${product_id }">

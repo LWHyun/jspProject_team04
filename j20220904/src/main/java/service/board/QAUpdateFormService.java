@@ -20,7 +20,7 @@ public class QAUpdateFormService implements CommandProcess {
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
-		
+		String show = request.getParameter("show");
 		//로그인 여부 확인
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
@@ -45,6 +45,7 @@ public class QAUpdateFormService implements CommandProcess {
 			request.setAttribute("qABoard", qABoard);
 			request.setAttribute("product_id",product_id);
 			request.setAttribute("gender",gender);
+			request.setAttribute("show",show);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

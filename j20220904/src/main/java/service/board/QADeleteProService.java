@@ -18,6 +18,9 @@ public class QADeleteProService implements CommandProcess {
 		
 		try {
 			int q_id = Integer.parseInt(request.getParameter("q_id"));
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int gender = Integer.parseInt(request.getParameter("gender"));
+			String show = request.getParameter("show");
 			// pageNum2로 해야하나?
 			String pageNum = request.getParameter("pageNum");
 			
@@ -27,6 +30,9 @@ public class QADeleteProService implements CommandProcess {
 			
 			request.setAttribute("q_id", q_id);
 			request.setAttribute("result", result);
+			request.setAttribute("show", show);
+			request.setAttribute("product_id", product_id);
+			request.setAttribute("gender", gender);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

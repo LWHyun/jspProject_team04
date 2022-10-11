@@ -22,15 +22,15 @@
 				
 				<div class="board-view-cont">
 					<div class="question-box">
-						<form action="qnaDeletePro.do" method="post">
+						<form method="post" id="qnaDeleteForm">
 							<input type="hidden" name="pageNum" value="${pageNum }">
 							<input type="hidden" name="q_id" value="${q_id }">
 							
 							<h2 style="margin-bottom: 20px;">글 삭제를 원하시면 <br>아래 칸에 삭제를 입력해주세요.</h2>
-							<input type="text" required="required" placeholder="삭제"><p><br>
-							<input type="submit" value="확인">
-							<button onclick="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3">취소</button>
+							<input type="text" id="deleteInput" placeholder="삭제를 입력해주세요"><p><br>
 						</form>
+							<button type="button" id="deleteBtn">확인</button>
+							<button type="button" id="cancelBtn">취소</button>
 					</div>
 				</div>
 				<%-- <div class="btn-wrap text-right">
@@ -46,5 +46,26 @@
 	<div id="footer">
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
+	
+<script>
+
+$(function() {
+	// 삭제버튼
+	$('#deleteBtn').click(function() {
+		let status = $('#deleteInput').val();
+		if(status == '삭제') {
+			$('#qnaDeleteForm').attr("action", "${pageContext.request.contextPath}/board/qnaDeletePro.do?product_id=${product_id}&gender=${gender}&q_id=${q_id}&show=qna#big_product_3");
+			$('#qnaDeleteForm').submit();
+		}else {
+			alert("삭제를 원하실 경우 '삭제'를 입력해주세요.");
+		}
+	});
+	
+	// 취소버튼
+	$('#cancelBtn').click(function() {
+		location.href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3";
+	});
+});
+</script>
 </body>
 </html>

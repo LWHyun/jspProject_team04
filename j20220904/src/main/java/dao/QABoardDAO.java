@@ -83,7 +83,7 @@ public class QABoardDAO {
 	}
 	
 	// Q&A 목록 불러오기
-	public List<QABoardDTO> qABoardList(int startRow, int endRow) {
+	public List<QABoardDTO> qABoardList(int product_id,int startRow, int endRow) {
 		List<QABoardDTO> qAList = new ArrayList<QABoardDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -91,7 +91,7 @@ public class QABoardDAO {
 		
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from qa_board order by q_date desc) a ) "
+	 		    + "      From 	 (select * from qa_board where product_id=? order by q_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		
@@ -101,8 +101,9 @@ public class QABoardDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, product_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

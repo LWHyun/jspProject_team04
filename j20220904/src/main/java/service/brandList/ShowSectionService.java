@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
-import dao.BrandListDAO;
+import dao.BrandListDaO;
 import dto.Product_ImgSrcDTO;
 
 public class ShowSectionService implements CommandProcess {
@@ -16,7 +16,7 @@ public class ShowSectionService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BrandListDAO bld = BrandListDAO.getInstance();
+		BrandListDaO bld = BrandListDaO.getInstance();
 		System.out.println("ShowSectionService start..");
 		
 		try {

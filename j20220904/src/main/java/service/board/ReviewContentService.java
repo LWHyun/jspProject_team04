@@ -18,6 +18,8 @@ public class ReviewContentService implements CommandProcess {
 			throws ServletException, IOException {
 		
 		System.out.println("ReviewContentService Start ...");
+	
+		HttpSession session = request.getSession();
 		
 		// 1. rb_id, pageNum
 		int rb_id = Integer.parseInt(request.getParameter("rb_id"));
@@ -25,6 +27,7 @@ public class ReviewContentService implements CommandProcess {
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
+		String mem_id = (String) session.getAttribute("mem_id");
 		
 		System.out.println("ReviewContentService rb_id => "+rb_id);
 		System.out.println("ReviewContentService pageNum => "+pageNum);
@@ -34,7 +37,6 @@ public class ReviewContentService implements CommandProcess {
 			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
 			
 			// 3. p_id의 q_views 증가 (조회수 증가)
-			HttpSession session = request.getSession();
 	         if(session.getAttribute("memHit") != null) {
 	         rbd.readCount(rb_id);
 	         session.removeAttribute("memHit");
@@ -49,6 +51,9 @@ public class ReviewContentService implements CommandProcess {
 			request.setAttribute("reviewBoard", reviewBoard);
 			request.setAttribute("product_id", product_id);
 			request.setAttribute("gender", gender);
+			
+			// 본인 글인지 확인용
+			request.setAttribute("mem_id", reviewBoard.getMem_id());
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
