@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import control.CommandProcess;
-import dao.BrandListDAO;
+import dao.BrandListDaO;
 
 public class RemoveLikeService implements CommandProcess {
 
@@ -17,7 +17,7 @@ public class RemoveLikeService implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("removeLikeService");
 		HttpSession session = request.getSession();
-		BrandListDAO bld = BrandListDAO.getInstance();
+		BrandListDaO bld = BrandListDaO.getInstance();
 		String product_id = request.getParameter("product_id");
 		String mem_id = (String) session.getAttribute("mem_id");
 
