@@ -48,11 +48,10 @@
 		position: relative;
 		background-repeat: no-repeat;
 		background-position: top center;
-		background-image: url(https://image.a-rt.com//art/display/contents/202205/1653037219569.jpg);
+		background-image: url(https://image.a-rt.com/art/product/brand/202205/1652056339988.jpg);
 		list-style-type: none;
 		display: list-item;
     	font-size: 0;
-    	min-width: 
 	}
 	.swiper-slide {
 		flex-shrink: 0;
@@ -118,7 +117,7 @@
 		left: 0;
 		top: 0;
 		pointer-events: none;
-		opacitiy: 0;
+		opacity: 0;
 		z-index: -1000;
 	}
 	.best-brand-prod-wrap {
@@ -139,8 +138,12 @@
 	.col-list .col-list-item {
 		flex-grow: 0;
 	    flex-shrink: 1;
-	    max-width: calc((100% - (20px * (4 - 1))) / 4);
+	    max-width: calc((100% - (20px * (4 - 1)))/4);
 	    margin-left: 20px;
+	    margin-top: 150px;
+	}
+	.col-list .col-list-item:nth-child(n+0):nth-child(-n+4) {
+		margin-top: 0;
 	}
 	.prod-item {
 		position: relative;
@@ -150,8 +153,8 @@
 	.prod-item .prod-item-inner {
 		display: block;
 		text-align: center;
-    	width: 285px;
-    	height: 285px;
+    	width: 270px;
+    	height: 270px;
 		padding-right: 10px;
 	}
 	.prod-item .prod-link {
@@ -191,6 +194,7 @@
 	    height: auto;
 	    max-height: none;
 	    line-height: 1.2;
+	    color: black;
     }
   	.prod-item .prod-info-wrap .prod-name {
 	    color: #666;
@@ -199,7 +203,7 @@
 	    overflow: hidden;
 	    height: 38px;
 	    max-height: 38px;
-	    line-height 19px;
+	    line-height: 19px;
 	    display: block;
 	    white-space: normal;
  	 }
@@ -207,6 +211,7 @@
 		position: relative;
 		margin-top: 9px;
 		display: block;
+		color: black;
 	}
 	.prod-cost {
 		font-size: 19px;
@@ -215,33 +220,38 @@
 	.price-unit {
 		font-size: 14px;
 	}
-	
 </style>
+<%
+	String context = request.getContextPath();
+%>
+<script>
+$(function () {
+	$.ajax({
+		url: "<%=context%>/showSection.do",
+		type : 'post',
+		dataType: 'html',
+		success: function (data) {
+			$('.col-list').html(data);
+		}
+	});
+});
+
+</script>
 </head>
 <body>
 	<section class="main-section">
 		<h2 class="main-section abc-best-brand">
-			<span class="text-head1">BEST BRAND</span>
+			<span class="text-head1">NEW ARRIVAL</span>
 		</h2>
 		<div class="abc-best-brand-banner">
 			<div class="best-brand-top swiper-container">
 				<ul class="best-brand-bg-list">
-					<li class="bg-item">CORCS</li>
+					<li class="bg-item">ABC-MART</li>
 				</ul>
 				<div class="best-brand-banner-controller">
 					<span class="best-brand-banner-pagination">
 						<span class="swiper-pagination swiper-pagination-clickable">
-							<span class="swiper-pagination-bullet">NIKE</span>
-							<span class="swiper-pagination-bullet">ADIDAS</span>
-							<span class="swiper-pagination-bullet">FILA</span>
-							<span class="swiper-pagination-bullet">CONVERSE</span>
-							<span class="swiper-pagination-bullet">LACOSTE</span>
-              
 						</span>
-					</span>
-					<span class="best-brand-banner-nav">
-						<button type="button" class="btn-main-swiper prev">이전 브랜드</button>
-						<button type="button" class="btn-main-swiper next">다음 브랜드</button>
 					</span>
 				</div>
 			</div>
@@ -249,87 +259,9 @@
 		</div>
 		<div class="best-brand-prod-wrap">
 			<ul class="col-list">
-				<li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
-		        <li class="col-list-item prod-item">
-					<div class="prod-item-inner">
-						<a class="prod-link" id="101008390" href="https://abcmart.a-rt.com/product/new?prdtNo=1010083900">
-							<div class="img-wrap">
-								<img class="img-box" alt="신발" src="https://image.a-rt.com/art/product/2020/08/34116_1598495392321.jpg?shrink=388:388">
-							</div>
-							<div class="prod-info-wrap" id=101008390>
-								<div class="prod-info-wrap" id="">
-									<span class="prod-brand">나이키</span><br>
-									<span class="prod-name">나이키 샬라샬라</span><br> 
-									<span class="prod-price">
-										<span class="prod-cost">59,000</span>
-										<span class="price-unit">원</span>
-									</span>
-								</div>
-							</div>
-						</a>
-					</div>
-				</li>
+			
 			</ul>
-		
 		</div>
-
-
 	</section>
 </body>
 </html>
