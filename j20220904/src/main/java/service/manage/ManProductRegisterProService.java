@@ -39,7 +39,7 @@ public class ManProductRegisterProService implements CommandProcess {
 		int maxSize = 10 * 1024 * 1024;
 		
 		// 실제 파일 저장 경로
-		String savePath = request.getSession().getServletContext().getRealPath("/img/product_images");
+		String savePath = request.getSession().getServletContext().getRealPath("/img/product_images/");
 		System.out.println("savePath -> " + savePath);
 
 		try {
