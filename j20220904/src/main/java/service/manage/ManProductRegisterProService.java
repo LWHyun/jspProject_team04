@@ -37,7 +37,7 @@ public class ManProductRegisterProService implements CommandProcess {
 		int maxSize = 10 * 1024 * 1024;
 		
 		// 실제 파일 저장 경로
-		String savePath = request.getSession().getServletContext().getRealPath("../img/product_images");
+		String savePath = request.getSession().getServletContext().getRealPath("/img/product_images");
 		System.out.println("savePath -> " + savePath);
 
 		try {
@@ -71,6 +71,36 @@ public class ManProductRegisterProService implements CommandProcess {
 				// 서버에 저장된 파일명
 				String filename = multi.getFilesystemName("filename");
 				
+				int product_id = Integer.parseInt(request.getParameter("product_id"));
+				String l_file_path = request.getParameter("l_file_path");
+				String s_file_path = request.getParameter("s_file_path");
+				String size_num = request.getParameter("size_check[]");
+				String pd_size = request.getParameter("pd_size");
+				String eng_name = request.getParameter("eng_name");
+				String kor_name = request.getParameter("kor_name");
+				int gender = Integer.parseInt(request.getParameter("gender"));
+				int price = Integer.parseInt(request.getParameter("price"));
+				String color = request.getParameter("color");
+				int ca_code = Integer.parseInt(request.getParameter("ca_code"));
+				int stock = Integer.parseInt(request.getParameter("stock"));
+				
+				System.out.println("size_num[]-> " + size_num);
+				
+				String[] size_num_arr = size_num.split(",");
+				String[] pd_size_arr = pd_size.split(",");
+				
+				request.setAttribute("product_id", product_id);
+				request.setAttribute("l_file_path", l_file_path);
+				request.setAttribute("s_file_path", s_file_path);
+				request.setAttribute("size_num", size_num_arr);
+				request.setAttribute("pd_size", pd_size_arr);
+				request.setAttribute("eng_name", eng_name);
+				request.setAttribute("kor_name", kor_name);
+				request.setAttribute("gender", gender);
+				request.setAttribute("price", price);
+				request.setAttribute("color", color);
+				request.setAttribute("ca_code", ca_code);
+				request.setAttribute("stock", stock);
 				
 				// 파라미터 받는 값들, request -> multi로 대체
 				// 상품 대표 이미지 등록 | 상품 상세 이미지 등록
@@ -85,7 +115,6 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setColor(multi.getParameter("color"));
 				productImgSrcDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
 				
-				productImgSrcDTO.setPro_image_id(Integer.parseInt(multi.getParameter("pro_image_id")));
 				productImgSrcDTO.setL_file_path(multi.getParameter("l_file_path"));
 				productImgSrcDTO.setS_file_path(multi.getParameter("s_file_path"));
 				
@@ -99,7 +128,6 @@ public class ManProductRegisterProService implements CommandProcess {
 			
 				
 				request.setAttribute("product_id", productImgSrcDTO.getProduct_id());
-				request.setAttribute("pro_image_id", productImgSrcDTO.getPro_image_id());
 				request.setAttribute("result", result);
 				request.setAttribute("pageNum", pageNum);
 			}

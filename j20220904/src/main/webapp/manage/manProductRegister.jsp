@@ -207,6 +207,15 @@ tr {
 								</td>
 							</tr>
 							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 사이즈 등록</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="radio" id="m_size_num" name="size_check[]" value="200,210,220,230,240">남성용
+									<input type="radio" id="f_size_num" name="size_check[]" value="100,110,120,130,140">여성용<br><br>
+									<input type="text" id="pd_size" name="pd_size" readonly="readonly">
+								</td>
+							</tr>
+							
+							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">영어이름</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" > <input type="text" name="eng_name" required="required"></td>
 							</tr>
@@ -257,4 +266,23 @@ tr {
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$("#m_size_num").change(function(){
+			if($("#m_size_num").is(":checked")){
+				$('#pd_size').val('250,260,270,280,290');
+			}
+		});	
+			
+		$("#f_size_num").change(function(){
+			if($("#f_size_num").is(":checked")){
+				$('#pd_size').val('220,230,240,250,260');
+			}
+		});	
+	});
+
+</script>
 </html>

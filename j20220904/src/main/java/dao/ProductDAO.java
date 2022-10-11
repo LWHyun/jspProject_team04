@@ -668,20 +668,62 @@ public class ProductDAO {
 	}
 
 	public int registerProduct(Product_ImgSrcDTO productImgSrcDTO) throws SQLException {
-		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0; 
 		Connection conn = null;
-		String sql = "INSERT ";
+		
+		String sql1 = "INSERT INTO product (product_id, brand, eng_name, kor_name, gender, price, color, regdate, ca_code)"
+					+ "VALUES (?,?,?,?,?,?,?,sysdate,?)";
+		
+		String sql2 = "INSERT product_image (pro_image_id, product_id, s_file_path, l_file_path)"
+					+ "VALUES (seq_images.nextval,?,?,?)";
+		
+		String sql3 = "INSERT product_size (size_num, product_id, pd_size, stock)"
+					+ "VALUES (?,?,?,?)";
+		
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql1);
 			
-			pstmt.setString(result, sql);
-			/* SQL문 작성해야 함. . . */
+			pstmt.setInt(1, productImgSrcDTO.getProduct_id());
+			pstmt.setString(2, productImgSrcDTO.getBrand());
+			pstmt.setString(3, productImgSrcDTO.getEng_name());
+			pstmt.setString(4, productImgSrcDTO.getKor_name());
+			pstmt.setInt(5, productImgSrcDTO.getGender());
+			pstmt.setLong(6, productImgSrcDTO.getPrice());
+			pstmt.setString(7, productImgSrcDTO.getColor());
+			pstmt.setLong(8,productImgSrcDTO.getCa_code());
 			
+			result1 = pstmt.executeUpdate();
+			pstmt.close();
 			
-			result = pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(sql2);
+			
+			pstmt.setInt(1, productImgSrcDTO.getProduct_id());
+			pstmt.setString(2, productImgSrcDTO.getS_file_path());
+			pstmt.setString(3, productImgSrcDTO.getL_file_path());
+			
+			result2 = pstmt.executeUpdate();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(sql3);
+			
+			List<Product_ImgSrcDTO> pro_size = productImgSrcDTO.getList();
+			
+			for(int i = 0; i < pro_size.size(); i++) {
+				
+				pstmt.setInt(1, pro_size.get(i).getSize_num());
+				pstmt.setInt(2, productImgSrcDTO.getProduct_id());
+				pstmt.setInt(3, pro_size.get(i).getPd_size());
+				pstmt.setInt(4, productImgSrcDTO.getStock());
+				pstmt.executeUpdate();
+
+			}
+			
+			pstmt.close();
 			
 		} catch (Exception e) {
 			System.out.println("registerProduct 메소드 | e.getMessage() -> " + e.getMessage());
@@ -689,6 +731,6 @@ public class ProductDAO {
 			if(pstmt != null) pstmt.close();
 			if(conn != null)  conn.close();
 		}
-		return result;
+		return result3;
 	}
 }
