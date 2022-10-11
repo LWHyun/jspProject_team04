@@ -181,8 +181,58 @@ html, body, select, input, button, textarea {
 	text-align: center;
 	font-family: "Montserrat","Noto Sans KR",sans-serif;
 }
+/* 약관동의 table */
+.tbl-wrap.tbl-col table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+/* 약관동의 table thead */
+.tbl-wrap.tbl-col table thead tr th {
+    height: 43px;
+    color: #666;
+    padding: 10px 10px;
+    border-top: 2px solid #000;
+    font-weight: 500;
+    line-height: 21px;
+    font-size: 14px;
+    letter-spacing: -.7px;
+}
+.tbl-wrap.tbl-col.tbl-term table thead tr:last-child th {
+    border-bottom: 1px solid #b5b5b5;
+}
+.tbl-wrap.tbl-col.tbl-term table thead tr th {
+    height: 43px;
+    font-size: 13px;
+    letter-spacing: -.325px;
+}
+/* 약관동의 table tbody */
 .tbl-wrap.tbl-col table tbody {
 	border-bottom: 1px solid #b5b5b5;
+}
+.tbl-wrap.tbl-col table tbody tr td {
+    color: #000;
+    height: 60px;
+    padding: 23px 10px;
+    border-top: 1px solid #e5e5e5;
+    line-height: 20px;
+    font-size: 15px;
+    letter-spacing: -.75px;
+}
+.tbl-wrap.tbl-col.tbl-term table thead tr th, .tbl-wrap.tbl-col.tbl-term table thead tr td, .tbl-wrap.tbl-col.tbl-term table tbody tr th, .tbl-wrap.tbl-col.tbl-term table tbody tr td {
+	    border-right: 1px solid #e5e5e5;
+}
+.tbl-wrap.tbl-col.tbl-term table tbody tr td {
+    height: 41px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 21px;
+    font-size: 13px;
+    letter-spacing: -.65px;
+}
+.tbl-wrap.tbl-col.tbl-term table thead tr th:not(.border):last-child, .tbl-wrap.tbl-col.tbl-term table thead tr td:not(.border):last-child, .tbl-wrap.tbl-col.tbl-term table tbody tr th:not(.border):last-child, .tbl-wrap.tbl-col.tbl-term table tbody tr td:not(.border):last-child {
+	border-right: none;
 }
 /* 만 14세 경고 문구 */
 .border-line-box-desc {
