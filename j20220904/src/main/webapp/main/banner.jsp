@@ -190,30 +190,30 @@ jQuery(function(){
 <body topmargin="0"  leftmargin="0" marginwidth="0" marginheight="0">
 <div class="c1_slider-wrap" style="margin-bottom: 2%;">
     <div class="c1_banner">
-    	<a href="#">
+    	<a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=nike">
     	<video class="c1_bannerimg" id="c1_bannerimg1" data-video-id="6311232130112" data-account="72451143001" autoplay="autoplay" muted="muted" -webkit-playsinline="-webkit-playsinline" playsinline="playsinline" loop="loop">
     	<source src="https://nikevideo.nike.com/media/v1/pmp4/static/clear/72451143001/82c5ef26-9370-4d2d-82ae-9014e4f64293/81cb83ab-9f95-42b2-8159-2bd1c00f79d2/main.mp4">
      	</video>	
      	</a>
    	</div>
     <div class="c1_banner">
-    	<a href="#">
+    	<a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=adidas">
     	<video class="c1_bannerimg" id="c1_bannerimg1" data-video-id="6311232130112" data-account="72451143001" autoplay="autoplay" muted="muted" -webkit-playsinline="-webkit-playsinline" playsinline="playsinline" loop="loop">
     	<source src="https://brand.assets.adidas.com/video/upload/q_auto,vc_auto,c_scale,w_0.5/video/upload/running-4dfwd-launch-carousel-d_idily0.mp4">
      	</video>
      	</a>
     </div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg3" src="/j20220904/img/banners/banner03(birkenstock).png" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg4" src="/j20220904/img/banners/banner04(converse).png" alt=""></a></div>
+    <div class="c1_banner"><a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=birkenstock"><img class="c1_bannerimg" id="c1_bannerimg3" src="/j20220904/img/banners/banner03(birkenstock).png" alt=""></a></div>
+    <div class="c1_banner"><a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=converse"><img class="c1_bannerimg" id="c1_bannerimg4" src="/j20220904/img/banners/banner04(converse).png" alt=""></a></div>
     <div class="c1_banner">
-    	<a href="#">
+    	<a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=lacoste">
     	<video class="c1_banner"  id="c1_bannerimg5" playsinline="true" muted="true" autoplay="true" loop="true" class="js-static-video l-block js-modular--starter-cover img-cover" width="100%" height="auto">
     	<source src="https://static1.lacoste.com/videos/marketing/Starter-Cover-Desk-Arena.mp4" type="video/mp4">
     	</video>
     	</a>
    	</div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg6" src="/j20220904/img/banners/banner06(fila).png" alt=""></a></div>
-    <div class="c1_banner"><a href="#"><img class="c1_bannerimg" id="c1_bannerimg7" src="/j20220904/img/banners/banner07(dr.martin).jfif" alt=""></a></div>
+    <div class="c1_banner"><a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=fila"><img class="c1_bannerimg" id="c1_bannerimg6" src="/j20220904/img/banners/banner06(fila).png" alt=""></a></div>
+    <div class="c1_banner"><a href="http://localhost:8181/j20220904/category/searchView.do?searchBar=dr.martens"><img class="c1_bannerimg" id="c1_bannerimg7" src="/j20220904/img/banners/banner07(dr.martin).jfif" alt=""></a></div>
 </div>
 </body>
 </html>
