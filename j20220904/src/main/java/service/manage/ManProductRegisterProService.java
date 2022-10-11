@@ -123,8 +123,8 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setColor(multi.getParameter("color"));
 				productImgSrcDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
 				
-				productImgSrcDTO.setL_file_path(imageName[1]);
-				productImgSrcDTO.setS_file_path(imageName[0]);
+				productImgSrcDTO.setL_file_path("/j20220924/img/product_images/"+brandPath+"/"+imageName[1]);
+				productImgSrcDTO.setS_file_path("/j20220904/img/product_images/"+brandPath+"/"+imageName[0]);
 				
 				List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 				for( int i = 0; i < size_arr.length; i++) {

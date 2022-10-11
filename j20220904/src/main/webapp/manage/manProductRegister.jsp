@@ -147,7 +147,7 @@ tr {
 	/* form 태그와 연결 스크립트 */
 	function fnElementCheck(f) {
 		// f 파라미터의 사이즈 계산
-		var cnt = f.elements.length();	// input 타입(엘리먼트)의 갯수 접근
+		var cnt = f.elements.length;	// input 타입(엘리먼트)의 갯수 접근
 		var filecnt = 1;
 		
 		for(i=0 ; i< cnt ; i++) {
@@ -163,6 +163,7 @@ tr {
 		}
 		
 		f.submit();	// form 태그 전송 버튼
+		f.action = 'manProductRegisterPro.do?pageNum=${pageNum}&path_brand='+f.path_brand.value;
 	}
 	
 </script>
