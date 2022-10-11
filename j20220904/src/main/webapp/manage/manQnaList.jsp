@@ -95,8 +95,7 @@ ol, ul {
 }
 
 .aside-wrap {
-	width: 220px;
-	padding-right: 60px;
+	width: 150px;
 }
 
 [id$="-toggle"] {
@@ -353,6 +352,7 @@ li.product-manage {
 									<thead>
 										<tr>
 											<th>번호</th>
+											<th>회원 아이디</th>
 											<th>제품코드</th>
 											<th>제목</th>
 											<th width="200px">내용</th>
@@ -368,7 +368,8 @@ li.product-manage {
 											<c:forEach var="qABoard" items="${qAList}">
 												<tr>
 													<td>${startNum}</td>
-													<td id="product_id">${qABoard.product_id}</td>
+													<td>${qABoard.mem_id}</td>
+													<td>${qABoard.product_id}</td>
 													<td>${qABoard.q_title}</td>
 													<td>${qABoard.q_content }</td>
 													<td>${qABoard.q_date}</td>

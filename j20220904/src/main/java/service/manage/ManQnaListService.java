@@ -23,21 +23,20 @@ public class ManQnaListService implements CommandProcess {
 		
 		
 		try {
-			int product_id = Integer.parseInt(request.getParameter("product_id"));
-			int qATotCnt = qbd.getQATotalCnt(product_id);	// Q&A 총 개수
+			int qATotCnt = qbd.getQATotal();	// Q&A 총 개수
 
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null || pageNum.equals("")) {
 				pageNum = "1";
 			}
 			int currentPage = Integer.parseInt(pageNum);
-			int pageSize = 10, blockSize = 10;
+			int pageSize = 10, blockSize = 5;
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow = startRow + pageSize - 1;
 			int startNum = qATotCnt - startRow + 1;
 			
 			// Board 조회
-			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow, endRow);
+			List<QABoardDTO> qAList = qbd.qaList(startRow, endRow);
 			
 			System.out.println("QAListService qAList totCnt=>"+qATotCnt);
 			System.out.println("QAListService qAList qAList.size()=>"+qAList.size());

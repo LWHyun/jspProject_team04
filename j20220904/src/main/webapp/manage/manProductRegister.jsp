@@ -136,7 +136,7 @@ tr {
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-	/* 브랜드 선 */
+	/* 브랜드 선택 */
 /* 	function ChangeBrand() {
 		var val_str = document.getElementById('select_brand');
 		
@@ -189,7 +189,7 @@ tr {
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
 							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductRegister.do" class="active">상품관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manProductList.do" class="active">상품관리</a></li>
 							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
