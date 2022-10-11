@@ -275,7 +275,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyername" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyername" name="buyername" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -285,7 +285,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyerphone" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyerphone" name="buyerphone" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -295,7 +295,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" required="required" id="buyermail" required> <!-- placeholder -->
+											 <input type="text" required="required" id="buyermail" name="buyermail" required> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -334,7 +334,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" required="required" id="receiver_name"> <!-- placeholder -->
+											 <input type="text" required="required" id="receiver_name" name="receiver_name"> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -344,7 +344,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<div class="input-wrap1" style="width: 500px;">
-											<input type="text" required="required" id="receiver_phone"> <!-- placeholder -->
+											<input type="text" required="required" id="receiver_phone" name="receiver_phone"> <!-- placeholder -->
 										</div>
 									</td>
 								</tr>
@@ -375,7 +375,7 @@ function sample6_execDaumPostcode() {
 											</select><br><br>
 											
 											<div class="forWrite">
-												<input type="text" id="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
+												<input type="text" id="forWrite" name="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
 											</div>
 											
 										</div>
@@ -570,6 +570,8 @@ function sample6_execDaumPostcode() {
 	   		return false;
 	   	}
 		
+		let buyer = $('#buyername').val();
+		
         //var IMP = window.IMP; // 생략가능
         IMP.init('imp71553354');
         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -609,7 +611,7 @@ function sample6_execDaumPostcode() {
             amount: 100,
             //가격
             buyer_email: 'abcMartek@siot.do',
-            buyer_name: '이우현', //구매자 이름
+            buyer_name: buyer, //구매자 이름
             buyer_tel: '010-7586-5945',
             buyer_addr: '경기도 의정부시 신곡동',
             buyer_postcode: '123-456',
