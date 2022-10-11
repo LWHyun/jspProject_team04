@@ -16,7 +16,7 @@
 			<div class="inner">
 				<div class="noticeBox">
 					<div class="tab-content">
-						<div class="border-line-box">
+						<div class="border-line-box" style="border-top: none;">
 							<div class="guide-row">
 								<div class="guide-title">
 									<span>배송 안내</span>

@@ -133,12 +133,6 @@
     flex: 1;
     padding: 26px 0 14px 20px;
 }
-.border-line-box {
-    margin-top: 0;
-    border-top: none;
-    border-bottom: 1px solid #666;
-}
-
 .guide-row .guide-value .text {
     font-size: 14px;
     font-weight: 500;
