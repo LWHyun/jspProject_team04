@@ -26,7 +26,7 @@ public class QAWriteProService implements CommandProcess {
 		
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
-		
+		String show = request.getParameter("show");
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		String toURI = request.getRequestURI();
@@ -85,8 +85,8 @@ public class QAWriteProService implements CommandProcess {
 			
 			List<Product_ImgSrcDTO> list =  productDAO.selectImg(product_id, gender);
 			// Board 조회
-			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow1, endRow1);
-			List<QABoardDTO> qAList = qbd.qABoardList(startRow2, endRow2);
+			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(product_id,startRow1, endRow1);
+			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow2, endRow2);
 			int likeCnt = likeProDAO.proLikeProCnt(mem_id,product_id);
 			
 			int pageCnt1 = (int)Math.ceil((double)rbTotCnt/pageSize1);
@@ -133,6 +133,7 @@ public class QAWriteProService implements CommandProcess {
 			request.setAttribute("startPage2", startPage2);
 			request.setAttribute("endPage2", endPage2);
 			
+			request.setAttribute("show", show);
 	         
 		} catch (Exception e) {
 			System.out.println("QAWriteProService >" +e.getMessage());

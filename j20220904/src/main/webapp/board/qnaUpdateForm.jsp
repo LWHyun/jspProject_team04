@@ -20,7 +20,7 @@
 					<h3 class="text-head2">상품 Q&amp;A 수정</h3>
 				</div>
 				<div class="aside-contents" align="center">
-					<form action="${pageContext.request.contextPath }/board/qnaUpdatePro.do?product_id=${product_id}&gender=${gender}" method="post">
+					<form action="${pageContext.request.contextPath }/board/qnaUpdatePro.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3" method="post">
 						<input type="hidden" name="q_id" value="${qABoard.q_id }">
 						<input type="hidden" name="product_id" value="${qABoard.product_id }" >
 						<%-- <input type="hidden" name="pageNum" value="${pageNum }"> --%>

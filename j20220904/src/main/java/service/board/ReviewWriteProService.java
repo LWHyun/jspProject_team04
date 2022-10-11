@@ -83,8 +83,8 @@ public class ReviewWriteProService implements CommandProcess {
 			
 			List<Product_ImgSrcDTO> list =  productDAO.selectImg(product_id, gender);
 			// Board 조회
-			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(startRow1, endRow1);
-			List<QABoardDTO> qAList = qbd.qABoardList(startRow2, endRow2);
+			List<ReviewBoardDTO> reviewList = rbd.reviewBoardList(product_id,startRow1, endRow1);
+			List<QABoardDTO> qAList = qbd.qABoardList(product_id,startRow2, endRow2);
 			int likeCnt = likeProDAO.proLikeProCnt(mem_id,product_id);
 			
 			int pageCnt1 = (int)Math.ceil((double)rbTotCnt/pageSize1);

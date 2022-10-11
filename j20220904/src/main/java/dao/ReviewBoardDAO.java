@@ -83,7 +83,7 @@ public class ReviewBoardDAO {
 		return tot;
 	}
 	
-	public List<ReviewBoardDTO> reviewBoardList(int startRow, int endRow) {
+	public List<ReviewBoardDTO> reviewBoardList(int product_id,int startRow, int endRow) {
 		List<ReviewBoardDTO> reviewList = new ArrayList<ReviewBoardDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -91,7 +91,7 @@ public class ReviewBoardDAO {
 		
 		String sql = "SELECT *  "
 	 	    	+ "FROM (Select rownum rn ,a.*  "
-	 		    + "      From 	 (select * from review_board order by rb_date desc) a ) "
+	 		    + "      From 	 (select * from review_board where product_id=? order by rb_date desc) a ) "
 	 		    + "WHERE rn BETWEEN ? AND ? " ;
 		
 		System.out.println("DAO reviewBoardList sql->"+sql);
@@ -101,8 +101,9 @@ public class ReviewBoardDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, product_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -142,6 +143,7 @@ public class ReviewBoardDAO {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if(rs.next()) {
+				//System.out.println("rs내부");
 				reviewBoard.setRb_id(rs.getInt("rb_id"));
 				reviewBoard.setMem_id(rs.getString("mem_id"));
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
@@ -187,7 +189,7 @@ public class ReviewBoardDAO {
 		ResultSet rs = null;
 		
 		String sql1  = "SELECT NVL(max(rb_id), 0) FROM review_board";
-		String sql  = "INSERT INTO review_board VALUES(?,?,?,?,?,?,sysdate,?)";
+		String sql  = "INSERT INTO review_board VALUES(?,?,?,?,?,sysdate,?)";
 		
 		try {
 			conn = getConnection();
@@ -207,8 +209,9 @@ public class ReviewBoardDAO {
 			pstmt.setInt(3, reviewBoard.getProduct_id());
 			pstmt.setString(4, reviewBoard.getRb_title());
 			pstmt.setString(5, reviewBoard.getRb_content());
-			pstmt.setInt(7, reviewBoard.getRb_views());
-			
+			//pstmt.setString(6, reviewBoard.getRb_img());
+			pstmt.setInt(6, 0);
+
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

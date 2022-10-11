@@ -16,8 +16,12 @@ public class ReviewDeleteProService implements CommandProcess {
 			throws ServletException, IOException {
 		System.out.println("QADeleteProService Start ... ");
 		
+		
 		try {
 			int rb_id = Integer.parseInt(request.getParameter("rb_id"));
+			int product_id = Integer.parseInt(request.getParameter("product_id"));
+			int gender = Integer.parseInt(request.getParameter("gender"));
+			String show = request.getParameter("show");
 			String pageNum = request.getParameter("pageNum");
 			
 			ReviewBoardDAO rbd = ReviewBoardDAO.getInstance();
@@ -26,6 +30,9 @@ public class ReviewDeleteProService implements CommandProcess {
 			
 			request.setAttribute("rb_id", rb_id);
 			request.setAttribute("result", result);
+			request.setAttribute("show", show);
+			request.setAttribute("product_id", product_id);
+			request.setAttribute("gender", gender);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
