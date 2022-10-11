@@ -10,7 +10,7 @@
 <style type="text/css">
 /* 배너----------------------------------------------------------------------------------- */
 .contents-wrap {
-	min-width: 1440px;
+	min-width: 1600px;
 	font-size: 13px;
 	overflow: hidden;
 }
@@ -100,6 +100,10 @@ h2 {
 	margin-right: 100px;
 	font-weight: 1000;
 }
+.eng {
+	font-size: 37px;
+	font-weight: 700;
+}
 
 .brand-slide-wrap {
 	margin-top: 44px;
@@ -156,115 +160,117 @@ strong+p {
 
 /* 필터와 상품리스트 묶음----------------------------------------------------------------------------------- */
 .filter-list-wrap {
-  margin-top: 86px;
-  display: flex;
-  margin-left: 160px;
+	margin-top: 86px;
+	display: flex;
+	margin-left: 100px;
 }
 
 /* 필터----------------------------------------------------------------------------------- */
 .filter-wrap {
-  flex: 0 0 250px;
-  max-width: 250px
-	}
+	flex: 0 0 200px;
+	max-width: 200px
+}
 .filter-wrap .filter-header {
-  border-bottom: 2px solid black;
-  line-height: 40px;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
+	border-bottom: 2px solid black;
+	line-height: 40px;
+	font-size: 18px;
+	display: flex;
+	justify-content: space-between;
+	font-weight: 600;
 }
 .btn-reset-filter {
-  color: #666;
-  padding-left: 24px;
-  background: url(https://abcmart.a-rt.com/static/images/filter/btn_icon_reset.png) no-repeat 0 10px;
-  text-decoration: underline;
-  font-size: 15px;
-  border: white;
+	color: #666;
+	padding-left: 24px;
+	background: url(https://abcmart.a-rt.com/static/images/filter/btn_icon_reset.png) no-repeat 0 10px;
+	text-decoration: underline;
+	font-size: 15px;
+	border: white;
 }
 .fold-box-list .fold-box {
-  border-bottom: 1px solid #d5d5d5;
-}
-.fold-box-list .fold-box {
-  border-top: none;
-  border-bottom-color: #b5b5b5;
+	border-bottom: 1px solid #d5d5d5;
+	border-top: none;
+	border-bottom-color: #b5b5b5;
 }
 .fold-box-expanded .fold-box-header {
-  border-bottom: none;
+	border-bottom: none;
 }
 .fold-box-header {
-  padding-left: 0;
-  font-weight: 500;
-  line-height: 74px;
+	padding-left: 0;
+	font-weight: 500;
+	line-height: 74px;
 }
-  .fold-box-list .fold-box .fold-box-header {
-  position: relative;
-  padding-right: 33px;
-  font-size: 15px;
-  padding-right: 33px;
+.fold-box-list .fold-box .fold-box-header {
+	position: relative;
+	padding-right: 33px;
+	font-size: 15px;
+	padding-right: 33px;
 }
-.fold-box-header:brfoe {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  width: 13px;
-  height: 7px;
-  background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
-  right: 10px;
-  top: 32px;
+.fold-box-header::before {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 13px;
+	height: 7px;
+	background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
+	right: 10px;
+	top: 32px;
 }
-.fold-box-header:after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  width: 13px;
-  height: 7px;
-  background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
-  right: 10px;
-  top: 32px;
+.fold-box-header::after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 13px;
+	height: 7px;
+	background: url(https://abcmart.a-rt.com/static/images/ui/fold/fold_icon_arrow.png) no-repeat 0 0;
+	right: 10px;
+	top: 32px;
 }
+.gender-class {
+	margin: 20px 0  10px;
+	text-align: left;
+}	
 .fold-box-contents {
-  padding: 0 0 30px;
-  height: auto;
-  padding-bottom: 23px;
-  overflow: hidden;
+	padding: 0 0 30px;
+	height: auto;
+	padding-bottom: 23px;
+	overflow: hidden;
 }
 .ip-filter-list.col {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 0;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	padding: 0;
 }
 .ip-filter-list li:nth-child(2n+1) {
-  margin-left: 0;
+	margin-left: 0;	
 }
 .ip-filter-list.col li {
-  width: calc((100% - 3px) / 2);
+	width: calc((100% - 3px) / 2);
 }
 .ip-filter-list li {
-  flex-shrink: 0;
-  margin-left: 3px;
+	flex-shrink: 0;
+	margin-left: 3px;
 }
 .ui-chk.type-line {
-  position: relative;
-  display: block;
-  height: 100%;
+	position: relative;
+	display: block;
+	height: 100%;
 }
 .ui-chk {
-  position: relative;
-  display: inline-block;
-  min-height: 20px;
-  font-size: 0;
-  vertical-align: top;
-  margin-bottom: 7px;
+	position: relative;
+	display: inline-block;
+	min-height: 20px;
+	font-size: 0;
+	vertical-align: top;
+	margin-bottom: 7px;
 }
 label {
 	font-size: 17px;
 	font-weight: 500;
 }
 .ip-filter-list li {
-  flex-shrink: 0;
-  margin-left: 0;
+	flex-shrink: 0;
+	margin-left: 0;
 }
 
 /* 상품 리스트 ----------------------------------------------------------------------------------- */
@@ -276,7 +282,7 @@ label {
 		list-style: none;
 	}
 	.product-list {
-		width: 950px;
+		width: 1300px;
 		border-top: 2px solid black;
 		margin-bottom: 100px;
 		margin-left: 80px;
@@ -285,7 +291,7 @@ label {
 		float: left;
 	}
 	.product-list>.product-box {
-		width: 32%;
+		width: 24%;
 		min-height: 417px;
 		background: white;
 		padding: 20px;
@@ -293,7 +299,7 @@ label {
 		margin-right: 10px;
 		margin-top: 10px;
 	}
-	.product-list>.product-box:nth-child(3) {
+	.product-list>.product-box:nth-child(4n) {
 		margin-right: 5px;
 	}
 	.prod-wrap:hover {
@@ -341,7 +347,7 @@ label {
 		text-align: center;
 		line-height: 42px;
 	}
-	.btn-prod-cart, .btn-prod-favorite {
+	.btn-prod-favorite {
 		position: relative;
 		width: 24px;
 		height: 22px;
@@ -355,16 +361,6 @@ label {
 	}
 	 .btn-prod-favorite:hover {
 	  background-position: 0 -22px;
-	}
-	/* .btn-prod-favorite:focus {
-	  background-position: 0 -44px;
-	} */
-	.btn-prod-cart:hover {
-	  background-position: -48px -22px;
-	}
-	.btn-prod-cart {
-		background-position: -48px 0;
-		margin-left: 17px;
 	}
 	.btn-buy-now {
 		width: 150px;
@@ -390,11 +386,11 @@ label {
 		display: inline-block;
 		margin-bottom: 100px;
 	}
-  	.pagination-wrap .pagination-list .pagination-item {
-  		float: left;
+	.pagination-wrap .pagination-list .pagination-item {
+		float: left;
 	}
-  	.pagination-wrap .pagination-list .pagination-item+.pagination-item {
-   	 	margin-left: 4px;
+	.pagination-wrap .pagination-list .pagination-item+.pagination-item {
+	 	margin-left: 4px;
 	}
 	.pagination-wrap .pagination-list .btn-page {
 	  	color: #999;
@@ -420,61 +416,7 @@ label {
 <%
 	String context = request.getContextPath();
 %>
-
 </head>
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-
-	$(function(){
-			$(document).on("click", ".btn-prod-favorite", function () {
-				$(this).css("background-position", "0 -44px");
-				alert("찜은 갈비찜");
-				var sandData = "product_id=" + $(this).attr('id');
-				
-				
-			 $.ajax({
-				url: '${pageContext.request.contextPath}/contents/registerLike.do',
-				type: 'get',
-				data: sandData,
-				dataType: 'text',
-				success: function (data) {
-					console.log(data);
-					if (data == "1") {
-						alert('찜한상품에 담겼습니다.');
-					} else {
-						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
-					}
-				
-				}
-			});
-			 
-			 <%-- $.ajax({
-				url: "<%=context%>/contents/removeLike.do",
-				type: "get",
-				data: sendData,
-				success: function (data) {
-					if (data == "1") {
-						alert ("찜한상품이 해제되었습니다.");
-					} else {
-						alert("error");
-						location.href = "<%=context%>/member/loginForm.do";
-					}
-				}
-			 }); --%>
-		});
-	});
-	
-	
-		/* $(".btn-buy-now").click(function () {
-			location.href="#"
-		});
-	
-		$(".fold-box-header").click( function () {
-			$(".ip-filter-list col1").slideToggle();
-		}) */
-		
-</script>
 <body>
 	<div id="header">
        <jsp:include page="../main/header.jsp"></jsp:include>
@@ -504,7 +446,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/nike_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
 									그 위치를 증명하고 있습니다.
@@ -524,7 +466,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/fila_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									1911년 이태리, FILA 형제들로부터 탄생한 브랜드입니다. <br>100년 이상의 브랜드 헤리티지를 바탕으로 한 글로벌 스포츠 패션 트렌드를 제안합니다.
 								</p>
@@ -543,7 +485,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/adidas_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									1949년부터, 스토리와 스타일, 스포츠를 이끌다. <br>세상의 모든 스포츠를 포용하는 브랜드
 									<br>아디다스는 모두의 스포츠 브랜드입니다.
@@ -563,7 +505,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/converse_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									젊은이들의 '자유로움의 표상'이 된 컨버스. <br>100년의 역사를 가진 Original America 브랜드로, 없어선 안될 스테디셀러 아이콘으로 자리잡았습니다.
 								</p>
@@ -582,7 +524,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/dr_martens_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									닥터마틴은 자신만의 개성을 지닌 진정성 있는 사람들과 자아 표현에 자부심을 지닌 사람들, 그리고 보통 사람들과는 다른 사람들에게 어필합니다. 
 									<br>심플하지만 유니크한 스타일로 공연, 스트릿 패션 등 다양한 문화 전반에서 사랑받는 브랜드입니다.
@@ -602,7 +544,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/lacoste_banner.jpg');">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 									역사적인 테니스 스타 라코스테가 설립한 프리미엄 캐주얼 브랜드입니다. <br>'악어'캐릭터는 그의 별명에서 유래되었으며, 현재까지 사랑받는 시그니처가 되었습니다.
 								</p>
@@ -621,7 +563,7 @@ label {
 					<div class="bg-item">
 						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/birkenstock_banner.jpg')">
 							<div class="banner-division-text">
-								<strong>${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
 								</p>
 							</div>
@@ -649,33 +591,30 @@ label {
 		        <li class="fold-box expanded" id="genderFilterContentLi">
 		          <div class="fold-box-header" id="genderSearchCount">카테고리</div>				<!-- 카테고리: 운동화, 구두 -->
 		          <div class="fold-box-contents">
-		            <ul class="ip-filter-list col1">
-		              <li class="smart-search-option" data-code="1" data-name="운동화">
-		                <span class="ui-chk type-line">
-		                <input id="1" name="category" type="checkbox"><label for="1">운동화</label>
-		                </span>
-		              </li>
-		              <li class="smart-search-option" data-code="0" data-name="구두">
-		                <input id="0" name="category" type="checkbox"><label for="0">구두</label>
-		              </li>
-		            </ul>
-		          </div>
-		        </li>
-		        <li class="fold-box expanded" id="genderFilterContentLi">
-		          <div class="fold-box-header" id="genderSearchCount">성별</div>					<!-- 성별분류 필터 -->
-		          <div class="fold-box-contents">
-		            <ul class="ip-filter-list col2">
-		              <li class="smart-search-option" data-code="0" data-name="남성">
-		                <span class="ui-chk type-line">
-		                <input id="0" name="gender" type="checkbox"><label for="0">MEN</label>
-		                </span>
-		              </li>
-		              <li class="smart-search-option" data-code="1" data-name="여성">
-		                <input id="1" name="gender" type="checkbox"><label for="1">WOMEN</label>
-		              </li>
-		            </ul>
-		          </div>
-		        </li>
+	              	<div class="gender-class" id="genderSearchCount">분류</div>
+			            <ul class="ip-filter-list col1">
+			              <li class="smart-search-option" data-name="운동화">
+			              	<span class="ui-chk type-line">
+		        	       	 <input id="운동화" name="category" type="checkbox"><label for="운동화">운동화</label>
+		            	    </span>
+		            	  </li>
+		            	  <li class="smart-search-option" data-name="구두">
+		            	  	<input id="구두" name="category" type="checkbox"><label for="구두">구두</label>
+		            	  </li>
+		            	</ul>
+						<ul>
+							<li class="gender-box" id="genderFilterContentLi">
+								<div class="gender-class" id="genderSearchCount">성별</div>					<!-- 성별분류 필터 -->
+		     					<span class="ui-chk type-line">
+		     						<input id="0" name="category" type="checkbox"><label for="0">MEN</label>
+		     					</span>
+				       		</li>
+			         		<li class="smart-search-option" data-code="1" data-name="여성">
+		        	  			<input id="1" name="category" type="checkbox"><label for="1">WOMEN</label>
+							</li>
+						</ul>
+			     </div>
+			    </li>
 		        <li class="fold-box expanded" id="sizeFilterContentLi">
 		          <div class="fold-box-header" id="sizeSearchContentLi">사이즈
 		          </div>
@@ -690,49 +629,49 @@ label {
 		                        <ul class="ip-filter-list col3">
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize220">	<!-- 사이즈에 맞는 상품코드? -->
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">220</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize230">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">230</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize240">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">240</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">250</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize260">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">260</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize270">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">270</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize280">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">280</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize290">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="checkbox" name="chkSizeShoeModule">
+		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
 		                              <label for="ishoesSize0">290</label>
 		                            </span>
 		                          </li>
@@ -744,7 +683,7 @@ label {
 		            </div>
 		          </div>
 		         </div>
-		        </li>
+		        
 		          
 		      </ul>
 		    </div>
@@ -754,8 +693,8 @@ label {
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
 		
-			<%-- <c:if test="${totCnt > 0 }"> --%>
-				<c:forEach var="list" items="${list }">
+			<c:if test="${totCnt > 0 }">
+				<c:forEach var="list" items="${list }">	
 					<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 						<div class="prod-wrap">
 							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }&gender=${list.gender}"> <!-- 상품상세 페이지로 이동 -->
@@ -766,8 +705,8 @@ label {
 							</a>
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
-									<div class="util-btn-wrap">																			
-										<button type="button" id="${list.product_id }" class="btn-prod-favorite">즐겨찾기</button>
+									<div class="util-btn-wrap">
+											<button type="button" id="${list.product_id }" class="btn-prod-favorite">즐겨찾기</button>
 										<!-- <button type="button" class="btn-prod-cart">장바구니 담기</button> -->			<!-- 장바구니에 상품코드 저장 -->
 									</div>
 									<button type="button" class="btn-buy-now">바로구매</button>						<!-- 결제창 이동 -->
@@ -776,28 +715,103 @@ label {
 						</div>
 					</div>
 				</c:forEach>
-			<%-- </c:if> --%>
+			</c:if>
+			<c:if test="${totCnt == 0 }">
+				<h2>데이터 없음</h2>
+			</c:if>
 			
 		</div> <!-- product-list row 끝 -->
 		
 	</div> <!-- filter-list-wrap 끝-->			
 	<!-- 페이지 -->
-	<%-- <div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
-		<div>
-			<c:if test="${startPage > blockSize }">
-				<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
-			</c:if>
-			<c:forEach var="i" begin="${startPage }" end="${endPage }">
-				<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
-			</c:forEach>
-			<c:if test="${endPage > pageCnt }">
-				<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
-			</c:if>
-		</div>
-	</div> --%>
+	<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
+		<c:if test="${startPage > blockSize }">
+			<a href="brandPdList.do?ca_code=${list.ca_code }&pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+		</c:forEach>
+		<c:if test="${endPage < pageCnt }">
+			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+		</c:if>
+	</div>
 	
 </div> <!-- contents-wrap 끝--> 
 
+<div id="footer">
+       <jsp:include page="../main/footer.jsp"></jsp:include>
+</div>  <!-- header -->	
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		
+		// 찜 불러오기..
+		<%-- $a.ajax({
+			url: "<%=context%>/contents/showLike.do",
+			type: 'get',
+			data: ,
+			dataType: 'text',
+			success: function (data) {
+				$('.btn-prod-favorite[id="'+product_id'"]').css("background-position", "0 -44px");
+			}
+		}); --%>
+		
+		$(document).on("click", ".btn-prod-favorite", function () {
+				var sandData = "product_id=" + $(this).attr('id');
+											// $(.btn-prod-favorite) 태그의 id를 가져와라
+				var product_id = $(this).attr('id');
+				console.log(product_id);
+				/* alert( $('.btn-prod-favorite').css("background-position")); */
+			if(	$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position") == "0px -22px"){
+				
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/contents/registerLike.do',
+				type: 'get',
+				data: sandData,
+				dataType: 'text',
+				success: function (data) {
+					console.log(data);
+					if (data == "1") {
+						alert('찜한상품에 담겼습니다.');
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+					} else if (data == "-1") {
+						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					} else // (data == "0")
+						alert('이미 찜한상품입니다.');
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+				}
+			});
+			 
+			} else {
+			 $.ajax({
+				url: '<%=context%>/contents/removeLike.do',
+				type: 'get',
+				data: "product_id=" + $(this).attr('id'),
+				success: function (data) {
+					if (data == "1") {
+						alert ("찜한상품이 해제되었습니다.");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -22px");
+					} else if (data == "-1") {
+						alert('로그인 후 찜한상품을 해제할 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					} else {
+						alert("error");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 0");
+					}
+				}
+			 });
+			}
+		});
+	});
+	
+		/*
+		$(".fold-box-header").click( function () {
+			$(".ip-filter-list col1").slideToggle();
+		}) */
+		
+</script>
 
 </body>
 </html>
