@@ -223,18 +223,28 @@ tr {
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-									<input type="hidden" name="brand" required="required">
-										<select name="brand" id="select_brand" required="required" onchange="ChangeBrand()">
-											<option value="Adidas_images">ADIDAS</option>
-											<option value="Birkenstock_images">BIRKENSTOCK</option>
-											<option value="Converse_images">CONVERSE</option>
-											<option value="DrMartens_images">DR.MARTENS</option>
-											<option value="Fila_images">FILA</option>
-											<option value="Lacoste_images">LACOSTE</option>
-											<option value="Nike_images">NIKE</option>
+
+             	<!-- <input type="hidden" name="brand" required="required"> -->
+										<select name="brand">
+											<option value="ADIDAS">ADIDAS</option>
+											<option value="BIRKENSTOCK">BIRKENSTOCK</option>
+											<option value="CONVERSE">CONVERSE</option>
+											<option value="DR.MARTENS">DR.MARTENS</option>
+											<option value="FILA">FILA</option>
+											<option value="LACOSTE">LACOSTE</option>
+											<option value="NIKE">NIKE</option>
 										</select>
 								</td>
 							</tr>
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 사이즈 등록</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="radio" id="m_size_num" name="size_check[]" value="200,210,220,230,240">남성용
+									<input type="radio" id="f_size_num" name="size_check[]" value="100,110,120,130,140">여성용<br><br>
+									<input type="text" id="pd_size" name="pd_size" readonly="readonly">
+								</td>
+							</tr>
+							
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">영어이름</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;" > <input type="text" name="eng_name" required="required"></td>
@@ -268,21 +278,13 @@ tr {
 									<input type="number" name="ca_code" required="required">
 								</td>
 							</tr>
-							
-							<tr>
-								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">사이즈</td>
-								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-									<input type="number" min="220" step="5" max="290" name="pd_size" required="required">
-								</td>
-							</tr>							
-							
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">재고</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
 									<input type="number" min="0" name="stock" required="required">
 								</td>
 							</tr>	
-							
+
 						</table>
 						<div style="transform: translate(231px, 13px); margin-top:15px;">
 							<input type="submit" value="확인" onclick="fnElementCheck(this.form)">
@@ -300,4 +302,23 @@ tr {
 		<jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$("#m_size_num").change(function(){
+			if($("#m_size_num").is(":checked")){
+				$('#pd_size').val('250,260,270,280,290');
+			}
+		});	
+			
+		$("#f_size_num").change(function(){
+			if($("#f_size_num").is(":checked")){
+				$('#pd_size').val('220,230,240,250,260');
+			}
+		});	
+	});
+
+</script>
 </html>

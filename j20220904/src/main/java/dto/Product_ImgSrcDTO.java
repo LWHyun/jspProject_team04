@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product_ImgSrcDTO {
 	private int product_id; //제품코드
@@ -24,7 +25,41 @@ public class Product_ImgSrcDTO {
 	private String ca_name;
 	private int like_product_id;
 	
+	private List<Product_ImgSrcDTO> list;
 	
+	public Product_ImgSrcDTO() {}
+	
+	public Product_ImgSrcDTO(int product_id, String brand, String eng_name, String kor_name, int gender, long price, 
+					String color, Date regdate, long ca_code, String s_file_path, String l_file_path,  int stock, int size_num,
+					int pd_size, String ca_name, int like_product_id, List<Product_ImgSrcDTO> list) {
+					
+					super();
+					this.product_id = product_id;
+					this.brand = brand;
+					this.eng_name = eng_name;
+					this.kor_name = kor_name;
+					this.gender = gender;
+					this.price = price;
+					this.color = color;
+					this.regdate = regdate;
+					this.ca_code = ca_code;
+					this.s_file_path = s_file_path;
+					this.l_file_path = l_file_path;
+					this.stock = stock;
+					this.size_num = size_num;
+					this.pd_size = pd_size;
+					this.ca_name = ca_name;
+					this.like_product_id = like_product_id;
+					this.list = list;
+					}
+			
+			
+	public List<Product_ImgSrcDTO> getList() {
+		return list;
+	}
+	public void setList(List<Product_ImgSrcDTO> list) {
+		this.list = list;
+	}
 	public int getLike_product_id() {
 		return like_product_id;
 	}
