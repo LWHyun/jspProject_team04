@@ -39,7 +39,7 @@ public class JsonQAListService implements CommandProcess {
 		int totalCnt = memberDAO.QAListCnt(mem_id);
 		
 		// paging
-		PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
+		PageHandler ph = new PageHandler(curPage, 5, 5, totalCnt);
 		
 		// QA 리스트 받기
 		int startNum = (curPage-1) * ph.getPageSize() + 1;

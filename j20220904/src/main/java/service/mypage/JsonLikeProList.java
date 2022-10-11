@@ -39,7 +39,7 @@ public class JsonLikeProList implements CommandProcess {
 		
 		// 찜 상품 가져오기
 		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
-		PageHandler ph = new PageHandler(curPage, 4, 2, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
+		PageHandler ph = new PageHandler(curPage, 4, 5, likeProCnt); // curPage, pageSize, blockSize, totalCnt 
 		System.out.println("ph="+ph);
 		
 		int startRow = (curPage-1)*ph.getPageSize()+1; // 1, 5, 9...
