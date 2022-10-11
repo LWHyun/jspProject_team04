@@ -284,8 +284,74 @@ public class QABoardDAO {
 	}
 	
 	
-
+	// (관리자) Q&A 게시물 총 개수 
+	public int getQATotal() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		
+		String sql = "select count(*) from qa_board";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) tot = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close(rs, stmt, conn);
+		}
+		return tot;
+	}
 	
+	// (관리자) Q&A 목록 불러오기
+	public List<QABoardDTO> qaList(int startRow, int endRow) {
+		List<QABoardDTO> qAList = new ArrayList<QABoardDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT *  "
+	 	    	+ "FROM (Select rownum rn ,a.*  "
+	 		    + "      From 	 (select * from qa_board order by q_date desc) a ) "
+	 		    + "WHERE rn BETWEEN ? AND ? " ;
+		
+		
+		System.out.println("DAO qABoardList sql->"+sql);
+		System.out.println("DAO qABoardList startRow->"+startRow);
+		System.out.println("DAO qABoardList endRow->"+endRow);
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				QABoardDTO qABoard = new QABoardDTO();
+				
+				qABoard.setQ_id(rs.getInt("q_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setProduct_id(rs.getInt("product_id"));
+				qABoard.setMem_id(rs.getString("mem_id"));
+				qABoard.setQ_title(rs.getString("q_title"));
+				qABoard.setQ_content(rs.getString("q_content"));
+				qABoard.setQ_date(rs.getDate("q_date"));
+				qABoard.setQ_views(rs.getInt("q_views"));
+				qABoard.setQ_answer(rs.getString("q_answer"));
+				
+				qAList.add(qABoard); 
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		} finally {
+			close(rs, pstmt, conn);
+		}
+		return qAList;
+	}
 
 	
 }
