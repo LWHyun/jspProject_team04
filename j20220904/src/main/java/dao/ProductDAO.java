@@ -719,7 +719,7 @@ public class ProductDAO {
 				pstmt.setInt(2, productImgSrcDTO.getProduct_id());
 				pstmt.setInt(3, pro_size.get(i).getPd_size());
 				pstmt.setInt(4, productImgSrcDTO.getStock());
-				pstmt.executeUpdate();
+				result3 = pstmt.executeUpdate();
 
 			}
 			

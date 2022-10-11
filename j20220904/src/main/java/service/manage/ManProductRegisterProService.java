@@ -102,8 +102,8 @@ public class ManProductRegisterProService implements CommandProcess {
 				String[] size_num_arr = size_num.split(",");
 				String[] pd_size_arr = pd_size.split(",");
 				
-				System.out.println("사이즈 넘버 배열 -> " +size_num_arr);
-				System.out.println("진짜 사이즈 배열 -> " +pd_size_arr);
+				System.out.println("사이즈 넘버 배열 -> " +Arrays.toString(size_num_arr));
+				System.out.println("진짜 사이즈 배열 -> " +Arrays.toString(pd_size_arr));
 
 				int[] size_arr = Arrays.stream(size_num_arr).mapToInt(Integer::parseInt).toArray();
 				int[] pdsize_arr = Arrays.stream(pd_size_arr).mapToInt(Integer::parseInt).toArray();
@@ -124,16 +124,15 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setL_file_path(imageName[1]);
 				productImgSrcDTO.setS_file_path(imageName[0]);
 				
+				List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 				for( int i = 0; i < size_arr.length; i++) {
+					Product_ImgSrcDTO size_pd_size = new Product_ImgSrcDTO();
+					size_pd_size.setSize_num(size_arr[i]);
+					size_pd_size.setPd_size(pdsize_arr[i]);
 					
-					List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-					
-					productImgSrcDTO.setSize_num(size_arr[i]);
-					productImgSrcDTO.setPd_size(pdsize_arr[i]);
-					
-					list.add(productImgSrcDTO);
+					list.add(size_pd_size);
 				}
-				
+				productImgSrcDTO.setList(list);
 				productImgSrcDTO.setStock(Integer.parseInt(multi.getParameter("stock")));
 				
 				ProductDAO pd = ProductDAO.getInstance();

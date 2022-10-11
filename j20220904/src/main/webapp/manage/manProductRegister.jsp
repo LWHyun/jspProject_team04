@@ -194,15 +194,15 @@ tr {
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
 									<!-- 값 어떻게 받아올지... 수상...  -->
-									<input type="hidden" name="brand" required="required">
-										<select name="brand" form="myForm" required="required">
-											<option value="adidas">ADIDAS</option>
-											<option value="birkenstock">BIRKENSTOCK</option>
-											<option value="converse">CONVERSE</option>
-											<option value="dr_martens">DR.MARTENS</option>
-											<option value="fila">FILA</option>
-											<option value="lacoste">LACOSTE</option>
-											<option value="nike">NIKE</option>
+									<!-- <input type="hidden" name="brand" required="required"> -->
+										<select name="brand">
+											<option value="ADIDAS">ADIDAS</option>
+											<option value="BIRKENSTOCK">BIRKENSTOCK</option>
+											<option value="CONVERSE">CONVERSE</option>
+											<option value="DR.MARTENS">DR.MARTENS</option>
+											<option value="FILA">FILA</option>
+											<option value="LACOSTE">LACOSTE</option>
+											<option value="NIKE">NIKE</option>
 										</select>
 								</td>
 							</tr>
