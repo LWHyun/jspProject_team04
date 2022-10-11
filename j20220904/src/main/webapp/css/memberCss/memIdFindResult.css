@@ -97,7 +97,11 @@ a {
     justify-content: space-between;
     align-items: center;
 }
-
+/* 아이디 span */
+#rdoList0 {
+	font-size: 15px;
+    letter-spacing: -.75px;
+}
 /* 아이디 label */
 .ui-rdo input+label {
     font-family: "Montserrat",sans-serif;
