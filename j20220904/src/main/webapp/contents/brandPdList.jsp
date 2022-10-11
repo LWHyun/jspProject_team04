@@ -629,50 +629,50 @@ label {
 		                        <ul class="ip-filter-list col3">
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize220">	<!-- 사이즈에 맞는 상품코드? -->
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">220</label>
+		                              <input id="shoesSize220" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize220">220</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize230">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">230</label>
+		                              <input id="shoesSize230" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize230">230</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize240">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">240</label>
+		                              <input id="shoesSize240" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize240">240</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize250">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">250</label>
+		                              <input id="shoesSize250" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize250">250</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize260">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">260</label>
+		                              <input id="shoesSize260" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize260">260</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize270">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">270</label>
+		                              <input id="shoesSize270" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize270">270</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize280">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">280</label>
+		                              <input id="shoesSize280" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize280">280</label>
 		                            </span>
 		                          </li>
 		                          <li class="smart-search-option" data-type="shoeSize" id="shoeSize290">
 		                            <span class="ui-chk type-line">
-		                              <input id="shoesSize0" type="radio" name="chkSizeShoeModule">
-		                              <label for="ishoesSize0">290</label>
+		                              <input id="shoesSize290" type="radio" name="chkSizeShoeModule">
+		                              <label for="ishoesSize290">290</label>
 		                            </span>
 		                          </li>
 		                        </ul>
@@ -726,13 +726,13 @@ label {
 	<!-- 페이지 -->
 	<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
 		<c:if test="${startPage > blockSize }">
-			<a href="brandPdList.do?ca_code=${list.ca_code }&pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+			<a href="brandPdList.do?ca_code=${ca_code }&pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+			<a href="brandPdList.do?pageNum=${i}&ca_code=${ca_code}" class="btn-page">${i}</a>
 		</c:forEach>
 		<c:if test="${endPage < pageCnt }">
-			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+			<a href="brandPdList.do?pageNum=${startPage - blockSize }&ca_code=${ca_code}" class="btn-page next" id="btn_next">다음 페이지로</a>
 		</c:if>
 	</div>
 	
@@ -806,11 +806,12 @@ label {
 		});
 	});
 	
-		/*
-		$(".fold-box-header").click( function () {
-			$(".ip-filter-list col1").slideToggle();
-		}) */
-		
+	$(function () {
+		$('.btn-buy-now').click(function () {
+			confirm('바로구매 이동?');
+			location.href = '#';
+		});
+	});		
 </script>
 
 </body>

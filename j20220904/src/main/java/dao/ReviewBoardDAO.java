@@ -115,7 +115,6 @@ public class ReviewBoardDAO {
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
-				//reviewBoard.setRb_img(rs.getString("rb_img"));
 				reviewBoard.setRb_date(rs.getDate("rb_date"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
 				reviewList.add(reviewBoard);
@@ -150,7 +149,6 @@ public class ReviewBoardDAO {
 				reviewBoard.setProduct_id(rs.getInt("product_id"));
 				reviewBoard.setRb_title(rs.getString("rb_title"));
 				reviewBoard.setRb_content(rs.getString("rb_content"));
-				//reviewBoard.setRb_img(rs.getString("rb_img"));
 				reviewBoard.setRb_date(rs.getDate("rb_date"));
 				reviewBoard.setRb_views(rs.getInt("rb_views"));
 			}
@@ -213,7 +211,7 @@ public class ReviewBoardDAO {
 			pstmt.setString(5, reviewBoard.getRb_content());
 			//pstmt.setString(6, reviewBoard.getRb_img());
 			pstmt.setInt(6, 0);
-			
+
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

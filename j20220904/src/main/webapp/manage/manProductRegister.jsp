@@ -136,11 +136,35 @@ tr {
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
+	/* 브랜드 선 */
 	function ChangeBrand() {
 		var val_str = document.getElementById('select_brand');
 		
 		alert("브랜드 : " + val_str.options[val_str.selectedIndex].value);
 	}
+	
+	
+	/* form 태그와 연결 스크립트 */
+	function fnElementCheck(f) {
+		// f 파라미터의 사이즈 계산
+		var cnt = f.elements.length();	// input 타입(엘리먼트)의 갯수 접근
+		var filecnt = 1;
+		
+		for(i=0 ; i< cnt ; i++) {
+			if(f.elements[i].type == "file") {
+				if(f.elements[i].value == "") {
+					var msg = filecnt + "번째 파일 정보가 누락되었습니다. \n 올바른 입력을 해주세요.";
+					alert(msg);
+					f.elements[i].focus();
+					return;
+				}
+				filecnt++;
+			}
+		}
+		
+		f.submit();	// form 태그 전송 버튼
+	}
+	
 </script>
 <body>
 	<!-- 헤더 -->
@@ -165,7 +189,7 @@ tr {
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
 							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductManage.do" class="active">상품관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manProductRegister.do" class="active">상품관리</a></li>
 							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
@@ -257,11 +281,11 @@ tr {
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
 									<input type="number" min="0" name="stock" required="required">
 								</td>
-							</tr>							
+							</tr>	
 							
 						</table>
 						<div style="transform: translate(231px, 13px); margin-top:15px;">
-							<input type="submit" value="확인">
+							<input type="submit" value="확인" onclick="fnElementCheck(this.form)">
 							<input type="reset" value="취소">
 						</div>
 					</form>

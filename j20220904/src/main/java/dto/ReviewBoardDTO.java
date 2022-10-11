@@ -9,7 +9,6 @@ public class ReviewBoardDTO {
 	
 	private String rb_title;
 	private String rb_content;
-	private String rb_img;
 	private Date rb_date;
 	private int rb_views;
 	
@@ -42,12 +41,6 @@ public class ReviewBoardDTO {
 	}
 	public void setRb_content(String rb_content) {
 		this.rb_content = rb_content;
-	}
-	public String getRb_img() {
-		return rb_img;
-	}
-	public void setRb_img(String rb_img) {
-		this.rb_img = rb_img;
 	}
 	public Date getRb_date() {
 		return rb_date;
