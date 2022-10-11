@@ -611,7 +611,7 @@ function sample6_execDaumPostcode() {
 	        */
 	        name: '주문명:결제테스트',
 	        //결제창에서 보여질 이름
-	        amount: 100,
+	        amount: parseInt($('.totalArr').html()),
 	        //가격
 	        buyer_email: 'abcMartek@siot.do',
 	        buyer_name: buyer, //구매자 이름
