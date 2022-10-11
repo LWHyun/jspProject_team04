@@ -676,10 +676,10 @@ public class ProductDAO {
 		String sql1 = "INSERT INTO product (product_id, brand, eng_name, kor_name, gender, price, color, regdate, ca_code)"
 					+ "VALUES (?,?,?,?,?,?,?,sysdate,?)";
 		
-		String sql2 = "INSERT product_image (pro_image_id, product_id, s_file_path, l_file_path)"
-					+ "VALUES (seq_images.nextval,?,?,?)";
+		String sql2 = "INSERT INTO product_image (pro_image_id, product_id, s_file_path, l_file_path)"
+					+ "VALUES (seq_image.nextval,?,?,?)";
 		
-		String sql3 = "INSERT product_size (size_num, product_id, pd_size, stock)"
+		String sql3 = "INSERT INTO product_size (size_num, product_id, pd_size, stock)"
 					+ "VALUES (?,?,?,?)";
 		
 		PreparedStatement pstmt = null;

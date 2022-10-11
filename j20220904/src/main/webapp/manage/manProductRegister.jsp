@@ -248,6 +248,12 @@ tr {
 									<input type="text" name="ca_code" required="required">
 								</td>
 							</tr>
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;">재고</td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+									<input type="text" name="stock" required="required">
+								</td>
+							</tr>
 
 						</table>
 						<div style="transform: translate(231px, 13px); margin-top:15px;">
