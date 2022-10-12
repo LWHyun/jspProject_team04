@@ -327,7 +327,7 @@
 							<!-- 상품 후기 안내사항 -->
 							<div class="tab-content">
 								<ul class="bullet-text-list" >
-									<li class="bullet-text">일반(텍스트) 후기는 500포인트, 포토 후기는 1,000포인트, 동영상 후기는 1,500포인트를 적립해드립니다.
+									<li class="bullet-text">일반(텍스트) 후기는 <span style="color: #ee1c25">500포인트</span>, 포토 후기는 <span style="color: #ee1c25">1,000</span>포인트, 동영상 후기는 <span style="color: #ee1c25">1,500</span>포인트를 적립해드립니다.
 										<br>(동영상 후기는 mp4 형식의 파일만 해당됩니다.)
 									</li>
 									<li class="bullet-text">
@@ -352,10 +352,10 @@
 										포인트는 통합멤버십 회원에게만 지급됩니다.
 									</li>
 									<li class="bullet-text">
-										상품후기는 A-RT.COM 주문 상품만 작성 가능합니다.
+										상품후기는 신사몰 주문 상품만 작성 가능합니다.
 									</li>
 									<li class="bullet-text">
-										작성하신 상품후기는 A-RT.COM에 귀속되며, 마케팅 용도로 사용될 수 있습니다.
+										작성하신 상품후기는 신사몰에 귀속되며, 마케팅 용도로 사용될 수 있습니다.
 									</li>
 								</ul>
 							</div>
@@ -370,10 +370,6 @@
 								</div>
 								<!-- 후기 리스트 -->
 								<div class="border-line-box">
-									<!-- 후기 없을 때 -->
-									<div class="flex-box" style="display: none;">
-										<p class="no-data-text">작성된 후기가 없습니다. 첫 번째 후기를 남겨보세요.</p>
-									</div>
 									<!-- 후기 글 목록 -->
 									<table>
 										<tr>
@@ -416,40 +412,6 @@
 										</c:if>
 									</div>	
 									<div class="pagination-wrap" id="product-review-pagination">
-										<!-- <div>
-											<ol class="pagination-list">
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num selected">1</button>
-												</li>
-													<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">2</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">3</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">4</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">5</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">6</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">7</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">8</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">9</button>
-												</li>
-												<li class="pagination-item">
-													<button type="button" class="btn-page btn-page-num">10</button>
-												</li>
-											</ol>
-										</div> -->
 										<div class="btn-wrap text-right">
 											<a href="${pageContext.request.contextPath}/board/reviewWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">상품 후기 작성</a>
 										</div>
@@ -460,11 +422,6 @@
 						</div>
 					</div>
 				</div>
-			    <%-- <div class="review_board">
-					<jsp:include page="../board/reviewBoard.jsp"></jsp:include>
-		    	</div>	 --%>
-			    			
-			    			
 			</div>
 			<div class="big_product_main_3">
 			   	<!--예림님이 상품Q&A 여기다가 작성  -->	
@@ -479,10 +436,10 @@
 											단순 상품비방, 상업적인 내용, 미풍양속 위반, 게시판의 성격에 맞지 않는 글은 통보 없이 삭제될 수 있습니다.
 										</li>
 										<li class="bullet-text">
-											오프라인 매장 재고현황 문의는 ‘전국오프라인매장’ 정보를 참고하시어 해당 매장으로 문의하시면 좀 더 정확한 확인이 가능합니다.
+											오프라인 매장 재고현황 문의는 <span style="color: #ee1c25">‘전국오프라인매장’</span> 정보를 참고하시어 해당 매장으로 문의하시면 좀 더 정확한 확인이 가능합니다.
 										</li>
 										<li class="bullet-text">
-											주문/배송/반품 및 AS 등 기타 문의는 1:1 상담문의(마이페이지>쇼핑수첩>나의상담)에 남겨주시기 바랍니다.<br>
+											주문/배송/반품 및 AS 등 기타 문의는 <span style="color: #ee1c25">1:1 상담문의(마이페이지>쇼핑수첩>나의상담)</span>에 남겨주시기 바랍니다.<br>
 											(상품 자체에 대한 문의가 아닌 주문/배송/반품 및 AS 등의 기타문의를 작성하실 경우 나의상담 메뉴로 글이 이동될 수 있습니다.)
 										</li>
 									</ul>
@@ -490,10 +447,6 @@
 								<!-- Q&A 탭 -->
 								<div class="tab-qna">
 									<div class="border-line-box">
-										<!-- 글이 없을 때 -->
-										<div class="flex-box" style="display: none;">
-											<p class="no-data-text">작성된 Q&A가 없습니다.</p>
-										</div>
 										<!-- Q&A 글 목록 -->
 										<table>
 											<tr>
@@ -538,13 +491,6 @@
 									
 										
 										<div class="pagination-wrap" id="product-review-pagination">
-											<!-- <div>
-												<ol class="pagination-list">
-													<li class="pagination-item">
-														<button type="button" class="btn-page btn-page-num selected">1</button>
-													</li>
-												</ol>
-											</div>  -->
 											<div class="btn-wrap text-right">
 												<a href="${pageContext.request.contextPath}/board/qnaWriteForm.do?product_id=${product_id}&gender=${gender}" class="btn btn-dialog">Q&A 작성</a>
 											</div>
@@ -559,10 +505,6 @@
 						</div>	
 					</div>
 				</div>
-			   	<%-- <div class="qna_board">
-					<jsp:include page="../board/qnaBoard.jsp"></jsp:include>
-				</div>	 --%>
-			   				
 			</div>
 			<div class="big_product_main_4">
 				<!--예림님이 배송/교환/반품/AS 여기다가 작성  -->
