@@ -35,26 +35,35 @@ function buyNowPro() {
 </head>
 <body>
 
-	<h1>선택하신 상품 : ${bist[0].kor_name }</h1>
-<h1 style="font-weight: bold">사이즈를 선택하세요</h1><br>
+	<h1 style="text-align: center; font-weight: bold; font-size: 30px;">옵션 선택</h1><br>
+<hr>
+<h1 style="font-weight: bold;">선택하신 상품 : ${buyNowList[0].kor_name }</h1><br>
+<div>
+<img src="${bist[0].s_file_path }" width="200px" height="200px"><br>
+</div><br>
+<hr>
 <div class="style_size" style="display: inline-block;">
-	<c:forEach var="bist" items="${bist }">
-		<c:if test="${bist.stock > 0 }">
-			<label for="${bist.size_num }">
-			<input type="radio" name="size_radio" id="${bist.size_num }" class="size_radio" required="required" value="${bist.size_num }">${bist.pd_size }
-			</label><br>
-		</c:if>
-		<c:if test="${bist.stock <= 0 }">
-			<input type="radio" name="size_radio" id="${bist.size_num }" class="size_radio" value="${bist.size_num }" disabled="disabled">${bist.pd_size } [품절]
+<h1 style="font-weight: bold">사이즈를 선택하세요</h1>
+
+	<c:forEach var="buyNowList" items="${bist}">
+		<c:if test="${buyNowList.stock > 0 }">
+			
+			<input type="radio" name="size_radio" id="${buyNowList.size_num }" class="size_radio" required="required" value="${buyNowList.size_num }">${buyNowList.pd_size }
 			<br>
 		</c:if>
-		<input type="hidden" id="buyNowPro_product_id" name="buyNowPro_product_id" value="${bist.product_id }">
+		<c:if test="${buyNowList.stock <= 0 }">
+			<input type="radio" name="size_radio" id="${buyNowList.size_num }" class="size_radio" value="${buyNowList.size_num }" disabled="disabled">${buyNowList.pd_size } [품절]
+			<br>
+		</c:if>
+		<input type="hidden" id="buyNowPro_product_id" name="buyNowPro_product_id" value="${buyNowList.product_id }">
 	</c:forEach>
-	<br><br>
+	
 	
 </div>
+<hr>
 <br>
 <button class="custom-btn btn-close" onclick="buyNowPro()">구매하기</button>
+
 
 
 </body>
