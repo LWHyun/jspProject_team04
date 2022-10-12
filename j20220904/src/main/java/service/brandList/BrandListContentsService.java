@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.CommandProcess;
 import dao.BrandListDAO;
+import dao.BrandListDaO;
 import dto.Product_ImgSrcDTO;
 
 public class BrandListContentsService implements CommandProcess {
@@ -17,7 +18,7 @@ public class BrandListContentsService implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		BrandListDAO bld = BrandListDAO.getInstance();
+		BrandListDaO bld = BrandListDaO.getInstance();
 		
 		int ca_code = Integer.parseInt(request.getParameter("ca_code"));
 		

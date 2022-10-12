@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +131,7 @@
 				<ul>
 					<!-- <s>89,000원</s> -->
 					<li>
-						${list[0].price}
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${list[0].price}"></fmt:formatNumber>
 					</li><span>원</span>
 				</ul>
 				<button class="button--open"><img src="/j20220904/img/contexts/product_button.png" id="product_button"></button>
@@ -138,14 +139,14 @@
 			            <div class="modal">
 			                	<table class="modal__text">
 			                		<tr>
-			                			<td>정상가</td><td>${list[0].price }원</td>
+			                			<td>정상가</td><td><fmt:formatNumber type="number" maxFractionDigits="3" value="${list[0].price}"></fmt:formatNumber>원</td>
 			                		</tr>
 			                		<tr>	
 			                			<td>할인가</td><td>0원</td>
 			                		</tr>
 			                		<tr>
 			                			<td>회원최대혜택가</td><td class="product_real_price">
-													${list[0].price}원
+			                				<fmt:formatNumber type="number" maxFractionDigits="3" value="${list[0].price}"></fmt:formatNumber>원
 										</td>
 			                		</tr>
 			           					
@@ -950,7 +951,7 @@ $(function(){
 		var amount1 =0;
 		$(document).on('click','#${list[0].pd_size }', function(){
 			   amount1 = Number(${list[0].price});
-			   $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
+			  $('.style_total_right').text(amount1 + amount2 + amount3 + amount4 +amount5);
 		   });
 		
 	   $(document).on('change', '#number1', function() {
