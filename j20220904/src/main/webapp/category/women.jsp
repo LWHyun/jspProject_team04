@@ -13,11 +13,11 @@
 <jsp:include page="../main/header.jsp"></jsp:include>
 <style type="text/css">
 	.wrapper{
-		height : 1800px;
+		height : 100%;
 		width : 100%;
 		position: relative;
 	}
-	a{
+	#listA{
 		color: black;
 		text-decoration: none;
 	}
@@ -35,6 +35,7 @@
 		font-size: 30px;
 	}
 	
+	/* 메인 상품리스트 시작 */
 	.pro_wrap{
 		width: 1250px; 
    		margin-top: 20px; 
@@ -89,8 +90,9 @@
 		font-size: 18px;
 		fon
 	}
+	/* 메인 상품 리스트 끝 */
 	
-	
+	/* 필터 시작 */
 	.filter{
 		width: 270px;
    		margin-top: 30px; 
@@ -124,25 +126,69 @@
 	#btn_search{
 		float:right;
 	}
+	/* 필터 끝 */
+	
+	/* 모달부분 */
+	.modal{ 
+	  position:fixed; 
+	  width:100%; 
+	  height:100%; 
+	  background: rgba(0,0,0,0.8); 
+	  top:0; 
+	  left:0; 
+	  display:none;
+	}
+	
+	#modal_div_button{
+		width:650px; 
+		height:670px;
+		background:#fff; 
+		border-radius:10px;
+		position:relative; 
+		top:35%; left:40%;
+		margin-top:-100px; 
+		margin-left:-150px;
+		text-align:center;
+		box-sizing:border-box; 
+		padding:20px 0;
+		line-height:23px; 
+		cursor:pointer;
+	}
+	
+	#modalClose{
+		margin-top: 10px;
+	}
+	/* 모달 끝 */
 
 </style>
 <script type="text/javascript">
-	/* function like() {
-		$('.like_img').click(function() {
-			$(this).attr('src','../img/contexts/heart0.png');
-		});
-		$('.like_img').dblclick(function() {
-			$(this).attr('src','../img/contexts/heart1.png');
-		})
-	} */
-	
-	
+
 	$(function() {
-		$(".pro_buynow").click(function() {
-			confirm('바로 구매하시겠습니까?');
-			location.href="#"; /* 바로구매창 이동 */
+		$('.pro_buynow').click(function() {
+			
+			var product_id = $(this).siblings('input[name="buyNow_product_id"]').val();
+			var gender = $(this).siblings('input[name="buyNow_gender"]').val();
+			console.log(product_id);
+			console.log(gender);
+			$.ajax({
+				url : '${pageContext.request.contextPath}/category/buyNow.do',
+				data : 
+					{product_id : product_id,
+						gender : gender}, 
+				dataType : 'html',
+				success : function(data) {
+					$('.modal_content').html(data);
+				}
+			});
+			
+			
+			$('.modal').fadeIn();
 		});
-	});
+		$('.modal #modalClose').click(function() {
+			$('.modal').fadeOut();
+		})
+	})
+	
 	
 	
 	$(function () {
@@ -232,7 +278,6 @@
 				dataType : 'html',
 				success : function(data) {
 					console.log(data);
-					alert(data);
 					$('.pro_inner').html(data);
 				}
 			});	
@@ -302,7 +347,7 @@
 		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>
-			<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
+			<a id="listA" href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
 				<img alt="상품이미지" src="${list.s_file_path }" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
@@ -319,7 +364,20 @@
 						</c:otherwise>
 					</c:choose>
 					<button type="button" class="pro_buynow">바로구매</button>
-					<input type="hidden" name="">
+					<input type="hidden" name="buyNow_product_id" id="buyNow_product_id" class="buyNow_product_id" value="${list.product_id }">
+					<input type="hidden" name="buyNow_gender" id="buyNow_gender" class="buyNow_gender" value="${list.gender }">
+					<div class="modal">
+					<div id="modal_div_button">
+						<div class="modal_div_inner">
+							<div class="modal_content" title="구매용 모달창">
+							
+							로딩중...
+							</div>
+						</div>
+						
+						<button id="modalClose" class="custom-btn btn-close">닫기</button>
+						</div>
+					</div>
 				</div>
 			
 			</div>
