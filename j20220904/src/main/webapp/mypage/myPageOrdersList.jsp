@@ -3,6 +3,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/memberCss/myPageOrderList.css">
+<style>
+/* has-line-bottom 찜한 상품 없습니다 */
+.order-mypage-no-data.has-line {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.order-mypage-no-data .flex-box{
+    height: 500px;
+}
+.flex-box {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.order-mypage-no-data .flex-box .no-data-text {
+    padding-top: 107px;
+    background: url(https://abcmart.a-rt.com/static/images/common/common_icon_error.png) no-repeat center top;
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: 800;
+}
+</style>
 <div class="border-line-box-header">
     <h3 class="text-head2">최근 주문내역</h3>
     <div class="btn-wrap">
@@ -36,11 +61,11 @@
 	<h3 class="text-head2">주문 현황 조회</h3>
 </div><!-- border-line-box-header -->
 
-<!-- <div class="mypage-no-data has-line-bottom" style="display:none;" >
+<div class="order-mypage-no-data has-line" style="display:none;" >
     <div class="flex-box">
         <p class="no-data-text">주문한 정보가 없습니다.</p>
     </div>
-</div>has-line-bottom -->
+</div>
 
 <div class="tab-wrap justify ui-tabs ui-corner-all ui-widget ui-widget-content">
 	<ul class="tab-ul">
@@ -186,7 +211,7 @@ $(function() {
 	// 주문 내역이 있을 때 없을 때 display:none 처리
 	var orderlistCnt = Number(${requestScope.ordersCnt});
 	if(orderlistCnt == 0) {
-		$('.mypage-no-data').css('display', '');
+		$('.order-mypage-no-data').css('display', '');
 		$('.tab-wrap').css('display', 'none');
 		$('.order-header').css({
 			'border-bottom' : '2px solid #000',
@@ -194,7 +219,7 @@ $(function() {
 			'line-height' : '45px'
 		});
 	} else {
-		$('.mypage-no-data').css('display', 'none');
+		$('.order-mypage-no-data').css('display', 'none');
 		$('.tab-wrap').css('display', '');
 		$('.order-header').css({
 			'border-bottom' : '',
