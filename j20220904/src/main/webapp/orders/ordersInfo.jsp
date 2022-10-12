@@ -27,12 +27,14 @@
 	
 	.basketbtn{
 		float : right;
+		margin-bottom : 10px;
 	}
 	
 	.basketbtn, .chkBtn, .postBtn{
 		background-color: black;
 		color : white;
 		padding : 0, 12px;
+		height : 30px;
 	}
 	
 	/* textbox들 크기 조절 */
@@ -191,6 +193,33 @@
 		font-size : 17px;
 	}
 	
+	.item_info {
+		text-align: center;
+	}
+	
+	
+	.item-name {
+		font-size : 18px;
+		margin-bottom : 10px;
+		text-align: center;
+	}
+	
+	.item-size {
+		text-align: center;
+	}
+	
+	.item-color {
+		font-size : 13px;
+		color : gray;
+		text-align: center;
+	}
+	
+	
+	.item_cnt {
+		border :none;
+		
+	}
+	
 	.order-payment-box {
 	
 	top : 700px;
@@ -293,11 +322,15 @@ function sample6_execDaumPostcode() {
 								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
 								
 								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img"><img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;"></td>
+									<td class="pd_img">
+										<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+											<img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;">
+										</a>
+									</td>
 									
-									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span class="item-size">${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
+										<input type="text"  readonly="readonly" value="${item.cnt }" class="item_cnt" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
 									
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
