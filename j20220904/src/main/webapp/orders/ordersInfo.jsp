@@ -35,12 +35,46 @@
 		padding : 0, 12px;
 	}
 	
+	/* textbox들 크기 조절 */
+	
 	#buyername, #buyerphone, #buyermail {
 		width : 300px;
 		height : 30px;
 		font-size : 16px;
 	}
 	
+	#receiver_name, #receiver_phone, #address, #detailAddress, #forWrite {
+		
+		width : 300px;
+		height : 30px;
+		font-size : 16px;
+	
+	}
+	
+	.all_address, .receiver_phone, .receiver_name {
+		vertical-align: center;
+	} 
+	
+
+	#selectMessage {
+		width : 250px;
+		height : 30px;
+		font-size : 13px;
+	}
+
+	#postcode {
+		
+		width : 195px;
+		height : 30px;
+		font-size : 16px;
+		margin-top: 17px;
+		margin-bottom: 3px;
+	
+	}
+	
+	#address {
+		margin-bottom : 3px;
+	}
 	.order-body, .cal-tbl {	
 								/* width : 1200px;
 								margin-top : 30px;
@@ -120,7 +154,7 @@
 	}
 	
 	#receiver_name, #receiver_phone {
-		margin-top : 17px;
+		margin-top : 12px;
 	}
 	
 	.tbl-form, .tbl-ship, .tbl-agree {
@@ -259,7 +293,7 @@ function sample6_execDaumPostcode() {
 								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
 								
 								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img"><img src="${item.s_file_path }" width="100px"></td>
+									<td class="pd_img"><img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;"></td>
 									
 									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
@@ -358,7 +392,7 @@ function sample6_execDaumPostcode() {
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="reciver_name">
 										이름
 									</th>
 									<td>
@@ -368,7 +402,7 @@ function sample6_execDaumPostcode() {
 									</td>
 								</tr>
 								<tr>
-									<th>
+									<th class="receiver_phone">
 											휴대폰번호
 									</th>
 									<td>
@@ -379,7 +413,7 @@ function sample6_execDaumPostcode() {
 								</tr>
 								
 								<tr>
-									<th>
+									<th class="all_address">
 											주소
 									</th>
 									<td>

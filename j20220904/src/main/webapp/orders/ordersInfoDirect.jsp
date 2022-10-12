@@ -25,8 +25,55 @@
 	
 	}
 	
-	.basketbtn {
+	.basketbtn{
 		float : right;
+	}
+	
+	.basketbtn, .chkBtn, .postBtn{
+		background-color: black;
+		color : white;
+		padding : 0, 12px;
+	}
+	
+	/* textbox들 크기 조절 */
+	
+	#buyername, #buyerphone, #buyermail {
+		width : 300px;
+		height : 30px;
+		font-size : 16px;
+	}
+	
+	#receiver_name, #receiver_phone, #address, #detailAddress, #forWrite {
+		
+		width : 300px;
+		height : 30px;
+		font-size : 16px;
+	
+	}
+	
+	.all_address, .receiver_phone, .receiver_name {
+		vertical-align: center;
+	} 
+	
+
+	#selectMessage {
+		width : 250px;
+		height : 30px;
+		font-size : 13px;
+	}
+
+	#postcode {
+		
+		width : 195px;
+		height : 30px;
+		font-size : 16px;
+		margin-top: 17px;
+		margin-bottom: 3px;
+	
+	}
+	
+	#address {
+		margin-bottom : 3px;
 	}
 	.order-body, .cal-tbl {	
 								/* width : 1200px;
@@ -50,7 +97,12 @@
 	.buyer-name, .buyer-phone, .buyer-email{
 		
 		padding : 20px;
-		
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.price-cal {
+		text-align: center;
 	}
 	
 	.tbl-form {
@@ -62,6 +114,11 @@
 		margin-bottom : 15px;
 	}
 	
+	.order_info_title {
+	
+		font-size: 20px;
+		font-weight: bold;
+	}
 	
 	.order-basket td, .cal-tbl td, .tbl-form td, .tbl-ship th, .tbl-ship td .tbl-agree td{
 			padding : 20px;
@@ -73,6 +130,7 @@
 		margin-top : 15px;
 	}
 		
+	.basketbtn, 	
 	
 	.all_ul {
 		list-style: none;
@@ -96,7 +154,7 @@
 	}
 	
 	#receiver_name, #receiver_phone {
-		margin-top : 17px;
+		margin-top : 12px;
 	}
 	
 	.tbl-form, .tbl-ship, .tbl-agree {
@@ -120,8 +178,21 @@
 	/* .forWrite { display : none;} */
 	
 	
+	.must {
+		color: red;
+	}
+	
+	.cal_title{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.totalArr {
+		font-size : 17px;
+	}
+	
 	.order-payment-box {
-	position: sticky;
+	
 	top : 700px;
     width: 400px;
     margin-right : 300px;
@@ -222,7 +293,7 @@ function sample6_execDaumPostcode() {
 								
 								
 								<tr id="tr${ordersDTO.product_id }_${ordersDTO.size_num }">
-									<td class="pd_img"><img src="${ordersDTO.s_file_path }" width="100px"></td>
+									<td class="pd_img"><img src="${ordersDTO.s_file_path }" width="100px" style="display : block; margin:0 auto;"></td>
 									
 									<td class="item_info"><span class="item-name">${ordersDTO.kor_name}</span><br><br><span>${ordersDTO.pd_size} <br></span><span class="item-color">${ordersDTO.color }</span></td>
 									<td><input type="hidden" value="${ordersDTO.price }" name="item_price" id="price${ordersDTO.product_id}_${ordersDTO.size_num}">
