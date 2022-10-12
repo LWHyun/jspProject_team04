@@ -97,20 +97,23 @@ public class BrandListDaO {
 	}
 	
 	// 브랜드에 해당하는 상품정보만 나오는 메소드 (페이징까지)
-	public List<Product_ImgSrcDTO> productList(int ca_code, String mem_id) throws SQLException {
+	public List<Product_ImgSrcDTO> productList(int ca_code, String mem_id, int startRow, int endRow) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		String sql = "SELECT p.*, pi.*, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l \r\n"
-				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+) AND p.brand =  (SELECT ca_name FROM category WHERE ca_code=?)";
+		String sql = "SELECT * FROM(\r\n"
+				+ "                SELECT rownum rn, a.* FROM (\r\n"
+				+ "                SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l\r\n"
+				+ "				WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+) AND p.brand =  (SELECT ca_name FROM category WHERE ca_code=?)) a)\r\n"
+				+ "                WHERE rn BETWEEN ? AND ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(2, ca_code);
 			pstmt.setString(1, mem_id);
-//			pstmt.setInt(2, startRow);
-//			pstmt.setInt(3, endRow);
+			pstmt.setInt(2, ca_code);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product_ImgSrcDTO pdImgSrcDTO = new Product_ImgSrcDTO();
@@ -356,6 +359,7 @@ public class BrandListDaO {
 			while (rs.next()) {
 				Product_ImgSrcDTO pdImgSrcDTO = new Product_ImgSrcDTO();
 				pdImgSrcDTO.setProduct_id(rs.getInt("product_id"));
+				pdImgSrcDTO.setBrand(rs.getString("brand"));
 				pdImgSrcDTO.setEng_name(rs.getString("Eng_name"));
 				pdImgSrcDTO.setKor_name(rs.getString("kor_name"));
 				pdImgSrcDTO.setGender(rs.getInt("gender"));

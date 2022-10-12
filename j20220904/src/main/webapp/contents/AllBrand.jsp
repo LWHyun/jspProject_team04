@@ -10,7 +10,6 @@
 /* 배너----------------------------------------------------------------------------------- */
 .contents-wrap {
 	min-width: 1600px;
-	font-size: 13px;
 	overflow: hidden;
 }
 
@@ -391,8 +390,20 @@ ul {
 	#modalClose{
 		margin-top: 10px;
 	}
-
+	
+	.page-btn+btn {
+		margin-left: 50px;
+	}
+	.page-btn {
+		color: white;
+		background-color: black;
+		width: 26px;
+		height: 26px;
+	}
 </style>
+<%
+	String context = request.getContextPath();
+%>
 </head>
 <body>
 	<div id="header">
@@ -473,7 +484,7 @@ ul {
 						<div class="prod-wrap">
 							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }&gender=${list.gender}"> <!-- 상품상세 페이지로 이동 -->
 							<img class="img-box" alt="신발" src="${list.s_file_path }">
-							<span class="prod-brand">${ca_name}</span><br>
+							<span class="prod-brand">${list.brand}</span><br>
 							<span class="prod-name">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
 							<span class="prod-price">${list.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
 							</a>
@@ -521,13 +532,18 @@ ul {
 	<!-- 페이지 -->
 	<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
 		<c:if test="${startPage > blockSize }">
-			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+			<a href="allBrand.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+			<c:if test="${pageNum == i }">
+			<a href="allBrand.do?pageNum=${i}" class="btn-page"><span class="page-btn">${i}</span></a>
+			</c:if>
+			<c:if test="${pageNum != i }">
+			<a href="allBrand.do?pageNum=${i}" class="btn-page">${i}</a>
+			</c:if>
 		</c:forEach>
 		<c:if test="${endPage < pageCnt }">
-			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+			<a href="allBrand.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
 		</c:if>
 	</div>
 	
@@ -536,5 +552,83 @@ ul {
 	<div id="footer">
 	       <jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	
+$(function() {
+	$('.btn-buy-now').click(function() {
+		var product_id = $(this).siblings('input[name="buyNow_product_id"]').val();
+		console.log(product_id);
+		$.ajax({
+			url : '${pageContext.request.contextPath}/contents/buyProductNow.do',
+			data : 
+				{product_id : product_id}, 
+			dataType : 'html',
+			success : function(data) {
+				$('.modal_content').html(data);
+			}
+		});
+		
+		
+		$('.modal').fadeIn();
+	});
+	$('.modal #modalClose').click(function() {
+		$('.modal').fadeOut();
+	})
+})
+
+	$(function(){
+		
+		$(document).on("click", ".btn-prod-favorite", function () {
+				var sandData = "product_id=" + $(this).attr('id');
+											// $(.btn-prod-favorite) 태그의 id를 가져와라
+				var product_id = $(this).attr('id');
+				console.log(product_id);
+				/* alert( $('.btn-prod-favorite').css("background-position")); */
+			if(	$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position") == "0px -22px"){
+				
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/contents/registerLike.do',
+				type: 'get',
+				data: sandData,
+				dataType: 'text',
+				success: function (data) {
+					console.log(data);
+					if (data == "1") {
+						alert('찜한상품에 담겼습니다.');
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+					} else if (data == "-1") {
+						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					} else // (data == "0")
+						alert('이미 찜한상품입니다.');
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
+				}
+			});
+			 
+			} else {
+			 $.ajax({
+				url: '<%=context%>/contents/removeLike.do',
+				type: 'get',
+				data: "product_id=" + $(this).attr('id'),
+				success: function (data) {
+					if (data == "1") {
+						alert ("찜한상품이 해제되었습니다.");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -22px");
+					} else if (data == "-1") {
+						alert('로그인 후 찜한상품을 해제할 수 있습니다.');
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+					} else {
+						alert("error");
+						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 0");
+					}
+				}
+			 });
+			}
+		});
+	});
+	
+</script>
 </body>
 </html>

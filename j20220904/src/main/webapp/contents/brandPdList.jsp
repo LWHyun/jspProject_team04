@@ -11,7 +11,6 @@
 /* 배너----------------------------------------------------------------------------------- */
 .contents-wrap {
 	min-width: 1600px;
-	font-size: 13px;
 	overflow: hidden;
 }
 
@@ -342,16 +341,7 @@ ul {
 	.pagination-wrap .pagination-list .pagination-item+.pagination-item {
 	 	margin-left: 4px;
 	}
-	.pagination-wrap .pagination-list .btn-page {
-	  	color: #999;
-	 	width: 26px;
-	  	height: 26px;
-	  	text-align: center;
-	  	font-size: 13px;
-		border: 0;
-		background: white;
-		font-size: 0;
-	}
+	
 	#btn_prev {
 		margin-left: 6px;
 		background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_icon_pagination.png) no-repeat 0 0;
@@ -391,6 +381,19 @@ ul {
 	
 	#modalClose{
 		margin-top: 10px;
+	}
+	
+	.page-btn {
+		color: white;
+		background-color: black;
+	}
+	.btn-page {
+	  	color: #999;
+	 	width: 26px;
+	  	height: 26px;
+	  	text-align: center;
+		border: 0;
+		background: white;
 	}
 </style>
 <%
@@ -585,14 +588,14 @@ ul {
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
 		
-			<%-- <c:if test="${totCnt > 0 }"> --%>
+			<c:if test="${totCnt > 0 }">
 				<c:forEach var="list" items="${list }">	
 					<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 						<div class="prod-wrap">
 							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }&gender=${list.gender}"> <!-- 상품상세 페이지로 이동 -->
 							<img class="img-box" alt="신발" src="${list.s_file_path }">
-							<span class="prod-brand">${ca_name}</span><br>
-							<span class="prod-name">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
+							<span class="prod-brand" style="font-size: 15px">${ca_name}</span><br>
+							<span class="prod-name" style="font-size: 14px; color: #666;">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
 							<span class="prod-price">${list.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
 							</a>
 							<div class="prod-util-wrap">
@@ -627,26 +630,31 @@ ul {
 						</div>
 					</div>
 				</c:forEach>
-			<%-- </c:if>
+			</c:if>
 			<c:if test="${totCnt == 0 }">
 				<h2>데이터 없음</h2>
-			</c:if> --%>
+			</c:if>
 			
 		</div> <!-- product-list row 끝 -->
 		
 	</div> <!-- filter-list-wrap 끝-->			
 	<!-- 페이지 -->
-	<%-- <div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
+	<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
 		<c:if test="${startPage > blockSize }">
 			<a href="brandPdList.do?ca_code=${ca_code }&pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:if test="${pageNum == i }">
+			<a href="brandPdList.do?pageNum=${i}&ca_code=${ca_code}" class="btn-page" style="width: 26px; height: 26px; font-size: 13px"><span class="page-btn">${i}</span></a>
+			</c:if>
+			<c:if test="${pageNum != i }">
 			<a href="brandPdList.do?pageNum=${i}&ca_code=${ca_code}" class="btn-page">${i}</a>
+			</c:if>
 		</c:forEach>
 		<c:if test="${endPage < pageCnt }">
 			<a href="brandPdList.do?pageNum=${startPage - blockSize }&ca_code=${ca_code}" class="btn-page next" id="btn_next">다음 페이지로</a>
 		</c:if>
-	</div> --%>
+	</div>
 	
 </div> <!-- contents-wrap 끝--> 
 
@@ -666,7 +674,6 @@ $(function() {
 				{product_id : product_id}, 
 			dataType : 'html',
 			success : function(data) {
-				alert(data);
 				$('.modal_content').html(data);
 			}
 		});
