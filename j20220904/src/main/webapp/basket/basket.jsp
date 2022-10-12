@@ -95,6 +95,82 @@
 		font-size : 18px;
 	}
 	
+	
+	.orderBtn {
+		background-color: black;
+		color : white;
+		padding : 0, 12px;
+		width : 80px;
+		height : 30px;
+	}
+	
+	.deleteBtn, #delChk {
+		background-color: white;
+		color : black;
+		padding : 0, 12px;
+		width : 80px;
+		height : 30px;
+	}
+	
+	.shopBtn {
+		background-color: white;
+		color : black;
+		padding : 0, 12px;
+		width : 150px;
+		height : 30px;
+	}
+	
+	
+	.orderAll {
+		background-color: black;
+		color : white;
+		padding : 0, 12px;
+		width : 150px;
+		height : 30px;
+	}
+	
+	
+	.like_pro {
+		color : black;
+		font-weight: bold;
+	}
+	
+	.like_brand {
+		color : black;
+		font-weight : bold;
+		font-size: 15px;
+	}
+	
+	.like_name {
+		color : #666666;
+		font-size : 14px;
+	}
+	
+	.like_price {
+		color : red;
+		font-size : 19px;
+	}
+	
+	.likeTbl {
+					width : 100%;
+					margin-top : 30px;
+					margin-bottom : 30px;
+					border-top: 2px solid black;
+					border-bottom: 1px solid black;	
+		
+	}
+	
+	.like_title {
+		
+		margin-top : 15px;
+		font-size: 25px;
+		font-weight: bold;
+	}
+	
+	.item-name {
+		font_weight : bold;
+	}
+	
 	/* 이하 최근 본 상품, 찜한 상품 tab관련 css		 */
 			
 	.documentation {
@@ -202,7 +278,11 @@
 										<tr id="tr${item.product_id }_${item.size_num }">
 											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"></td>
 											
-											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
+											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }>
+												<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+													<img src="${item.s_file_path }" width="100px">
+												</a>
+											</td>
 											
 											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
 											<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
@@ -212,8 +292,8 @@
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 											
-											<td><input type="button" value="바로구매" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
-												<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
+											<td><input type="button" value="바로구매" class="orderBtn" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
+												<input type="button" value="삭제" class="deleteBtn" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 										</tr>
 									
 									</c:forEach>
@@ -243,8 +323,8 @@
 							</div>
 						
 						<div class="buy-btn">
-							<input type="button" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
-							<input type="button" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
+							<input type="button" class="shopBtn" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
+							<input type="button" class="orderAll" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
 						</div>
 						
 						<div class="buy-notice">
@@ -263,26 +343,25 @@
 		<div class="basket-view">
 		<c:choose>
 			<c:when test="${not empty likeProList }">
+	      			<div class="like_title"> 찜한 상품 </div>
 	      			<table class="likeTbl">
+	      			
 						<tr>
 				      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
 								<td><img src="${like.s_file_path }" width="230px"><br><br>
-								${like.brand }<br>
-								${like.kor_name }<br>
-								${like.price }</td>
+								<span class="like_brand">${like.brand }</span><br>
+								<span class="like_name">${like.kor_name }</span><br>
+								<span class="like_price">${like.price }원</span></td>
 				     		 </c:forEach>
 						</tr>		      			
 	      			</table>
 			</c:when>
 			<c:when test="${empty likeProList }">
+					<div class="like_title"> 찜한 상품 </div>
 					<table class="likeTbl">
+						
 						<tr>
-							<td>
-							내가 찜한 상품
-							</td>
-						</tr>
-						<tr>
-							<td>
+							<td class="no_like">
 							찜한 목록이 없습니다.
 							</td>
 						</tr>

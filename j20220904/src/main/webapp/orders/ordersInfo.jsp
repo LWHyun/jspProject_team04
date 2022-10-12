@@ -33,6 +33,7 @@
 		background-color: black;
 		color : white;
 		padding : 0, 12px;
+		height : 30px;
 	}
 	
 	/* textbox들 크기 조절 */
@@ -293,7 +294,11 @@ function sample6_execDaumPostcode() {
 								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
 								
 								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img"><img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;"></td>
+									<td class="pd_img">
+										<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+											<img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;">
+										</a>
+									</td>
 									
 									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
