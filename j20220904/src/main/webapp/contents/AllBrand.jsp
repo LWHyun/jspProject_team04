@@ -263,6 +263,7 @@ ul {
 	
 	.product-list>.product-box>.prod-wrap>.prod-link>img {
 		width: 100%;
+		height: 240px;
 	}
 	.product-list>.product-box>.prod-wrap>.prod-link>.txt-box {
 		text-align: left;

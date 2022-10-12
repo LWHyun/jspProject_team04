@@ -340,7 +340,7 @@ public class BrandListDaO {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 		String sql = "SELECT * FROM (\r\n"
 				+ "SELECT rownum rn, a.* FROM (\r\n"
-				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id ='asdasd1234') l \r\n"
+				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l \r\n"
 				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+)) a)\r\n"
 				+ "WHERE rn BETWEEN ? AND ?";
 		Connection conn = null;
@@ -384,7 +384,7 @@ public class BrandListDaO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT count(*) FROM(\r\n"
-				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id ='asdasd1234') l \r\n"
+				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l \r\n"
 				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+))";
 		try {
 			conn = getConnection();
