@@ -3,6 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+/* has-line-bottom 찜한 상품 없습니다 */
+.qa-mypage-no-data.has-line {
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.qa-mypage-no-data .flex-box{
+    height: 500px;
+}
+.flex-box {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.qa-mypage-no-data .flex-box .no-data-text {
+    padding-top: 107px;
+    background: url(https://abcmart.a-rt.com/static/images/common/common_icon_error.png) no-repeat center top;
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: 800;
+}
 /* 내가 쓴 글 */
 .border-header {
 	font-size: 22px;
@@ -169,11 +192,11 @@
 	내가 쓴 글(${requestScope.QACnt })
 </div>
 <div class="border-line-box fold-box-list-wrap">	
-	<!-- <div class="mypage-no-data has-line-bottom" style="display:none;">
+	<div class="qa-mypage-no-data has-line" style="display:none;">
         <div class="flex-box">
-            <p class="no-data-text">작성된 QA가 없습니다.</p>
+            <p class="no-data-text">작성된 Q&A가 없습니다.</p>
         </div>
-    </div> -->
+    </div>
 
 	<ul class="fold-box-list qna-list" data-type="single" id="inquiry-list" style="">
 		<%-- <c:forEach var="QAList" items="${list }" >
@@ -371,11 +394,11 @@ $(function() {
 	var qalistCnt = Number(${requestScope.QACnt});
 	console.log(qalistCnt);
 	if(qalistCnt == 0) {
-		$('.mypage-no-data').css('display', '');
+		$('.qa-mypage-no-data').css('display', '');
 		$('.qna-list').css('display', 'none');
 		console.log('0이다');
 	} else {
-		$('.mypage-no-data').css('display', 'none');
+		$('.qa-mypage-no-data').css('display', 'none');
 		$('.qna-list').css('display', '');
 		console.log('0보다 크다');
 	} 
