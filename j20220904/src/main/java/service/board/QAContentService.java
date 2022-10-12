@@ -53,6 +53,8 @@ public class QAContentService implements CommandProcess {
 			request.setAttribute("product_id", product_id);
 			request.setAttribute("gender", gender);
 			
+			// 본인 글인지 확인용
+			request.setAttribute("mem_id", qABoard.getMem_id());
 			
 		} catch (Exception e) {
 			System.out.println("QAContentService Exception->"+e.getMessage());
