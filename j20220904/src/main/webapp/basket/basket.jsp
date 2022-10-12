@@ -358,10 +358,13 @@
 	      			
 						<tr>
 				      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
-								<td><img src="${like.s_file_path }" width="230px"><br><br>
-								<span class="like_brand">${like.brand }</span><br>
-								<span class="like_name">${like.kor_name }</span><br>
-								<span class="like_price">${like.price }원</span></td>
+								<td>
+									<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${like.product_id }&gender=${like.gender}">
+									<img src="${like.s_file_path }" width="230px"></a><br><br>
+									<span class="like_brand">${like.brand }</span><br>
+									<span class="like_name">${like.kor_name }</span><br>
+									<span class="like_price">${like.price }원</span>
+								</td>
 				     		 </c:forEach>
 						</tr>		      			
 	      			</table>

@@ -7,7 +7,17 @@
 <meta charset="UTF-8">
 <title>주문정보</title>
 <style type="text/css">
-
+	
+	.orderFee, .orderReady {
+		font-weight : bold;
+	}
+	
+	.totalArr {
+		color : red;
+		font-weight: bold;
+	
+	}
+	
 	.order-basket {
 						display : block;
 			
@@ -118,7 +128,7 @@
 	
 	.order_info_title {
 	
-		font-size: 20px;
+		font-size: 23px;
 		font-weight: bold;
 	}
 	
@@ -352,9 +362,8 @@ function sample6_execDaumPostcode() {
 						<div class="order-payment-box" id="orderPaymentBox">
 							<div class="order_info_title">결제 정보</div><br><br>
 							<ul class="all_ul">
-								<li class="totalArr"></li><br><br>
-								<li>배송비 : 무료</li><br><br>
-								<li>총 결제예정금액 : </li><br><br>
+								<li><span class="orderFee">배송비</span> : 무료</li><br><br>
+								<li><span class="orderReady">총 결제예정금액</span> : <span class="totalArr">원</span></li><br><br>
 								<li><input type="button" value="결제하기" id="chkBtn" class="chkBtn" onclick="requestPay()">
 							</ul>
 						</div>

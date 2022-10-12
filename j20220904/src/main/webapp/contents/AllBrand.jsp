@@ -263,6 +263,7 @@ ul {
 	
 	.product-list>.product-box>.prod-wrap>.prod-link>img {
 		width: 100%;
+		height: 240px;
 	}
 	.product-list>.product-box>.prod-wrap>.prod-link>.txt-box {
 		text-align: left;
@@ -361,6 +362,35 @@ ul {
 		background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_icon_pagination.png) no-repeat 0 0;
 		background-position: 0 -28px;
 	}
+	.modal{ 
+	  position:fixed; 
+	  width:100%; 
+	  height:100%; 
+	  background: rgba(0,0,0,0.8); 
+	  top:0; 
+	  left:0; 
+	  display:none;
+	}
+	
+	#modal_div_button{
+		width:550px; 
+		height:670px;
+		background:#fff; 
+		border-radius:10px;
+		position:relative; 
+		top:30%; left:40%;
+		margin-top:-100px; 
+		margin-left:-150px;
+		text-align:center;
+		box-sizing:border-box; 
+		padding:20px 0;
+		line-height:23px; 
+		cursor:pointer;
+	}
+	
+	#modalClose{
+		margin-top: 10px;
+	}
 
 </style>
 </head>
@@ -370,6 +400,42 @@ ul {
     </div>  <!-- header -->	
 
 	<div id="contentsWrap" class="contents-wrap">
+		<!-- 배너 (맨 왼쪽 위) -->
+		<div class="contents-width">
+			<div class="breadcrumb-wrap">
+				<ol class="breadcrumb-list">
+					<li class="crumb home">
+						<a href="../index.jsp">HOME ></a>							<!-- 클릭시 홈으로 이동 -->
+					</li>
+					<li class="crumb">
+						<a href="#">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
+					<li class="crumb">${ca_name }</li>													<!--  현재 페이지의 브랜드-->
+				</ol>
+			</div>
+			<div class="page-title-wrap">
+				<h2 class="text-head0 brand-name"><span class="eng">${ca_name }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
+			</div>
+		</div>
+		<c:if test="${ca_name == 'NIKE' }">
+			<div class="brand-slide-wrap">
+				<div class="prod-main-branner">
+					<div class="bg-item">
+						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/nike_banner.jpg');">
+							<div class="banner-division-text">
+								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<p>
+									1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
+									그 위치를 증명하고 있습니다.
+								</p>
+							</div>
+							<div class="brand-logo">											<!--  브랜드 로고 -->
+								<img alt="나이키 로고" src="../img/brand_logo_imgs/nike_logo.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
   															<!-- 리스트의 상품이 12개가 넘어가면 페이지 이동버튼이 가려집니다...-->
   
  		<!-- 필터와 상품리스트 묶음 -->
@@ -379,8 +445,7 @@ ul {
 		<div class="filter-wrap" id="includeSmartSearch">
 		<div class="filter-header">
 			<span class="tilte">BRAND</span>
-			<button type="button" name="smart-search-clear-btn"
-				class="btn-reset-filter"></button>
+			<button type="button" name="smart-search-clear-btn" class="btn-reset-filter"></button>
 		</div>
 		<div class="filter-contents">
 			<div class="fold-box-list-wrap filter">
@@ -402,7 +467,7 @@ ul {
 			<!-- 상품 리스트 -->
 		<div class="product-list row">
 		
-			<%-- <c:if test="${totCnt > 0 }"> --%>
+			<c:if test="${totCnt > 0 }">
 				<c:forEach var="list" items="${list }">	
 					<div class="product-box cell">																		<!-- cell하나당 상품 하나 -->
 						<div class="prod-wrap">
@@ -444,10 +509,27 @@ ul {
 						</div>
 					</div>
 				</c:forEach>
+			</c:if>
+			<c:if test="${totCnt == 0 }">
+				<h2>데이터 없음</h2>
+			</c:if>
 			
 		</div> <!-- product-list row 끝 -->
 		
 	</div> <!-- filter-list-wrap 끝-->			
+	
+	<!-- 페이지 -->
+	<div id="pagingDiv" class="pagination-wrap">										<!-- 다음 상품목록 페이지로 이동 -->
+		<c:if test="${startPage > blockSize }">
+			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page prev" id="btn_prev">이전 페이지로</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<a href="brandPdList.do?pageNum=${i}" class="btn-page">${i}</a>
+		</c:forEach>
+		<c:if test="${endPage < pageCnt }">
+			<a href="brandPdList.do?pageNum=${startPage - blockSize }" class="btn-page next" id="btn_next">다음 페이지로</a>
+		</c:if>
+	</div>
 	
 </div> <!-- contents-wrap 끝--> 
 

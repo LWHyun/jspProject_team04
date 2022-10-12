@@ -16,7 +16,7 @@
 			<li><a style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/category/women.do?gender=1" class="upperCate">${item.ca_name }</a></li>
 		</c:when>
 		<c:when test="${item.ca_name eq '브랜드' }">
-			<li><a style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/contents/allBrand.do?ca_code=${item.ca_code }" class="upperCate">${item.ca_name }</a></li>
+			<li><a style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/contents/allBrand.do" class="upperCate">${item.ca_name }</a></li>
 		</c:when>
 		<c:when test="${item.ca_name eq '운동화' }">
 			<li><a style="text-decoration: none; color: black;" href="${pageContext.request.contextPath }/category/men3.do?gender=0" class="upperCate">${item.ca_name }</a></li>

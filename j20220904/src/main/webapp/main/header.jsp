@@ -194,7 +194,7 @@
          <div class="gnb-top-wrap">
             <div class="inner">
                <a href="${pageContext.request.contextPath }">
-                  <img src="https://image.a-rt.com/art/system/site/202207/1658299296317.png">
+                  <img src="/j20220904/img/titleLogo/sin4mall.png" width="200px" height="85px">
                </a>
               	<div class="gnb-search-wrap">
                   <form action="${pageContext.request.contextPath }/category/searchView.do" id="searchViewForm">
