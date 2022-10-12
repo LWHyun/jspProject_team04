@@ -95,7 +95,7 @@
 	<div class="order-comp">
 		<h1>주문완료</h1>
 		<div class="buycomp">
-			<img alt="buycheck" src="/j20220904/img/order/buy.png" width="80px"><br><br>
+			<img alt="buycheck" src="/j20220904/img/orders/buy.png" width="80px"><br><br>
 			<div class="buy_1">주문이 정상적으로 접수되었습니다.</div><br><br>
 			<div class="buy_2">구매해주셔서 감사합니다.</div><br><br>
 		</div>
