@@ -13,7 +13,14 @@ public class Product_ImgSrcDTO {
 	private String color; // 색상
 	private Date regdate; //등록일
 	private long ca_code; // 카테고리 코드
+	private int e;
 	
+	public int getE() {
+		return e;
+	}
+	public void setE(int e) {
+		this.e = e;
+	}
 	private int pro_image_id;	// 제품 이미지 코드
 	private String s_file_path; //제품 이미지 작은사진 경로
 	private String l_file_path; //제품 이미지 큰사진 경로
