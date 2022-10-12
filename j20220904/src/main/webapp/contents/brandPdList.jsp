@@ -330,6 +330,7 @@ ul {
 /* 페이지 이동----------------------------------------------------------------------------------- */
 	.pagination-wrap {
 		text-align: center;
+		height: 27px;
 	}
 	.pagination-wrap .pagination-list {
 		display: inline-block;
@@ -388,13 +389,20 @@ ul {
 		background-color: black;
 	}
 	.btn-page {
-	  	color: #999;
+	  	color: #666;
 	 	width: 26px;
 	  	height: 26px;
 	  	text-align: center;
 		border: 0;
 		background: white;
 	}
+	
+	.page-btn {
+		color: white;
+		background-color: black;
+		padding: 5px 10px;
+	}
+	
 </style>
 <%
 	String context = request.getContextPath();
@@ -415,7 +423,7 @@ ul {
 						<a href="../index.jsp">HOME ></a>							<!-- 클릭시 홈으로 이동 -->
 					</li>
 					<li class="crumb">
-						<a href="#">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
+						<a href="#">BRAND ></a></li>
 					<li class="crumb">${ca_name }</li>													<!--  현재 페이지의 브랜드-->
 				</ol>
 			</div>
@@ -596,8 +604,7 @@ ul {
 							<img class="img-box" alt="신발" src="${list.s_file_path }">
 							<span class="prod-brand" style="font-size: 15px">${ca_name}</span><br>
 							<span class="prod-name" style="font-size: 14px; color: #666;">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
-							<span class="prod-price">${list.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
-							</a>
+							<span class="prod-price"><fmt:formatNumber value="${list.price }" pattern="#,###"/></span> <span class="price-unit">원</span>							</a>
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
 									<div class="util-btn-wrap">

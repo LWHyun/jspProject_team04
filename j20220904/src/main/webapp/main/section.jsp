@@ -206,7 +206,6 @@
 	    margin-top: 8px;
 	    font-size: 14px;
 	    overflow: hidden;
-	    height: 38px;
 	    max-height: 38px;
 	    line-height: 19px;
 	    display: block;

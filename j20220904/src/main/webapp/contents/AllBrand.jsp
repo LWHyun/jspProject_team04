@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -330,6 +331,7 @@ ul {
 /* 페이지 이동----------------------------------------------------------------------------------- */
 	.pagination-wrap {
 		text-align: center;
+		height: 27px;
 	}
 	.pagination-wrap .pagination-list {
 		display: inline-block;
@@ -341,15 +343,14 @@ ul {
 	.pagination-wrap .pagination-list .pagination-item+.pagination-item {
 	 	margin-left: 4px;
 	}
-	.pagination-wrap .pagination-list .btn-page {
-	  	color: #999;
+	.btn-page {
+	  	color: #666;
 	 	width: 26px;
 	  	height: 26px;
 	  	text-align: center;
-	  	font-size: 13px;
 		border: 0;
 		background: white;
-		font-size: 0;
+		padding: 13px;
 	}
 	#btn_prev {
 		margin-left: 6px;
@@ -391,15 +392,12 @@ ul {
 		margin-top: 10px;
 	}
 	
-	.page-btn+btn {
-		margin-left: 50px;
-	}
 	.page-btn {
 		color: white;
 		background-color: black;
-		width: 26px;
-		height: 26px;
+		padding: 5px 10px;
 	}
+	
 </style>
 <%
 	String context = request.getContextPath();
@@ -419,34 +417,31 @@ ul {
 						<a href="../index.jsp">HOME ></a>							<!-- 클릭시 홈으로 이동 -->
 					</li>
 					<li class="crumb">
-						<a href="#">BRAND ></a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
-					<li class="crumb">${ca_name }</li>													<!--  현재 페이지의 브랜드-->
+						<a href="#">BRAND</a></li>		<!--  클릭시 브랜드 카테고리 페이지 이동 -->
+					<li class="crumb"></li>													<!--  현재 페이지의 브랜드-->
 				</ol>
 			</div>
 			<div class="page-title-wrap">
-				<h2 class="text-head0 brand-name"><span class="eng">${ca_name }</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
+				<h2 class="text-head0 brand-name"><span class="eng">BRAND</span></h2>			<!-- 현재 페이지의 브랜드 이름 -->
 			</div>
 		</div>
-		<c:if test="${ca_name == 'NIKE' }">
 			<div class="brand-slide-wrap">
 				<div class="prod-main-branner">
 					<div class="bg-item">
-						<div class="brand-img-division" style="background-image: url('../img/banners/brand_banner/nike_banner.jpg');">
+						<div class="brand-img-division" style="background-image: url(https://image.a-rt.com/art/product/brand/202208/1661390785120.jpg);">
 							<div class="banner-division-text">
-								<strong style="font-size: 37px; font-weight: 700">${ca_name }</strong>											<!-- 브랜드 이름과 주석 -->
+								<strong style="font-size: 37px; font-weight: 700"></strong>											<!-- 브랜드 이름과 주석 -->
 								<p>
-									1964년에 설립된 전세계 1위 브랜드 나이키. <br>다양한 컬래버레이션과 두터운 매니아층을 통해 세계적으로
-									그 위치를 증명하고 있습니다.
+									
 								</p>
 							</div>
-							<div class="brand-logo">											<!--  브랜드 로고 -->
-								<img alt="나이키 로고" src="../img/brand_logo_imgs/nike_logo.png">
+							<div class="brand-logo">
+								<img src="">
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</c:if>
   															<!-- 리스트의 상품이 12개가 넘어가면 페이지 이동버튼이 가려집니다...-->
   
  		<!-- 필터와 상품리스트 묶음 -->
@@ -485,8 +480,8 @@ ul {
 							<a class="prod-link" href="contents_men.do?product_id=${list.product_id }&gender=${list.gender}"> <!-- 상품상세 페이지로 이동 -->
 							<img class="img-box" alt="신발" src="${list.s_file_path }">
 							<span class="prod-brand">${list.brand}</span><br>
-							<span class="prod-name">${list.kor_name}</span><br> 																	<!-- 상품이름 -->
-							<span class="prod-price">${list.price }</span> <span class="price-unit">원</span>												<!-- 상품가격 -->
+							<span class="prod-name">${list.kor_name}</span><br> 
+							<span class="prod-price"><fmt:formatNumber value="${list.price }" pattern="#,###"/></span> <span class="price-unit">원</span>
 							</a>
 							<div class="prod-util-wrap">
 								<div class="prod-btn-wrap">
@@ -536,10 +531,10 @@ ul {
 		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
 			<c:if test="${pageNum == i }">
-			<a href="allBrand.do?pageNum=${i}" class="btn-page"><span class="page-btn">${i}</span></a>
+				<a href="allBrand.do?pageNum=${i}" class="btn-page"><span class="page-btn">${i}</span></a>
 			</c:if>
 			<c:if test="${pageNum != i }">
-			<a href="allBrand.do?pageNum=${i}" class="btn-page">${i}</a>
+				<a href="allBrand.do?pageNum=${i}" class="btn-page">${i}</a>
 			</c:if>
 		</c:forEach>
 		<c:if test="${endPage < pageCnt }">
@@ -553,7 +548,7 @@ ul {
 	       <jsp:include page="../main/footer.jsp"></jsp:include>
 	</div>
 	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	
 $(function() {
