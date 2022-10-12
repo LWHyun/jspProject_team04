@@ -169,11 +169,11 @@
 	내가 쓴 글(${requestScope.QACnt })
 </div>
 <div class="border-line-box fold-box-list-wrap">	
-	<div class="mypage-no-data has-line-bottom" style="display:none;">
+	<!-- <div class="mypage-no-data has-line-bottom" style="display:none;">
         <div class="flex-box">
             <p class="no-data-text">작성된 QA가 없습니다.</p>
         </div>
-    </div>
+    </div> -->
 
 	<ul class="fold-box-list qna-list" data-type="single" id="inquiry-list" style="">
 		<%-- <c:forEach var="QAList" items="${list }" >
