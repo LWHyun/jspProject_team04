@@ -34,7 +34,7 @@
     padding-left: 30px;
 }
 .fold-box.expanded .fold-box-contents .answer-box {
-    padding: 0 90px 36px 120px;
+    padding: 0 90px 50px 120px;
     background-color: #f8f8f8;
 }
 .fold-box.expanded .fold-box-contents .answer-box .desc {
@@ -284,10 +284,10 @@ function boardPaging(pagingNumber) {
 													 })).append($('<span/>', {
 														 class : 'question-date',
 														 html : items.q_date
-													 }))/* .append($('<span/>', {
+													 })).append($('<span/>', {
 															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
 															 html : (items.q_answer != null ? '답변완료' : '미답변')
-													 })) */
+													 }))
 												 )
 											).append($('<div/>', {
 												class : 'fold-box-contents'
@@ -413,10 +413,10 @@ $(function() {
 													 })).append($('<span/>', {
 														 class : 'question-date',
 														 html : items.q_date
-													 }))/* .append($('<span/>', {
+													 })).append($('<span/>', {
 															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
 															 html : (items.q_answer != null ? '답변완료' : '미답변')
-													 })) */
+													 }))
 												 )
 											).append($('<div/>', {
 												class : 'fold-box-contents'
