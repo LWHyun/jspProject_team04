@@ -70,12 +70,117 @@
 						padding : 50px;
 	
 					}
+					
+	.notice_title {
+		font-size: 19px;
+		font-weight: bold;
+		margin-bottom : 10px;
+	}
+	
 			
 	.basket-view {
 					margin-top : 30px;
 	}		
 			
-			
+	
+	.cal-text {
+		
+		font-weight: bold;
+		font-size: 20px;
+		
+	}
+	
+	
+	#total {
+		font-size : 18px;
+	}
+	
+	
+	.orderBtn {
+		background-color: black;
+		color : white;
+		padding : 0, 12px;
+		width : 80px;
+		height : 30px;
+	}
+	
+	.deleteBtn, #delChk {
+		background-color: white;
+		color : black;
+		padding : 0, 12px;
+		width : 80px;
+		height : 30px;
+	}
+	
+	.shopBtn {
+		background-color: white;
+		color : black;
+		padding : 0, 12px;
+		width : 150px;
+		height : 30px;
+	}
+	
+	
+	.orderAll {
+		background-color: black;
+		color : white;
+		padding : 0, 12px;
+		width : 150px;
+		height : 30px;
+	}
+	
+	
+	.like_pro {
+		color : black;
+		font-weight: bold;
+	}
+	
+	.like_brand {
+		color : black;
+		font-weight : bold;
+		font-size: 15px;
+	}
+	
+	.like_name {
+		color : #666666;
+		font-size : 14px;
+	}
+	
+	.like_price {
+		color : red;
+		font-size : 19px;
+	}
+	
+	.likeTbl {
+					width : 100%;
+					margin-top : 30px;
+					margin-bottom : 30px;
+					border-top: 2px solid black;
+					border-bottom: 1px solid black;	
+		
+	}
+	
+	.like_title {
+		
+		margin-top : 15px;
+		font-size: 25px;
+		font-weight: bold;
+	}
+	
+	.item-name {
+		font_weight : bold;
+	}
+	
+	
+	.countBtn {
+		background-color: #FFFBF9;
+		border : 1px solid #B2B1AE;
+		height: 21px;
+   		width: 21px;
+   		text-align: center;
+	}
+	
+	
 	/* 이하 최근 본 상품, 찜한 상품 tab관련 css		 */
 			
 	.documentation {
@@ -181,20 +286,24 @@
 										<input type="hidden" name="item_size_num" value="${item.size_num }">
 										
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"checked></td>
+											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"></td>
 											
-											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
+											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }>
+												<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+													<img src="${item.s_file_path }" width="100px">
+												</a>
+											</td>
 											
 											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
-											<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
+											<td><input type="button" class="countBtn" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
 												<input type="hidden" value="${item.price }" name="price" id="price${item.product_id}_${item.size_num}">
 												<input type="text" value="${item.cnt }" name="cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
-												<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
+												<input type="button" class="countBtn" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 											
-											<td><input type="button" value="바로구매" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
-												<input type="button" value="삭제" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
+											<td><input type="button" value="바로구매" class="orderBtn" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
+												<input type="button" value="삭제" class="deleteBtn" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
 										</tr>
 									
 									</c:forEach>
@@ -218,21 +327,23 @@
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
 							<div class="price-cal">
 								<table class="cal-tbl">
-									<tr><td>결제 예정 금액</td></tr>
+									<tr class="cal-text"><td>결제 예정 금액</td></tr>
 									<tr><td id="total">원</td></tr>
 								</table>
 							</div>
 						
 						<div class="buy-btn">
-							<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
-							<input type="button" value="선택 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
-							<input type="button" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
+							<input type="button" class="shopBtn" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
+							<input type="button" class="orderAll" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
 						</div>
 						
 						<div class="buy-notice">
 							<div class="notice-contents">
-							<h3>상품 주문 전 꼭 확인해 주세요!</h3><br>
-							<p>결제는 무통장 입금방식으로만 진행됩니다.</p>
+								<div class="notice_title">상품 주문 전 꼭 확인해 주세요!</div><br>
+								<div class="notice_p"><p>매장에서 발송되는 경우 온라인 물류센터 상품보다 평균 배송기간이 2~3일 정도 더 소요될 수 있습니다.<br><br>
+								발송 매장 정보는 주문 완료 후 ‘마이페이지 > 최근 주문내역’에서 확인 가능합니다.<br><br>
+								배송비는 무료로 제공해드리고 있습니다.<br><br>
+								2개 이상의 상품 주문 시 재고 여부에 따라 분리 발송될 수 있습니다.</p></div>
 							</div>
 						</div>
 					</c:if> 
@@ -242,26 +353,25 @@
 		<div class="basket-view">
 		<c:choose>
 			<c:when test="${not empty likeProList }">
+	      			<div class="like_title"> 찜한 상품 </div>
 	      			<table class="likeTbl">
+	      			
 						<tr>
 				      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
 								<td><img src="${like.s_file_path }" width="230px"><br><br>
-								${like.brand }<br>
-								${like.kor_name }<br>
-								${like.price }</td>
+								<span class="like_brand">${like.brand }</span><br>
+								<span class="like_name">${like.kor_name }</span><br>
+								<span class="like_price">${like.price }원</span></td>
 				     		 </c:forEach>
 						</tr>		      			
 	      			</table>
 			</c:when>
 			<c:when test="${empty likeProList }">
+					<div class="like_title"> 찜한 상품 </div>
 					<table class="likeTbl">
+						
 						<tr>
-							<td>
-							내가 찜한 상품
-							</td>
-						</tr>
-						<tr>
-							<td>
+							<td class="no_like">
 							찜한 목록이 없습니다.
 							</td>
 						</tr>

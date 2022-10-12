@@ -20,7 +20,7 @@
             <!-- top bar -->
             <div class="breadcrumb-wrap">
                 <ol class="breadcrumb-list">
-                    <li class="crumb home"><a href="/">HOME</a></li>
+                    <li class="crumb home"><a href="${pageContext.request.contextPath }">HOME</a></li>
                     <li class="crumb">마이페이지</li>
                 </ol>
             </div>
@@ -66,9 +66,9 @@
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/checkUpdateForm.do" id="updateTag">개인정보 수정</a>
                                 </li>
-                                <li class="mypage-lnb-item">
+                                <%-- <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/snsConnForm.do" id="snsTag">sns연결설정</a>
-                                </li>
+                                </li> --%>
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/checkDeleteForm.do" id="deleteTag">회원 탈퇴</a>
                                 </li>
@@ -219,6 +219,39 @@ $(function() {
 		$('.mypage-no-data').css('display', 'none');
 		$('.col-list-wrap').css('display', '');
 	}
+	
+	/* // QA 리스트가 있을 때 없을 때 display:none 처리
+	var qalistCnt = Number(${requestScope.QACnt});
+	console.log(qalistCnt);
+	if(qalistCnt == 0) {
+		$('.mypage-no-data').css('display', '');
+		$('.qna-list').css('display', 'none');
+		console.log('0이다');
+	} else {
+		$('.mypage-no-data').css('display', 'none');
+		$('.qna-list').css('display', '');
+		console.log('0보다 크다');
+	} 
+	
+	// 주문 내역이 있을 때 없을 때 display:none 처리
+	var orderlistCnt = Number(${requestScope.ordersCnt});
+	if(orderlistCnt == 0) {
+		$('.mypage-no-data').css('display', '');
+		$('.tab-wrap').css('display', 'none');
+		$('.order-header').css({
+			'border-bottom' : '2px solid #000',
+			'height' : '45px',
+			'line-height' : '45px'
+		});
+	} else {
+		$('.mypage-no-data').css('display', 'none');
+		$('.tab-wrap').css('display', '');
+		$('.order-header').css({
+			'border-bottom' : '',
+			'height' : '',
+			'line-height' : ''
+		});
+	} */
 });
 
 //찜한 상품 mouseover / out 처리
