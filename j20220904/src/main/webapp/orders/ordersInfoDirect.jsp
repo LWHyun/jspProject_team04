@@ -27,12 +27,14 @@
 	
 	.basketbtn{
 		float : right;
+		margin-bottom : 10px;
 	}
 	
 	.basketbtn, .chkBtn, .postBtn{
 		background-color: black;
 		color : white;
 		padding : 0, 12px;
+		height : 30px;
 	}
 	
 	/* textbox들 크기 조절 */
@@ -191,6 +193,33 @@
 		font-size : 17px;
 	}
 	
+	.item_info {
+		text-align: center;
+	}
+	
+	
+	.item-name {
+		font-size : 18px;
+		margin-bottom : 10px;
+		text-align: center;
+	}
+	
+	.item-size {
+		text-align: center;
+	}
+	
+	.item-color {
+		font-size : 13px;
+		color : gray;
+		text-align: center;
+	}
+	
+	
+	.item_cnt {
+		border :none;
+		
+	}
+	
 	.order-payment-box {
 	
 	top : 700px;
@@ -299,9 +328,9 @@ function sample6_execDaumPostcode() {
 										</a>
 									</td>
 									
-									<td class="item_info"><span class="item-name">${ordersDTO.kor_name}</span><br><br><span>${ordersDTO.pd_size} <br></span><span class="item-color">${ordersDTO.color }</span></td>
+									<td class="item_info"><span class="item-name">${ordersDTO.kor_name}</span><br><br><span class="item-size">${ordersDTO.pd_size} <br></span><span class="item-color">${ordersDTO.color }</span></td>
 									<td><input type="hidden" value="${ordersDTO.price }" name="item_price" id="price${ordersDTO.product_id}_${ordersDTO.size_num}">
-										<input type="text"  readonly="readonly" value="${ordersDTO.cnt }" name="item_cnt" id="cnt${ordersDTO.product_id }_${ordersDTO.size_num}" min="1" max="99" style="width:15px;"></td>
+										<input type="text"  readonly="readonly" value="${ordersDTO.cnt }" name="item_cnt" class="item_cnt" id="cnt${ordersDTO.product_id }_${ordersDTO.size_num}" min="1" max="99" style="width:15px;"></td>
 									
 									<td id="sum${ordersDTO.product_id }_${ordersDTO.size_num}" class="sumProduct">${ordersDTO.price * ordersDTO.cnt }원</td>
 								</tr>

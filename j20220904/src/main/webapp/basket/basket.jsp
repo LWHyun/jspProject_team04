@@ -171,6 +171,16 @@
 		font_weight : bold;
 	}
 	
+	
+	.countBtn {
+		background-color: #FFFBF9;
+		border : 1px solid #B2B1AE;
+		height: 21px;
+   		width: 21px;
+   		text-align: center;
+	}
+	
+	
 	/* 이하 최근 본 상품, 찜한 상품 tab관련 css		 */
 			
 	.documentation {
@@ -285,10 +295,10 @@
 											</td>
 											
 											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
-											<td><input type="button" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
+											<td><input type="button" class="countBtn" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
 												<input type="hidden" value="${item.price }" name="price" id="price${item.product_id}_${item.size_num}">
 												<input type="text" value="${item.cnt }" name="cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
-												<input type="button" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
+												<input type="button" class="countBtn" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
 											
 											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 											
