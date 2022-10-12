@@ -99,22 +99,12 @@
 			<div class="buy_1">주문이 정상적으로 접수되었습니다.</div><br><br>
 			<div class="buy_2">구매해주셔서 감사합니다.</div><br><br>
 		</div>
-	
-	<!-- 	<div class="price_a">
-			<table class="pricechk">
-				<tr class="pricechk1">
-					<td class="price">결제금액: </td>
-					<td class="price_won">~~~~원</td>
-				</tr>
-			</table>
-		</div> -->
 	</div>
 	
 	<div class="input_a">
-			<input type="button" class="white" value="계속 쇼핑하기" onclick="location.href='http://localhost:8181/j20220904/contents/brandPdList.do?ca_code=10100'">
-			<input type="button" class="black" value="구매내역 확인" onclick="location.href='${pageContext.request.contextPath }/mypage/mypage.do'">
+		<input type="button" class="white" value="계속 쇼핑하기" onclick="location.href='http://localhost:8181/j20220904/contents/allBrand.do'">
+		<input type="button" class="black" value="구매내역 확인" onclick="location.href='${pageContext.request.contextPath }/mypage/orderList.do'">
 	</div>
-	
 	
 	<div>
 		<jsp:include page="../main/footer.jsp"></jsp:include>

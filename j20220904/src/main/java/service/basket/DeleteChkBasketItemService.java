@@ -48,6 +48,7 @@ public class DeleteChkBasketItemService implements CommandProcess {
 		 
 		// 선택 삭제 진행하고 남은 장바구니 그대로 가져가야함
 		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		request.setAttribute("likeProList", basketDAO.selectLikeProList(mem_id));
 		
 		return "/basket/basket.jsp";
 	}

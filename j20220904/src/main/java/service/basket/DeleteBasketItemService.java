@@ -47,12 +47,14 @@ public class DeleteBasketItemService implements CommandProcess {
 		basketDAO.deleteItem(basketDTO);
 		
 		
-		session.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		request.setAttribute("basketList", basketDAO.selectBasketList(mem_id));
+		request.setAttribute("likeProList", basketDAO.selectLikeProList(mem_id));
+		
 		/*
 		 * for( int i = 0; i < chklist.length; i++) basketDAO.deleteItem(basketDTO);
 		 */
 		
-		return "basket.jsp";
+		return "/basket/basket.jsp";
 	}
 
 }
