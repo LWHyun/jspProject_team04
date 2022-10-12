@@ -42,7 +42,7 @@ public class QAListService implements CommandProcess {
 		// QA 총 개수
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		int totalCnt = memberDAO.QAListCnt(mem_id);
-		
+		System.out.println("QACnt="+totalCnt);
 		// paging
 		//PageHandler ph = new PageHandler(curPage, 5, 2, totalCnt);
 
