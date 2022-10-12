@@ -284,10 +284,10 @@ function boardPaging(pagingNumber) {
 													 })).append($('<span/>', {
 														 class : 'question-date',
 														 html : items.q_date
-													 })).append($('<span/>', {
+													 }))/* .append($('<span/>', {
 															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
 															 html : (items.q_answer != null ? '답변완료' : '미답변')
-													 }))
+													 })) */
 												 )
 											).append($('<div/>', {
 												class : 'fold-box-contents'
@@ -413,10 +413,10 @@ $(function() {
 													 })).append($('<span/>', {
 														 class : 'question-date',
 														 html : items.q_date
-													 })).append($('<span/>', {
+													 }))/* .append($('<span/>', {
 															 class : (items.q_answer != null ? 'answer-status complete' : 'answer-status'),
 															 html : (items.q_answer != null ? '답변완료' : '미답변')
-													 }))
+													 })) */
 												 )
 											).append($('<div/>', {
 												class : 'fold-box-contents'
@@ -497,12 +497,12 @@ $(function() {
 $(document).on('click', '.fold-box', function() {
 	// 해당 element 가 있는지 length를 통해 판단 (답변완료 / 미답변 존재 유무)
 	console.log();
-	if($(this).find('.answer-status').text() == '답변완료') { 
+	/* if($(this).find('.answer-status').text() == '답변완료') {  */
 		if(!$(this).hasClass('expanded')) {
 			$(this).addClass('expanded');
 		} else {
 			$(this).removeClass('expanded');
 		}
-	}
+	/* } */
 });
 </script>
