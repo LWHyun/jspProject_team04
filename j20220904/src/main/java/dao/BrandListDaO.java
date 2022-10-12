@@ -336,18 +336,22 @@ public class BrandListDaO {
 		return bist;
 	}
 	
-	public List<Product_ImgSrcDTO> brandList(int ca_code, String mem_id) throws SQLException {
+	public List<Product_ImgSrcDTO> brandList(String mem_id, int startRow, int endRow) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
-		String sql = "SELECT p.*, pi.*, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id =?) l \r\n"
-				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+) AND p.brand =  (SELECT ca_name FROM category WHERE ca_code=?)";
+		String sql = "SELECT * FROM (\r\n"
+				+ "SELECT rownum rn, a.* FROM (\r\n"
+				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id ='asdasd1234') l \r\n"
+				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+)) a)\r\n"
+				+ "WHERE rn BETWEEN ? AND ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(2, ca_code);
 			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Product_ImgSrcDTO pdImgSrcDTO = new Product_ImgSrcDTO();
@@ -372,6 +376,34 @@ public class BrandListDaO {
 			if (conn != null) conn.close();
 		}
 		return list;
+	}
+	
+	public int getTotalCount(String mem_id) throws SQLException {
+		int totCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT count(*) FROM(\r\n"
+				+ "SELECT p.product_id, p.brand, p.eng_name, p.kor_name, p.gender, p.price, p.color, p.regdate, p.ca_code, pi.pro_image_id, pi.s_file_path, pi.l_file_path, NVL(l.product_id,0) e FROM product p, product_image pi ,(SELECT * FROM like_pro WHERE mem_id ='asdasd1234') l \r\n"
+				+ "WHERE p.product_id = pi.product_id  AND p.product_id = l.product_id(+))";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("mem_id의 값 -> " + mem_id);
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				totCnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		System.out.println("totCnt의 값 -> " + totCnt);
+		return totCnt;
 	}
 
 }
