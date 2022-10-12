@@ -198,7 +198,7 @@
                </a>
               	<div class="gnb-search-wrap">
                   <form action="${pageContext.request.contextPath }/category/searchView.do" id="searchViewForm">
-                     <input type="search" name="searchBar" id="searchBar" value="${searchWord }" onclick="goSearch()">
+                     <input type="search" name="searchBar" id="searchBar" value="${searchWord }" onclick="goSearch()" required="required">
                      <button class="material-icons" id="searchButton">search</button><!-- 버튼 클릭되면 진짜 찾는걸로 -->
                   </form>
                </div>

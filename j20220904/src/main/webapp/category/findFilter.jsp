@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<style>
+	#listA{
+		color: black;
+		text-decoration: none;
+	}
+</style>
 <script>
 $(function () {
 	var imageName = ["heart0","heart1"];
@@ -76,7 +81,7 @@ $(function () {
 	<c:forEach var="filterList" items="${filterList }">
 		<li class="pro_content">
 			<div>
-			<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${filterList.product_id}&&gender=${filterList.gender}">
+			<a id="listA" href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${filterList.product_id}&&gender=${filterList.gender}">
 				<img alt="상품이미지" src="${filterList.s_file_path }" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${filterList.brand }</span><br>
 				<span class="pro_model">${filterList.kor_name }</span><br>
