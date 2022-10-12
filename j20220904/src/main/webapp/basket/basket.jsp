@@ -70,12 +70,31 @@
 						padding : 50px;
 	
 					}
+					
+	.notice_title {
+		font-size: 19px;
+		font-weight: bold;
+		margin-bottom : 10px;
+	}
+	
 			
 	.basket-view {
 					margin-top : 30px;
 	}		
 			
-			
+	
+	.cal-text {
+		
+		font-weight: bold;
+		font-size: 20px;
+		
+	}
+	
+	
+	#total {
+		font-size : 18px;
+	}
+	
 	/* 이하 최근 본 상품, 찜한 상품 tab관련 css		 */
 			
 	.documentation {
@@ -181,7 +200,7 @@
 										<input type="hidden" name="item_size_num" value="${item.size_num }">
 										
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"checked></td>
+											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"></td>
 											
 											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }><img src="${item.s_file_path }" width="100px"></td>
 											
@@ -218,21 +237,23 @@
 						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
 							<div class="price-cal">
 								<table class="cal-tbl">
-									<tr><td>결제 예정 금액</td></tr>
+									<tr class="cal-text"><td>결제 예정 금액</td></tr>
 									<tr><td id="total">원</td></tr>
 								</table>
 							</div>
 						
 						<div class="buy-btn">
-							<input type="button" value="계속 쇼핑하기" onclick="location.href='https://abcmart.a-rt.com/'">
-							<input type="button" value="선택 상품 주문하기" onclick="location='../orders/ordersInfo.jsp'">
+							<input type="button" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
 							<input type="button" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
 						</div>
 						
 						<div class="buy-notice">
 							<div class="notice-contents">
-							<h3>상품 주문 전 꼭 확인해 주세요!</h3><br>
-							<p>결제는 무통장 입금방식으로만 진행됩니다.</p>
+								<div class="notice_title">상품 주문 전 꼭 확인해 주세요!</div><br>
+								<div class="notice_p"><p>매장에서 발송되는 경우 온라인 물류센터 상품보다 평균 배송기간이 2~3일 정도 더 소요될 수 있습니다.<br><br>
+								발송 매장 정보는 주문 완료 후 ‘마이페이지 > 최근 주문내역’에서 확인 가능합니다.<br><br>
+								배송비는 무료로 제공해드리고 있습니다.<br><br>
+								2개 이상의 상품 주문 시 재고 여부에 따라 분리 발송될 수 있습니다.</p></div>
 							</div>
 						</div>
 					</c:if> 
