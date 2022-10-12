@@ -38,8 +38,10 @@ public class ManProductRegisterProService implements CommandProcess {
 		// 업로드 될 파일의 최대 사이즈 (10메가)
 		int maxSize = 10 * 1024 * 1024;
 		
+		String brandPath = request.getParameter("path_brand");		
 		// 실제 파일 저장 경로
-		String savePath = request.getSession().getServletContext().getRealPath("/img/product_images");
+		System.out.println("path_brand : "+ brandPath);
+		String savePath = request.getSession().getServletContext().getRealPath("/img/product_images/"+brandPath);
 		System.out.println("savePath -> " + savePath);
 
 		try {
@@ -121,8 +123,8 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setColor(multi.getParameter("color"));
 				productImgSrcDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
 				
-				productImgSrcDTO.setL_file_path(imageName[1]);
-				productImgSrcDTO.setS_file_path(imageName[0]);
+				productImgSrcDTO.setL_file_path("/j20220924/img/product_images/"+brandPath+"/"+imageName[1]);
+				productImgSrcDTO.setS_file_path("/j20220904/img/product_images/"+brandPath+"/"+imageName[0]);
 				
 				List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 				for( int i = 0; i < size_arr.length; i++) {

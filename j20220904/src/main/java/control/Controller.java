@@ -77,21 +77,19 @@ public class Controller extends HttpServlet {
             
             
             try {
-               Class commandClass = Class.forName(className);
-               Object commandInstance = commandClass.newInstance();
+            	
+//				이전 방식            	
+//               Class commandClass = Class.forName(className);
+//               Object commandInstance = commandClass.newInstance();
+            	Class<?> commandClass = Class.forName(className);
+            	CommandProcess commandInstance =(CommandProcess)commandClass.getDeclaredConstructor().newInstance();
                commandMap.put(command, commandInstance);
                
                
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                // TODO Auto-generated catch block
                e.printStackTrace();
-            } catch (InstantiationException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-            } catch (IllegalAccessException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-            }
+            } 
          }
    }
 

@@ -36,12 +36,11 @@
 	<h3 class="text-head2">주문 현황 조회</h3>
 </div><!-- border-line-box-header -->
 
-<!-- // 주문 갯수가 있을 때 없을 때 display:none 처리는 myPage.jsp에 있는 jquery 의 영향을 받고있음 -->
-<div class="mypage-no-data has-line-bottom" style="display:none;" >
+<!-- <div class="mypage-no-data has-line-bottom" style="display:none;" >
     <div class="flex-box">
         <p class="no-data-text">주문한 정보가 없습니다.</p>
     </div>
-</div><!-- has-line-bottom -->
+</div>has-line-bottom -->
 
 <div class="tab-wrap justify ui-tabs ui-corner-all ui-widget ui-widget-content">
 	<ul class="tab-ul">

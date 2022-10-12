@@ -136,18 +136,18 @@ tr {
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-	/* 브랜드 선 */
-	function ChangeBrand() {
+	/* 브랜드 선택 */
+/* 	function ChangeBrand() {
 		var val_str = document.getElementById('select_brand');
 		
 		alert("브랜드 : " + val_str.options[val_str.selectedIndex].value);
-	}
+	} */
 	
 	
 	/* form 태그와 연결 스크립트 */
 	function fnElementCheck(f) {
 		// f 파라미터의 사이즈 계산
-		var cnt = f.elements.length();	// input 타입(엘리먼트)의 갯수 접근
+		var cnt = f.elements.length;	// input 타입(엘리먼트)의 갯수 접근
 		var filecnt = 1;
 		
 		for(i=0 ; i< cnt ; i++) {
@@ -163,6 +163,7 @@ tr {
 		}
 		
 		f.submit();	// form 태그 전송 버튼
+		f.action = 'manProductRegisterPro.do?pageNum=${pageNum}&path_brand='+f.path_brand.value;
 	}
 	
 </script>
@@ -189,7 +190,7 @@ tr {
 					<div class="aside-wrap">
 						<ol class="customer-lnb">
 							<li class="customer-lnb-item"><a href="manNoticeList.do">공지사항 관리</a></li>
-							<li class="customer-lnb-item eng"><a href="manProductRegister.do" class="active">상품관리</a></li>
+							<li class="customer-lnb-item eng"><a href="manProductList.do" class="active">상품관리</a></li>
 							<li class="customer-lnb-item"><a href="manQnaList.do">Q&A 관리</a></li>
 						</ol>
 					</div>
@@ -213,7 +214,21 @@ tr {
 									<input type="file" name="s_file_path" required="required">
 								</td>
 							</tr>
-							
+							<tr>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 저장 폴더 선택 </td>
+								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
+             					<!-- <input type="hidden" name="brand" required="required"> -->
+								<select name="path_brand">
+									<option value="Adidas_images">ADIDAS</option>
+									<option value="Birkenstock_images">BIRKENSTOCK</option>
+									<option value="Converse_images">CONVERSE</option>
+									<option value="DrMartens_images">DR.MARTENS</option>
+									<option value="Fila_images" selected="selected">FILA</option>
+									<option value="Lacoste_images">LACOSTE</option>
+									<option value="Nike_images">NIKE</option>
+								</select>
+								</td>
+							</tr>
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 제품코드</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
@@ -223,8 +238,7 @@ tr {
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 브랜드 </td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">
-
-             	<!-- <input type="hidden" name="brand" required="required"> -->
+            					<!-- <input type="hidden" name="brand" required="required"> -->
 										<select name="brand">
 											<option value="ADIDAS">ADIDAS</option>
 											<option value="BIRKENSTOCK">BIRKENSTOCK</option>
@@ -236,6 +250,9 @@ tr {
 										</select>
 								</td>
 							</tr>
+							
+							
+							
 							<tr>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 150px; height: 10px;"> 사이즈 등록</td>
 								<td style="padding: 10px 10px 10px 10px; border: 1px solid grey; width: 250px; height: 10px;">

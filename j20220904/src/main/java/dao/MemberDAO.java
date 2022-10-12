@@ -395,7 +395,9 @@ public class MemberDAO {
 					dto.setOrder_email(rs.getString("order_email"));
 					dto.setTake_name(rs.getString("take_name"));
 					dto.setTake_phone(rs.getString("take_phone"));
-					//dto.setTake_add(rs.getString("take_add"));
+					dto.setTake_zipcode(rs.getString("take_zipcode"));
+					dto.setTake_addr1(rs.getString("take_addr1"));
+					dto.setTake_addr2(rs.getString("take_addr2"));
 					dto.setOrder_msg(rs.getString("order_msg"));
 					dto.setOrder_date(new Date(rs.getDate("order_date").getTime()));
 					dto.setOrder_status(rs.getInt("order_status"));

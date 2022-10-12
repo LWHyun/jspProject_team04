@@ -43,7 +43,7 @@
 									<span>교환/반품/AS</span>
 								</div>			
 								<div class="guide-value">
-									<span class="text">ABC-MART는 온라인/오프라인 매장 구분 없이 교환/반품/AS접수가 가능합니다.</span><br>
+									<span class="text">신사몰은 온라인/오프라인 매장 구분 없이 교환/반품/AS접수가 가능합니다.</span><br>
 									<span class="text">※ 단, 의류 상품은 그랜드스테이지 매장에서만 교환/반품/AS접수 가능합니다.</span>
 								
 									<ul class="bullet-text-list">

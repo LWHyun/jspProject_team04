@@ -46,11 +46,37 @@ public class OrderListService implements CommandProcess {
 		
 		// orders status 갯수
 		List<MyPage_Order_statusDTO> orderStatusList = memberDAO.orderStatusCnt(mem_id);
+		// order_status 가 0 또는 1만 있을 경우의 처리 (jsp 에서 입금 대기 / 결제 완료가 모두 뜨게하기 위함)
+		int status0 = 0;
+		int status1 = 0;
+		if(orderStatusList != null) {
+			for(MyPage_Order_statusDTO dto : orderStatusList) {
+				if(dto.getOrder_status() == 0) {
+					status0++;
+				} else {
+					status1++;
+				}
+			}
+			if(status0 == 0) {
+				MyPage_Order_statusDTO tmp = new MyPage_Order_statusDTO();
+				tmp.setCnt(0);
+				tmp.setOrder_status(0);
+				
+				orderStatusList.add(0, tmp);
+			}
+			if(status1 == 0) {
+				MyPage_Order_statusDTO tmp = new MyPage_Order_statusDTO();
+				tmp.setCnt(0);
+				tmp.setOrder_status(0);
+				
+				orderStatusList.add(tmp);
+			}
+		}
 		
 		// 페이징
 		int curPage = request.getParameter("curPage") == null ? 1 : Integer.parseInt(request.getParameter("curPage"));
 		//System.out.println("curPage="+curPage);
-		PageHandler ph = new PageHandler(curPage, 2, 2, ordersCnt);
+		PageHandler ph = new PageHandler(curPage, 2, 5, ordersCnt);
 		
 		int startNum = (curPage-1)*ph.getPageSize()+1;
 		int endNum = startNum+ph.getPageSize()-1;
