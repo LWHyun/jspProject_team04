@@ -26,6 +26,7 @@ public class FindCateService implements CommandProcess {
 			try {
 				List<CategoryDTO> list = cd.selectCategory(result);
 				request.setAttribute("list", list);
+				System.out.println("카테고리 list.size->"+list.size());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

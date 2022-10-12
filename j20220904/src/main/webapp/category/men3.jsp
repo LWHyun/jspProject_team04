@@ -18,8 +18,8 @@
 		width : 100%;
 		position: relative;
 	}
-
-	a{
+	
+	#listA{
 		color: black;
 		text-decoration: none;
 	}
@@ -37,14 +37,13 @@
 		padding-top:30px;
 		font-size: 30px;
 	}
-	
+	/* 메인 상품 리스트 시작 */
 	.pro_wrap{
 		width: 1250px; 
    		margin-top: 20px; 
    		margin-bottom: 20px;
    		position: relative;
 		left: 400px;
-		
 		
 	}
 	.pro_img{
@@ -92,7 +91,7 @@
 		font-size: 18px;
 		fon
 	}
-	
+	/* 메인 상품 리스트 끝 */
 	
 	.filter{
 		width: 270px;
@@ -130,7 +129,7 @@
 	
 	/* 모달부분 */
 	.modal{ 
-	  position:absolute; 
+	  position:fixed; 
 	  width:100%; 
 	  height:100%; 
 	  background: rgba(0,0,0,0.8); 
@@ -139,28 +138,13 @@
 	  display:none;
 	}
 	
-	/* .modal_content{
-	  width:400px; 
-	  height:200px;
-	  background:#fff; 
-	  border-radius:10px;
-	  position:relative; 
-	  top:50%; left:50%;
-	  margin-top:-100px; 
-	  margin-left:-200px;
-	  text-align:center;
-	  box-sizing:border-box; 
-	  padding:74px 0;
-	  line-height:23px; 
-	  cursor:pointer;
-	} */
 	#modal_div_button{
-		width:400px; 
-		height:350px;
+		width:550px; 
+		height:670px;
 		background:#fff; 
 		border-radius:10px;
 		position:relative; 
-		top:35%; left:50%;
+		top:30%; left:40%;
 		margin-top:-100px; 
 		margin-left:-150px;
 		text-align:center;
@@ -179,7 +163,6 @@
 <script type="text/javascript">
 	$(function() {
 		$('.pro_buynow').click(function() {
-			
 			var product_id = $(this).siblings('input[name="buyNow_product_id"]').val();
 			var gender = $(this).siblings('input[name="buyNow_gender"]').val();
 			console.log(product_id);
@@ -191,7 +174,6 @@
 						gender : gender}, 
 				dataType : 'html',
 				success : function(data) {
-					alert(data);
 					$('.modal_content').html(data);
 				}
 			});
@@ -204,13 +186,7 @@
 		})
 	})
 	
-	/* $(function() {
-		$(".pro_buynow").click(function() {
-			confirm('바로 구매하시겠습니까?');
-			location.href="#";
-		});
-	}); 
-	*/
+
 	
 	//찜하기기능
 	$(function () {
@@ -304,7 +280,6 @@
 				dataType : 'html',
 				success : function(data) {
 					console.log(data);
-					alert(data);
 					$('.pro_inner').html(data);
 				}
 			});	
@@ -319,16 +294,6 @@
 	});
 	
 	
-/* 	$(function() {
-		var mem_id = 
-		$.ajax({
-			url : '${pageContext.request.contextPath}/category/likeList.do',
-			dataType : 'text',
-			success : function(data) {
-				
-			}
-		});
-	}); */
 	
 
 </script>
@@ -389,7 +354,7 @@
 		<c:forEach var="list" items="${list }" >
 			<li class="pro_content">
 			<div>
-			<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
+			<a id="listA" href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${list.product_id}&&gender=${list.gender}">
 				<img alt="상품이미지" src="${list.s_file_path }" class="pro_img" id="pro_img"><br>
 				<span class="pro_brand">${list.brand }</span><br>
 				<span class="pro_model">${list.kor_name }</span><br>
@@ -413,7 +378,7 @@
 						<div class="modal_div_inner">
 							<div class="modal_content" title="구매용 모달창">
 							
-							${list.product_id }
+							로딩중...
 							</div>
 						</div>
 						
@@ -423,12 +388,11 @@
 				</div>
 			</div>
 			</li>
-		</c:forEach>
-		
 			
+		</c:forEach>
 		</ul>
+		
 	</div>
-	
 </div>
 	
 

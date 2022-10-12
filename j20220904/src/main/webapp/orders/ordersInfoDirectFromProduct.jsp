@@ -27,12 +27,14 @@
 	
 	.basketbtn{
 		float : right;
+		margin-bottom : 10px;
 	}
 	
 	.basketbtn, .chkBtn, .postBtn{
 		background-color: black;
 		color : white;
 		padding : 0, 12px;
+		height : 30px;
 	}
 	
 	/* textbox들 크기 조절 */
@@ -191,6 +193,33 @@
 		font-size : 17px;
 	}
 	
+	.item_info {
+		text-align: center;
+	}
+	
+	
+	.item-name {
+		font-size : 18px;
+		margin-bottom : 10px;
+		text-align: center;
+	}
+	
+	.item-size {
+		text-align: center;
+	}
+	
+	.item-color {
+		font-size : 13px;
+		color : gray;
+		text-align: center;
+	}
+	
+	
+	.item_cnt {
+		border :none;
+		
+	}
+	
 	.order-payment-box {
 	
 	top : 700px;
@@ -296,11 +325,15 @@ function sample6_execDaumPostcode() {
 							<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
 							
 								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img"><img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;"></td>
+									<td class="pd_img">
+										<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+											<img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;">
+										</a>
+									</td>
 									
-									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span>${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
+									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span class="item-size">${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
 									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
+										<input type="text"  readonly="readonly" value="${item.cnt }" name="item_cnt" class="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
 									
 									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
 								</tr>
@@ -311,7 +344,7 @@ function sample6_execDaumPostcode() {
  			
 			<div class="price-cal">
 				<table class="cal-tbl">
-					<tr><td>결제 예정 금액</td></tr>
+					<tr><td class="cal_title">결제 예정 금액</td></tr>
 					<tr><td class="totalArr">원</td></tr>
 				</table>
 			</div>
@@ -324,12 +357,12 @@ function sample6_execDaumPostcode() {
 				<div class="order-form">
 								
 						<div class="order-payment-box" id="orderPaymentBox">
-							<h4>결제 정보 </h4><br><br>
+							<div class="order_info_title">결제 정보</div><br><br>
 							<ul class="all_ul">
 								<li class="totalArr"></li><br><br>
 								<li>배송비 : 무료</li><br><br>
 								<li>총 결제예정금액 : </li><br><br>
-								<li><input type="button" value="결제하기" onclick="requestPay()">
+								<li><input type="button" value="결제하기" id="chkBtn" class="chkBtn" onclick="requestPay()">
 							</ul>
 						</div>
 				
@@ -424,7 +457,7 @@ function sample6_execDaumPostcode() {
 									</th>
 									<td>
 										<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
-										<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+										<input type="button" class="postBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 										<input type="text" id="address" name="address" placeholder="주소" required><br>
 										<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
 									</td>
@@ -460,7 +493,9 @@ function sample6_execDaumPostcode() {
 										<td class="agree_title" id="ag_title" > <input type="checkbox" name="checkAgree" id="checkAgree" value="주문 내역에 대한 동의" required> <span class="must">[필수]</span> 주문 내역에 대한 동의</td>
 									</tr>
 									<tr>
-										<td class="agree_contents" id="ag_ct"> 주문하는 상품, 가격, 배송정보, 할인내역 등을 최종 확인 하였으며, 구매에 동의합니다. (전자상거래법 제 8조 제2항)</p></td>
+										<td class="agree_contents" id="ag_ct"> 주문하는 상품, 가격, 배송정보, 할인내역 등을 최종 확인 하였으며, 구매에 동의합니다.<br><br>
+										(전자상거래법 제 8조 제2항)
+										</td>
 									</tr>
 								</table>
 							

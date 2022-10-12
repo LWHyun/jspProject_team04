@@ -95,25 +95,24 @@
 	<div class="order-comp">
 		<h1>주문완료</h1>
 		<div class="buycomp">
-			<img alt="buycheck" src="/j20220904/img/order/buy.png" width="80px"><br><br>
+			<img alt="buycheck" src="/j20220904/img/orders/buy.png" width="80px"><br><br>
 			<div class="buy_1">주문이 정상적으로 접수되었습니다.</div><br><br>
-			<div class="buy_2">입금기한 내에 결제가 완료되지 않는 경우 자동으로 주문이 취소됩니다.</div><br><br>
-			<span>주문번호 2022091396624</span>
+			<div class="buy_2">구매해주셔서 감사합니다.</div><br><br>
 		</div>
 	
-		<div class="price_a">
+	<!-- 	<div class="price_a">
 			<table class="pricechk">
 				<tr class="pricechk1">
 					<td class="price">결제금액: </td>
 					<td class="price_won">~~~~원</td>
 				</tr>
 			</table>
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="input_a">
 			<input type="button" class="white" value="계속 쇼핑하기" onclick="location.href='http://localhost:8181/j20220904/contents/brandPdList.do?ca_code=10100'">
-			<input type="button" class="black" value="구매내역 확인" onclick="location.href='#'">
+			<input type="button" class="black" value="구매내역 확인" onclick="location.href='${pageContext.request.contextPath }/mypage/mypage.do'">
 	</div>
 	
 	
