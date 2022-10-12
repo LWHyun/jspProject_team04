@@ -8,7 +8,9 @@
    header {
       display: block;
    }
-   
+   .upperCate{
+   	color: black;
+   }
    .cate_select{
 		width : 100%;
 		height: 500px;
@@ -251,7 +253,7 @@
 				<h1 id="cate_high"></h1>
 				<hr>
 				<ul class="cate_low" id="cate_low">
-			
+					<li>로딩중</li>
 				</ul>
 				<button id="close" class="custom-btn btn-close">닫기</button>
 			</div>

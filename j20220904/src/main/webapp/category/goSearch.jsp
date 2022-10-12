@@ -168,8 +168,10 @@
     	</div>
     	<div id='box-right' class="box-all"><span class="box_span">추천 검색어</span>
     		<ul>
-    			<li>나이키</li>
-    			<li>아디다스</li>
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=나이키">나이키</a></li>
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=아디다스">아디다스</a></li>
+    			<li><a href="${pageContext.request.contextPath }/category/goSearchPro.do?searchWord=와플">와플</a></li>
+    			
     		</ul>
     	</div>
 	</div>
