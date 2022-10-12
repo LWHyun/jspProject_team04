@@ -34,7 +34,7 @@
     padding-left: 30px;
 }
 .fold-box.expanded .fold-box-contents .answer-box {
-    padding: 0 90px 36px 120px;
+    padding: 0 90px 50px 120px;
     background-color: #f8f8f8;
 }
 .fold-box.expanded .fold-box-contents .answer-box .desc {
@@ -497,12 +497,12 @@ $(function() {
 $(document).on('click', '.fold-box', function() {
 	// 해당 element 가 있는지 length를 통해 판단 (답변완료 / 미답변 존재 유무)
 	console.log();
-	if($(this).find('.answer-status').text() == '답변완료') { 
+	/* if($(this).find('.answer-status').text() == '답변완료') {  */
 		if(!$(this).hasClass('expanded')) {
 			$(this).addClass('expanded');
 		} else {
 			$(this).removeClass('expanded');
 		}
-	}
+	/* } */
 });
 </script>
