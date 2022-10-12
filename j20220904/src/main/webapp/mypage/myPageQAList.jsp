@@ -168,14 +168,13 @@
 <div class="border-header">
 	내가 쓴 글(${requestScope.QACnt })
 </div>
-<div class="border-line-box fold-box-list-wrap">
-	<!-- // QA가 있을 때 없을 때 display:none 처리는 myPage.jsp에 있는 jquery 의 영향을 받고있음 -->
-    <div class="mypage-no-data has-line-bottom" style="display:none;" >
+<div class="border-line-box fold-box-list-wrap">	
+	<!-- <div class="mypage-no-data has-line-bottom" style="display:none;">
         <div class="flex-box">
             <p class="no-data-text">작성된 QA가 없습니다.</p>
         </div>
-    </div><!-- has-line-bottom -->
-	
+    </div> -->
+
 	<ul class="fold-box-list qna-list" data-type="single" id="inquiry-list" style="">
 		<%-- <c:forEach var="QAList" items="${list }" >
 			<li class="fold-box">
@@ -204,6 +203,7 @@
 			</li>
 		</c:forEach> --%>
 	</ul>
+	
 </div>
 
 <!-- QA가 있을 때만 표기 -->
@@ -369,13 +369,16 @@ function boardPaging(pagingNumber) {
 $(function() {
 	// QA 리스트가 있을 때 없을 때 display:none 처리
 	var qalistCnt = Number(${requestScope.QACnt});
+	console.log(qalistCnt);
 	if(qalistCnt == 0) {
 		$('.mypage-no-data').css('display', '');
 		$('.qna-list').css('display', 'none');
+		console.log('0이다');
 	} else {
 		$('.mypage-no-data').css('display', 'none');
 		$('.qna-list').css('display', '');
-	}
+		console.log('0보다 크다');
+	} 
 	/* ajax - json */
 	$.ajax({
 		url : '${pageContext.request.contextPath}/mypage/jsonQAList.do',
