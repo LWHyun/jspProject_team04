@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +36,10 @@
 					</div>
 				</div>
 				<div class="btn-wrap text-right">
-					<a href="${pageContext.request.contextPath}/board/qnaUpdateForm.do?q_id=${q_id}&product_id=${product_id}&gender=${gender}" class="btn btn-dialog">수정</a>
-					<a href="${pageContext.request.contextPath}/board/qnaDeleteForm.do?q_id=${q_id}&pageNum=${pageNum}&product_id=${product_id}&gender=${gender}" class="btn btn-dialog">삭제</a>
+					<c:if test="${requestScope.mem_id == sessionScope.mem_id }">
+						<a href="${pageContext.request.contextPath}/board/qnaUpdateForm.do?q_id=${q_id}&product_id=${product_id}&gender=${gender}" class="btn btn-dialog">수정</a>
+						<a href="${pageContext.request.contextPath}/board/qnaDeleteForm.do?q_id=${q_id}&pageNum=${pageNum}&product_id=${product_id}&gender=${gender}" class="btn btn-dialog">삭제</a>
+					</c:if>
 					<a href="${pageContext.request.contextPath}/contents/contents_men.do?product_id=${product_id}&gender=${gender}&show=qna#big_product_3" class="btn btn-dialog">목록</a>
 				</div>
 			</div>
