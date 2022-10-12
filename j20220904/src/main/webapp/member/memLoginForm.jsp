@@ -65,7 +65,7 @@
                             <a href="${pageContext.request.contextPath }/member/writeForm.do" id="joinBtn" class="btn-login-util">회원가입</a>
                         </div>
 
-                        <div class="sns-login-btn-wrap">
+                        <%-- <div class="sns-login-btn-wrap">
                             <button type="button" class="btn-sns" data-id="10000">
                                 <img width="223" src="${pageContext.request.contextPath }/img/memberImg/kakao/kakao_login_medium_narrow.png">
                             </button>
@@ -73,7 +73,7 @@
                             <button type="button" class="btn-sns" data-id="10002">
                                 <img width="223" id="naverLoginBtn" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png">   
                             </button>
-                        </div>
+                        </div> --%>
                     </div><!-- tab-wrap -->
                 </div><!-- login-contents-inner-wrap 로그인 wrap-->
             </div><!-- memLogin-container -->

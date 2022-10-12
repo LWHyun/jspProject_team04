@@ -66,9 +66,9 @@
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/checkUpdateForm.do" id="updateTag">개인정보 수정</a>
                                 </li>
-                                <li class="mypage-lnb-item">
+                                <%-- <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/snsConnForm.do" id="snsTag">sns연결설정</a>
-                                </li>
+                                </li> --%>
                                 <li class="mypage-lnb-item">
                                     <a href="${pageContext.request.contextPath }/mypage/checkDeleteForm.do" id="deleteTag">회원 탈퇴</a>
                                 </li>
