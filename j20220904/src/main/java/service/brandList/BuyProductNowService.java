@@ -27,6 +27,7 @@ public class BuyProductNowService implements CommandProcess {
 			request.setAttribute("bist", bist);
 			System.out.println("bist -> " + bist);
 			System.out.println("bist length ->"+bist.size());
+			System.out.println("이미지 + " + bist.get(0).getS_file_path());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

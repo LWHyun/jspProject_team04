@@ -363,9 +363,8 @@ ul {
 		background-position: 0 -28px;
 	}
 	
-	/* 모달부분 */
 	.modal{ 
-	  position:absolute; 
+	  position:fixed; 
 	  width:100%; 
 	  height:100%; 
 	  background: rgba(0,0,0,0.8); 
@@ -374,28 +373,13 @@ ul {
 	  display:none;
 	}
 	
-	/* .modal_content{
-	  width:400px; 
-	  height:200px;
-	  background:#fff; 
-	  border-radius:10px;
-	  position:relative; 
-	  top:50%; left:50%;
-	  margin-top:-100px; 
-	  margin-left:-200px;
-	  text-align:center;
-	  box-sizing:border-box; 
-	  padding:74px 0;
-	  line-height:23px; 
-	  cursor:pointer;
-	} */
 	#modal_div_button{
-		width:400px; 
-		height:350px;
+		width:550px; 
+		height:670px;
 		background:#fff; 
 		border-radius:10px;
 		position:relative; 
-		top:35%; left:50%;
+		top:30%; left:40%;
 		margin-top:-100px; 
 		margin-left:-150px;
 		text-align:center;

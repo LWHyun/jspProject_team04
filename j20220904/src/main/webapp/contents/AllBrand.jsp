@@ -361,6 +361,35 @@ ul {
 		background: url(https://abcmart.a-rt.com/static/images/ui/button/btn_icon_pagination.png) no-repeat 0 0;
 		background-position: 0 -28px;
 	}
+	.modal{ 
+	  position:fixed; 
+	  width:100%; 
+	  height:100%; 
+	  background: rgba(0,0,0,0.8); 
+	  top:0; 
+	  left:0; 
+	  display:none;
+	}
+	
+	#modal_div_button{
+		width:550px; 
+		height:670px;
+		background:#fff; 
+		border-radius:10px;
+		position:relative; 
+		top:30%; left:40%;
+		margin-top:-100px; 
+		margin-left:-150px;
+		text-align:center;
+		box-sizing:border-box; 
+		padding:20px 0;
+		line-height:23px; 
+		cursor:pointer;
+	}
+	
+	#modalClose{
+		margin-top: 10px;
+	}
 
 </style>
 </head>
