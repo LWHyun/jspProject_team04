@@ -200,7 +200,7 @@
 	}
 	
 	.totalArr {
-		font-size : 17px;
+		font-size : 18px;
 	}
 	
 	.item_info {
@@ -212,6 +212,7 @@
 		font-size : 18px;
 		margin-bottom : 10px;
 		text-align: center;
+		font-weight: bold;
 	}
 	
 	.item-size {
@@ -227,8 +228,15 @@
 	
 	.item_cnt {
 		border :none;
+		font-size : 15px;
 		
 	}
+	
+	.sumProduct{
+		color : red;
+		font-weight: bold;
+	}
+	
 	
 	.order-payment-box {
 	

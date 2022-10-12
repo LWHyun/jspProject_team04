@@ -46,7 +46,7 @@
 		font-weight : bold;
 	}
 				
-	.basket-wrap td {
+	.basket-content td {
 					padding : 20px;
 					text-align : center;
 					}
@@ -90,9 +90,16 @@
 		
 	}
 	
+	.sumProduct{
+		color : red;
+		font-weight: bold;
+	}
+	
 	
 	#total {
 		font-size : 18px;
+		color : red;
+		font-weight: bold;
 	}
 	
 	
@@ -160,6 +167,21 @@
 		
 	}
 	
+	.likeTbl td {
+		vertical-align: middle;
+		padding : 20px;
+		text-align: center;
+	}
+	
+	.no_like_tbl {
+					width : 100%;
+					margin-top : 30px;
+					margin-bottom : 30px;
+					border-top: 2px solid black;
+					border-bottom: 1px solid black;	
+			
+	}
+	
 	.like_title {
 		
 		margin-top : 15px;
@@ -167,8 +189,20 @@
 		font-weight: bold;
 	}
 	
+	
+	.like_title a {
+	
+		text-decoration-line: none;
+		color : black;
+		
+	}
+	.no_like{
+		padding-top: 80px;
+		padding-bottom: 80px;
+		text-align: center;
+	}
 	.item-name {
-		font_weight : bold;
+		font-weight : bold;
 	}
 	
 	
@@ -180,91 +214,8 @@
    		text-align: center;
 	}
 	
-	
-	/* 이하 최근 본 상품, 찜한 상품 tab관련 css		 */
-			
-	.documentation {
-		   				 color: #fd264f;
-					}
-		
-	button:focus,
-	input:focus,
-	textarea:focus,
-	select:focus {
-		  			outline: none; 
-		  		}
-		
-	.tabs {
-			  display: block;
-			  display: -webkit-flex;
-			  display: -moz-flex;
-			  display: flex;
-			  -webkit-flex-wrap: wrap;
-			  -moz-flex-wrap: wrap;
-			  flex-wrap: wrap;
-			  margin: 0;
-		  	  overflow: hidden; 
-		  }
-	.tabs [class^="tab"] label,
-	.tabs [class*=" tab"] label {
-								    color: black;
-								    cursor: pointer;
-								    display: block;
-								    font-size: 1.1em;
-								    font-weight: 300;
-								    line-height: 1em;
-								    padding: 2rem 0;
-								    text-align: center; 
-								 }
-		 	.tabs [class^="tab"] [type="radio"],
-		  .tabs [class*=" tab"] [type="radio"] {
-		    border-bottom: 1px solid rgba(239, 237, 239, 0.5);
-		    cursor: pointer;
-		    -webkit-appearance: none;
-		    -moz-appearance: none;
-		    appearance: none;
-		    display: block;
-		    width: 100%;
-		    -webkit-transition: all 0.3s ease-in-out;
-		    -moz-transition: all 0.3s ease-in-out;
-		    -o-transition: all 0.3s ease-in-out;
-		    transition: all 0.3s ease-in-out; }
-		    .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
-		    .tabs [class*=" tab"] [type="radio"]:hover,
-		    .tabs [class*=" tab"] [type="radio"]:focus {
-		      border-bottom: 1px solid black; }
-		    .tabs [class^="tab"] [type="radio"]:checked,
-		    .tabs [class*=" tab"] [type="radio"]:checked {
-		      border-bottom: 2px solid black; }
-		    .tabs [class^="tab"] [type="radio"]:checked + div,
-		    .tabs [class*=" tab"] [type="radio"]:checked + div {
-		      opacity: 1; }
-		    .tabs [class^="tab"] [type="radio"] + div,
-		    .tabs [class*=" tab"] [type="radio"] + div {
-		      display: block;
-		      opacity: 0;
-		      padding: 2rem 0;
-		      width: 90%;
-		      -webkit-transition: all 0.3s ease-in-out;
-		      -moz-transition: all 0.3s ease-in-out;
-		      -o-transition: all 0.3s ease-in-out;
-		      transition: all 0.3s ease-in-out; }
-		  .tabs .tab-2 {
-		    width: 50%; }
-		    .tabs .tab-2 [type="radio"] + div {
-		      width: 200%;
-		      margin-left: 200%; }
-		    .tabs .tab-2 [type="radio"]:checked + div {
-		      margin-left: 0; }
-		    .tabs .tab-2:last-child [type="radio"] + div {
-		      margin-left: 100%; }
-		    .tabs .tab-2:last-child [type="radio"]:checked + div {
-		      margin-left: -100%; }
-					
 			
 </style>
-
-
 </head>
 <body>
 	<div>
@@ -280,51 +231,62 @@
 							<c:choose>
 								<c:when test="${not empty basketList }">
 								<!-- 장바구니 상품 추가될 때마다 반복될 테이블 -->
-									
 									<c:forEach var="item" items="${basketList }">
 										<input type="hidden" name="item_product_id" value="${item.product_id }">
-										<input type="hidden" name="item_size_num" value="${item.size_num }">
+										<input type="hidden" name="item_size_num" 	value="${item.size_num }">
+										<input type="hidden" name="kor_name"		value=${item.kor_name }>
+										<input type="hidden" name="small_image" 	value=${item.s_file_path }>
+										<input type="hidden" name="pd_size" 		value=${item.pd_size }>
+										<input type="hidden" name="color" 			value=${item.color }>
 										
 										<tr id="tr${item.product_id }_${item.size_num }">
-											<td><input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}"></td>
-											
-											<td class="pd_img"><input type="hidden" name="small_image" value=${item.s_file_path }>
+											<td>
+												<input type="checkbox" name="rowCheck" value="${item.product_id },${item.size_num}" id="${item.product_id },${item.size_num}">
+											</td>
+											<td class="pd_img">
 												<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
 													<img src="${item.s_file_path }" width="100px">
 												</a>
 											</td>
-											
-											<td class="item_info"><span class="item-name"><input type="hidden" name="kor_name" value=${item.kor_name }>${item.kor_name}</span><br><br><span><input type="hidden" name="pd_size" value=${item.pd_size }>${item.pd_size}<br></span><span class="item-color"><input type="hidden" name="color" value=${item.color }>${item.color }</span></td>
-											<td><input type="button" class="countBtn" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
+											<td class="item_info">
+												<span class="item-name">${item.kor_name}</span><br><br>
+												<span>${item.pd_size}<br></span>
+												<span class="item-color">${item.color }</span>
+											</td>
+											<td>
+												<input type="button" class="countBtn" value="-" onclick="minusCnt(${item.product_id}, ${item.size_num })">
 												<input type="hidden" value="${item.price }" name="price" id="price${item.product_id}_${item.size_num}">
 												<input type="text" value="${item.cnt }" name="cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
-												<input type="button" class="countBtn" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })"></td>
-											
-											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
-											
-											<td><input type="button" value="바로구매" class="orderBtn" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
-												<input type="button" value="삭제" class="deleteBtn" onclick="delItem(${item.product_id}, ${item.size_num })"></td>
+												<input type="button" class="countBtn" value="+" onclick="plusCnt(${item.product_id}, ${item.size_num })">
+											</td>
+											<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">
+												${item.price * item.cnt }원
+											</td>
+											<td>
+												<input type="button" value="바로구매" class="orderBtn" onclick="goDirectOrder(${item.product_id}, ${item.size_num })"><br><br>
+												<input type="button" value="삭제" class="deleteBtn" onclick="delItem(${item.product_id}, ${item.size_num })">
+											</td>
 										</tr>
-									
 									</c:forEach>
 								</c:when>
-								
 								<c:when test="${empty basketList}">
 									<tr>
-										<td>장바구니가 비어있습니다.</td>
+										<td>
+											장바구니가 비어있습니다.
+										</td>
 									</tr>
 								</c:when>
 							</c:choose>
 						</tbody>
-					</table>
+					</table> <!-- .basket-body table 끝 -->
 						
 						<c:if test="${not empty basketList}">
-						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 삭제 버튼을 보여줌 -->
+							<!-- 장바구니에 상품이 있을때 (not empty) 만 삭제 버튼을 보여줌 -->
 							<div class="order-delete-btn">
 								<input type="button" value="선택 삭제" id="delChk" onclick="delChkItem()">
 							</div>
 						
-						<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
+							<!-- 장바구니에 상품이 있을때 (null이 아닐 때) 만 결제 예정 금액을 보여줌 -->
 							<div class="price-cal">
 								<table class="cal-tbl">
 									<tr class="cal-text"><td>결제 예정 금액</td></tr>
@@ -332,64 +294,66 @@
 								</table>
 							</div>
 						
-						<div class="buy-btn">
-							<input type="button" class="shopBtn" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
-							<input type="button" class="orderAll" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
-						</div>
-						
-						<div class="buy-notice">
-							<div class="notice-contents">
-								<div class="notice_title">상품 주문 전 꼭 확인해 주세요!</div><br>
-								<div class="notice_p"><p>매장에서 발송되는 경우 온라인 물류센터 상품보다 평균 배송기간이 2~3일 정도 더 소요될 수 있습니다.<br><br>
-								발송 매장 정보는 주문 완료 후 ‘마이페이지 > 최근 주문내역’에서 확인 가능합니다.<br><br>
-								배송비는 무료로 제공해드리고 있습니다.<br><br>
-								2개 이상의 상품 주문 시 재고 여부에 따라 분리 발송될 수 있습니다.</p></div>
+							<div class="buy-btn">
+								<input type="button" class="shopBtn" value="계속 쇼핑하기" onclick="location.href='../index.jsp'">
+								<input type="button" class="orderAll" value="전체 상품 주문하기" onclick="location.href='${pageContext.request.contextPath }/orders/goToOrderInfo.do'">
 							</div>
-						</div>
-					</c:if> 
+						
+							<div class="buy-notice">
+								<div class="notice-contents">
+									<div class="notice_title">상품 주문 전 꼭 확인해 주세요!</div><br>
+									<div class="notice_p">
+										<p>매장에서 발송되는 경우 온라인 물류센터 상품보다 평균 배송기간이 2~3일 정도 더 소요될 수 있습니다.<br><br>
+										주문과 관련된 정보는 주문 완료 후 ‘마이페이지 > 최근 주문내역’에서 확인 가능합니다.<br><br>
+										배송비는 무료로 제공해드리고 있습니다.<br><br>
+										2개 이상의 상품 주문 시 재고 여부에 따라 분리 발송될 수 있습니다.</p>
+									</div>
+								</div>
+							</div>
+						</c:if> 
 		</div> <!-- order-basket 끝-->
 	</div> <!-- basket-content 끝 -->
 		
 		<div class="basket-view">
 		<c:choose>
 			<c:when test="${not empty likeProList }">
-	      			<div class="like_title"> 찜한 상품 </div>
-	      			<table class="likeTbl">
-	      			
-						<tr>
-				      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
-								<td>
-									<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${like.product_id }&gender=${like.gender}">
-									<img src="${like.s_file_path }" width="230px"></a><br><br>
-									<span class="like_brand">${like.brand }</span><br>
-									<span class="like_name">${like.kor_name }</span><br>
-									<span class="like_price">${like.price }원</span>
-								</td>
-				     		 </c:forEach>
-						</tr>		      			
-	      			</table>
+	      		<div class="like_title">
+	      			<a href="${pageContext.request.contextPath }/mypage/likeProList.do">찜한 상품</a> 
+	      		</div>
+      			<table class="likeTbl">
+					<tr>
+			      		<c:forEach var="like" items="${likeProList }" begin="0" end="3">
+							<td>
+								<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${like.product_id }&gender=${like.gender}">
+								<img src="${like.s_file_path }" width="230px"></a><br><br>
+								<span class="like_brand">${like.brand }</span><br>
+								<span class="like_name">${like.kor_name }</span><br>
+								<span class="like_price">${like.price }원</span>
+							</td>
+			     		 </c:forEach>
+					</tr>		      			
+      			</table>
 			</c:when>
 			<c:when test="${empty likeProList }">
-					<div class="like_title"> 찜한 상품 </div>
-					<table class="likeTbl">
-						
-						<tr>
-							<td class="no_like">
+				<div class="like_title"> 찜한 상품 </div>
+				<table class="no_like_tbl">
+					<tr>
+						<td class="no_like">
 							찜한 목록이 없습니다.
-							</td>
-						</tr>
-					</table>
+						</td>
+					</tr>
+				</table>
 			</c:when>
 		</c:choose>
 		
-		
-		</div>
-	</div>
+		</div> <!-- basket view 끝 -->
+	</div> <!-- basket wrap 끝 -->
 	
 	<div id="footer">
 		<jsp:include page="../main/footer.jsp"></jsp:include>
   	</div>
 	
+</body>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script type="text/javascript">
 	
@@ -421,7 +385,6 @@
 		
 		//소계 계산
 		//calcSum(prod_id)
-	
 	}
 	
 	// 상품 수량 감소 함수
@@ -462,7 +425,6 @@
 		calcTotal()
 	}
 
-	
 	// 장바구니에 담긴 모든 상품 계산
 	function calcTotal() {
 		//장바구니에 값이 없으면 계산안함
@@ -540,9 +502,7 @@
 		location.href='${pageContext.request.contextPath }/basket/deleteChkBasketItem.do?chkStr='+chkStr
 		// String 상태가 된 chkStr을 가지고 체크된 Basket 상품을 삭제하는 서비스로 이동
 		 		
-	 
   	}
  	
 </script>
-</body>
 </html>

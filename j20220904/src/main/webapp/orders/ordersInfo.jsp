@@ -125,6 +125,11 @@
 		margin-bottom : 15px;
 	}
 	
+	.sumProduct{
+		color : red;
+		font-weight: bold;
+	}
+	
 	.order_info_title {
 	
 		font-size: 23px;
@@ -199,7 +204,7 @@
 	}
 	
 	.totalArr {
-		font-size : 17px;
+		font-size : 18px;
 	}
 	
 	.item_info {
@@ -211,6 +216,7 @@
 		font-size : 18px;
 		margin-bottom : 10px;
 		text-align: center;
+		font-weight: bold;
 	}
 	
 	.item-size {
@@ -226,7 +232,7 @@
 	
 	.item_cnt {
 		border :none;
-		
+		font-size : 15px;
 	}
 	
 	.order-payment-box {
@@ -313,200 +319,208 @@ function sample6_execDaumPostcode() {
 	</div>
 	
 	<form id="ordersForm">
-	<div class="order-wrap">
- 		<span class="order-title">주문정보</span>
- 			<div class="go-back-basket">
- 				<input type="button" value="주문정보수정" class="basketbtn" onclick="history.back();">
- 			</div>
- 			
- 			
- 			<div class="order-basket">
-					<!-- 장바구니에서 전체 주문하기로 넘어왔을 때 -->
+		<div class="order-wrap">
+	 		<span class="order-title">주문정보</span>
+	 			<div class="go-back-basket">
+	 				<input type="button" value="주문정보수정" class="basketbtn" onclick="history.back();">
+	 			</div>
+	 			<!-- 장바구니에서 전체 주문하기로 넘어왔을 때 -->
+	 			<div class="order-basket">
 					<table class="order-body">
-					
 						<c:forEach var="item" items="${basketList }" varStatus="status">
-								<input type="hidden" value="${item.product_id }" id="product_id" name="product_id">
-								<input type="hidden" value="${item.size_num }" id="size_num" name="size_num">
-								<input type="hidden" value="${item.cnt }" id="cnt" name="cnt">
-								<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
-								
-								<tr id="tr${item.product_id }_${item.size_num }">
-									<td class="pd_img">
-										<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
-											<img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;">
-										</a>
-									</td>
-									
-									<td class="item_info"><span class="item-name">${item.kor_name}</span><br><br><span class="item-size">${item.pd_size}<br></span><span class="item-color">${item.color }</span></td>
-									<td><input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
-										<input type="text"  readonly="readonly" value="${item.cnt }" class="item_cnt" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;"></td>
-									
-									<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">${item.price * item.cnt }원</td>
-								</tr>
+							<input type="hidden" value="${item.product_id }" id="product_id" name="product_id">
+							<input type="hidden" value="${item.size_num }" id="size_num" name="size_num">
+							<input type="hidden" value="${item.cnt }" id="cnt" name="cnt">
+							<input type="hidden" name="order_price" id="order_price" value="${item.price * item.cnt }">
+							
+							<tr id="tr${item.product_id }_${item.size_num }">
+								<td class="pd_img">
+									<a href="${pageContext.request.contextPath }/contents/contents_men.do?product_id=${item.product_id }&gender=${item.gender}">
+										<img src="${item.s_file_path }" width="100px" style="display : block; margin:0 auto;">
+									</a>
+								</td>
+								<td class="item_info">
+									<span class="item-name">${item.kor_name}</span><br><br>
+									<span class="item-size">${item.pd_size}<br></span>
+									<span class="item-color">${item.color }</span>
+								</td>
+								<td>
+									<input type="hidden" value="${item.price }" name="item_price" id="price${item.product_id}_${item.size_num}">
+									<input type="text"  readonly="readonly" value="${item.cnt }" class="item_cnt" name="item_cnt" id="cnt${item.product_id }_${item.size_num}" min="1" max="99" style="width:15px;">
+								</td>
+								<td id="sum${item.product_id }_${item.size_num}" class="sumProduct">
+									${item.price * item.cnt }원
+								</td>
+							</tr>
 						</c:forEach>
 					</table>
- 			</div>	
+	 			</div>	<!-- order-basket 끝 -->
  				<div class="price-cal">
-						<table class="cal-tbl">
-							<tr class="cal_title"><td>결제 예정 금액</td></tr>
-							<tr><td class="totalArr">원</td></tr>
-						</table>
-					</div>
+					<table class="cal-tbl">
+						<tr class="cal_title">
+							<td>
+								결제 예정 금액
+							</td>
+						</tr>
+						<tr>
+							<td class="totalArr">원</td>
+						</tr>
+					</table>
 				</div>
+			</div> <!-- order-wrap 끝-->
+					
+			<!-- 여기부터 주문 정보 디테일 -->
 				
-				<!-- 여기부터 주문 정보 디테일 -->
-				
-				<div class="order-info">
-						
-						<div class="order-payment-box" id="orderPaymentBox">
-							<div class="order_info_title">결제 정보</div><br><br>
-							<ul class="all_ul">
-								<li><span class="orderFee">배송비</span> : 무료</li><br><br>
-								<li><span class="orderReady">총 결제예정금액</span> : <span class="totalArr">원</span></li><br><br>
-								<li><input type="button" value="결제하기" id="chkBtn" class="chkBtn" onclick="requestPay()">
-							</ul>
-						</div>
-						
+			<div class="order-info">
+					
+				<div class="order-payment-box" id="orderPaymentBox">
+					<div class="order_info_title">결제 정보</div><br><br>
+					<ul class="all_ul">
+						<li><span class="orderFee">배송비</span> : 무료</li><br><br>
+						<li><span class="orderReady">총 결제예정금액</span> : <span class="totalArr">원</span></li><br><br>
+						<li><input type="button" value="결제하기" id="chkBtn" class="chkBtn" onclick="requestPay()"></li>
+					</ul>
+				</div>
 						
 				<div class="order-form">
-						<span class="order-user">주문 고객정보</span>
-						<label><input type="checkbox" id="memChkBox"> 회원 정보와 동일</label>
-						<table class="tbl-form">
+					<span class="order-user">주문 고객정보</span>
+					<label><input type="checkbox" id="memChkBox"> 회원 정보와 동일</label>
+					<table class="tbl-form">
+						<tbody>
+							<tr>
+								<th class="buyer-name">
+									이름
+								</th>
+								<td>
+									<div class="input-wrap" style="width: 500px;">
+										 <input type="text" id="buyername" name="buyername" required> <!-- placeholder -->
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="buyer-phone">
+									휴대폰번호
+								</th>
+								<td>
+									<div class="input-wrap" style="width: 500px;">
+										 <input type="text" id="buyerphone" name="buyerphone"  required> <!-- placeholder -->
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="buyer-email">
+									이메일
+								</th>
+								<td>
+									<div class="input-wrap" style="width: 500px;">
+										 <input type="text" id="buyermail" name="buyermail" required> <!-- placeholder -->
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<span class="ship-info">배송 정보</span>
+					<div class="order-ship">
+						<table class="tbl-ship">
+							<colgroup>
+								<col style="width: 165px;">
+								<col>
+							</colgroup>
 							<tbody>
-								<tr>
-									<th class="buyer-name">
-											이름
-									</th>
-									<td>
-										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" id="buyername" name="buyername" required> <!-- placeholder -->
+							<tr>
+								<th>
+									배송지 선택
+								</th>
+								<td>
+									<div class="choose-wrap" style="width: 500px;">
+										<ul class="all_ul">
+											<li class="choose_li">
+										 		<label>
+										 			<input type="radio" name="choose-one" id="origin-addr">기본 배송지 
+										 		</label>
+											</li>
+											<li class="choose_li">
+												<label>
+													<input type="radio" name="choose-one" id="new-addr" checked="checked">신규 입력
+												</label>
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="reciver_name">
+									이름
+								</th>
+								<td>
+									<div class="input-wrap1" style="width: 500px;">
+										 <input type="text" id="receiver_name" name="receiver_name" required> <!-- placeholder -->
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="receiver_phone">
+									휴대폰번호
+								</th>
+								<td>
+									<div class="input-wrap1" style="width: 500px;">
+										 <input type="text" id="receiver_phone" name="receiver_phone" required> <!-- placeholder -->
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="all_address">
+									주소
+								</th>
+								<td>
+									<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
+									<input type="button" class="postBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+									<input type="text" id="address" name="address" placeholder="주소" required><br>
+									<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
+								</td>
+							</tr>
+							<tr>
+								<th class="ship-req">
+										배송시 요청사항
+								</th>
+								<td>
+									<div class="ship-req" style="width: 500px;">
+										<select class="message" id="selectMessage" name="msgList">
+											<option value="security">부재 시 경비실에 맡겨주세요</option>
+											<option value="door">부재 시 문 앞에 놓아주세요</option>
+											<option value="call">배송 전에 연락 주세요</option>
+											<option value="direct">직접 수령하겠습니다</option>
+											<option value="write">직접 입력</option>
+										</select><br><br>
+										<div class="forWrite">
+											<input type="text" id="forWrite" name="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
 										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="buyer-phone">
-											휴대폰번호
-									</th>
-									<td>
-										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" id="buyerphone" name="buyerphone"  required> <!-- placeholder -->
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="buyer-email">
-											이메일
-									</th>
-									<td>
-										<div class="input-wrap" style="width: 500px;">
-											 <input type="text" id="buyermail" name="buyermail" required> <!-- placeholder -->
-										</div>
-									</td>
-								</tr>
-							</tbody>
+									</div>
+								</td>
+							</tr>
 						</table>
-						<span class="ship-info">배송 정보</span>
-						<div class="order-ship">
-							<table class="tbl-ship">
-								<colgroup>
-									<col style="width: 165px;">
-									<col>
-								</colgroup>
-								<tbody>
+						</div> <!-- order-ship 끝 -->
+						
+						<div>
+							<span class="agree-info">주문동의</span>
+							<table class="tbl-agree" id="agree">
 								<tr>
-									<th>
-											배송지 선택
-									</th>
-									<td>
-										<div class="choose-wrap" style="width: 500px;">
-											<ul class="all_ul">
-												<li class="choose_li">
-											 		<input type="radio" name="choose-one" id="origin-addr"> 기본 배송지
-												</li>
-												
-												<li class="choose_li">
-													<input type="radio" name="choose-one" id="new-addr" checked="checked"> 신규 입력
-												</li>
-											</ul>
-										</div>
+									<td class="agree_title" id="ag_title" >
+										<input type="checkbox" name="checkAgree" id="checkAgree" value="주문 내역에 대한 동의" required>
+										<span class="must">[필수]</span> 주문 내역에 대한 동의
 									</td>
 								</tr>
 								<tr>
-									<th class="reciver_name">
-										이름
-									</th>
-									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" id="receiver_name" name="receiver_name" required> <!-- placeholder -->
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="receiver_phone">
-											휴대폰번호
-									</th>
-									<td>
-										<div class="input-wrap1" style="width: 500px;">
-											 <input type="text" id="receiver_phone" name="receiver_phone" required> <!-- placeholder -->
-										</div>
-									</td>
-								</tr>
-								
-								<tr>
-									<th class="all_address">
-											주소
-									</th>
-									<td>
-										
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호" required>
-											<input type="button" class="postBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-											<input type="text" id="address" name="address" placeholder="주소" required><br>
-											<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" required>
-										
-									</td>
-								</tr>
-								<tr>
-									<th class="ship-req">
-											배송시 요청사항
-									</th>
-									<td>
-										<div class="ship-req" style="width: 500px;">
-											<select class="message" id="selectMessage" name="msgList">
-												<option value="security">부재 시 경비실에 맡겨주세요</option>
-												<option value="door">부재 시 문 앞에 놓아주세요</option>
-												<option value="call">배송 전에 연락 주세요</option>
-												<option value="direct">직접 수령하겠습니다</option>
-												<option value="write">직접 입력</option>
-											</select><br><br>
-											
-											<div class="forWrite">
-												<input type="text" id="forWrite" name="forWrite" class="direct-msg" placeholder="배송 메시지는 40자내로 입력해주세요" disabled>
-											</div>
-											
-										</div>
+									<td class="agree_contents" id="ag_ct"> 
+										주문하는 상품, 가격, 배송정보, 할인내역 등을 최종 확인 하였으며, 구매에 동의합니다.<br><br>
+										(전자상거래법 제 8조 제2항)
 									</td>
 								</tr>
 							</table>
 						</div>
-						
-							<div>
-								<span class="agree-info">주문동의</span>
-								<table class="tbl-agree" id="agree">
-									<tr>
-										<td class="agree_title" id="ag_title" > <input type="checkbox" name="checkAgree" id="checkAgree" value="주문 내역에 대한 동의" required> <span class="must">[필수]</span> 주문 내역에 대한 동의</td>
-									</tr>
-									<tr>
-										<td class="agree_contents" id="ag_ct"> 주문하는 상품, 가격, 배송정보, 할인내역 등을 최종 확인 하였으며, 구매에 동의합니다.<br><br>
-										(전자상거래법 제 8조 제2항)</td>
-									</tr>
-								</table>
-							
-							</div>
-						
-					
-					</div>	 <!-- orderinfo div 끝 -->			
-				</div>
-				</form>
+				</div>	 <!-- orderform div 끝 -->			
+			</div> <!-- order-info 끝 -->
+	</form>
 	
 	<div id="footer">
 		<jsp:include page="../main/footer.jsp"></jsp:include>
@@ -524,7 +538,6 @@ function sample6_execDaumPostcode() {
 	$(function(){
 		calcTotal()
 	})
-
 
 
 	function calcTotal() {
@@ -721,7 +734,7 @@ function sample6_execDaumPostcode() {
 	        참고하세요.
 	        나중에 포스팅 해볼게요.
 	        */
-	        name: '주문명:결제테스트',
+	        name: '신사몰 상품',
 	        //결제창에서 보여질 이름
 	        amount: parseInt($('.totalArr').html()),
 	        //가격
