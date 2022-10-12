@@ -16,8 +16,10 @@
 		height : 100%;
 		width : 100%;
 		position: relative;
+		min-height: 700px;
 	}
 
+	
 	#listA{
 		color: black;
 		text-decoration: none;
@@ -42,8 +44,7 @@
    		margin-bottom: 20px;
    		position: relative;
 		left: 400px;
-		
-		
+		height: auto;
 	}
 	.pro_img{
 		width: 285px;
@@ -88,17 +89,18 @@
 		font-weight: bold;
 		color: red;
 		font-size: 18px;
-		fon
 	}
 	
-	
+	.filter_wrapper{
+		height: 100%;
+	}
 	.filter{
 		width: 270px;
    		margin-top: 30px; 
    		border: 1px solid #A6A6A6; 
    		display: inline-block;
    		position: absolute;
-   		left: 5%;
+   		float: left;
    		font-size: 20px;
    		font-weight: bold;
 	}
@@ -415,7 +417,10 @@
 	</div>
 	
 </div>
-<jsp:include page="../main/footer.jsp"></jsp:include>
+
 	
 </body>
+<div class="footer_wrapper">
+<jsp:include page="../main/footer.jsp"></jsp:include>
+</div>
 </html>

@@ -17,6 +17,7 @@
 		height : 100%;
 		width : 100%;
 		position: relative;
+		min-height: 700px;
 	}
 	
 	#listA{
@@ -99,7 +100,7 @@
    		border: 1px solid #A6A6A6; 
    		display: inline-block;
    		position: absolute;
-   		left: 5%;
+   		float: left;
    		font-size: 20px;
    		font-weight: bold;
 	}

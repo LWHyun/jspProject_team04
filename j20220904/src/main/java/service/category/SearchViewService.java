@@ -41,7 +41,6 @@ public class SearchViewService implements CommandProcess {
 					request.setAttribute("ca_name", codeName);
 					request.setAttribute("ca_code", ca_code);
 					request.setAttribute("searchBar", searchBar);
-					
 					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -56,6 +55,7 @@ public class SearchViewService implements CommandProcess {
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);
 				request.setAttribute("ca_code", ca_code);
+
 				result=0;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
