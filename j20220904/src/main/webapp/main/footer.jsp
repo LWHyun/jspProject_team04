@@ -11,7 +11,7 @@
 	height: 200px;
 	background-color: #FF0000;
 	display: block;
-	margin-top: 250px;
+	margin-top: 150px;
 }
 
 .footer-division-1 {

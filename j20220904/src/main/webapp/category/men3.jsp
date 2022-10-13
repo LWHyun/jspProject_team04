@@ -96,8 +96,7 @@
 	
 	.filter{
 		width: 270px;
-   		margin-top: 30px; 
-   		border: 1px solid #A6A6A6; 
+   		margin-top: 30px;
    		display: inline-block;
    		position: absolute;
    		float: left;
@@ -293,8 +292,6 @@
 			location.reload();
 		})
 	});
-	
-	
 	
 
 </script>
