@@ -97,7 +97,6 @@
 	.filter{
 		width: 270px;
    		margin-top: 30px; 
-   		border: 1px solid #A6A6A6; 
    		display: inline-block;
    		position: absolute;
    		float: left;
@@ -147,7 +146,7 @@
 		background:#fff; 
 		border-radius:10px;
 		position:relative; 
-		top:35%; left:40%;
+		top:30%; left:40%;
 		margin-top:-100px; 
 		margin-left:-150px;
 		text-align:center;
@@ -309,6 +308,7 @@
 	<form action="#">
 	   	<div class="dropdown">
 	   		<span>브랜드</span>
+	   		<img src="/j20220904/img/contexts/product_button.png" style="float: right; margin-right: 10px; margin-top: 12px;">
 		   	<div class="dropdown_content">
 		   		<ul>
 		   			<li><input type="checkbox" name="chkbox_brand" value="ADIDAS"><label for="chkbox_brand">아디다스</label></li>
@@ -324,6 +324,7 @@
 	
 	   	<div class="dropdown">
 	   		<span>사이즈</span>
+	   		<img src="/j20220904/img/contexts/product_button.png" style="float: right; margin-right: 10px; margin-top: 12px;">
 		   	<div class="dropdown_content">
 		   		<ul>
 		   			<li><input type="radio" name="radio_size" value="220"><label for="chkbox_size">220</label></li>
