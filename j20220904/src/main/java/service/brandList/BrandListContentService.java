@@ -32,6 +32,8 @@ public class BrandListContentService implements CommandProcess {
 //			int product_id = Integer.parseInt(request.getParameter("product_id"));
 //			System.out.println("product_id 받아옴? -> " + product_id); 응 못 받아
 			int totCnt = bld.getTotalCnt(ca_code);
+			String toURI = request.getRequestURI();
+			toURI = toURI + "?ca_code="+ca_code;
 			
 			if (pageNum == null || pageNum.equals("")) {pageNum = "1";}
 			int currentPage = Integer.parseInt(pageNum);
@@ -74,6 +76,7 @@ public class BrandListContentService implements CommandProcess {
 			System.out.println("endPage는? " + endPage);
 			request.setAttribute("ca_code", ca_code);
 			System.out.println("ca_code는? " + ca_code);
+			request.setAttribute("toURI", toURI);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
