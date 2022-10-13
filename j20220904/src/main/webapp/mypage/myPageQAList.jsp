@@ -318,12 +318,14 @@ function boardPaging(pagingNumber) {
 													class : 'question-box-detail'
 													}).append($('<div/>', {
 														class : 'question-desc',
+														style : 'word-break : break-all;',
 														html : items.q_content
 													}))
 												).append($('<div/>', {
 													class : 'answer-box'
 													}).append($('<p/>', {
 														class : 'desc',
+														style : 'word-break : break-all;',
 														html : items.q_answer
 													})))
 							)// li의 append
@@ -447,12 +449,14 @@ $(function() {
 													class : 'question-box-detail'
 													}).append($('<div/>', {
 														class : 'question-desc',
+														style : 'word-break : break-all;',
 														html : items.q_content
 													}))
 												).append($('<div/>', {
 													class : 'answer-box'
 													}).append($('<p/>', {
 														class : 'desc',
+														style : 'word-break : break-all;',
 														html : items.q_answer
 													})))
 							)// li의 append
