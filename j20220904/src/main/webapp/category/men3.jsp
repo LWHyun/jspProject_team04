@@ -261,7 +261,7 @@
 	//필터기능
 	function searchFilter() {
 		if($('input[name="radio_size"]').is(':checked')==false&&$('input[name="chkbox_brand"]').is(':checked')==false){			
-			alert("체크해주세요");
+			alert("조건을 선택하지 않으셨습니다. 필터에서 조건을 선택해주세요"); 
 		}else{
 			
 			var brandArray = [];
