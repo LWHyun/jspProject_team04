@@ -26,7 +26,7 @@ public class ReviewWriteProService implements CommandProcess {
 		
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
-		
+		String show = request.getParameter("show");
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		String toURI = request.getRequestURI();
@@ -130,6 +130,8 @@ public class ReviewWriteProService implements CommandProcess {
 			request.setAttribute("pageCnt2", pageCnt2);
 			request.setAttribute("startPage2", startPage2);
 			request.setAttribute("endPage2", endPage2);
+			
+			request.setAttribute("show", show);
 		} catch (Exception e) {
 			System.out.println("ReviewWriteProService >" +e.getMessage());
 		}
