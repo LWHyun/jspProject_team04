@@ -350,7 +350,9 @@ ul {
 	  	text-align: center;
 		border: 0;
 		background: white;
-		padding: 13px;
+	}
+	.btn-page+.btn-page{
+		margin-left: 20px;		
 	}
 	#btn_prev {
 		margin-left: 6px;
@@ -366,7 +368,6 @@ ul {
 	  position:fixed; 
 	  width:100%; 
 	  height:100%; 
-	  background: rgba(0,0,0,0.8); 
 	  top:0; 
 	  left:0; 
 	  display:none;
@@ -395,7 +396,7 @@ ul {
 	.page-btn {
 		color: white;
 		background-color: black;
-		padding: 5px 10px;
+		padding: 2px 8px;
 	}
 	
 </style>
