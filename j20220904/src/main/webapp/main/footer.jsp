@@ -1,75 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style type="text/css">
- 	footer {
-	bottom: 0;
-}
-
-.footer-black {
-	margin-top: 100px;
-	padding: 20px 0px;
-	height: 200px;
-	background-color: #FF0000;
-	display: block;
-	margin-top: 150px;
-}
-
-.footer-division-1 {
-	padding-bottom: 40px;
-	border-bottom: 1px solid #333;
-}
-
-.footer-division-2 {
-	padding-top: 40px;
-}
-
-.footer-tel {
-	color: white;
-	font-size: 32px;
-	margin-bottom: 10px;
-	font-weight: bold;
-}
-
-.footer-text {
-	color: ##FAF4C0;
-	font-size: 13px; 
-	opacity: 0.56;
-	font-weight: 500;
-}
-
-.footer-link-company {
-	margin-top: 10px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-}
-
-.footer-sep {
-	font-size: 13px;
-}
-</style>
-
-	<footer class="footer-black">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/footer.css">
+<footer class="footer-wrap abc-mart">
 	
-	<div class="frame">
-		<div class="footer-division-1">
-			<div class="footer-tel">고객센터 1234-5678</div>
-			<div class="footer-text">영업시간 : AM 10:00 ~ PM 17:00(주말 및 공휴일 휴무)</div>
-			<div class="footer-text">점심시간 : PM 12:30 ~ PM 13:30</div>
-		</div>
-		<div class="footer-division-2">
-			<div class="footer-text">회사명 : (주)신사몰 | 대표이사:이우현 | 사업자등록번호:000-00-00000 | 호스팅사업자:(주)신사몰</div>
-			<div class="footer-text">주소 : (00000) 서울특별시 신림구</div>
-			<div class="footer-text">개인정보관리책임자 : 김성현(930717v@naver.com)</div>
-			<div class="footer-link-company">
-				<a>이용약관</a>
-				<span class="footer-sep">  |  </span>
-				<a>개인정보처리방침</a>
-				<span class="footer-sep">  |  </span>
-				<a>사업자정보확인</a>
+	<div class="footer-top">
+		<div class="footer-contents-width">
+			<div class="footer-left footer-cs">
+				<span class="footer-title">통합고객센터</span>
+				<span class="cs-number">1511-1111</span>
+				<span class="cs-time">월~금 09:00 ~ 12:00 / 13:00 ~ 18:00</span>
+				<span class="cs-holiday">(주말,공휴일 휴무)</span>
 			</div>
 		</div>
-		
 	</div>
-
+	
+	<div class="footer-bottom">
+		<div class="footer-contents-width">
+			<div class="footer-left footer-company">
+				<div class="footer-ci"><img src="http://localhost:8181/j20220904/img/titleLogo/sin4mall.png" width="100px" height="21px"></div>
+				<address class="company-info">
+					<p>
+						<span class="company-name">(주)신사몰</span>
+						<span>대표이사 : 이우현</span>
+						<span>주소 : 서울특별시 송파구 올림픽로 300</span>
+					</p>
+					<p>
+						<span>사업자등록번호 : 111-11-11111</span>
+						<span>통신판매업신고 : 제 2999-서울송파구-1111호</span>
+					</p>
+					<p>
+						<span>개인정보보호 책임자 : 박영수</span>
+						<span>이메일 : sinsamall@sinsamal.com</span>
+					</p>
+				</address>
+				<div class="term-list-wrap">
+					<ul class="term-list">
+						<li><a href="#" id="bizInfo">사업자정보확인</a></li>
+						<li><a href="#" class="spot">개인정보처리방침</a></li>
+						<li><a href="#">이용약관</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="footer-right footer-link">
+				<div>
+					<span class="footer-link-title">HELP</span>
+					<ul class="footer-link-list help-link">
+						<li><a href="#">고객센터</a></li>
+						<li><a href="#">입점/제휴 문의</a></li>
+						<li><a href="#">단체구매 문의</a></li>
+						<li><a href="#">기프트카드 안내</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="copyright-wrap">
+		<p>본 상품의 상품 이미지 저작권은 ㈜신사몰에 있으며 내용의 무단복제를 금합니다.</p>
+		<p>Copyright ABC-MART KOREA Corp. All rights reserved.</p>
+	</div>
+	
 </footer>

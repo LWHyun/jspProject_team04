@@ -126,44 +126,44 @@ text-decoration: none;
  #c1_bannerimg1{
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 
 #c1_bannerimg2{
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 
 #c1_bannerimg3{
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 } 
 
 
 #c1_bannerimg4{
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 
 #c1_bannerimg5	{
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 
 #c1_bannerimg6 { 
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 
 #c1_bannerimg7 {
 	width:1200px;
 	height: 600px;
-	margin-left: 260px;
+	margin-left: 360px;
 }
 </style>
 
