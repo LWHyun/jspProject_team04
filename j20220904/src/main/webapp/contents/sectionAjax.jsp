@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String context = request.getContextPath();
 %>
@@ -13,9 +14,10 @@
 				</div>
 				<div class="prod-info-wrap" id=#>
 					<div class="prod-info-wrap" id="#">
-						<span class="prod-brand">${list.brand }</span><br> <span
-							class="prod-name">${list.kor_name }</span><br> <span
-							class="prod-price"> <span class="prod-cost">${list.price}</span>
+						<span class="prod-brand">${list.brand }</span><br> 
+						<span class="prod-name">${list.kor_name }</span><br> 
+						<span class="prod-price"> 
+						<span class="prod-cost"><fmt:formatNumber value="${list.price }" pattern="#,###"/></span>
 							<span class="price-unit">원</span>
 						</span>
 					</div>
