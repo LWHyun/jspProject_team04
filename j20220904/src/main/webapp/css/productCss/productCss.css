@@ -35,6 +35,10 @@
 		width: 580px;
 		float: left;
 	}
+	.image_big_left img{
+		width: 580px;
+		height: 580px;
+	}
 	
 	.image_big_left_small 	{
 		border:1px solid white;
