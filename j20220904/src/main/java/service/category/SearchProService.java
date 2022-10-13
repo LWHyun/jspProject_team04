@@ -18,6 +18,8 @@ public class SearchProService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//새 검색창에서 검색버튼 눌렀을때 최종 동작
+		
 		HttpSession session = request.getSession();
 		String searchWord = request.getParameter("searchWord");
 		System.out.println("searchWord --->"+searchWord);

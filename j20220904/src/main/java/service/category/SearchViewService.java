@@ -20,6 +20,8 @@ public class SearchViewService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//검색어로 검색하거나, 하위카테고리 탭 누를때 동작
+		
 		String searchBar = request.getParameter("searchBar");
 		String ca_code = request.getParameter("ca_code");
 		HttpSession session = request.getSession();

@@ -17,6 +17,8 @@ public class BuyNowService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//바로구매버튼 누를시 동작
+		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		System.out.println("BuyNowService product_id =>"+product_id);

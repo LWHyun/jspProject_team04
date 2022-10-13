@@ -18,6 +18,8 @@ public class FilterService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//상품리스트에서 필터검색했을때 동작
+		
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
 		request.setAttribute("toURI", request.getRequestURI());

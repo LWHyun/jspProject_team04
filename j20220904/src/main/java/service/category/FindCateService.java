@@ -17,6 +17,8 @@ public class FindCateService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//헤더부분에서 카테고리 탭 눌렀을때 동작 -> 선택 메뉴 뜨는 부분
+		
 		String result = request.getParameter("result");
 		CategoryDAO cd = CategoryDAO.getInstance();
 		System.out.println("FindCateService result-->"+result);

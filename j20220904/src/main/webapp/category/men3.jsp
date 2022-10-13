@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MEN</title>
+<title>신사몰 - ${result }</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -94,6 +94,7 @@
 	}
 	/* 메인 상품 리스트 끝 */
 	
+	/* 필터 시작 */
 	.filter{
 		width: 270px;
    		margin-top: 30px;
@@ -126,8 +127,10 @@
 	#btn_search{
 		float:right;
 	}
+	/* 필터 끝 */
 	
-	/* 모달부분 */
+	
+	/* 모달부분 시작 */
 	.modal{ 
 	  position:fixed; 
 	  width:100%; 
@@ -157,7 +160,7 @@
 	#modalClose{
 		margin-top: 10px;
 	}
-	
+	/* 모달 끝 */
 
 </style>
 <script type="text/javascript">

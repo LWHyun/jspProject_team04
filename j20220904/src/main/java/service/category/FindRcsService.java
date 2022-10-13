@@ -18,6 +18,8 @@ public class FindRcsService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//검색탭 눌렀을때 최근검색어 불러는 동작
+		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("mem_id");
 		String word = request.getParameter("deleteWord");

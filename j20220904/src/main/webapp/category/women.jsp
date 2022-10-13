@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WOMEN</title>
+<title>신사몰 - ${result }</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -129,7 +129,7 @@
 	}
 	/* 필터 끝 */
 	
-	/* 모달부분 */
+	/* 모달부분 시작*/
 	.modal{ 
 	  position:fixed; 
 	  width:100%; 
