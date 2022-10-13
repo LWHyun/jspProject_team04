@@ -40,7 +40,6 @@ public class ManProductListService implements CommandProcess {
 			int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;    
 			int endPage = startPage + blockSize -1;	                       
 			if (endPage > pageCnt) endPage = pageCnt;
-		
 			request.setAttribute("productList", productList);   // ***
 			request.setAttribute("totCnt", totCnt);
 			request.setAttribute("pageNum", pageNum);

@@ -487,7 +487,7 @@ public class ProductDAO {
       Statement stmt= null; 
       ResultSet rs = null;    
       int tot = 0;
-      String sql = "SELECT count(*) FROM product";
+      String sql = "SELECT count(*) FROM product_size";
       try {
          conn = getConnection();
          stmt = conn.createStatement();

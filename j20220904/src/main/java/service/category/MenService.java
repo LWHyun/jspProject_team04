@@ -21,6 +21,8 @@ public class MenService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//카테고리탭에서 남성용탭에 해당하는 동작
+		
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		String result = null;
 		if(gender == 0) {

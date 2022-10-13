@@ -19,6 +19,8 @@ public class SearchService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			//헤더에 검색창 눌렀을때 동작하는 부분
+		
 			//인기검색어 조회해서 뿌려주기
 			CategoryDAO cd = CategoryDAO.getInstance();
 			try {

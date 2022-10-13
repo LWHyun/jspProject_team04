@@ -5,7 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Header</title>
+<c:if test="${result ==0 }">
+	<title>신사몰 - 검색</title>
+</c:if>
+<c:if test="${result ==1 }">
+	<title>신사몰 - ${ca_name }</title>
+</c:if>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,7 +43,7 @@
 		padding-top:30px;
 		font-size: 30px;
 	}
-	
+	/* 메인 상품 리스트 시작 */
 	.pro_wrap{
 		width: 1250px; 
    		margin-top: 20px; 
@@ -90,10 +96,10 @@
 		color: red;
 		font-size: 18px;
 	}
+	/* 메인 상품 리스트 끝 */
 	
-	.filter_wrapper{
-		height: 100%;
-	}
+	
+	/* 필터 시작 */
 	.filter{
 		width: 270px;
    		margin-top: 30px;  
@@ -125,7 +131,7 @@
 	#btn_search{
 		float:right;
 	}
-	
+	/* 필터 끝 */
 	/* 모달 시작 */
 	.modal{ 
 	  position:fixed; 

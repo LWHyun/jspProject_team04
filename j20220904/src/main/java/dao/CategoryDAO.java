@@ -186,8 +186,11 @@ public class CategoryDAO {
 		
 		String sqlResult="";
 		try {
+			//필터시 브랜드만 검색했을때
 			if(size == null||size.equals("")) {
+				//필터시 브랜드만 검색했는데 하위카테고리에서 필터 작동시
 				if(ca_code !=null) {
+					//필터시 브랜드만 검색했는데 하위카테고리에서 필터 작동시, 하위카테고리가 2번째 상위카테고리일시 작동
 					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
 						sql = sql4+ca_code+") c on c.ca_code=p.ca_code where p.brand=\'";
 						for(int i=0; i<brandArray.length;i++) {
@@ -205,6 +208,7 @@ public class CategoryDAO {
 							
 						}
 					}else {
+						//필터시 브랜드만 검색했는데 하위카테고리에서 필터 작동시
 						for(int i=0; i<brandArray.length;i++) {
 							sql+=brandArray[i]+"\'";
 							System.out.println("sql 전"+sql);
@@ -223,6 +227,7 @@ public class CategoryDAO {
 						}
 					}
 				}else {
+					//필터시 브랜드만 검색했는데 상위카테고리에서 작동했을시
 					for(int i=0; i<brandArray.length;i++) {
 						sql+=brandArray[i]+"\'";
 						System.out.println("sql 전"+sql);
@@ -264,6 +269,7 @@ public class CategoryDAO {
 				}
 				sqlResult = sql;
 			}else if(brandArray==null) {
+				//필터시 브랜드가 없고 사이즈만 있을때
 				System.out.println("여기냐?");
 				if(ca_code !=null) {
 					if(ca_code.equals("20100")||ca_code.equals("20200")||ca_code.equals("30100")||ca_code.equals("30200")) {
@@ -654,6 +660,7 @@ public class CategoryDAO {
 		
 		return result;
 	}
+	//최근검색어 출력하는 부분-->검색탭
 	public List<Recent_SearchClickDTO> selectRecentWord(String id) throws SQLException {
 		List<Recent_SearchClickDTO>rsc_list = new ArrayList<Recent_SearchClickDTO>();
 		String sql = "select * from recent_searchclick where mem_id=? order by rsc_num desc";
@@ -739,6 +746,8 @@ public class CategoryDAO {
 		}
 		return result;
 	}
+	
+	//찜한 상품 가져오기-->리스트 들어갔을때
 	public List<LikeProDTO> selectLikeList(String mem_id) throws SQLException {
 		List<LikeProDTO> likeList = new ArrayList<LikeProDTO>();
 		String sql = "select product_id from like_pro where mem_id=?";
