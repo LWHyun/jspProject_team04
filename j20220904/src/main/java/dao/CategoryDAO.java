@@ -265,6 +265,7 @@ public class CategoryDAO {
 					product.setS_file_path(rs.getString("s_file_path"));
 					product.setL_file_path(rs.getString("l_file_path"));
 					product.setLike_product_id(rs.getInt("NVL(L.PRODUCT_ID,0)"));
+					
 					list.add(product);
 				}
 				sqlResult = sql;

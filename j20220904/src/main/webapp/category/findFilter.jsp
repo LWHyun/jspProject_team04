@@ -8,6 +8,34 @@
 	}
 </style>
 <script>
+
+$(function() {
+	$('.pro_buynow').click(function() {
+		var product_id = $(this).siblings('input[name="buyNow_product_id"]').val();
+		var gender = $(this).siblings('input[name="buyNow_gender"]').val();
+		console.log(product_id);
+		console.log(gender);
+		$.ajax({
+			url : '${pageContext.request.contextPath}/category/buyNow.do',
+			data : 
+				{product_id : product_id,
+					gender : gender}, 
+			dataType : 'html',
+			success : function(data) {
+				$('.modal_content').html(data);
+			}
+		});
+		
+		
+		$('.modal').fadeIn();
+	});
+	$('.modal #modalClose').click(function() {
+		$('.modal').fadeOut();
+	})
+})
+
+
+
 $(function () {
 	var imageName = ["heart0","heart1"];
 	$(".like_img").click(function() {
@@ -99,7 +127,20 @@ $(function () {
 					</c:choose>
 					
 					<button type="button" class="pro_buynow">바로구매</button>
-					<input type="hidden" name="">
+					<input type="hidden" name="buyNow_product_id" id="buyNow_product_id" class="buyNow_product_id" value="${filterList.product_id }">
+					<input type="hidden" name="buyNow_gender" id="buyNow_gender" class="buyNow_gender" value="${filterList.gender }">
+					<div class="modal">
+					<div id="modal_div_button">
+						<div class="modal_div_inner">
+							<div class="modal_content" title="구매용 모달창">
+							
+							로딩중...
+							</div>
+						</div>
+						
+						<button id="modalClose" class="custom-btn btn-close">닫기</button>
+						</div>
+					</div>
 				</div>
 			
 			</div>
