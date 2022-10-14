@@ -34,6 +34,7 @@ public class AllBrandListService implements CommandProcess {
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow = startRow + pageSize - 1;
 			int startNum = totCnt - startRow + 1;
+			String toURI = request.getRequestURI();
 			
 			List<Product_ImgSrcDTO> list = bld.brandList(mem_id, startRow, endRow);
 			System.out.println("list" + list);
@@ -60,6 +61,8 @@ public class AllBrandListService implements CommandProcess {
 			System.out.println("startPage는? " + startPage);
 			request.setAttribute("endPage", endPage);
 			System.out.println("endPage는? " + endPage);
+			request.setAttribute("toURI", toURI);
+			System.out.println("toURI는?" + toURI);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

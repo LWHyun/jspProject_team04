@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신사몰 - 브랜드</title>
 <style type="text/css">
 /* 배너----------------------------------------------------------------------------------- */
 .contents-wrap {
@@ -596,7 +596,7 @@ $(function() {
 						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
 					} else if (data == "-1") {
 						alert('로그인 후 찜한상품으로 담을 수 있습니다.');
-						location.href = "${pageContext.request.contextPath}/member/loginForm.do";
+						location.href = "${pageContext.request.contextPath}/member/loginForm.do?toURI=${toURI}";
 					} else // (data == "0")
 						alert('이미 찜한상품입니다.');
 						$('.btn-prod-favorite[id="'+product_id+'"]').css("background-position", "0 -44px");
