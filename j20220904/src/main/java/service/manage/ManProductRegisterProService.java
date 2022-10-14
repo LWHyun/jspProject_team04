@@ -84,6 +84,7 @@ public class ManProductRegisterProService implements CommandProcess {
 			System.out.println("파일명 두개다 잘 들어왔나 확인 ->"+nameSave);
 			String[] imageName = nameSave.split(",");
 			System.out.println("0번째에 s_file_path 잘 들어왔니? ->"+imageName[0]);
+			System.out.println("1번째 -> " +imageName[1]);
 				
 				
 //				int product_id = Integer.parseInt(request.getParameter("product_id"));
@@ -123,7 +124,7 @@ public class ManProductRegisterProService implements CommandProcess {
 				productImgSrcDTO.setColor(multi.getParameter("color"));
 				productImgSrcDTO.setCa_code(Integer.parseInt(multi.getParameter("ca_code")));
 				
-				productImgSrcDTO.setL_file_path("/j20220924/img/product_images/"+brandPath+"/"+imageName[1]);
+				productImgSrcDTO.setL_file_path("/j20220904/img/product_images/"+brandPath+"/"+imageName[1]);
 				productImgSrcDTO.setS_file_path("/j20220904/img/product_images/"+brandPath+"/"+imageName[0]);
 				
 				List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();

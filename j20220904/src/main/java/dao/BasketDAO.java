@@ -53,7 +53,7 @@ public class BasketDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	
-		String sql = "SELECT b.mem_id, b.cnt, ps.size_num, ps.product_id, p.gender, ps.pd_size, p.brand, p.eng_name, p.kor_name, p.price, p.color, pi.s_file_path\r\n"
+		String sql = "SELECT b.mem_id, b.cnt, ps.size_num, ps.product_id, ps.stock, p.gender, ps.pd_size, p.brand, p.eng_name, p.kor_name, p.price, p.color, pi.s_file_path\r\n"
 				+ "FROM basket b \r\n"
 				+ "JOIN product_size ps\r\n"
 				+ "ON  b.product_id = ps.product_id\r\n"
@@ -76,6 +76,7 @@ public class BasketDAO {
 				BasketDTO basketDTO = new BasketDTO();
 				basketDTO.setMem_id(rs.getString("mem_id"));
 				basketDTO.setProduct_id(rs.getInt("product_id"));
+				basketDTO.setStock(rs.getInt("stock"));
 				basketDTO.setCnt(rs.getInt("cnt"));
 				basketDTO.setBrand(rs.getString("brand"));
 				basketDTO.setEng_name(rs.getString("eng_name"));

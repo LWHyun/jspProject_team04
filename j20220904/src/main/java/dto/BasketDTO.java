@@ -5,10 +5,16 @@ public class BasketDTO {
 	private int product_id;
 	private int cnt;
 	private int size_num;
-	
+	private int stock;
 	//
 	
 	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	private String brand;
 	private String eng_name;
 	private String kor_name;

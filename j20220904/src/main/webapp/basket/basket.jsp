@@ -234,10 +234,11 @@
 									<c:forEach var="item" items="${basketList }">
 										<input type="hidden" name="item_product_id" value="${item.product_id }">
 										<input type="hidden" name="item_size_num" 	value="${item.size_num }">
-										<input type="hidden" name="kor_name"		value=${item.kor_name }>
-										<input type="hidden" name="small_image" 	value=${item.s_file_path }>
-										<input type="hidden" name="pd_size" 		value=${item.pd_size }>
-										<input type="hidden" name="color" 			value=${item.color }>
+										<input type="hidden" name="kor_name"		value="${item.kor_name }">
+										<input type="hidden" name="small_image" 	value="${item.s_file_path }">
+										<input type="hidden" name="pd_size" 		value="${item.pd_size }">
+										<input type="hidden" name="color" 			value="${item.color }">
+										<input type="hidden" name="stock"		id="stock"	value="${item.stock }">
 										
 										<tr id="tr${item.product_id }_${item.size_num }">
 											<td>
@@ -366,12 +367,13 @@
 	// 상품 수량 증가 함수
 	function plusCnt(prod_id, size_num) {
 		
+		let stock = document.getElementById("stock").value;
 		//상품 수량을 가져와야함
 		let target = document.getElementById("cnt"+prod_id+"_"+size_num)
 		let count = parseInt(target.value)
 		
 		//상품 최대 수량 설정
-		if (count >= 99) {
+		if (count >= stock) {
 			alert("최대 수량을 초과했습니다.");
 			return false;
 		}
