@@ -159,8 +159,8 @@ public class CategoryDAO {
 	public List<Product_ImgSrcDTO> selectSearch(String[] brandArray, String size, String gender, String ca_code, String searchBar, String mem_id) throws SQLException {
 		List<Product_ImgSrcDTO> list = new ArrayList<Product_ImgSrcDTO>();
 		//브랜드만 있을때 --하위 카테고리용
-		String sql = "select p.*,i.*,NVL(l.product_id,0) from product p , product_image i, (SELECT * FROM like_pro WHERE mem_id =\'";
-		sql += mem_id+"\') l where p.product_id = l.product_id(+) and p.product_id = i.product_id and p.brand=\'";
+		String sql = "select p.*,i.*,NVL(l.product_id,0) from product p LEFT OUTER JOIN (SELECT * FROM like_pro WHERE mem_id =\'";
+		sql += mem_id+"\') l ON p.product_id = l.product_id join product_image i on p.product_id = i.product_id where p.brand=\'";
 		//size만 있을때 --하위카테고리용
 		String sql1 = "select p.*,i.*,ps.*,NVL(l.product_id,0) from product p,product_image i, product_size ps, (SELECT * FROM like_pro WHERE mem_id =\'";
 		sql1 += mem_id+"\') l  where p.product_id = i.product_id and ps.product_id = i.product_id and  p.product_id = l.product_id(+) and ps.pd_size=";

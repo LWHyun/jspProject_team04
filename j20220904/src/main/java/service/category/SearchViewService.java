@@ -27,6 +27,8 @@ public class SearchViewService implements CommandProcess {
 		HttpSession session = request.getSession();
 		String searchWord = (String) session.getAttribute("searchWord");
 		String mem_id = (String) session.getAttribute("mem_id");
+		String toURI = request.getRequestURI();
+		
 		System.out.println(mem_id);
 		
 		CategoryDAO cd = CategoryDAO.getInstance();
@@ -43,6 +45,7 @@ public class SearchViewService implements CommandProcess {
 					request.setAttribute("ca_name", codeName);
 					request.setAttribute("ca_code", ca_code);
 					request.setAttribute("searchBar", searchBar);
+					toURI = toURI+"?ca_code="+ca_code;
 					result = 1;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -57,7 +60,7 @@ public class SearchViewService implements CommandProcess {
 				request.setAttribute("list", list);
 				request.setAttribute("searchWord", searchWord);
 				request.setAttribute("ca_code", ca_code);
-
+				toURI = toURI+"?searchBar="+searchBar;
 				result=0;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -68,7 +71,7 @@ public class SearchViewService implements CommandProcess {
 		}
 		
 		request.setAttribute("result", result);
-		
+		request.setAttribute("toURI", toURI);
 			
 		
 		return "searchView.jsp";
