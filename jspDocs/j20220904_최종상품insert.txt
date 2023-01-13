@@ -1,0 +1,533 @@
+-- Adidas Product, Product_Image, Product_size 테이블
+DELETE FROM product_size WHERE product_id = 1010093554;
+DELETE FROM product_size WHERE product_id = 1010092886;
+DELETE FROM product_size WHERE product_id = 1010092459;
+DELETE FROM product_size WHERE product_id = 1010072045;
+DELETE FROM product_size WHERE product_id = 1010083487;
+DELETE FROM product_size WHERE product_id = 1010082852;
+DELETE FROM product_size WHERE product_id = 1010079949;
+DELETE FROM product_size WHERE product_id = 1010094112;
+DELETE FROM product_size WHERE product_id = 1010083467;
+DELETE FROM product_size WHERE product_id = 1010083450;
+DELETE FROM product_size WHERE product_id = 1010093549;
+DELETE FROM product_size WHERE product_id = 1010087065;
+DELETE FROM product_size WHERE product_id = 1010093549;
+DELETE FROM product_size WHERE product_id = 1010087065;
+
+DELETE FROM product_image WHERE s_file_path LIKE '%Adidas%';
+
+DELETE FROM product WHERE brand = 'ADIDAS';
+
+insert into product values(1010093554, 'ADIDAS', 'SUPERSTAR', '아디다스_슈퍼스타', 0, 100, 'WHITE', sysdate, 20101);
+insert into product values (1010092886, 'ADIDAS', 'STAN SMITH', '아디다스_스탠 스미스', 0, 49000, 'WHITE', sysdate, 20101);
+insert into product values(1010092459, 'ADIDAS', 'OZWEEGO META', '아디다스_오즈위고 메타', 0, 89000, 'WHITE', sysdate, 20101);
+insert into product values (1010072045, 'ADIDAS', 'GRAND COURT BASE', '아디다스_그랜드 코트 베이스', 0, 49000, 'BLACK', sysdate, 20101);
+insert into product values (1010083487, 'ADIDAS', 'OZWEEGO', '아디다스_오즈위고', 0, 129000, 'BLACK', sysdate, 20100);
+insert into product values (1010082852, 'ADIDAS', 'STAN SMITH W', '아디다스_스탠 스미스 우먼스', 1, 109000, 'WHITE', sysdate, 30101);
+insert into product values (1010079949, 'ADIDAS', 'NIZZA TREFOIL', '아디다스_니짜 트레포일', 0, 69000, 'WHITE', sysdate, 20102);
+insert into product values (1010094112, 'ADIDAS', 'BW ARMY', '아디다스_BW 아미', 0, 139000, 'HALIVO', sysdate, 20102);
+insert into product values (1010083467, 'ADIDAS', 'COURT RALLYE SLIP', '아디다스_코트 랠리 슬립', 0, 69000, 'WHITE', sysdate, 20102);
+insert into product values (1010083450, 'ADIDAS', 'ABACA', '아디다스_아바카', 0, 69000, 'RED', sysdate,20102);
+
+insert into product_image values (seq_image.NEXTVAL, 1010093554, '/j20220904/img/product_images/Adidas_images/superstar_small.jpg', '/j20220904/img/product_images/Adidas_images/superstar_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010092886, '/j20220904/img/product_images/Adidas_images/stan_smith_small.jpg', '/j20220904/img/product_images/Adidas_images/stan_smith_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010092459, '/j20220904/img/product_images/Adidas_images/ozweego_meta_small.jpg', '/j20220904/img/product_images/Adidas_images/ozweego_meta_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010072045, '/j20220904/img/product_images/Adidas_images/grand_court_base_small.jpg', '/j20220904/img/product_images/Adidas_images/grand_court_base_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010083487, '/j20220904/img/product_images/Adidas_images/ozweego_small.jpg', '/j20220904/img/product_images/Adidas_images/ozweego_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010082852, '/j20220904/img/product_images/Adidas_images/stan_smith_w_small.jpg', '/j20220904/img/product_images/Adidas_images/stan_smith_w_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010079949, '/j20220904/img/product_images/Adidas_images/nizza_trefoil_small.jpg', '/j20220904/img/product_images/Adidas_images/nizza_trefoil_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010094112, '/j20220904/img/product_images/Adidas_images/bw_army_small.jpg', '/j20220904/img/product_images/Adidas_images/bw_army_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010083467, '/j20220904/img/product_images/Adidas_images/court_rallye_slip_small.jpg', '/j20220904/img/product_images/Adidas_images/court_rallye_slip_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010083450, '/j20220904/img/product_images/Adidas_images/abaca_small.jpg', '/j20220904/img/product_images/Adidas_images/abaca_big.jpg');
+
+INSERT INTO product_size VALUES (200, 1010093554, 250, 45);
+INSERT INTO product_size VALUES (210, 1010093554, 260, 87);
+INSERT INTO product_size VALUES (220, 1010093554, 270, 2);
+INSERT INTO product_size VALUES (230, 1010093554, 280, 25);
+INSERT INTO product_size VALUES (240, 1010093554, 290, 0);
+
+INSERT INTO product_size VALUES (200, 1010092886, 250, 45);
+INSERT INTO product_size VALUES (210, 1010092886, 260, 87);
+INSERT INTO product_size VALUES (220, 1010092886, 270, 2);
+INSERT INTO product_size VALUES (230, 1010092886, 280, 25);
+INSERT INTO product_size VALUES (240, 1010092886, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010092459, 250, 45);
+INSERT INTO product_size VALUES (210, 1010092459, 260, 87);
+INSERT INTO product_size VALUES (220, 1010092459, 270, 2);
+INSERT INTO product_size VALUES (230, 1010092459, 280, 25);
+INSERT INTO product_size VALUES (240, 1010092459, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010072045, 250, 45);
+INSERT INTO product_size VALUES (210, 1010072045, 260, 87);
+INSERT INTO product_size VALUES (220, 1010072045, 270, 2);
+INSERT INTO product_size VALUES (230, 1010072045, 280, 25);
+INSERT INTO product_size VALUES (240, 1010072045, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010083487, 250, 45);
+INSERT INTO product_size VALUES (210, 1010083487, 260, 87);
+INSERT INTO product_size VALUES (220, 1010083487, 270, 2);
+INSERT INTO product_size VALUES (230, 1010083487, 280, 25);
+INSERT INTO product_size VALUES (240, 1010083487, 290, 10);
+
+INSERT INTO product_size VALUES (100, 1010082852, 220, 45);
+INSERT INTO product_size VALUES (110, 1010082852, 230, 87);
+INSERT INTO product_size VALUES (120, 1010082852, 240, 2);
+INSERT INTO product_size VALUES (130, 1010082852, 250, 25);
+INSERT INTO product_size VALUES (140, 1010082852, 260, 10);
+
+INSERT INTO product_size VALUES (200, 1010079949, 250, 45);
+INSERT INTO product_size VALUES (210, 1010079949, 260, 87);
+INSERT INTO product_size VALUES (220, 1010079949, 270, 2);
+INSERT INTO product_size VALUES (230, 1010079949, 280, 25);
+INSERT INTO product_size VALUES (240, 1010079949, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010094112, 250, 45);
+INSERT INTO product_size VALUES (210, 1010094112, 260, 87);
+INSERT INTO product_size VALUES (220, 1010094112, 270, 2);
+INSERT INTO product_size VALUES (230, 1010094112, 280, 25);
+INSERT INTO product_size VALUES (240, 1010094112, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010083467, 250, 45);
+INSERT INTO product_size VALUES (210, 1010083467, 260, 87);
+INSERT INTO product_size VALUES (220, 1010083467, 270, 2);
+INSERT INTO product_size VALUES (230, 1010083467, 280, 25);
+INSERT INTO product_size VALUES (240, 1010083467, 290, 10);
+
+INSERT INTO product_size VALUES (200, 1010083450, 250, 45);
+INSERT INTO product_size VALUES (210, 1010083450, 260, 87);
+INSERT INTO product_size VALUES (220, 1010083450, 270, 2);
+INSERT INTO product_size VALUES (230, 1010083450, 280, 25);
+INSERT INTO product_size VALUES (240, 1010083450, 290, 10);
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+--- 브랜드별 상품 개인
+-- 컨버스 브랜드 insert (product, product_image, product_size)
+--1
+INSERT INTO product VALUES(1010080339, 'CONVERSE', 'CTAS LIFT HI', '컨버스_척테일러올스타 리프트 하이', 1, 76500, 'black', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010080339, '/j20220904/img/product_images/Converse_images/ctas_lift_hi_small.jpg', '/j20220904/img/product_images/Fila_images/ctas_lift_hi_big.jpg');
+INSERT INTO product_size VALUES (200, 1010080339, 250, 100);
+INSERT INTO product_size VALUES (210, 1010080339, 260, 100);
+INSERT INTO product_size VALUES (220, 1010080339, 270, 100);
+INSERT INTO product_size VALUES (230, 1010080339, 280, 100);
+INSERT INTO product_size VALUES (240, 1010080339, 290, 100);
+
+--2
+--INSERT INTO product VALUES(1010080312, 'CONVERSE', 'CT HI', '컨버스_척테일러 하이', 1, 55000, 'white', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010080312, '/j20220904/img/product_images/Converse_images/ct_hi_small.jpg', '/j20220904/img/product_images/Converse_images/ct_hi_big.jpg');
+--INSERT INTO product_size VALUES (200, 1010080312, 250, 100);
+--INSERT INTO product_size VALUES (210, 1010080312, 260, 100);
+--INSERT INTO product_size VALUES (220, 1010080312, 270, 100);
+--INSERT INTO product_size VALUES (230, 1010080312, 280, 100);
+--INSERT INTO product_size VALUES (240, 1010080312, 290, 100);
+
+--3
+INSERT INTO product VALUES(1010090065, 'CONVERSE', 'CT HI', '컨버스_척테일러 하이', 1, 55000, 'navy', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010090065, '/j20220904/img/product_images/Converse_images/chuck_70_hi_small.jpg', '/j20220904/img/product_images/Converse_images/chuck_70_hi_big.jpg');
+INSERT INTO product_size VALUES (100, 1010090065, 220, 100);
+INSERT INTO product_size VALUES (110, 1010090065, 230, 100);
+INSERT INTO product_size VALUES (120, 1010090065, 240, 100);
+INSERT INTO product_size VALUES (130, 1010090065, 250, 100);
+INSERT INTO product_size VALUES (140, 1010090065, 260, 100);
+
+--4
+INSERT INTO product VALUES(1010086205, 'CONVERSE', 'Chuck 70 OX', '컨버스_척 70 옥스', 1, 39900, 'Light Twine', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010086205, '/j20220904/img/product_images/Converse_images/chuck_70_ox_small.jpg', '/j20220904/img/product_images/Converse_images/chuck_70_ox_big.jpg');
+INSERT INTO product_size VALUES (100, 1010086205, 220, 100);
+INSERT INTO product_size VALUES (110, 1010086205, 230, 100);
+INSERT INTO product_size VALUES (120, 1010086205, 240, 100);
+INSERT INTO product_size VALUES (130, 1010086205, 250, 100);
+INSERT INTO product_size VALUES (140, 1010086205, 260, 100);
+
+--5
+INSERT INTO product VALUES(1010093757, 'CONVERSE', 'CHUCK 70 PLUS HI', '컨버스_척 70 플러스 하이', 0, 98100, 'DARK RAISIN/EGRET/BLACK', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010093757, '/j20220904/img/product_images/Converse_images/chuck_70_plus_hi_small.jpg', '/j20220904/img/product_images/Converse_images/chuck_70_plus_hi_big.jpg');
+INSERT INTO product_size VALUES (200, 1010093757, 250, 100);
+INSERT INTO product_size VALUES (210, 1010093757, 260, 100);
+INSERT INTO product_size VALUES (220, 1010093757, 270, 100);
+INSERT INTO product_size VALUES (230, 1010093757, 280, 100);
+INSERT INTO product_size VALUES (240, 1010093757, 290, 100);
+
+--6
+INSERT INTO product VALUES(1010094183, 'CONVERSE', 'CTAS MOVE HI', '컨버스_척테일러 올스타 무브 하이', 0, 69000, 'MOONSTONE VIOLET', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010094183, '/j20220904/img/product_images/Converse_images/ctas_move_hi_small.jpg', '/j20220904/img/product_images/Converse_images/ctas_move_hi_big.jpg');
+INSERT INTO product_size VALUES (200, 1010094183, 250, 100);
+INSERT INTO product_size VALUES (210, 1010094183, 260, 100);
+INSERT INTO product_size VALUES (220, 1010094183, 270, 100);
+INSERT INTO product_size VALUES (230, 1010094183, 280, 100);
+INSERT INTO product_size VALUES (240, 1010094183, 290, 100);
+
+--7
+INSERT INTO product VALUES(1010043167, 'CONVERSE', 'CT AS Core', '컨버스_척테일러 올스타 코어', 1, 53100, 'red', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010043167, '/j20220904/img/product_images/Converse_images/ct_as_core_small.jpg', '/j20220904/img/product_images/Converse_images/ct_as_core_big.jpg');
+INSERT INTO product_size VALUES (100, 1010043167, 220, 100);
+INSERT INTO product_size VALUES (110, 1010043167, 230, 100);
+INSERT INTO product_size VALUES (120, 1010043167, 240, 100);
+INSERT INTO product_size VALUES (130, 1010043167, 250, 100);
+INSERT INTO product_size VALUES (140, 1010043167, 260, 100);
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+-- product 닥터마틴 (남자)
+insert into product values (1010087472, 'DR.MARTENS', '1461', '닥터마틴_1461', 0, 190000, 'BLACK', sysdate, 20201);
+insert into product values (1010087470, 'DR.MARTENS', '1461 QUAD', '닥터마틴_1461 쿼드', 0, 230000, 'BLACK', sysdate, 20201);
+insert into product values (1010073067, 'DR.MARTENS', '1461 BEX BLACK', '닥터마틴_1461 벡스 블랙', 0, 210000, 'BLACK', sysdate, 20201);
+insert into product values (1010091178, 'DR.MARTENS', 'CARLSON', '닥터마틴_칼슨', 0, 160000, 'BLACK', sysdate, 20201);
+insert into product values (1010073743, 'DR.MARTENS', '2976 LEONORE', '닥터마틴_2976 레오노', 0, 250000, 'BLACK', sysdate, 20201);
+
+-- product_image 닥터마틴 (남자)
+insert into product_image values (seq_image.NEXTVAL, 1010087472, '/j20220904/img/product_images/DrMartens_images/1461_small.jpg', '/j20220904/img/product_images/DrMartens_images/1461_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010087470, '/j20220904/img/product_images/DrMartens_images/1461_quad_small.jpg', '/j20220904/img/product_images/DrMartens_images/1461_quad_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010073067, '/j20220904/img/product_images/DrMartens_images/1461_bex_black_small.jpg', '/j20220904/img/product_images/DrMartens_images/1461_bex_black_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010091178, '/j20220904/img/product_images/DrMartens_images/carlson_small.jpg', '/j20220904/img/product_images/DrMartens_images/carlson_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010073743, '/j20220904/img/product_images/DrMartens_images/2976_leonore_small.jpg', '/j20220904/img/product_images/DrMartens_images/2976_leonore_big.jpg');
+
+-- product_size 닥터마틴 (남자)
+insert into product_size values (200, 1010087472, 250, 100);
+insert into product_size values (210, 1010087472, 260, 100);
+insert into product_size values (220, 1010087472, 270, 100);
+insert into product_size values (230, 1010087472, 280, 100);
+insert into product_size values (240, 1010087472, 290, 100);
+
+insert into product_size values (200, 1010087470, 250, 100);
+insert into product_size values (210, 1010087470, 260, 100);
+insert into product_size values (220, 1010087470, 270, 100);
+insert into product_size values (230, 1010087470, 280, 100);
+insert into product_size values (240, 1010087470, 290, 100);
+
+insert into product_size values (200, 1010073067, 250, 100);
+insert into product_size values (210, 1010073067, 260, 100);
+insert into product_size values (220, 1010073067, 270, 100);
+insert into product_size values (230, 1010073067, 280, 100);
+insert into product_size values (240, 1010073067, 290, 100);
+
+insert into product_size values (200, 1010091178, 250, 100);
+insert into product_size values (210, 1010091178, 260, 100);
+insert into product_size values (220, 1010091178, 270, 100);
+insert into product_size values (230, 1010091178, 280, 100);
+insert into product_size values (240, 1010091178, 290, 100);
+
+insert into product_size values (200, 1010073743, 250, 100);
+insert into product_size values (210, 1010073743, 260, 100);
+insert into product_size values (220, 1010073743, 270, 100);
+insert into product_size values (230, 1010073743, 280, 100);
+insert into product_size values (240, 1010073743, 290, 100);
+
+
+-- product 닥터마틴 (여자)
+insert into product values (1010049614,'DR.MARTENS', '1461 MONO', '닥터마틴_1461 모노', 1, 190000, 'BLACK', sysdate, 30201);
+insert into product values (1010065223, 'DR.MARTENS', 'GHILLIE SHOE', '닥터마틴_길리 슈', 1, 190000, 'BROWN', sysdate, 30201);
+insert into product values (1010082483, 'DR.MARTENS', '1461 BEX WHITE', '닥터마틴_1461 벡스 화이트', 1, 210000, 'WHITE', sysdate, 30201);
+
+-- product_image 닥터마틴 (여자)
+insert into product_image values (seq_image.NEXTVAL, 1010049614, '/j20220904/img/product_images/DrMartens_images/1461_mono_small.jpg', '/j20220904/img/product_images/DrMartens_images/1461_mono_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010065223, '/j20220904/img/product_images/DrMartens_images/ghillie_shoe_small.jpg', '/j20220904/img/product_images/DrMartens_images/ghillie_shoe_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010082483, '/j20220904/img/product_images/DrMartens_images/1461_bex_white_small.jpg', '/j20220904/img/product_images/DrMartens_images/1461_bex_white_big.jpg');
+
+-- product_size 닥터마틴 (여자)
+insert into product_size values (100, 1010049614, 220, 100);
+insert into product_size values (110, 1010049614, 230, 100);
+insert into product_size values (120, 1010049614, 240, 100);
+insert into product_size values (130, 1010049614, 250, 100);
+insert into product_size values (140, 1010049614, 260, 100);
+
+
+insert into product_size values (100, 1010065223, 220, 100);
+insert into product_size values (110, 1010065223, 230, 100);
+insert into product_size values (120, 1010065223, 240, 100);
+insert into product_size values (130, 1010065223, 250, 100);
+insert into product_size values (140, 1010065223, 260, 100);
+
+insert into product_size values (100, 1010082483, 220, 100);
+insert into product_size values (110, 1010082483, 230, 100);
+insert into product_size values (120, 1010082483, 240, 100);
+insert into product_size values (130, 1010082483, 250, 100);
+insert into product_size values (140, 1010082483, 260, 100);
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+--- 브랜드별 상품 개인
+-- 휠라 브랜드 insert (product, product_image, product_size)
+--1
+INSERT INTO product VALUES(1010094631, 'FILA', 'TRANSPOSE4', '휠라_트랜스포즈4', 0, 55300, 'black', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010094631, '/j20220904/img/product_images/Fila_images/transpose4_small.jpg', '/j20220904/img/product_images/Fila_images/transpose4_big.jpg');
+INSERT INTO product_size VALUES (200, 1010094631, 250, 100);
+INSERT INTO product_size VALUES (210, 1010094631, 260, 100);
+INSERT INTO product_size VALUES (220, 1010094631, 270, 100);
+INSERT INTO product_size VALUES (230, 1010094631, 280, 100);
+INSERT INTO product_size VALUES (240, 1010094631, 290, 100);
+
+--2
+INSERT INTO product VALUES(1010087825, 'FILA', 'FIRECRACKER', '휠라_파이어크래커', 0, 55300, 'cream', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010087825, '/j20220904/img/product_images/Fila_images/firecracker_small.jpg', '/j20220904/img/product_images/Fila_images/firecracker_big.jpg');
+INSERT INTO product_size VALUES (200, 1010087825, 250, 100);
+INSERT INTO product_size VALUES (210, 1010087825, 260, 100);
+INSERT INTO product_size VALUES (220, 1010087825, 270, 100);
+INSERT INTO product_size VALUES (230, 1010087825, 280, 100);
+INSERT INTO product_size VALUES (240, 1010087825, 290, 100);
+
+--3
+INSERT INTO product VALUES(1010094854, 'FILA', 'WOODBLOCK STR', '휠라_우드블락 STR', 1, 55300, 'white', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010094854, '/j20220904/img/product_images/Fila_images/woodblockstr_small.jpg', '/j20220904/img/product_images/Fila_images/woodblockstr_big.jpg');
+INSERT INTO product_size VALUES (100, 1010094854, 220, 100);
+INSERT INTO product_size VALUES (110, 1010094854, 230, 100);
+INSERT INTO product_size VALUES (120, 1010094854, 240, 100);
+INSERT INTO product_size VALUES (130, 1010094854, 250, 100);
+INSERT INTO product_size VALUES (140, 1010094854, 260, 100);
+
+--4
+INSERT INTO product VALUES(1010086245, 'FILA', 'TRIBALRACE 1999', '휠라_트라이벌레이스 1999', 1, 39900, 'black', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010086245, '/j20220904/img/product_images/Fila_images/tribalrace1999_small.jpg', '/j20220904/img/product_images/Fila_images/tribalrace1999_big.jpg');
+INSERT INTO product_size VALUES (100, 1010086245, 220, 100);
+INSERT INTO product_size VALUES (110, 1010086245, 230, 100);
+INSERT INTO product_size VALUES (120, 1010086245, 240, 100);
+INSERT INTO product_size VALUES (130, 1010086245, 250, 100);
+INSERT INTO product_size VALUES (140, 1010086245, 260, 100);
+
+--5
+INSERT INTO product VALUES(1010094195, 'FILA', 'FILA SCANLINE EXP', '휠라_스캔라인 EXP', 0, 34300, 'cream', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010094195, '/j20220904/img/product_images/Fila_images/scanlineexp_small.jpg', '/j20220904/img/product_images/Fila_images/scanlineexp_big.jpg');
+INSERT INTO product_size VALUES (200, 1010094195, 250, 100);
+INSERT INTO product_size VALUES (210, 1010094195, 260, 100);
+INSERT INTO product_size VALUES (220, 1010094195, 270, 100);
+INSERT INTO product_size VALUES (230, 1010094195, 280, 100);
+INSERT INTO product_size VALUES (240, 1010094195, 290, 100);
+
+--6
+INSERT INTO product VALUES(1010086251, 'FILA', 'BOVEASORUS 99/21', '휠라_보비어소러스 99/21', 0, 48300, 'gray', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010086251, '/j20220904/img/product_images/Fila_images/boveasorus_small.jpg', '/j20220904/img/product_images/Fila_images/boveasorus_small.jpg');
+INSERT INTO product_size VALUES (200, 1010086251, 250, 100);
+INSERT INTO product_size VALUES (210, 1010086251, 260, 100);
+INSERT INTO product_size VALUES (220, 1010086251, 270, 100);
+INSERT INTO product_size VALUES (230, 1010086251, 280, 100);
+INSERT INTO product_size VALUES (240, 1010086251, 290, 100);
+
+--7
+INSERT INTO product VALUES(1010082512, 'FILA', 'COURT PLUMPY', '휠라_코트 플럼피', 1, 39000, 'white', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010082512, '/j20220904/img/product_images/Fila_images/court_plumpy_small.jpg', '/j20220904/img/product_images/Fila_images/court_plumpy_big.jpg');
+INSERT INTO product_size VALUES (100, 1010082512, 220, 100);
+INSERT INTO product_size VALUES (110, 1010082512, 230, 100);
+INSERT INTO product_size VALUES (120, 1010082512, 240, 100);
+INSERT INTO product_size VALUES (130, 1010082512, 250, 100);
+INSERT INTO product_size VALUES (140, 1010082512, 260, 100);
+
+
+--8
+INSERT INTO product VALUES(1010085371, 'FILA', 'FLUID', '휠라_플루이드', 1, 48000, 'yellow', sysdate, 30101);
+INSERT INTO product_image VALUES(seq_image.NEXTVAL, 1010085371, '/j20220904/img/product_images/Fila_images/fluid_small.jpg', '/j20220904/img/product_images/Fila_images/fluid_big.jpg');
+INSERT INTO product_size VALUES (100, 1010085371, 220, 100);
+INSERT INTO product_size VALUES (110, 1010085371, 230, 100);
+INSERT INTO product_size VALUES (120, 1010085371, 240, 100);
+INSERT INTO product_size VALUES (130, 1010085371, 250, 100);
+INSERT INTO product_size VALUES (140, 1010085371, 260, 100);
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+-- product 나이키 (남자)
+--insert into product values (1010092974, 'NIKE', 'NIKE WAFFLE DEBUT', '나이키 와플 데뷰', 0, 89000, 'WHITE', sysdate, 20101);
+insert into product values (1010085458, 'NIKE', 'NIKE GTS 97', '나이키 GTS 97', 0, 79000, 'BLACK', sysdate, 20101);
+insert into product values (1010093207, 'NIKE', 'NIKE AIR MAX SC', '나이키 에어 맥스 SC', 0, 89000, 'WHITE', sysdate, 20101);
+insert into product values (1010093225, 'NIKE', 'NIKE COURT LEGACY NN', '나이키 코트 레거시 넥스트네이처', 0, 79000, 'WHITE', sysdate, 20101);
+insert into product values (1010087297, 'NIKE', 'NIKE TANJUN M2Z2', '나이키 탄준 M2Z2', 0, 79000, 'BLACK', sysdate, 20101);
+
+-- product_image 나이키 (남자)
+--insert into product_image values (seq_image.NEXTVAL, 1010092974, '/j20220904/img/product_images/Nike_images/nike_waffle_small.jpg', '/j20220904/img/product_images/Nike_images/nike_waffle_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010085458, '/j20220904/img/product_images/Nike_images/nike_gts_97_small.jpg', '/j20220904/img/product_images/Nike_images/nike_gts_97_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093207, '/j20220904/img/product_images/Nike_images/nike_air_max_sc_smail.jpg', '/j20220904/img/product_images/Nike_images/nike_air_max_sc_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093225, '/j20220904/img/product_images/Nike_images/nike_court_legacy_nn_small.jpg', '/j20220904/img/product_images/Nike_images/nike_court_legacy_nn_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010087297, '/j20220904/img/product_images/Nike_images/nike_tanjun_m2z2_small.jpg', '/j20220904/img/product_images/Nike_images/nike_tanjun_m2z2_big.jpg');
+
+-- product_size 나이키 (남자)
+--insert into product_size values (200, 1010092974, 250, 100);
+--insert into product_size values (210, 1010092974, 260, 100);
+--insert into product_size values (220, 1010092974, 270, 100);
+--insert into product_size values (230, 1010092974, 280, 100);
+--insert into product_size values (240, 1010092974, 290, 100);
+
+insert into product_size values (200, 1010085458, 250, 100);
+insert into product_size values (210, 1010085458, 260, 100);
+insert into product_size values (220, 1010085458, 270, 100);
+insert into product_size values (230, 1010085458, 280, 100);
+insert into product_size values (240, 1010085458, 290, 100);
+
+insert into product_size values (200, 1010093207, 250, 100);
+insert into product_size values (210, 1010093207, 260, 100);
+insert into product_size values (220, 1010093207, 270, 100);
+insert into product_size values (230, 1010093207, 280, 100);
+insert into product_size values (240, 1010093207, 290, 100);
+
+insert into product_size values (200, 1010093225, 250, 100);
+insert into product_size values (210, 1010093225, 260, 100);
+insert into product_size values (220, 1010093225, 270, 100);
+insert into product_size values (230, 1010093225, 280, 100);
+insert into product_size values (240, 1010093225, 290, 100);
+
+insert into product_size values (200, 1010087297, 250, 100);
+insert into product_size values (210, 1010087297, 260, 100);
+insert into product_size values (220, 1010087297, 270, 100);
+insert into product_size values (230, 1010087297, 280, 100);
+insert into product_size values (240, 1010087297, 290, 100);
+
+-- product 나이키 (여자)
+--insert into product values (1010093252, 'NIKE', 'WMNS NIKE WAFFLE DEBUT', '우먼스 나이키 와플 데뷰', 1, 99000, 'WHITE', sysdate, 30101);
+insert into product values (1010093187, 'NIKE', 'WMNS NIKE GTS 97', '우먼스 나이키 GTS 97', 1, 79000, 'GREEN', sysdate, 30101);
+insert into product values (1010094905, 'NIKE', 'WMNS NIKE AIR MAX AP', '우먼스 나이키 에어 맥스 AP', 1, 119000, 'WHITE', sysdate, 30101);
+insert into product values (1010093185, 'NIKE', 'WMNS NIKE COURT LEGACY LIFT', '우먼스 나이키 코트 레거시 리프트', 1, 99000, 'BLACK', sysdate, 30101);
+insert into product values (1010093242, 'NIKE', 'W NIKE AIR MAX SYSTM', '우먼스 나이키 에어 맥스 시스템', 1, 109000, 'PINK', sysdate, 30101);
+
+-- product_image 스니커즈 (여자)
+--insert into product_image values (seq_image.NEXTVAL, 1010093252, '/j20220904/img/product_images/Nike_images/wmns_nike_waffle_small.jpg', '/j20220904/img/product_images/Nike_images/wmns_nike_waffle_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093187, '/j20220904/img/product_images/Nike_images/wmns_nike_gts_97_small.jpg', '/j20220904/img/product_images/Nike_images/wmns_nike_gts_97_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010094905, '/j20220904/img/product_images/Nike_images/wmns_nike_air_max_ap_small.jpg', '/j20220904/img/product_images/Nike_images/wmns_nike_air_max_ap_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093185, '/j20220904/img/product_images/Nike_images/wmns_nike_court_legacy_lift_small.jpg', '/j20220904/img/product_images/Nike_images/wmns_nike_court_legacy_lift_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093242, '/j20220904/img/product_images/Nike_images/w_nike_air_max_systm_small.jpg', '/j20220904/img/product_images/Nike_images/w_nike_air_max_systm_big.jpg');
+
+-- product_size 나이키 (여자)
+--insert into product_size values (100, 1010093252, 220, 100);
+--insert into product_size values (110, 1010093252, 230, 100);
+--insert into product_size values (120, 1010093252, 240, 100);
+--insert into product_size values (130, 1010093252, 250, 100);
+--insert into product_size values (140, 1010093252, 260, 100);
+
+insert into product_size values (100, 1010093187, 220, 100);
+insert into product_size values (110, 1010093187, 230, 100);
+insert into product_size values (120, 1010093187, 240, 100);
+insert into product_size values (130, 1010093187, 250, 100);
+insert into product_size values (140, 1010093187, 260, 100);
+
+insert into product_size values (100, 1010094905, 220, 100);
+insert into product_size values (110, 1010094905, 230, 100);
+insert into product_size values (120, 1010094905, 240, 100);
+insert into product_size values (130, 1010094905, 250, 100);
+insert into product_size values (140, 1010094905, 260, 100);
+
+insert into product_size values (100, 1010093185, 220, 100);
+insert into product_size values (110, 1010093185, 230, 100);
+insert into product_size values (120, 1010093185, 240, 100);
+insert into product_size values (130, 1010093185, 250, 100);
+insert into product_size values (140, 1010093185, 260, 100);
+
+insert into product_size values (100, 1010093242, 220, 100);
+insert into product_size values (110, 1010093242, 230, 100);
+insert into product_size values (120, 1010093242, 240, 100);
+insert into product_size values (130, 1010093242, 250, 100);
+insert into product_size values (140, 1010093242, 260, 100);
+
+-- product 라코스테 (남자)
+--insert into product values (1010089921, 'LACOSTE', 'POWERCOURT TRI', '라코스테_파워코트 트라이', 0, 149000, 'WHITE', sysdate, 20101);
+insert into product values (1010093832, 'LACOSTE', 'SIDELINE PRO', '라코스테_사이드라인 프로', 0, 135000, 'WHITE', sysdate, 20101);
+insert into product values (1010083056, 'LACOSTE', 'CARNABY EVO 0721 1', '라코스테_카나비 에보 0721 1', 0, 159000, 'WHITE', sysdate, 20101);
+insert into product values (1010075490, 'LACOSTE', 'LEROND TRI1', '라코스테_르론드 티알아이1', 0, 135000, 'WHITE', sysdate, 20101);
+insert into product values (1010085643, 'LACOSTE', 'GRIPSHOT BL 21 2', '라코스테_그립샷 비엘 21 2', 0, 119000, 'WHITE', sysdate, 20102);
+
+-- product_image 라코스테 (남자)
+--insert into product_image values (seq_image.NEXTVAL, 1010089921, '/j20220904/img/product_images/Lacoste_images/powercourt_tri_small.jpg', '/j20220904/img/product_images/Lacoste_images/powercourt_tri_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093832, '/j20220904/img/product_images/Lacoste_images/sideline_pro_small.jpg', '/j20220904/img/product_images/Lacoste_images/sideline_pro_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010083056, '/j20220904/img/product_images/Lacoste_images/carnaby_evo_0721_1_small.jpg', '/j20220904/img/product_images/Lacoste_images/carnaby_evo_0721_1_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010075490, '/j20220904/img/product_images/Lacoste_images/lerond_tri1_small.jpg', '/j20220904/img/product_images/Lacoste_images/lerond_tri1_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010085643, '/j20220904/img/product_images/Lacoste_images/gripshot_bl_21_2_small.jpg', '/j20220904/img/product_images/Lacoste_images/gripshot_bl_21_2_big.jpg');
+
+-- product_size 라코스테 (남자)
+--insert into product_size values (200, 1010089921, 250, 100);
+--insert into product_size values (210, 1010089921, 260, 100);
+--insert into product_size values (220, 1010089921, 270, 100);
+--insert into product_size values (230, 1010089921, 280, 100);
+--insert into product_size values (240, 1010089921, 290, 100);
+
+insert into product_size values (200, 1010093832, 250, 100);
+insert into product_size values (210, 1010093832, 260, 100);
+insert into product_size values (220, 1010093832, 270, 100);
+insert into product_size values (230, 1010093832, 280, 100);
+insert into product_size values (240, 1010093832, 290, 100);
+
+insert into product_size values (200, 1010083056, 250, 100);
+insert into product_size values (210, 1010083056, 260, 100);
+insert into product_size values (220, 1010083056, 270, 100);
+insert into product_size values (230, 1010083056, 280, 100);
+insert into product_size values (240, 1010083056, 290, 100);
+
+insert into product_size values (200, 1010075490, 250, 100);
+insert into product_size values (210, 1010075490, 260, 100);
+insert into product_size values (220, 1010075490, 270, 100);
+insert into product_size values (230, 1010075490, 280, 100);
+insert into product_size values (240, 1010075490, 290, 100);
+
+insert into product_size values (200, 1010085643, 250, 100);
+insert into product_size values (210, 1010085643, 260, 100);
+insert into product_size values (220, 1010085643, 270, 100);
+insert into product_size values (230, 1010085643, 280, 100);
+insert into product_size values (240, 1010085643, 290, 100);
+
+-- 라코스테 스니커즈 (여자)
+--insert into product values (1010094429, 'LACOSTE', 'GRADUATE PRO', '라코스테_그래듀에이트 프로', 1, 149000, 'WHITE', sysdate, 30101);
+insert into product values (1010058581, 'LACOSTE', 'STRAIGHTSET BL 1', '라코스테_스트레이트세트 비엘 1', 1, 149000, 'WHITE', sysdate, 30101);
+insert into product values (1010082788, 'LACOSTE', 'MASTERS CLASSIC 0721 1', '라코스테_마스터스 클래식 0721 1', 1, 159000, 'WHITE', sysdate, 30101);
+insert into product values (1010093833, 'LACOSTE', 'CARNABY PRO', '라코스테_카나비 프로', 1, 149000, 'WHITE', sysdate, 30101);
+insert into product values (1010087347, 'LACOSTE', 'LEROND', '라코스테_르론드', 1, 135000, 'WHITE', sysdate, 30101);
+
+-- product_image 라코스테 (여자)
+--insert into product_image values (seq_image.NEXTVAL, 1010094429, '/j20220904/img/product_images/Lacoste_images/graduate_small.jpg', '/j20220904/img/product_images/Lacoste_images/graduate_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010058581, '/j20220904/img/product_images/Lacoste_images/straightset_bl_1_small.jpg', '/j20220904/img/product_images/Lacoste_images/straightset_bl_1_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010082788, '/j20220904/img/product_images/Lacoste_images/masters_classic_0721_1_small.jpg', '/j20220904/img/product_images/Lacoste_images/masters_classic_0721_1_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010093833, '/j20220904/img/product_images/Lacoste_images/carnaby_pro_small.jpg', '/j20220904/img/product_images/Lacoste_images/carnaby_pro_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010087347, '/j20220904/img/product_images/Lacoste_images/lerond_small.jpg', '/j20220904/img/product_images/Lacoste_images/lerond_big.jpg');
+
+-- product_size 나이키 (여자)
+--insert into product_size values (100, 1010094429, 220, 100);
+--insert into product_size values (110, 1010094429, 230, 100);
+--insert into product_size values (120, 1010094429, 240, 100);
+--insert into product_size values (130, 1010094429, 250, 100);
+--insert into product_size values (140, 1010094429, 260, 100);
+
+insert into product_size values (100, 1010058581, 220, 100);
+insert into product_size values (110, 1010058581, 230, 100);
+insert into product_size values (120, 1010058581, 240, 100);
+insert into product_size values (130, 1010058581, 250, 100);
+insert into product_size values (140, 1010058581, 260, 100);
+
+insert into product_size values (100, 1010082788, 220, 100);
+insert into product_size values (110, 1010082788, 230, 100);
+insert into product_size values (120, 1010082788, 240, 100);
+insert into product_size values (130, 1010082788, 250, 100);
+insert into product_size values (140, 1010082788, 260, 100);
+
+insert into product_size values (100, 1010093833, 220, 100);
+insert into product_size values (110, 1010093833, 230, 100);
+insert into product_size values (120, 1010093833, 240, 100);
+insert into product_size values (130, 1010093833, 250, 100);
+insert into product_size values (140, 1010093833, 260, 100);
+
+insert into product_size values (100, 1010087347, 220, 100);
+insert into product_size values (110, 1010087347, 230, 100);
+insert into product_size values (120, 1010087347, 240, 100);
+insert into product_size values (130, 1010087347, 250, 100);
+insert into product_size values (140, 1010087347, 260, 100);
+
+--product 버켄스탁(기존 db테이블에 있는 내용 중복임 아래 product_image랑 size부분 실행됨)
+--insert into product values(1010088777,'BIRKENSTOCK','ARIZONA','버켄스탁_아리조나',0,99000,'BLACK',sysdate,20202);
+--insert into product values(1010076666,'BIRKENSTOCK','ZIZE EVA','버켄스탁_지제 에바',1,59000,'WHITE',sysdate,30202);
+
+--product_image 버켄스탁
+insert into product_image values (seq_image.NEXTVAL, 1010088777, '/j20220904/img/product_images/Birkenstock_images/arizona.jpg', '/j20220904/img/product_images/Birkenstock_images/arizona_big.jpg');
+insert into product_image values (seq_image.NEXTVAL, 1010076666, '/j20220904/img/product_images/Birkenstock_images/zize_Eva.jpg', '/j20220904/img/product_images/Birkenstock_images/zize_Eva_big.jpg');
+
+--product_size 버켄스탁
+--insert into product_size values (200, 1010088777, 250, 100);
+--insert into product_size values (210, 1010088777, 260, 100);
+--insert into product_size values (220, 1010088777, 270, 100);
+--insert into product_size values (230, 1010088777, 280, 100);
+--insert into product_size values (240, 1010088777, 290, 100);
+--
+--insert into product_size values (100, 1010076666, 220, 100);
+--insert into product_size values (110, 1010076666, 230, 100);
+--insert into product_size values (120, 1010076666, 240, 100);
+--insert into product_size values (130, 1010076666, 250, 100);
+--insert into product_size values (140, 1010076666, 260, 100);
+
+
+commit;

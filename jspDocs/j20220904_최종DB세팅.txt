@@ -1,0 +1,857 @@
+DROP TABLE BASKET CASCADE CONSTRAINTS;
+DROP TABLE MEMBER CASCADE CONSTRAINTS;
+DROP TABLE PRODUCT CASCADE CONSTRAINTS;
+DROP TABLE PRODUCT_IMAGE CASCADE CONSTRAINTS;
+DROP TABLE LIKE_PRO CASCADE CONSTRAINTS;
+DROP TABLE SEARCHCLICK CASCADE CONSTRAINTS;
+DROP TABLE ORDERS CASCADE CONSTRAINTS;
+DROP TABLE REVIEW_BOARD CASCADE CONSTRAINTS;
+DROP TABLE QA_BOARD CASCADE CONSTRAINTS;
+DROP TABLE NOTICE CASCADE CONSTRAINTS;
+DROP TABLE CATEGORY CASCADE CONSTRAINTS;
+DROP TABLE ORDERS_DETAIL CASCADE CONSTRAINTS;
+DROP TABLE PRODUCT_SIZE CASCADE CONSTRAINTS;
+DROP TABLE RECENT_SEARCHCLICK CASCADE CONSTRAINTS;
+DROP SEQUENCE seq_orders;
+DROP SEQUENCE seq_image;
+
+
+CREATE TABLE member (
+	mem_id	varchar2(30)		NOT NULL,
+	mem_name	varchar2(20)		NULL,
+	mem_pwd	varchar2(100)		NULL,
+	mem_email1	varchar2(20)		NULL,
+	mem_email2	varchar2(20)		NULL,
+	mem_tel	varchar2(12)		NULL,
+	mem_zipcode	varchar2(10)		NULL,
+	mem_addr1	varchar2(100)		NULL,
+	mem_addr2	varchar2(100)		NULL,
+	mem_logdate	date		NULL
+);
+
+COMMENT ON COLUMN member.mem_id IS '아이디';
+
+COMMENT ON COLUMN member.mem_name IS '이름';
+
+COMMENT ON COLUMN member.mem_pwd IS '비밀번호';
+
+COMMENT ON COLUMN member.mem_email1 IS '이메일1';
+
+COMMENT ON COLUMN member.mem_email2 IS '이메일2';
+
+COMMENT ON COLUMN member.mem_tel IS '휴대폰번호';
+
+COMMENT ON COLUMN member.mem_zipcode IS '우편번호';
+
+COMMENT ON COLUMN member.mem_addr1 IS '주소';
+
+COMMENT ON COLUMN member.mem_addr2 IS '상세주소';
+
+COMMENT ON COLUMN member.mem_logdate IS '생성일';
+
+CREATE TABLE product (
+	product_id	NUMBER(10)		NOT NULL,
+	brand	VARCHAR2(30)		NULL,
+	eng_name	VARCHAR2(100)		NULL,
+	kor_name	VARCHAR2(100)		NULL,
+	gender	NUMBER(1)		NULL,
+	price	NUMBER(30)		NULL,
+	color	VARCHAR2(50)		NULL,
+	regdate	DATE		NULL,
+	ca_code	number(14)		NOT NULL
+);
+
+COMMENT ON COLUMN product.product_id IS '제품코드';
+COMMENT ON COLUMN product.brand IS '브랜드';
+COMMENT ON COLUMN product.eng_name IS '영어이름';
+COMMENT ON COLUMN product.kor_name IS '한글이름';
+COMMENT ON COLUMN product.gender IS '성별';
+COMMENT ON COLUMN product.price IS '가격';
+COMMENT ON COLUMN product.color IS '색상';
+COMMENT ON COLUMN product.regdate IS '등록일';
+COMMENT ON COLUMN product.ca_code IS '카테고리코드';
+
+CREATE TABLE product_image (
+	pro_image_id	NUMBER(7)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	s_file_path	VARCHAR2(3000)		NULL,
+	l_file_path	VARCHAR2(3000)		NULL
+);
+
+COMMENT ON COLUMN product_image.pro_image_id IS '제품이미지번호';
+COMMENT ON COLUMN product_image.product_id IS '제품코드';
+COMMENT ON COLUMN product_image.s_file_path IS '작은 이미지 경로';
+COMMENT ON COLUMN product_image.l_file_path IS '큰 이미지 경로';
+
+CREATE TABLE like_pro (
+	product_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	like_pro_date	DATE		NULL
+);
+
+COMMENT ON COLUMN like_pro.product_id IS '제품코드';
+COMMENT ON COLUMN like_pro.mem_id IS '아이디';
+COMMENT ON COLUMN like_pro.like_pro_date IS '좋아요한날짜';
+
+CREATE TABLE SearchClick (
+	sc_word	varchar2(30)		NOT NULL,
+	sc_count	number		NULL,
+	sc_date	date		NULL
+);
+
+COMMENT ON COLUMN SearchClick.sc_word IS '검색어';
+COMMENT ON COLUMN SearchClick.sc_count IS '검색수';
+COMMENT ON COLUMN SearchClick.sc_date IS '생성일';
+
+CREATE TABLE orders (
+	order_id	NUMBER(20)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	order_name	VARCHAR2(20)		NULL,
+	order_phone	VARCHAR2(15)		NULL,
+	order_email	VARCHAR2(50)		NULL,
+	take_name	VARCHAR2(20)		NULL,
+	take_phone	VARCHAR2(15)		NULL,
+	take_zipcode	VARCHAR2(10)		NULL,
+    take_addr1      varchar2(100)       null,
+    take_addr2      varchar2(100)       null,
+	order_msg	VARCHAR2(100)		NULL,
+	order_date	DATE		NULL,
+	order_status	NUMBER(1)		NULL
+);
+
+COMMENT ON COLUMN orders.order_id IS '주문번호';
+COMMENT ON COLUMN orders.mem_id IS '아이디';
+COMMENT ON COLUMN orders.order_name IS '주문고객이름';
+COMMENT ON COLUMN orders.order_phone IS '주문고객핸드폰번호';
+COMMENT ON COLUMN orders.order_email IS '주문고객이메일';
+COMMENT ON COLUMN orders.take_name IS '배송받을 고객 이름';
+COMMENT ON COLUMN orders.take_phone IS '배송받을 핸드폰 번호';
+COMMENT ON COLUMN orders.take_zipcode IS '우편번호';
+COMMENT ON COLUMN orders.take_addr1 IS '주소';
+COMMENT ON COLUMN orders.take_addr2 IS '상세주소';
+COMMENT ON COLUMN orders.order_msg IS '배송시 요청사항';
+COMMENT ON COLUMN orders.order_date IS '주문날짜';
+COMMENT ON COLUMN orders.order_status IS '주문상태';
+
+
+CREATE TABLE review_board (
+	rb_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	rb_total	NUMBER(1)		NULL,
+	rb_color	NUMBER(1)		NULL,
+	rb_size	NUMBER(1)		NULL,
+	rb_wide	NUMBER(1)		NULL,
+	rb_instep	NUMBER(1)		NULL,
+	rb_title	VARCHAR2(50)		NULL,
+	rb_content	VARCHAR2(1000)		NULL,
+	rb_img	VARCHAR2(100)		NULL,
+	rb_date	DATE		NULL,
+	rb_views	NUMBER(10)		NULL
+);
+
+COMMENT ON COLUMN review_board.rb_id IS '게시글 ID';
+COMMENT ON COLUMN review_board.mem_id IS '아이디';
+COMMENT ON COLUMN review_board.product_id IS '제품코드';
+COMMENT ON COLUMN review_board.rb_total IS '총 별점';
+COMMENT ON COLUMN review_board.rb_color IS '색상';
+COMMENT ON COLUMN review_board.rb_size IS '사이즈';
+COMMENT ON COLUMN review_board.rb_wide IS '발볼';
+COMMENT ON COLUMN review_board.rb_instep IS '발등';
+COMMENT ON COLUMN review_board.rb_title IS '제목';
+COMMENT ON COLUMN review_board.rb_content IS '내용';
+COMMENT ON COLUMN review_board.rb_img IS '이미지';
+COMMENT ON COLUMN review_board.rb_date IS '작성일자';
+COMMENT ON COLUMN review_board.rb_views IS '조회수';
+
+CREATE TABLE QA_board (
+	q_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	q_passwd	VARCHAR(30)		NULL,
+	q_title	VARCHAR2(50)		NULL,
+	q_content	VARCHAR2(1000)		NULL,
+	q_date	DATE		NULL,
+	q_views	NUMBER(10)		NULL,
+	q_answer	VARCHAR2(1000)		NULL
+);
+
+COMMENT ON COLUMN QA_board.q_id IS '게시글 ID';
+COMMENT ON COLUMN QA_board.mem_id IS '아이디';
+COMMENT ON COLUMN QA_board.product_id IS '제품코드';
+COMMENT ON COLUMN QA_board.q_passwd IS '비밀번호';
+COMMENT ON COLUMN QA_board.q_title IS '제목';
+COMMENT ON COLUMN QA_board.q_content IS '내용';
+COMMENT ON COLUMN QA_board.q_date IS '작성일자';
+COMMENT ON COLUMN QA_board.q_views IS '조회수';
+COMMENT ON COLUMN QA_board.q_answer IS '답변';
+
+CREATE TABLE notice (
+	notice_code	NUMBER(9)		NULL,
+	notice_title	VARCHAR2(20)		NULL,
+	notice_date	DATE		NULL,
+	notice_content	VARCHAR2(1000)		NULL,
+	notice_type	NUMBER(1)		NOT NULL
+);
+
+COMMENT ON COLUMN notice.notice_title IS '제목';
+COMMENT ON COLUMN notice.notice_date IS '작성일';
+COMMENT ON COLUMN notice.notice_content IS '내용';
+COMMENT ON COLUMN notice.notice_type IS '글 종류';
+
+CREATE TABLE Category (
+	ca_code	number(14)		NOT NULL,
+	ca_name	varchar2(20)		NOT NULL,
+	ca_code_ref	number(14)		NULL
+);
+
+COMMENT ON COLUMN Category.ca_code IS '카테고리코드';
+COMMENT ON COLUMN Category.ca_name IS '카테고리이름';
+COMMENT ON COLUMN Category.ca_code_ref IS '상위카테고리';
+
+CREATE TABLE product_size (
+	size_num	NUMBER(3)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	pd_size	NUMBER(3)		NULL,
+	stock	NUMBER(3)		NULL
+);
+
+COMMENT ON COLUMN product_size.size_num IS '사이즈 번호';
+COMMENT ON COLUMN product_size.product_id IS '제품코드';
+COMMENT ON COLUMN product_size.pd_size IS '신발사이즈';
+COMMENT ON COLUMN product_size.stock IS '상품재고';
+
+
+CREATE TABLE Basket (
+	size_num	NUMBER(3)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	cnt	NUMBER(3)		NULL
+);
+
+COMMENT ON COLUMN Basket.product_id IS '제품코드';
+COMMENT ON COLUMN Basket.mem_id IS '아이디';
+COMMENT ON COLUMN Basket.cnt IS '수량';
+
+CREATE TABLE orders_detail (
+	order_id	NUMBER(10)		NOT NULL,
+	size_num	NUMBER(3)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	cnt	NUMBER(3)		NULL,
+	order_price	NUMBER(10)		NULL
+);
+
+COMMENT ON COLUMN orders_detail.order_id IS '주문번호';
+COMMENT ON COLUMN orders_detail.product_id IS '제품코드';
+COMMENT ON COLUMN orders_detail.cnt IS '수량';
+COMMENT ON COLUMN orders_detail.order_price IS '가격';
+
+
+-----------------------------------------------------------
+--- 제약조건 추가 
+-----------------------------------------------------------
+
+ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
+	mem_id
+);
+
+ALTER TABLE product ADD CONSTRAINT PK_PRODUCT PRIMARY KEY (
+	product_id
+);
+
+ALTER TABLE product_image ADD CONSTRAINT PK_PRODUCT_IMAGE PRIMARY KEY (
+	pro_image_id,
+	product_id
+);
+
+ALTER TABLE like_pro ADD CONSTRAINT PK_LIKE_PRO PRIMARY KEY (
+	product_id,
+	mem_id
+);
+
+ALTER TABLE SearchClick ADD CONSTRAINT PK_SEARCHCLICK PRIMARY KEY (
+	sc_word
+);
+
+ALTER TABLE orders ADD CONSTRAINT PK_ORDERS PRIMARY KEY (
+	order_id
+);
+
+ALTER TABLE review_board ADD CONSTRAINT PK_REVIEW_BOARD PRIMARY KEY (
+	rb_id
+);
+
+ALTER TABLE QA_board ADD CONSTRAINT PK_QA_BOARD PRIMARY KEY (
+	q_id
+);
+
+ALTER TABLE notice ADD CONSTRAINT PK_NOTICE PRIMARY KEY (
+	notice_code
+);
+
+ALTER TABLE Category ADD CONSTRAINT PK_CATEGORY PRIMARY KEY (
+	ca_code
+);
+
+ALTER TABLE product_size ADD CONSTRAINT PK_PRODUCT_SIZE PRIMARY KEY (
+	size_num,
+	product_id
+);
+
+ALTER TABLE Basket ADD CONSTRAINT PK_BASKET PRIMARY KEY (
+	size_num,
+	product_id,
+	mem_id
+);
+
+ALTER TABLE orders_detail ADD CONSTRAINT PK_ORDERS_DETAIL PRIMARY KEY (
+	order_id,
+	size_num,
+	product_id
+);
+
+ALTER TABLE product ADD CONSTRAINT FK_Category_TO_product_1 FOREIGN KEY (
+	ca_code
+)
+REFERENCES Category (
+	ca_code
+);
+
+ALTER TABLE product_image ADD CONSTRAINT FK_product_TO_product_image_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+)ON DELETE CASCADE;
+
+ALTER TABLE like_pro ADD CONSTRAINT FK_product_TO_like_pro_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+)ON DELETE CASCADE;
+
+ALTER TABLE like_pro ADD CONSTRAINT FK_member_TO_like_pro_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE orders ADD CONSTRAINT FK_member_TO_orders_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE review_board ADD CONSTRAINT FK_member_TO_review_board_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+);
+
+ALTER TABLE review_board ADD CONSTRAINT FK_product_TO_review_board_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE QA_board ADD CONSTRAINT FK_member_TO_QA_board_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+);
+
+ALTER TABLE QA_board ADD CONSTRAINT FK_product_TO_QA_board_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+);
+
+ALTER TABLE Category ADD CONSTRAINT FK_Category_TO_Category_1 FOREIGN KEY (
+	ca_code_ref
+)
+REFERENCES Category (
+	ca_code
+);
+
+ALTER TABLE product_size ADD CONSTRAINT FK_product_TO_product_size_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+)ON DELETE CASCADE;
+
+ALTER TABLE Basket ADD CONSTRAINT FK_product_size_TO_Basket_1 FOREIGN KEY (
+	size_num,
+    product_id
+)
+REFERENCES product_size (
+	size_num,
+    product_id
+);
+
+
+
+ALTER TABLE Basket ADD CONSTRAINT FK_member_TO_Basket_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE orders_detail ADD CONSTRAINT FK_orders_TO_orders_detail_1 FOREIGN KEY (
+	order_id
+)
+REFERENCES orders (
+	order_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE orders_detail ADD CONSTRAINT FK_pdsize_TO_ordersdeta_1 FOREIGN KEY (
+	size_num,
+    product_id
+)
+REFERENCES product_size (
+    size_num,
+    product_id
+);
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------- INSERT DATA ----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-- 회원정보 테이블 insert
+
+insert into member (mem_id, mem_name, mem_pwd, mem_logdate) values ('admin', 'admin', '1234', SYSDATE); -- 관리자
+insert into member values ('asdasd1234', '중앙정', 'asdasd1234@', 'asdasd1234', 'naver.com', '01011112222', '04104', '서울 마포구 신촌로 176', '301', SYSDATE);
+
+-- 카테고리 테이블 insert
+insert into category values(10000,'브랜드',null);
+insert into category values(10100,'ADIDAS',10000);
+insert into category values(10200,'BIRKENSTOCK',10000);
+insert into category values(10300,'CONVERSE',10000);
+insert into category values(10400,'DR.MARTENS',10000);
+insert into category values(10500,'FILA',10000);
+insert into category values(10600,'LACOSTE',10000);
+insert into category values(10700,'NIKE',10000);
+
+insert into category values(20000,'남자',null);
+insert into category values(20100,'운동화',20000);
+insert into category values(20101,'스니커즈',20100);
+insert into category values(20102,'캔버스 화',20100);
+insert into category values(20103,'슬립온',20100);
+insert into category values(20200,'구두',20000);
+insert into category values(20201,'로퍼',20100);
+insert into category values(20202,'레이스업',20100);
+
+insert into category values(30000,'여자',null);
+insert into category values(30100,'운동화',30000);
+insert into category values(30101,'스니커즈',30100);
+insert into category values(30102,'캔버스화',30100);
+insert into category values(30103,'슬립온',30100);
+insert into category values(30200,'구두',30000);
+insert into category values(30201,'로퍼',30100);
+insert into category values(30202,'레이스업',30100);
+
+-- 인기 검색어(SEARCH_CLICK)insert
+insert into SearchClick values('나이키',0,sysdate);
+insert into SearchClick values('아디다스',0,sysdate);
+
+
+-- 상품정보 insert
+insert into product values (1010092974, 'NIKE', 'NIKE WAFFLE DEBUT', '나이키 와플 데뷰', 0, 100, 'WHITE', sysdate, 20101);
+insert into product values (1010093252, 'NIKE', 'WMNS NIKE WAFFLE DEBUT', '우먼스 나이키 와플 데뷰', 1, 99000, 'WHITE', sysdate, 30101);
+
+insert into product values (1010089921, 'LACOSTE', 'POWERCOURT TRI', '라코스테_파워코트 트라이', 0, 149000, 'WHITE', sysdate, 20102);
+insert into product values (1010094429, 'LACOSTE', 'GRADUATE PRO', '라코스테_그래듀에이트 프로', 1, 149000, 'WHITE', sysdate, 30101);
+
+insert into product values (1010094584, 'FILA', 'COURT DELUXE GREEN', '휠라_코트 디럭스 그린', 0, 64000, 'WHITE', sysdate, 20101);
+insert into product values (1010090275, 'FILA', 'RAYFLIDE', '휠라_레이플라이드', 1, 79000, 'BEIGE', sysdate, 30102);
+
+INSERT INTO product VALUES(1010080312, 'CONVERSE', 'CT HI', '컨버스_척테일러 하이', 0, 69000, 'WHITE', sysdate, 20201);
+INSERT INTO product VALUES(1010080339, 'CONVERSE', 'CTAS LIFT HI', '컨버스_척테일러올스타 리프트 하이', 1, 85000, 'BLACK', sysdate, 30101); 
+
+INSERT INTO product VALUES(1010069281, 'DR.MARTENS', 'DANTE', '닥터마틴_단테', 0, 170000, 'WHITE', sysdate, 20101);
+INSERT INTO product VALUES(1010041833, 'DR.MARTENS', 'ADRIAN SLIP ON SHOE', '닥터마틴_아드리안 슬립 온 슈', 1, 200000, 'BLACK', sysdate, 30101);
+
+
+insert into product values (1010088777, 'BIRKENSTOCK', 'ARIZONA', '버켄스탁_아리조나', 0, 99000, 'BLACK', sysdate, 20200);
+insert into product values (1010076666, 'BIRKENSTOCK', 'ZIZE EVA', '버켄스탁_지제 에바', 1, 59000, 'WHITE', sysdate, 30101);
+
+
+-- product_image 테이블 insert
+--delete  from product_image where pro_image_id=1; -- 기존에 있는 데이터 하나 삭제 후 변경
+--INSERT INTO product_image VALUES(1, 1010092974, '/j20220904/img/product_images/Nike_images/nike_waffle_small.jpg', '/j20220904/img/product_images/Nike_images/nike_waffle_big.jpg');
+--INSERT INTO product_image VALUES(2, 1010093252, '/j20220904/img/product_images/Nike_images/wmns_nike_waffle_small.jpg', '/j20220904/img/product_images/Nike_images/wmns_nike_waffle_big.jpg');
+--
+--insert into product_image values (3, 1010089921, '/j20220904/img/product_images/Lacoste_images/powercourt_tri_small.jpg', '/j20220904/img/product_images/Lacoste_images/powercourt_tri_big.jpg');
+--insert into product_image values (4, 1010094429, '/j20220904/img/product_images/Lacoste_images/graduate_small.jpg', '/j20220904/img/product_images/Lacoste_images/graduate_big.jpg');
+--
+--insert into product_image values (5, 1010094584, '/j20220904/img/product_images/Fila_images/court_deluxe_green_small.jpg', '/j20220904/img/product_images/Fila_images/court_deluxe_green_big.jpg');
+--insert into product_image values (6, 1010090275, '/j20220904/img/product_images/Fila_images/rayflide_small.jpg', '/j20220904/img/product_images/Fila_images/rayflide_big.jpg');
+
+
+----------- 상품 사이즈 테이블 insert
+-- product_size ( 상품 사이즈 ) 나이키
+insert into product_size values (200, 1010092974, 250, 100);
+insert into product_size values (210, 1010092974, 260, 100);
+insert into product_size values (220, 1010092974, 270, 100);
+insert into product_size values (230, 1010092974, 280, 100);
+insert into product_size values (240, 1010092974, 290, 100);
+
+insert into product_size values (100, 1010093252, 220, 100);
+insert into product_size values (110, 1010093252, 230, 100);
+insert into product_size values (120, 1010093252, 240, 100);
+insert into product_size values (130, 1010093252, 250, 100);
+insert into product_size values (140, 1010093252, 260, 100);
+
+-- product_size ( 상품 사이즈 ) 라코스테
+insert into product_size values (200, 1010089921, 250, 100);
+insert into product_size values (210, 1010089921, 260, 100);
+insert into product_size values (220, 1010089921, 270, 100);
+insert into product_size values (230, 1010089921, 280, 100);
+insert into product_size values (240, 1010089921, 290, 100);
+
+insert into product_size values (100, 1010094429, 220, 100);
+insert into product_size values (110, 1010094429, 230, 100);
+insert into product_size values (120, 1010094429, 240, 100);
+insert into product_size values (130, 1010094429, 250, 100);
+insert into product_size values (140, 1010094429, 260, 100);
+
+
+-- product_size ( 상품 사이즈 ) 휠라
+insert into product_size values ( 200, 1010094584, 250, 100);
+insert into product_size values ( 210, 1010094584, 260, 100);
+insert into product_size values ( 220, 1010094584, 270, 100);
+insert into product_size values ( 230, 1010094584, 280, 100);
+insert into product_size values ( 240, 1010094584, 290, 100);
+
+insert into product_size values ( 100, 1010090275, 220, 100);
+insert into product_size values ( 110, 1010090275, 230, 100);
+insert into product_size values ( 120, 1010090275, 240, 100);
+insert into product_size values ( 130, 1010090275, 250, 100);
+insert into product_size values ( 140, 1010090275, 260, 100);
+
+-- product_size ( 상품 사이즈 ) 컨버스
+insert into product_size values ( 200, 1010080312, 250, 100);
+insert into product_size values ( 210, 1010080312, 260, 100);
+insert into product_size values ( 220, 1010080312, 270, 100);
+insert into product_size values ( 230, 1010080312, 280, 100);
+insert into product_size values ( 240, 1010080312, 290, 100);
+
+insert into product_size values ( 100, 1010080339, 220, 100);
+insert into product_size values ( 110, 1010080339, 230, 100);
+insert into product_size values ( 120, 1010080339, 240, 100);
+insert into product_size values ( 130, 1010080339, 250, 100);
+insert into product_size values ( 140, 1010080339, 260, 100);
+
+-- produc_size ( 상품 사이즈 ) 닥터마틴
+insert into product_size values ( 200, 1010069281, 250, 100);
+insert into product_size values ( 210, 1010069281, 260, 100);
+insert into product_size values ( 220, 1010069281, 270, 100);
+insert into product_size values ( 230, 1010069281, 280, 100);
+insert into product_size values ( 240, 1010069281, 290, 100);
+
+insert into product_size values ( 100, 1010041833, 220, 100);
+insert into product_size values ( 110, 1010041833, 230, 100);
+insert into product_size values ( 120, 1010041833, 240, 100);
+insert into product_size values ( 130, 1010041833, 250, 100);
+insert into product_size values ( 140, 1010041833, 260, 100);
+
+
+-- product_size ( 상품 사이즈 ) 버켄스탁
+insert into product_size values ( 200, 1010088777, 250, 100);
+insert into product_size values ( 210, 1010088777, 260, 100);
+insert into product_size values ( 220, 1010088777, 270, 100);
+insert into product_size values ( 230, 1010088777, 280, 100);
+insert into product_size values ( 240, 1010088777, 290, 100);
+
+insert into product_size values ( 100, 1010076666, 220, 100);
+insert into product_size values ( 110, 1010076666, 230, 100);
+insert into product_size values ( 120, 1010076666, 240, 100);
+insert into product_size values ( 130, 1010076666, 250, 100);
+insert into product_size values ( 140, 1010076666, 260, 100);
+
+--공지 테이블 insert
+ALTER TABLE notice DROP COLUMN notice_type;
+ALTER TABLE notice MODIFY (notice_title VARCHAR2(200));
+
+insert into notice VALUES(1, '사이트 오픈 안내', '2020/02/11', '신규 오픈했습니다.');
+insert into notice VALUES(2, '행사 안내', '2020/04/20', '현재 행사중입니다. 많은 관심 부탁드립니다.');
+insert into notice VALUES(3, '휴일 일정 안내', '2021/01/26', '오늘부터 일주일간 쉴 예정입니다. 감사합니다.');
+insert into notice VALUES(4, '사이트 디자인 변경 안내', '2021/05/14', '사이트 색을 변경해보았습니다.');
+insert into notice VALUES(5, '사이트 안내', '2021/10/4', '저희 사이트는 직접 만든 페이지입니다.');
+insert into notice VALUES(6, '사이트 운영 관련 안내', '2021/12/24', '크리스마스라 당분간 좀 쉬겠습니다.');
+insert into notice VALUES(7, '사이트 저작권 안내', '2022/03/26', '사이트 저작권은 모두 저희에게 속합니다.');
+insert into notice VALUES(8, '사이트 피드백 관련 안내', '2022/06/26', '일일이 피드백드리지 못합니다. 양해 바랍니다.');
+insert into notice VALUES(9, '상품 관련 안내', '2022/07/08', '사이트 내 브랜드는 7개로 정해져있습니다.');
+insert into notice VALUES(10, '사이즈 재입고 안내', '2022/09/18', '재입고일은 저희도 모릅니다. 양해 바랍니다.');
+insert into notice VALUES(11, '사이트 오류 관련 안내', '2022/10/04', '사이트가 먹통이 되었던 점 죄송합니다. 현재 수정 완료했습니다.');
+--insert into notice VALUES(12, '통합 사이트 폐점 안내', '2022/10/17', '이만하면 되었다고 생각합니다.');
+
+-- 리뷰 게시판 테이블 insert
+insert into review_board values (1, 'asdasd1234', 1010092974, 4.5, 4, 4, 4, 5, '상품 마음에 들어요 ㅎㅎ', '사이즈도 잘 맞고 편하네요', 'image.png', sysdate, 50);
+
+-- Q&A 게시판 테이블 insert
+insert into QA_board values(1, 'asdasd1234', 1010092974, '1234', '사이즈 문의', '사이즈가 정사이즈인가요?', sysdate, 2, '네 정사이즈입니다!');
+
+-----------이후 추가된것들
+
+--ALTER TABLE product_size RENAME COLUMN size TO pd_size;
+
+-- 카테고리 ca_code 변경
+update category set ca_code_ref=20200 where ca_code=20201;
+update category set ca_code_ref=20200 where ca_code=20202;
+update category set ca_code_ref=30200 where ca_code=30201;
+update category set ca_code_ref=30200 where ca_code=30202;
+
+-- 최근 검색어 테이블
+  CREATE TABLE RECENT_SEARCHCLICK 
+   (   MEM_ID VARCHAR2(30 BYTE) NOT NULL ENABLE, 
+      RSC_NUM NUMBER(10,0) NOT NULL ENABLE, 
+      RSC_WORD VARCHAR2(50 BYTE), 
+    CONSTRAINT RECENT_SEARCHCLICK_PK PRIMARY KEY (MEM_ID, RSC_NUM)
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE SYSTEM  ENABLE, 
+    CONSTRAINT RECENT_SEARCHCLICK_FK1 FOREIGN KEY (MEM_ID)
+     REFERENCES J20220904.MEMBER (MEM_ID) ON DELETE CASCADE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE SYSTEM ;
+
+-- 장바구니 / 주문 확인용 간단 계정
+INSERT INTO member (mem_id, mem_name, mem_pwd, mem_email1, mem_email2, mem_tel, mem_zipcode, mem_addr1, mem_addr2, mem_logdate) 
+VALUES ('test', '테스트', '1', 'test1006', 'naver.com', '01098765432', '04104', '서울 마포구 신촌로 176', '301', '22/09/25');
+INSERT INTO member (mem_id, mem_name, mem_pwd, mem_email1, mem_email2, mem_tel, mem_zipcode, mem_addr1, mem_addr2, mem_logdate) 
+VALUES ('aa', '에이', '1', 'tototeller15', 'naver.com', '01075865945', '04104', '서울 마포구 신촌로 176', '301', '22/10/06');
+
+--주문 번호에 시퀀스 추가용 쿼리
+-- 시퀀스 생성
+CREATE SEQUENCE SEQ_ORDERS
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 9999999999999
+MINVALUE 1
+NOCYCLE;
+
+-- 주문 정보 테이블의 orders_id를 생성한 시퀀스로 설정
+--UPDATE orders SET order_id = seq_orders.NEXTVAL;
+
+
+----- product_image 테이블 관련 설정
+
+--product_image테이블의 pro_image_id에 사용할 시퀀스 생성
+CREATE SEQUENCE SEQ_image
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 9999999999999
+MINVALUE 1
+NOCYCLE;
+
+--기존 product_image테이블에 시퀀스 사용하여 insert
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010092974, '/j20220904/img/product_images/Nike_images/nike_waffle_small.jpg',	        '/j20220904/img/product_images/Nike_images/nike_waffle_big.jpg');
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010093252,	'/j20220904/img/product_images/Nike_images/wmns_nike_waffle_small.jpg',	    '/j20220904/img/product_images/Nike_images/wmns_nike_waffle_big.jpg');
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010089921,	'/j20220904/img/product_images/Lacoste_images/powercourt_tri_small.jpg',	'/j20220904/img/product_images/Lacoste_images/powercourt_tri_big.jpg');
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010094429,	'/j20220904/img/product_images/Lacoste_images/graduate_small.jpg',	        '/j20220904/img/product_images/Lacoste_images/graduate_big.jpg');
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010094584,	'/j20220904/img/product_images/Fila_images/court_deluxe_green_small.jpg',	'/j20220904/img/product_images/Fila_images/court_deluxe_green_big.jpg');
+INSERT INTO product_image 
+VALUES  (seq_image.NEXTVAL, 1010090275,	'/j20220904/img/product_images/Fila_images/rayflide_small.jpg',	            '/j20220904/img/product_images/Fila_images/rayflide_big.jpg');
+
+
+-- 후기, 질문 게시판 테이블 관련
+DROP TABLE REVIEW_BOARD CASCADE CONSTRAINTS;
+DROP TABLE QA_BOARD CASCADE CONSTRAINTS;
+
+CREATE TABLE review_board (
+	rb_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	rb_title	VARCHAR2(50)		NULL,
+	rb_content	VARCHAR2(1000)		NULL,
+	rb_img	VARCHAR2(100)		NULL,
+	rb_date	DATE		NULL,
+	rb_views	NUMBER(10)		NULL
+);
+
+COMMENT ON COLUMN review_board.rb_id IS '게시글 ID';
+COMMENT ON COLUMN review_board.mem_id IS '아이디';
+COMMENT ON COLUMN review_board.product_id IS '제품코드';
+COMMENT ON COLUMN review_board.rb_title IS '제목';
+COMMENT ON COLUMN review_board.rb_content IS '내용';
+COMMENT ON COLUMN review_board.rb_img IS '이미지';
+COMMENT ON COLUMN review_board.rb_date IS '작성일자';
+COMMENT ON COLUMN review_board.rb_views IS '조회수';
+
+
+CREATE TABLE QA_board (
+	q_id	NUMBER(10)		NOT NULL,
+	mem_id	varchar2(30)		NOT NULL,
+	product_id	NUMBER(10)		NOT NULL,
+	q_title	VARCHAR2(50)		NULL,
+	q_content	VARCHAR2(1000)		NULL,
+	q_date	DATE		NULL,
+	q_views	NUMBER(10)		NULL,
+	q_answer	VARCHAR2(1000)		NULL
+);
+
+COMMENT ON COLUMN QA_board.q_id IS '게시글 ID';
+COMMENT ON COLUMN QA_board.mem_id IS '아이디';
+COMMENT ON COLUMN QA_board.product_id IS '제품코드';
+COMMENT ON COLUMN QA_board.q_title IS '제목';
+COMMENT ON COLUMN QA_board.q_content IS '내용';
+COMMENT ON COLUMN QA_board.q_date IS '작성일자';
+COMMENT ON COLUMN QA_board.q_views IS '조회수';
+COMMENT ON COLUMN QA_board.q_answer IS '답변';
+
+ALTER TABLE review_board ADD CONSTRAINT PK_REVIEW_BOARD PRIMARY KEY (
+	rb_id
+);
+
+ALTER TABLE QA_board ADD CONSTRAINT PK_QA_BOARD PRIMARY KEY (
+	q_id
+);
+
+ALTER TABLE review_board ADD CONSTRAINT FK_member_TO_review_board_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE review_board ADD CONSTRAINT FK_product_TO_review_board_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+);
+
+ALTER TABLE QA_board ADD CONSTRAINT FK_member_TO_QA_board_1 FOREIGN KEY (
+	mem_id
+)
+REFERENCES member (
+	mem_id
+)
+ON DELETE CASCADE;
+
+ALTER TABLE QA_board ADD CONSTRAINT FK_product_TO_QA_board_1 FOREIGN KEY (
+	product_id
+)
+REFERENCES product (
+	product_id
+);
+
+-- 리뷰 게시판 테이블 사진 컬럼 삭제
+ALTER TABLE review_board DROP COLUMN rb_img;
+
+-- 리뷰 게시판 테이블 insert
+insert into review_board values (1, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요', '2020-08-11', 10);
+insert into review_board values (2, 'asdasd1234', 1010092974, '예뻐요', '신발 예쁘네요', '2020-08-12', 10);
+insert into review_board values (3, 'asdasd1234', 1010092974, '아쉬워요', '신발이 좀 크네요', '2020-08-13', 10);
+insert into review_board values (4, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요', '2020-08-14', 10);
+insert into review_board values (5, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요',  '2020-08-20', 10);
+insert into review_board values (6, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요', '2020-08-21', 10);
+insert into review_board values (7, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요',  '2020-08-21', 10);
+insert into review_board values (8, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요',  '2020-08-21', 10);
+insert into review_board values (9, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요',  '2020-08-21', 10);
+insert into review_board values (10, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요', '2020-08-21', 10);
+insert into review_board values (11, 'asdasd1234', 1010092974, '만족해요', '신발 예쁘네요',  '2020-08-21', 10);
+insert into review_board values (12, 'asdasd1234', 1010089921, '만족해요', '신발 예쁘네요',  '2020-09-11', 10);
+insert into review_board values (13, 'asdasd1234', 1010090275, '만족해요', '신발 예쁘네요', '2020-09-11', 10);
+insert into review_board values (14, 'asdasd1234', 1010069281, '만족해요', '신발 예쁘네요', '2020-09-11', 10);
+
+-- Q&A 게시판 테이블 insert
+insert into QA_board values(1, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(2, 'asdasd1234', 1010092974, '색상 문의', '색상 화면과 같나요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(3, 'asdasd1234', 1010092974, '배송', '배송 얼마나 걸릴까요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(4, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(5, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(6, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(7, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(8, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(9, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(10, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(11, 'asdasd1234', 1010092974, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(12, 'asdasd1234', 1010089921, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(13, 'asdasd1234', 1010090275, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+insert into QA_board values(14, 'asdasd1234', 1010069281, '사이즈 문의', '사이즈가 정사이즈인가요?', '2020-08-01', 2, '네 정사이즈입니다!');
+
+-- 이전글/다음글 !제목! 받기 위한 함수
+create or replace FUNCTION notice_title_bef_aft
+    (
+     p_notice_code IN number,   -- 게시판 번호
+     p_gubun       IN number    -- 이전 글 제목(1)/이후 글 제목(2) 구분 
+     )  
+RETURN VARCHAR2                 -- 게시판 이전 /이후글 
+IS
+    v_notice_code  notice.notice_code%TYPE;   
+    v_notice_title notice.notice_title%TYPE;   
+BEGIN
+     IF     p_gubun = 1 THEN  
+            SELECT MAX(notice_code)
+            INTO   v_notice_code   -- 이전 게시판 번호
+            FROM   notice
+            WHERE  notice_code  < p_notice_code;
+     ELSE
+            SELECT  MIN(notice_code)
+            INTO   v_notice_code   -- 이후 게시판 번호
+            FROM   notice
+            WHERE  notice_code > p_notice_code;
+    END IF;
+    SELECT notice_title
+    INTO   v_notice_title
+    FROM   notice
+    WHERE  notice_code  = v_notice_code;
+    RETURN(v_notice_title);
+END;
+/
+
+-- 이전글/다음글 !날짜! 받기 위한 함수 
+create or replace FUNCTION notice_date_bef_aft
+    (
+     p_notice_code IN number,   -- 게시판 번호
+     p_gubun       IN number    -- 이전 글 날짜(1)/이후 글 날짜(2) 구분 
+     )  
+RETURN DATE                      -- 게시판 이전 /이후 글의 날짜 
+IS
+    v_notice_code  notice.notice_code%TYPE;   
+    v_notice_date notice.notice_date%TYPE;   
+BEGIN
+     IF     p_gubun = 1 THEN  
+            SELECT MAX(notice_code)
+            INTO   v_notice_code   -- 이전 게시판 번호
+            FROM   notice
+            WHERE  notice_code  < p_notice_code;
+     ELSE
+            SELECT  MIN(notice_code)
+            INTO   v_notice_code   -- 이후 게시판 번호
+            FROM   notice
+            WHERE  notice_code > p_notice_code;
+    END IF;
+    
+    SELECT notice_date
+    INTO   v_notice_date
+    FROM   notice
+    WHERE  notice_code  = v_notice_code;
+    RETURN(v_notice_date);
+END;
+/
+commit;
